@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import OtpModal from '../components/OtpModal';
 import styles from './style.module.css';
 import bannerImage from './home.png'; 
+import googleLogo from './google.png';
 
 function Signup() {
   const [firstName, setFirstName] = useState('');
@@ -48,20 +49,26 @@ function Signup() {
      </div>
     
     <div className={`${styles['signup-page']} ${showOtp ? styles['blur-background'] : ''}`}>
+      <div className={styles.headingRow}>
       <header className={styles.header}>
         <div className={styles.logo}>Create your account</div>
         <div className={styles['welcome-title']}>Enter your credentials to create your account</div>
       </header>
+      <div className={styles.language}>
+      <button className={styles['languageButton']}>Change language</button>
+      </div>
+      </div>
       <main className={styles.main}>
        
         <form className={styles['signup-form']} onSubmit={handleSubmit}>
           <div className={styles.namefield}>
         <div className={styles['name-inputs']}>
-      <label htmlFor="firstName">First Name: </label>
+      <label htmlFor="firstName">First name </label>
     <input
         type="text"
         id="firstName"
         name="firstName"
+        className={styles.nameInput}
         placeholder="Your first name" 
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
@@ -69,12 +76,13 @@ function Signup() {
        
     />
   </div>
-  <div className={styles['name-inputs']}>
-    <label htmlFor="lastName">Last name:</label>
+  <div className={styles['last-name-inputs']}>
+    <label htmlFor="lastName">Last name</label>
     <input
       type="text"
       id="lastName"
       name="lastName"
+      className={styles.nameInput}
       placeholder="Your last name" 
       value={lastName}
       onChange={(e) => setLastName(e.target.value)}
@@ -84,23 +92,26 @@ function Signup() {
 
 </div> 
           <div className={styles.inputPhone}>
-          <label htmlFor="phone">Phone:</label>
+          <label htmlFor="phone">Phone</label>
           <input
             type="tel"
             id="phone"
            placeholder="Your phone number" 
             name="phone"
+            className={styles.nameInput}
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             required
           />
           </div>
+          
 
           <div className={styles['terms-checkbox']}>
             <input
               type="checkbox"
               id="terms"
               name="terms"
+              className={styles.checkedField}
               checked={termsAccepted}
               onChange={(e) => setTermsAccepted(e.target.checked)}
               required
@@ -112,12 +123,15 @@ function Signup() {
           </button>
         </form>
        
-        <p className={styles['login-link']}>
+        <div className={styles['login-link']}>
           Already have an account? <a href="#">Login</a>
-        </p>
-        <div className={styles['social-login']}>
-          <button className={styles['google-login']}>Continue with Google</button>
         </div>
+        <div className={styles['social-login']}>
+            <button className={styles['google-login']}>
+            <img src={googleLogo} alt="Google Logo" className={styles['google-logo']} />
+                Continue with Google
+            </button>
+        </div>  
       </main>
       
     </div>
