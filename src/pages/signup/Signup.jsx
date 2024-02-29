@@ -5,6 +5,7 @@ import bannerImage from "./home.png";
 import googleLogo from "./google.png";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import userService from "../../service/userService";
 
 function Signup() {
   const [firstName, setFirstName] = useState("");

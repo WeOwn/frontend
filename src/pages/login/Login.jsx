@@ -3,11 +3,11 @@ import OtpModal from "../../components/OtpModal";
 import styles from "./style.module.css";
 import bannerImage from "./home.png";
 import googleLogo from "./google.png";
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import axios from "axios";
+import { Link } from "react-router-dom";
+import otpService from "../../service/otpService";
 
 function Login() {
- 
   const [phone, setPhone] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [showOtp, setShowOtp] = useState(false);
@@ -22,36 +22,24 @@ function Login() {
     }
 
     try {
-        // Make API call to request OTP using axios
-        const response = await axios.get('https://weownbackend.azurewebsites.net/user/otp', {
-          params: { phoneNumber: phone },
-          headers: {
-            'Content-Type': 'application/json',
-            // Include any additional headers if needed
-          },
-        });
-  
-        // Check if the response is successful (status code 200)
-        if (response.status === 200) {
-          // Handle the response data as needed
-       
-          console.log('API Response:', response.data);
-  
-          // Display OTP modal
-          setShowOtp(true);
-        } else {
-          // Handle error responses
-          console.error('API Error:', response.status, response.statusText);
-          alert('Failed to request OTP. Please try again.');
-        }
-      } catch (error) {
-        console.error('API Request Error:', error);
-        alert('Failed to request OTP. Please try again.');
-      }
-  
+      const response = await otpService.getOtp(phone);
 
-   
-  
+      if (response.status === 200) {
+        // Handle the response data as needed
+
+        console.log("API Response:", response.data);
+
+        // Display OTP modal
+        setShowOtp(true);
+      } else {
+        // Handle error responses
+        console.error("API Error:", response.status, response.statusText);
+        alert("Failed to request OTP. Please try again.");
+      }
+    } catch (error) {
+      console.error("API Request Error:", error);
+      alert("Failed to request OTP. Please try again.");
+    }
 
     // console.log("Form submitted:", {
     //   firstName,
@@ -59,10 +47,7 @@ function Login() {
     //   phone,
     //   termsAccepted,
     // });
-        
-
   };
-
 
   const closeOtpModal = () => {
     setShowOtp(false);
@@ -100,8 +85,6 @@ function Login() {
         </div>
         <main className={styles.main}>
           <form className={styles["signup-form"]} onSubmit={handleSubmit}>
-        
-             
             <div className={styles.inputPhone}>
               <label htmlFor="phone">Phone</label>
               <input
@@ -134,7 +117,7 @@ function Login() {
           </form>
 
           <div className={styles["login-link"]}>
-           Don't have an account? <Link  to="/signup">Register</Link>
+            Don't have an account? <Link to="/signup">Register</Link>
           </div>
           <div className={styles["social-login"]}>
             <button className={styles["google-login"]}>
@@ -153,13 +136,11 @@ function Login() {
         <OtpModal
           onClose={closeOtpModal}
           onSubmit={(apiEndpoint, data) => {
-            console.log('API endpoint:', apiEndpoint);
-            console.log('Data to send:', data);
+            console.log("API endpoint:", apiEndpoint);
+            console.log("Data to send:", data);
           }}
           userData={{
-         
             phoneNumber: phone,
-            
           }}
           apiEndpoint="https://weownbackend.azurewebsites.net/user/signup"
         />
