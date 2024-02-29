@@ -1,0 +1,68 @@
+/* Navbar.module.css */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f6f6f6;
+    font-family: "Urbanist", sans-serif;
+}
+  
+  .logo img {
+    max-height: 30px;
+    margin: 10px;
+  }
+  
+  .navCenter {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navOptions {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+   
+  }
+
+  .navOptions li a {
+    color: black;
+    text-decoration: none; 
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  
+  
+  .navOptions li {
+    margin-right: 25px;
+    
+  }
+  
+  .navRight {
+    display: flex;
+  }
+  
+  .navRight a {
+    margin-left: 10px;
+    text-decoration: none;
+  }
+  
+  .registerButton{
+    background-color: rgba(112, 101, 240, 0.1);
+    color: rgba(112, 101, 240, 1);
+    padding: 0.7em;
+    border-radius: 6px;
+    width: 5em;
+    text-align: center;
+  }
+
+.loginButton {
+  background-color: rgba(112, 101, 240, 1);
+  color: white;
+  padding: 0.7em;
+  border-radius: 6px;
+  width: 5em;
+  text-align: center;
+}

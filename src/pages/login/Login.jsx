@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import OtpModal from "../../components/OtpModal";
+import OtpModal from "../../components/modals/OtpModal";
 import styles from "./style.module.css";
 import bannerImage from "./home.png";
 import googleLogo from "./google.png";
