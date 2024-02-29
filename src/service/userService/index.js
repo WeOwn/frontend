@@ -2,8 +2,10 @@
 import api from "../apiGateway";
 
 const userService = {
-  getUser(userId) {},
-  updateUser(userId, data) {},
+  login(data = {}) {
+    return api.post("/user/login", data);
+  },
+
   // Add other user-related methods as needed
 };
 
