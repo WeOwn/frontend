@@ -2,22 +2,26 @@
 .megaDropdown {
     
     position: fixed;
-    top: 2.5em;
+    top: 0;
     left: 0;
     width: 100%;
-    opacity: 0;
+    opacity: 1;
     visibility: hidden;
-    background-color: #f6f6f6;
+    background-color: rgba(112, 101, 240, 0.1);
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 999;
-    transition: top 1s cubic-bezier(0.65, 0.05, 0.36, 1), opacity 1s cubic-bezier(0.65, 0.05, 0.36, 1);
+    transition: top 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
+    height: 30em;
+    border-radius: 0px 0px 50px 50px;
   }
   
   .megaDropdown.show {
     visibility: visible;
     opacity: 1;
-    top: 5em;
+    top: 5.3em;
+   
+    
   }
   
   .megaCategory {
