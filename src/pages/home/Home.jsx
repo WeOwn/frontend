@@ -19,7 +19,6 @@ export const Home = () => {
       >
         <div
           style={{
-            // border: "1px solid black",
             width: "50%",
             display: "flex",
             justifyContent: "center",
@@ -44,15 +43,6 @@ export const Home = () => {
               alignItems: "center",
             }}
           >
-            {/* <div
-              style={{
-                background: "white",
-                borderTopLeftRadius: "20px",
-                borderTopRightRadius: "20px",
-              }}
-            >
-              <OptionToogle />
-            </div> */}
             <OptionToogle />
             <div style={{ width: "100%" }}>
               <Search />
