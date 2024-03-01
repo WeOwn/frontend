@@ -1,12 +1,13 @@
-/* Navbar.module.css */
 
 .navbar {
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
     background-color: #f6f6f6;
     font-family: "Urbanist", sans-serif;
+    z-index: 1;
 }
   
   .logo img {
@@ -66,3 +67,4 @@
   width: 5em;
   text-align: center;
 }
+
