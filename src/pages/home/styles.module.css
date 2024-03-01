@@ -1,6 +1,26 @@
-.maindiv{
-    background-color:rgba(112, 101, 240, 1);
-    width: 100vw;
-    height: 100vh;
-   
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&family=Outfit&display=swap");
+
+.maindiv {
+  background-color: rgba(112, 101, 240, 1);
+  width: 100vw;
+  height: 100vh;
+}
+
+.mainHeading {
+  color: #ffffff;
+  font-family: Urbanist;
+  font-size: 50px;
+  font-weight: 700;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.subHeading {
+  font-family: Outfit;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #ffffff;
 }
