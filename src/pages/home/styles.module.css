@@ -1,26 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&family=Outfit&display=swap");
 
 .maindiv {
-  background-color: rgba(112, 101, 240, 1);
+  font-family: Urbanist;
   width: 100vw;
   height: 100vh;
+
 }
 
 .mainHeading {
   color: #ffffff;
-  font-family: Urbanist;
-  font-size: 50px;
-  font-weight: 700;
+ 
+  font-size: 3.8em;
+  font-weight: 600;
   letter-spacing: 0em;
   text-align: center;
+  margin-top: 3em;
+
 }
 
 .subHeading {
   font-family: Outfit;
-  font-size: 20px;
+  font-size: 1em;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 1.4em;
   letter-spacing: 0em;
   text-align: center;
   color: #ffffff;
+  width: 75%;
 }
