@@ -55,15 +55,3 @@ export const Home = () => {
 };
 
 export default Home;
-
-// <div
-//   style={{
-//     width: "40%",
-//     height: "50px",
-//     position: "absolute",
-//     border: "1px solid black",
-//   }}
-// >
-//   <div style={{ fontSize: "20px" }}>Experience a 3D Real Estate Platform</div>
-//   <Search />
-// </div>;
