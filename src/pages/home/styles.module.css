@@ -4,18 +4,16 @@
   font-family: Urbanist;
   width: 100%;
   height: 100vh;
-
 }
 
 .mainHeading {
   color: #ffffff;
- 
+
   font-size: 3.8em;
   font-weight: 600;
   letter-spacing: 0em;
   text-align: center;
   margin-top: 3em;
-
 }
 
 .subHeading {
@@ -27,4 +25,162 @@
   text-align: center;
   color: #ffffff;
   width: 75%;
+}
+
+/* hello section */
+
+.HelloSection {
+  background: #7065f0;
+  display: flex;
+  justify-content: center;
+}
+.helloContentContainer {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3em;
+  padding: 20px;
+}
+
+.optionTooglerDiv {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+.searchContainer {
+  width: 100%;
+  margin-bottom: 2em;
+}
+
+/* search and exprole section */
+
+.searchSection {
+  display: flex;
+  flex-direction: row;
+  margin: 3em;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchSectionIntro {
+  display: flex;
+  flex-direction: column;
+  margin: 3em;
+  width: 50%;
+  gap: 1em;
+}
+
+.searchSectionHeader {
+  font-weight: 600;
+  font-size: 2em;
+}
+.searchSectionDesc {
+  font-weight: 500;
+  font-size: 0.8em;
+  line-height: 1.2em;
+}
+.searchInputContainer {
+  margin: 3em;
+}
+.searchInput {
+  padding: 1em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  margin-right: 0.5em;
+  background-color: rgba(244, 244, 244, 1);
+}
+.searchResults {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.Search_Properties {
+  position: relative;
+  overflow: hidden;
+  width: 30em;
+  height: 20em;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+.searchProperty {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  color: #fff;
+  z-index: 2;
+  text-align: center;
+}
+.propertyTitle {
+  font-size: 2em;
+  font-weight: 500;
+}
+.propertydesc {
+  padding: 1em;
+  font-size: 0.8em;
+  margin-bottom: 2em;
+}
+.propertyImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.searchPropertyBg {
+  content: "''";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(112, 101, 240, 0.8);
+  z-index: 1;
+}
+
+/* featured Properties section */
+
+.FeaturedIntroContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 3em;
+  justify-content: space-between;
+  align-items: center;
+}
+.introContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 3em;
+  width: 50%;
+  gap: 1em;
+}
+.FeaturedSectionHeader {
+  font-weight: 600;
+  font-size: 2em;
+}
+.FeaturedSectionDesc {
+  font-weight: 500;
+  font-size: 0.8em;
+  line-height: 1.2em;
+}
+.FeaturedButtonContainer {
+  margin: 3em;
+}
+.FeaturedButton {
+  padding: 1em;
+  border-radius: 5px;
+  border: 0px solid #ccc;
+  margin-right: 0.5em;
+  background-color: rgba(244, 244, 244, 1);
+  cursor: pointer;
+}
+.FeaturedPropertyContainer {
+  padding: 2em;
 }
