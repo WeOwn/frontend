@@ -109,7 +109,7 @@
 
   .nameInput{
     border-radius: 5px;
-    color: rgba(210, 210, 210, 1);
+    color: rgba(0, 0, 0, 1);
     border-color: rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(0, 0, 0, 0.15);
     font-size: 18px;

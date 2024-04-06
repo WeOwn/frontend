@@ -8,6 +8,7 @@ import OptionToogle from "../../Atoms/OptionToogle";
 import card1 from "./card1.png";
 import card2 from "./card2.png";
 import { Propertycard } from "../../components/propertyCard/Propertycard";
+import { Builderscard } from "../../components/builderscard/Builderscard";
 
 function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -307,7 +308,63 @@ function Home() {
       <div style={{ padding: "2em" }}>
         <Propertycard />
       </div>
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          margin: "3em",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            margin: "3em",
+            width: "50%",
+            gap: "1em",
+          }}
+        >
+          <div style={{ fontWeight: "600", fontSize: "2em" }}>
+            Popular Builders
+          </div>
+          <div
+            style={{
+              fontWeight: "500",
+              fontSize: "0.8em",
+              lineHeight: "1.2em",
+            }}
+          >
+            Explore our handpicked selection of featured properties. Each
+            listing offers a glimpse into exceptional homes and investments
+            available through Estatein. Click "View Details" for more
+            information.{" "}
+          </div>
+        </div>
+        <div style={{ margin: "3em" }}>
+          <button
+            style={{
+              padding: "1em",
+              borderRadius: "5px",
+              border: "0px solid #ccc",
+              marginRight: "0.5em",
+              backgroundColor: "rgba(244, 244, 244, 1)",
+              cursor: "pointer",
+            }}
+          >
+            View All Builders
+          </button>
+        </div>
+      </div>
+      <div style={{ padding: "2em" }}>
+        <Builderscard />
+      </div>
+
     </div>
+
+    
   );
 }
 
