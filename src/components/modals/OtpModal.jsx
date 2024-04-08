@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Modal from './Modal';
 import axios from 'axios';
+import styles from "./styles.module.css";
+import { Link } from 'react-router-dom';
 
-function OtpModal({onClose, onSubmit, userData, apiEndpoint }) {
+function OtpModal({onClose, onSubmit, userData, apiEndpoint, phone}) {
   const [otp, setOtp] = useState(['', '', '', '' ,'','']);
   const [focusIndex, setFocusIndex] = useState(0);
   const otpInputRefs = [useRef(), useRef(), useRef(), useRef(), useRef(), useRef()];
@@ -33,6 +35,7 @@ function OtpModal({onClose, onSubmit, userData, apiEndpoint }) {
     }
   }, [focusIndex]);
 
+
   const handleSubmit = async () => {
     const enteredOtp = otp.join('');
     console.log(enteredOtp)
@@ -55,12 +58,16 @@ function OtpModal({onClose, onSubmit, userData, apiEndpoint }) {
     }
   };
 
+
+
   return (
     <Modal onClose={onClose}>
-      <h2>OTP Modal</h2>
-      <div>
+      <h2 className={styles.heading}>OTP Verification</h2>
+
+      <p className={styles.description}>We’ve sent an OTP via SMS code check your messages <span className={styles.heading}>{phone}</span> and fill it in. </p>
+      <div className={styles["box"]}>
         {otp.map((value, index) => (
-          <input
+          <input className={styles["input-box"]}
             key={index}
             type="text"
             maxLength={1}
@@ -71,7 +78,10 @@ function OtpModal({onClose, onSubmit, userData, apiEndpoint }) {
           />
         ))}
       </div>
-      <button onClick={handleSubmit}>Submit</button>
+      <button className={styles["submit-button"]} onClick={handleSubmit}>Submit</button>
+      <p className={styles["description"]}>Don't receive code? <a className={styles.link}>Resend</a></p>
+      <button className={styles["change-number"]} onClick={handleSubmit}>Change Phone</button>
+
     </Modal>
   );
 }

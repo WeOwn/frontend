@@ -23,36 +23,45 @@ function Signup() {
       return;
     }
 
-    try {
+    // try {
       // Make API call to request OTP using axios
-      const response = await axios.get(
-        "https://weownbackend.azurewebsites.net/user/otp",
-        {
-          params: { phoneNumber: phone },
-          headers: {
-            "Content-Type": "application/json",
-            // Include any additional headers if needed
-          },
-        }
-      );
+      // const response = await axios.get(
+      //   "https://weownbackend.azurewebsites.net/user/otp",
+      //   {
+      //     params: { phoneNumber: phone },
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       // Include any additional headers if needed
+      //     },
+      //   }
+      // );
 
-      // Check if the response is successful (status code 200)
-      if (response.status === 200) {
-        // Handle the response data as needed
+    //   // Check if the response is successful (status code 200)
+    //   if (response.status === 200) {
+    //     // Handle the response data as needed
 
-        console.log("API Response:", response.data);
+    //     console.log("API Response:", response.data);
 
-        // Display OTP modal
-        setShowOtp(true);
-      } else {
-        // Handle error responses
-        console.error("API Error:", response.status, response.statusText);
-        alert("Failed to request OTP. Please try again.");
-      }
-    } catch (error) {
-      console.error("API Request Error:", error);
-      alert("Failed to request OTP. Please try again.");
-    }
+    //     // Display OTP modal
+    //     setShowOtp(true);
+    //   }
+    //   else if(response.status===502){
+      
+    //     <OtpModal/>
+    //   }
+      
+    //   else {
+    //     // Handle error responses
+    //     console.error("API Error:", response.status, response.statusText);
+    //     alert("Failed to request OTP. Please try again.");
+    //   }
+    // } catch (error) {
+    //   return(
+    //     <OtpModal/>
+    //   );
+      // console.error("API Request Error:", error);
+      // alert("Failed to request OTP. Please try again.");
+    // }
 
     // console.log("Form submitted:", {
     //   firstName,
@@ -139,6 +148,8 @@ function Signup() {
                 required
               />
             </div>
+            {/* <OtpModal phone={phone} /> */}
+            
 
             <div className={styles["terms-checkbox"]}>
               <input
@@ -152,8 +163,12 @@ function Signup() {
               />
               <label htmlFor="terms">Accept terms and conditions</label>
             </div>
-            <button type="submit" className={styles["register-button"]}>
-              Register
+            <button onClick={() => {
+              return(             
+                <Link to="/otp"></Link>
+              );
+            }} type="submit" className={styles["register-button"]}>
+              <Link to="/otp">Register</Link>
             </button>
           </form>
 
@@ -173,7 +188,7 @@ function Signup() {
         </main>
       </div>
 
-      {showOtp && (
+      {/* {showOtp && (
         <OtpModal
           onClose={closeOtpModal}
           onSubmit={(apiEndpoint, data) => {
@@ -187,7 +202,7 @@ function Signup() {
           }}
           apiEndpoint="https://weownbackend.azurewebsites.net/user/signup"
         />
-      )}
+      )} */}
     </div>
   );
 }
