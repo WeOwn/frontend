@@ -32,24 +32,8 @@ function Home() {
   return (
     <div className={styles.maindiv}>
       <Navbar />
-      <div
-        style={{
-          background: "#7065F0",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div
-          style={{
-            width: "50%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            gap: "3em",
-            padding: "20px",
-          }}
-        >
+      <div className={styles.HelloSection}>
+        <div className={styles.helloContentContainer}>
           <div className={`${styles.mainHeading}`}>
             Experience a 3D Real Estate Platform
           </div>
@@ -57,107 +41,43 @@ function Home() {
             Weown provides easy way to visualize your dream house in seconds.to
             visualize your dream house in seconds.
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              width: "100%",
-              alignItems: "center",
-            }}
-          >
+          <div className={styles.optionTooglerDiv}>
             <OptionToogle />
-            <div style={{ width: "100%", marginBottom: "2em" }}>
+            <div className={styles.searchContainer}>
               <Search />
             </div>
           </div>
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          margin: "3em",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            margin: "3em",
-            width: "50%",
-            gap: "1em",
-          }}
-        >
-          <div style={{ fontWeight: "600", fontSize: "2em" }}>
+      <div className={styles.searchSection}>
+        <div className={styles.searchSectionIntro} style={{}}>
+          <div className={styles.searchSectionHeader}>
             What are you searching for?
           </div>
-          <div
-            style={{
-              fontWeight: "500",
-              fontSize: "0.8em",
-              lineHeight: "1.2em",
-            }}
-          >
+          <div className={styles.searchSectionDesc}>
             Explore our handpicked selection of featured properties. Each
             listing offers a glimpse into exceptional homes and investments
             available through Weown. Click "View Details" for more information.
           </div>
         </div>
-        <div style={{ margin: "3em" }}>
+        <div className={styles.searchInputContainer}>
           <input
+            className={styles.searchInput}
             type="text"
             placeholder="Search"
-            style={{
-              padding: "1em",
-              borderRadius: "5px",
-              border: "0px solid #ccc",
-              marginRight: "0.5em",
-              backgroundColor: "rgba(244, 244, 244, 1)",
-            }}
           />
         </div>
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-        }}
-      >
+      <div className={styles.searchResults}>
         <div
-          style={{
-            position: "relative",
-            overflow: "hidden",
-            width: "30em",
-            height: "20em",
-            borderRadius: "15px",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-            transition: "transform 0.3s",
-          }}
+          className={styles.Search_Properties}
           onMouseEnter={handleHover}
           onMouseLeave={handleLeave}
         >
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              position: "absolute",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              color: "#fff",
-              zIndex: "2",
-              textAlign: "center",
-            }}
-          >
-            <div style={{ fontSize: "2em", fontWeight: "500" }}>Properties</div>
-            <div
-              style={{ padding: "1em", fontSize: "0.8em", marginBottom: "2em" }}
-            >
+          <div className={styles.searchProperty}>
+            <div className={styles.propertyTitle}>Properties</div>
+            <div className={styles.propertydesc}>
               <p>
                 Explore our handpicked selection of featured properties. Each
                 listing offers a glimpse into exceptional homes and investments
@@ -167,61 +87,22 @@ function Home() {
             </div>
           </div>
           <img
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              transition: "transform 0.3s",
-              transform: isHovered ? "scale(1.3)" : "scale(1)",
-            }}
+            className={styles.propertyImage}
+            style={{ transform: isHovered ? "scale(1.3)" : "scale(1)" }}
             src={card1}
             alt="Card"
           />
-          <div
-            style={{
-              content: "''",
-              position: "absolute",
-              top: "0",
-              left: "0",
-              width: "100%",
-              height: "100%",
-              background: "rgba(112, 101, 240, 0.8)",
-              zIndex: "1",
-            }}
-          ></div>
+          <div className={styles.searchPropertyBg}></div>
         </div>
 
         <div
-          style={{
-            position: "relative",
-            overflow: "hidden",
-            width: "30em",
-            height: "20em",
-            borderRadius: "15px",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-            transition: "transform 0.3s",
-          }}
+          className={styles.Search_Properties}
           onMouseEnter={handleHover1}
           onMouseLeave={handleLeave1}
         >
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              position: "absolute",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              color: "#fff",
-              zIndex: "2",
-              textAlign: "center",
-            }}
-          >
-            <div style={{ fontSize: "2em", fontWeight: "500" }}>Builders</div>
-            <div
-              style={{ padding: "1em", fontSize: "0.8em", marginBottom: "2em" }}
-            >
+          <div className={styles.searchProperty}>
+            <div className={styles.propertyTitle}>Builders</div>
+            <div className={styles.propertydesc}>
               <p>
                 Explore our handpicked selection of featured properties. Each
                 listing offers a glimpse into exceptional homes and investments
@@ -231,81 +112,33 @@ function Home() {
             </div>
           </div>
           <img
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              transition: "transform 0.3s",
-              transform: isHovered1 ? "scale(1.3)" : "scale(1)",
-            }}
+            className={styles.propertyImage}
+            style={{ transform: isHovered ? "scale(1.3)" : "scale(1)" }}
             src={card2}
             alt="Card"
           />
-          <div
-            style={{
-              content: "''",
-              position: "absolute",
-              top: "0",
-              left: "0",
-              width: "100%",
-              height: "100%",
-              background: "rgba(112, 101, 240, 0.8)",
-              zIndex: "1",
-            }}
-          ></div>
+          <div className={styles.searchPropertyBg}></div>
         </div>
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          margin: "3em",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            margin: "3em",
-            width: "50%",
-            gap: "1em",
-          }}
-        >
-          <div style={{ fontWeight: "600", fontSize: "2em" }}>
+      {/* featured properties */}
+      <div className={styles.FeaturedIntroContainer}>
+        <div className={styles.introContainer}>
+          <div className={styles.FeaturedSectionHeader}>
             Featured Properties
           </div>
-          <div
-            style={{
-              fontWeight: "500",
-              fontSize: "0.8em",
-              lineHeight: "1.2em",
-            }}
-          >
+          <div className={styles.FeaturedSectionDesc}>
             Explore our handpicked selection of featured properties. Each
             listing offers a glimpse into exceptional homes and investments
             available through Estatein. Click "View Details" for more
             information.{" "}
           </div>
         </div>
-        <div style={{ margin: "3em" }}>
-          <button
-            style={{
-              padding: "1em",
-              borderRadius: "5px",
-              border: "0px solid #ccc",
-              marginRight: "0.5em",
-              backgroundColor: "rgba(244, 244, 244, 1)",
-              cursor: "pointer",
-            }}
-          >
-            View All Properties
-          </button>
+        <div className={styles.FeaturedButtonContainer}>
+          <button className={styles.FeaturedButton}>View All Properties</button>
         </div>
       </div>
-      <div style={{ padding: "2em" }}>
+      <div className={styles.FeaturedPropertyContainer}>
         <Propertycard />
       </div>
 
