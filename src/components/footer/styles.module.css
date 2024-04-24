@@ -114,3 +114,9 @@
     color: white;
     font-weight: 600;
 }
+
+@media screen and (min-width: 360px) and (max-width:997px){
+    body {
+      width: 1080px;
+    }
+  }
