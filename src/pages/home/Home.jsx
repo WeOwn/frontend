@@ -9,6 +9,7 @@ import card1 from "./card1.png";
 import card2 from "./card2.png";
 import { Propertycard } from "../../components/propertyCard/Propertycard";
 import { Builderscard } from "../../components/builderscard/Builderscard";
+import Footer from "../../components/footer/Footer";
 
 function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -194,7 +195,9 @@ function Home() {
       <div style={{ padding: "2em" }}>
         <Builderscard />
       </div>
-
+      <div className="">
+        <Footer/>
+      </div>
     </div>
 
     
