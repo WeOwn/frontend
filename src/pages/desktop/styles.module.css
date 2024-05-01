@@ -1,0 +1,111 @@
+@font-face {
+    font-family: 'DigitalFont';
+    src: url('./fonts/digital-7.ttf');
+  }
+
+.maindiv{
+    background-color: #7065f0;
+    height: 100%;
+    width: 100%;
+    
+    position: relative;
+    
+  
+}
+
+.illustration{   
+    width:99%; 
+    position: absolute;
+    bottom: 0px;
+    margin-left: 0px;
+    
+    z-index: 0;
+}
+
+.instagram_div{
+    display:flex;
+    flex-direction: row; 
+    position:absolute;
+    bottom:4rem ;
+    left:6rem;
+    justify-content: space-between;
+    align-items: center;
+    gap:2rem; 
+    height:2rem
+    
+}
+.cloud{
+    position:absolute;
+    max-width:5rem ;
+    
+} 
+
+.firstdiv{
+    position:absolute;
+    top: 9rem;
+    left:6rem;
+    
+}
+.seconddiv{
+    position:absolute;
+    top: 7rem;
+    right:15rem;
+    z-index: 1;
+    
+}
+
+.timerdiv{
+   
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+
+.rectangle{
+    background-image: linear-gradient(to bottom,#b6b0fb,#7c71fb);
+   
+    height: 3.5rem;
+    width: 3rem;
+    border-radius: 5%;
+   
+    box-shadow: 0 2px 2px -1px white;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: normal;
+    color:white;
+    padding-top:0.5rem;
+    font-family: DigitalFont;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+    
+}
+
+.searchp_div{
+    position:relative;
+    width:90%;
+    border-radius: 9999px;
+    height: 3rem;
+    border: none;
+    background:white;
+    z-index: 1;
+    margin-top: -1rem;
+}
+
+.searchText{
+    
+   
+    position: absolute;
+    top: 30%;
+    left:10%;
+
+
+width: 70%; 
+font-size: medium;
+
+border: none;
+outline:none;
+}
