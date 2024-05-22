@@ -3,78 +3,164 @@
     src: url('./fonts/digital-7.ttf');
   }
 
+
 .maindiv{
     background-color: #7065f0;
-    height: 100%;
-    width: 100%;
-    
-    position: relative;
-    
-  
+    height: 100vh;
+    width: 100vw;
+    /* overflow-x:hidden;     */
+ 
 }
+
 
 .illustration{   
     width:99%; 
     position: absolute;
+    /* top:0.3rem; */
     bottom: 0px;
-    margin-left: 0px;
-    
+    margin-left: 0px;    
     z-index: 0;
 }
 
 .instagram_div{
     display:flex;
     flex-direction: row; 
-    position:absolute;
-    bottom:4rem ;
-    left:6rem;
-    justify-content: space-between;
-    align-items: center;
-    gap:2rem; 
-    height:2rem
     
+    margin-left: 19%;
+    
+    align-items: center;
+    gap:1rem; 
+    /* height:2%; */
+    /* background-color: yellow; */
+    cursor:pointer;
+    
+}
+.cloudp{
+    /* position:relative; */
+    margin-left:20%; 
+    background-color: black;
+
 }
 .cloud{
     position:absolute;
-    max-width:5rem ;
+    width:5rem ;
+    
     
 } 
 
-.firstdiv{
-    position:absolute;
-    top: 9rem;
-    left:6rem;
-    
-}
+
 .seconddiv{
-    position:absolute;
-    top: 7rem;
-    right:15rem;
+    position:relative;
+    
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: center; */
+    
     z-index: 1;
     
 }
+.ellipse{
+    
+    height: 26.5rem;
+    width: 26.5rem;
+    position: absolute;
+    z-index: 0;
+    margin-left: -7rem;
+    margin-top: 1rem;
+      
+}
+.phonediv{
+    
+    height: 25rem;
+    width: 12rem;
+    background-color: white;
+    box-shadow: 0 25px 50px -12px; 
+    border-radius: 1rem;
+    margin-top: 2rem;
+    padding: 1rem;
+     
+}
+
+.contact1div{
+    margin-top: 2.5rem;
+  margin-left: -2.5rem;
+  height: 50%;
+  width: 16rem;
+}
+
+.contact2div{
+    height: 8rem;
+    position: absolute;
+    border-radius: 1.5rem;
+    top: 15rem;
+    left: -5rem;
+    width: 8rem;
+    box-shadow: 0 25px 50px -12px ;
+    background-color: white;
+}
+
+.contact3div{
+    height: 8rem;
+    position: absolute;
+    border-radius: 1.5rem;
+    top: 3rem;
+    left: 10rem;
+    width: 8rem;
+    box-shadow: 0 25px 50px -12px;
+    background-color: white;
+}
+
+.griddiv{
+    display: flex;
+    /* grid-template-columns: auto auto  ; */
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap:14rem;
+    margin-top:2%;
+    /* margin-left:20%; */
+    /* background-color: black; */
+    
+
+    /* urbanest */
+}
+
 
 .timerdiv{
    
     display: flex;
     flex-direction: row;
     gap: 3rem;
+    margin-top:1rem;
+}
+
+.monthtextdiv{
+    
+    display: flex;
+    gap: 7rem;
+    margin-left: 1.5rem;
+    align-items: center;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    color: white;
+    font-family: monospace;
+     
 }
 
 
 .rectangle{
     background-image: linear-gradient(to bottom,#b6b0fb,#7c71fb);
    
-    height: 3.5rem;
-    width: 3rem;
+    height: 4.5rem;
+    width: 2.7rem;
     border-radius: 5%;
    
-    box-shadow: 0 2px 2px -1px white;
+    box-shadow: 0 1px 2px 0px white;
     text-align: center;
     font-size: 2.5rem;
     font-weight: normal;
     color:white;
-    padding-top:0.5rem;
+   
     font-family: DigitalFont;
     display:flex;
     justify-content: center;
@@ -92,20 +178,145 @@
     border: none;
     background:white;
     z-index: 1;
-    margin-top: -1rem;
+    margin-top: 0rem;
 }
 
-.searchText{
-    
+.searchText{  
    
     position: absolute;
     top: 30%;
     left:10%;
-
-
-width: 70%; 
+    width: 70%; 
 font-size: medium;
 
 border: none;
 outline:none;
 }
+
+
+@media (max-height:590px) {
+    .illustration{
+        position: static;
+    }
+    .maindiv{
+        height:auto;
+        width:auto;
+    }
+    
+}
+
+@media (max-width:1185px) {
+    .griddiv{
+        display: flex;
+        /* grid-template-columns: auto auto  ; */
+        /* justify-content: center; */
+        flex-direction: column;
+        
+        
+        gap:4rem;
+        margin-top:10%;
+        margin-left:0%;
+        /* background-color: black; */
+        
+    
+        /* urbanest */
+    }
+    .maindiv{
+        height:auto;
+        width:auto;
+    }
+
+    .illustration{
+        position: sticky;
+    }
+    .instagram_div{
+        margin-top: 3rem;
+        margin-left: 45%;
+    }
+}
+
+@media (min-width:1750px) and (min-height:870px) {
+    .cloud{       
+        width:7rem;        
+    }          
+    .griddiv{      
+       
+        
+        margin-top:10%;    
+      gap:20rem;
+    
+        /* urbanest */
+    } 
+    .cloudp{        
+        margin-left:21%;  
+
+    }
+    .rectangle{
+        height: 7rem;
+        width: 4.5rem;      
+        text-align: center;
+        font-size: 5rem;    
+    }
+    .ellipse{
+    
+        height: 38rem;
+        width: 38rem;
+        position: absolute;
+        z-index: 0;
+        margin-left: -10rem;
+        margin-top: 0rem;
+          
+    }
+    .phonediv{    
+        height: 35rem;
+        width: 17rem;
+        background-color: white;
+        box-shadow: 0 25px 50px -12px; 
+        /* margin-top:-3rem; */
+        border-radius: 1rem;
+        padding: 1rem;         
+    }
+    .monthtextdiv{         
+        gap: 9rem;
+        margin-left: 2.5rem;
+        align-items: center;
+        font-size: 1.5rem;         
+    }
+
+    .contact1div{
+       margin-top: 1rem;
+      margin-left: -3rem;
+      height: 60%;
+      width: 23rem;
+    }
+
+    .contact2div{
+        height: 9rem;        
+        top: 23rem;
+        left: -7rem;
+        width: 10rem;
+        
+    }
+
+    .contact3div{
+        height: 9rem; 
+        top: 5rem;
+        left: 14.5rem;
+        width: 10rem;  
+    }
+
+    .instagram_div{ 
+       left:5%;      
+        margin-left: 20%;
+        align-items: center;
+        gap:1rem; 
+        height:2rem;
+        cursor:pointer;
+        
+    }
+} 
+
+
+
+
+

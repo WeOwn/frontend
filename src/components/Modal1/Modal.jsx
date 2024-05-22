@@ -49,23 +49,25 @@ const Modal = ({ onClose, children }) => {
           </button>
         </div>
         <div className={styles.griddiv}>
-          <div style={{ padding: "2rem" }}>
+          <div style={{ padding: "0rem", width: "50%" }}>
             <div>
-              <h2 style={{ color: "#7065f0" }}>Let's Connect</h2>
+              <h2 style={{ color: "#7065f0", marginBottom: "1rem" }}>
+                Let's Connect
+              </h2>
               <p style={{ fontSize: "0.85rem" }}>
                 Let's get in touch. Fill the form below to send us message.
               </p>
-              <p style={{ fontSize: "0.85rem", marginTop: "-0.7rem" }}>
+              <p style={{ fontSize: "0.85rem", marginTop: "0rem" }}>
                 Our team will contact you soon.
               </p>
-              <div>
+              <div style={{ marginTop: "1rem" }}>
                 <form onSubmit={handleSubmit}>
                   <div
                     style={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                      display: "flex",
+                      justifyContent: "space-between",
                       gap: "0.5rem",
-                      width: "89%",
+                      width: "90%",
                     }}
                   >
                     <input
@@ -79,6 +81,7 @@ const Modal = ({ onClose, children }) => {
                         setFirstName(e.target.value);
                       }}
                     />
+
                     <input
                       type="text"
                       id="name"
@@ -91,46 +94,49 @@ const Modal = ({ onClose, children }) => {
                       }}
                     />
                   </div>
-                  <input
-                    type="email"
-                    id="email"
-                    required
-                    placeholder="Email"
-                    className={styles.searchText}
-                    value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                  />
-
-                  <input
-                    type="text"
-                    id="number"
-                    required
-                    placeholder="Phone Number"
-                    className={styles.searchText}
-                    value={number}
-                    onChange={(e) => {
-                      setNumber(e.target.value);
-                    }}
-                  />
-
-                  <textarea
-                    placeholder="Message"
-                    className={styles.searchText1}
-                    rows={4}
-                    value={description}
-                    onChange={(e) => {
-                      setDescription(e.target.value);
-                    }}
-                  />
-
+                  <div>
+                    <input
+                      type="email"
+                      id="email"
+                      required
+                      placeholder="Email"
+                      className={styles.searchText}
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      id="number"
+                      required
+                      placeholder="Phone Number"
+                      className={styles.searchText}
+                      value={number}
+                      onChange={(e) => {
+                        setNumber(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <textarea
+                      placeholder="Message"
+                      className={styles.searchText1}
+                      rows={4}
+                      value={description}
+                      onChange={(e) => {
+                        setDescription(e.target.value);
+                      }}
+                    />
+                  </div>
                   <button
                     type="submit"
                     style={{
                       textAlign: "center",
 
-                      width: "88%",
+                      width: "90%",
                       height: "2rem",
                       backgroundColor: "#7065f0",
 
@@ -144,11 +150,22 @@ const Modal = ({ onClose, children }) => {
               </div>
             </div>
           </div>
-          <div style={{ padding: "0rem" }}>
+          <div
+            style={{
+              padding: "0rem",
+              // marginLeft: "-2rem",
+
+              width: "40%",
+              // backgroundColor: "black",
+            }}
+          >
             <img
               src={grid1}
               alt="img"
-              style={{ height: "22rem", width: "22rem" }}
+              style={{
+                height: "100%",
+                width: "100%",
+              }}
             />
           </div>
         </div>

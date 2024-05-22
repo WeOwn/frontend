@@ -1,13 +1,26 @@
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
 .navbar {
-    
+    position: fixed;
+    top: 0;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    
     padding: 0.7em;
     background-color: #ffffff;
     font-family: "Urbanist", sans-serif;
-    z-index: 1;
+    z-index: 1000;
+    animation: fadeIn 0.5s forwards;
+
 }
   
   .logo img {
@@ -25,6 +38,8 @@
     display: flex;
     margin: 0;
     padding: 0;
+    
+    
    
   }
 
@@ -43,6 +58,13 @@
   
   .navRight {
     display: flex;
+    /* justify-content: space-between; */
+    gap:0.3rem;
+    align-items: center;
+    background-color:#7065f0;
+    padding:0.5rem 0.8rem;
+    border-radius: 999px;
+    cursor: pointer;
   }
   
   .navRight a {

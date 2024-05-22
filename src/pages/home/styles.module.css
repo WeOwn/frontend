@@ -5,6 +5,10 @@
   width: 100%;
   height: 100vh;
 }
+.seconddiv{
+  width:90%;
+  margin-inline: auto;
+}
 
 .mainHeading {
   color: #ffffff;
@@ -30,12 +34,49 @@
 /* hello section */
 
 .HelloSection {
+  position: relative;
   background: #7065f0;
   display: flex;
   justify-content: center;
+  padding-top:4rem;
 }
+.cloud1{
+  position: absolute;
+  /* width:9rem; */
+  top:17rem;
+  left:-1rem;
+}
+.cloud2{
+  position: absolute;
+  /* width:9rem; */
+  top:10rem;
+  left:20%;
+}
+.cloud3{
+  position: absolute;
+  /* width:9rem; */
+  top:7rem;
+  right:40%;
+}
+.cloud4{
+  position: absolute;
+  /* width:9rem; */
+  top:12rem;
+  right:12%;
+}
+.cloud5{
+  position: absolute;
+  /* width:9rem; */
+  top:20rem;
+  right:0%;
+}
+
+.cloud{
+  width:5rem;
+}
+
 .helloContentContainer {
-  width: 50%;
+  width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,9 +90,11 @@
   flex-direction: column;
   width: 100%;
   align-items: center;
+  
 }
 .searchContainer {
-  width: 100%;
+  
+  width: 85%;
   margin-bottom: 2em;
 }
 
@@ -60,50 +103,79 @@
 .searchSection {
   display: flex;
   flex-direction: row;
-  margin: 3em;
+  /* flex-wrap: wrap; */
+  margin-top: 6rem;
+  margin-left:0rem;
+  
+  /* padding-inline:4rem; */
+  /* width:85%; */
   justify-content: space-between;
-  align-items: center;
+  /* margin-inline: auto; */
+  /* gap:10rem; */
+  /* align-items: center; */
 }
 
 .searchSectionIntro {
   display: flex;
   flex-direction: column;
-  margin: 3em;
-  width: 50%;
-  gap: 1em;
+  
+  /* margin-inline: 3em; */
+  /* width: 50%; */
+  gap: 1rem;
 }
 
 .searchSectionHeader {
-  font-weight: 600;
-  font-size: 2em;
+  font-weight: bolder;
+  font-size: 2rem;
 }
 .searchSectionDesc {
-  font-weight: 500;
-  font-size: 0.8em;
-  line-height: 1.2em;
+  /* font-weight: 500; */
+  font-size: 0.9rem;
+    font-weight: 400;
+    width:70%;
+  line-height: 1.2rem;
 }
 .searchInputContainer {
-  margin: 3em;
-}
-.searchInput {
-  padding: 1em;
+  /* margin-inline: 3em; */
+  /* margin-top: 2rem; */
+  
+  position: relative;
+  width: 30%;
+  background-color: rgba(244, 244, 244, 1);
   border-radius: 5px;
   border: 1px solid #ccc;
+  padding: 1em;
+  /* width: 20%; */
+}
+.searchInput {
+  
+  
+  border:none;
   outline: none;
-  margin-right: 0.5em;
   background-color: rgba(244, 244, 244, 1);
+  /* margin-right: 0.5em; */
+  
 }
 .searchResults {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  /* flex-wrap: wrap; */
+  /* justify-content:center; */
+  margin-left: 0rem;
+  width:70%;
+  /* padding-inline: 4rem; */
+  margin-top: 2rem;
+  gap:1.5rem;
+  
+  
+  /* justify-content: start; */
 }
 .Search_Properties {
   position: relative;
   overflow: hidden;
-  width: 30em;
-  height: 20em;
-  border-radius: 15px;
+  width: 20rem;
+  height: 15rem;
+  border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
 }
@@ -120,13 +192,14 @@
   text-align: center;
 }
 .propertyTitle {
-  font-size: 2em;
-  font-weight: 500;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 .propertydesc {
   padding: 1em;
-  font-size: 0.8em;
-  margin-bottom: 2em;
+  font-size: 0.75em;
+  margin-bottom: 3em;
+  line-height: 1.1rem;
 }
 .propertyImage {
   width: 100%;
@@ -150,37 +223,115 @@
 .FeaturedIntroContainer {
   display: flex;
   flex-direction: row;
-  margin: 3em;
+  margin-top: 6rem;
+
   justify-content: space-between;
+  /* gap:35rem; */
   align-items: center;
+  /* margin-left:3rem;
+  padding-inline:4rem; */
 }
 .introContainer {
   display: flex;
   flex-direction: column;
-  margin: 3em;
-  width: 50%;
-  gap: 1em;
+  /* margin: 3em; */
+  
+  gap: 1rem;
 }
 .FeaturedSectionHeader {
-  font-weight: 600;
-  font-size: 2em;
+  font-weight: bolder;
+  font-size: 2rem;
 }
 .FeaturedSectionDesc {
-  font-weight: 500;
-  font-size: 0.8em;
-  line-height: 1.2em;
+  font-weight: 400;
+  font-size: 0.9em;
+  width: 70%;
+  line-height: 1.2rem;
 }
 .FeaturedButtonContainer {
-  margin: 3em;
+  /* margin: 3em; */
 }
 .FeaturedButton {
-  padding: 1em;
+ 
+  /* padding-inline: 2rem; */
+  width:10rem;
+  text-align: center;
+  padding-block:1rem;
   border-radius: 5px;
   border: 0px solid #ccc;
-  margin-right: 0.5em;
-  background-color: rgba(244, 244, 244, 1);
+  
+  /* margin-right: 0.5em; */
+  /* background-color: rgba(244, 244, 244, 0.886); */
+  background-color: #EAEAEA;
   cursor: pointer;
 }
 .FeaturedPropertyContainer {
-  padding: 2em;
+  /* padding-inline: 5.5rem; */
+  padding-top:3rem;
+  /* margin-left:3rem; */
+  /* padding-inline:4rem; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+  /* justify-content: space-between; */
+  gap:2rem;
+  /* margin-inline: 4rem; */
+}
+
+.builderContainer{
+  /* padding: 3.5rem; */
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  margin-top:3rem;
+  gap:2rem;
+  /* margin-left: 3rem; */
+}
+
+.AIintroContainer{
+  
+  margin-top: 6rem;
+  
+  
+}
+
+.AISectionHeader {
+  font-weight: bolder;
+  font-size: 2rem;
+}
+
+.AISectionDesc {
+  font-weight: 400;
+  font-size: 0.9em;
+  /* width: 50%; */
+  line-height: 1.2em;
+}
+
+@media(max-width:1000px) {
+  .FeaturedPropertyContainer{
+    align-items:start;
+    flex-direction: column;
+    gap:2rem;
+  }
+
+  .builderContainer{
+    align-items:center;
+    flex-direction: column;
+    gap:2rem;
+  }
+
+  /* .searchSection{
+    flex-direction: column;
+    align-items: center;
+    gap:2rem;
+  } */
+  
+  .searchResults{
+    flex-direction: column;
+  }
+
+  /* .searchSectionIntro{
+    align-items: center;
+  } */
 }

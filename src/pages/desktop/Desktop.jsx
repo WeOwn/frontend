@@ -20,14 +20,17 @@ import google_logo from "./google_logo.png";
 import apple_logo from "./apple_logo.png";
 import ellipse from "./ellipse.png";
 import Modal from "../../components/Modal1/Modal";
+import ThankyouModal from "../../components/Modal1/ThankyouModal";
 
 const Desktop = () => {
+  const [thankyou, setThankyou] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setEmail("");
+    setThankyou(true);
   };
 
   const openModal = () => {
@@ -36,6 +39,7 @@ const Desktop = () => {
 
   const closeModal = () => {
     setIsOpen(false);
+    setThankyou(false);
   };
   const [time, setTime] = useState(new Date());
 
@@ -71,41 +75,58 @@ const Desktop = () => {
   const seconds = time.getSeconds().toString().padStart(2, "0");
   return (
     <div className={styles.maindiv}>
+      {thankyou && (
+        <div style={{ zIndex: "10", position: "absolute" }}>
+          <ThankyouModal onClose={() => closeModal()} />
+        </div>
+      )}
       {isOpen && (
         <div style={{ zIndex: "10", position: "absolute" }}>
           <Modal onClose={() => closeModal()} />
         </div>
       )}
       <div>
-        <div style={{ position: "relative" }}>
+        <div className={styles.cloudp}>
           <img
             src={cloud}
             alt="cloud_img"
-            style={{ marginTop: "2rem", left: "6rem" }}
+            style={{ marginTop: "2rem" }}
             className={styles.cloud}
           />
           <img
             src={cloud}
             alt="cloud_img"
-            style={{ marginTop: "6rem", left: "38rem" }}
+            style={{
+              marginTop: "5rem",
+              left: "45%",
+              // boxShadow: "0 2px 2px 0px black",
+            }}
             className={styles.cloud}
           />
           <img
             src={cloud}
             alt="cloud_img"
-            style={{ marginTop: "1rem", right: "20rem" }}
+            style={{ marginTop: "0.5rem", left: "65%" }}
             className={styles.cloud}
           />
         </div>
 
-        <div>
+        <div
+          style={{
+            paddingTop: "0.5rem",
+            display: "flex",
+            justifyContent: "flex-end",
+            // backgroundColor: "black",
+          }}
+        >
           <button
             style={{
-              position: "absolute",
-              right: "6rem",
-              top: "1rem",
+              // position: "absolute",
+
+              marginRight: "5rem",
+              // marginTop: "1rem",
               width: "7rem",
-              height: "2.2rem",
+              height: "2.4rem",
               borderRadius: "9999px",
               border: "none",
               display: "flex",
@@ -118,302 +139,260 @@ const Desktop = () => {
           >
             <img src={phone} alt="img" style={{ height: "1rem" }} />
             <span style={{ fontSize: "0.75rem", color: "#7065f0" }}>
-              Conatct Us
+              Contact Us
             </span>
           </button>
         </div>
       </div>
-      <div className={styles.firstdiv}>
-        <p
-          style={{
-            fontSize: "1rem",
+      <div className={styles.griddiv}>
+        <div className={styles.firstdiv}>
+          <p
+            style={{
+              fontSize: "1rem",
 
-            color: "white",
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
-          }}
-        >
-          <img src={line1} alt="line_img" /> <span>Coming Soon</span>
-        </p>
-        <div className={styles.timerdiv}>
-          <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
-            <div className={styles.rectangle}>{leftmonths[0]}</div>
+              color: "white",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+            }}
+          >
+            <img src={line1} alt="line_img" /> <span>Coming Soon</span>
+          </p>
+          <div className={styles.timerdiv}>
+            <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
+              <div className={styles.rectangle}>{leftmonths[0]}</div>
 
-            <div className={styles.rectangle}>{leftmonths[1]}</div>
-          </div>
-          <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
-            <div className={styles.rectangle}>{leftdays[0]}</div>
-            <div className={styles.rectangle}>{leftdays[1]}</div>
-          </div>
-          <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
-            <div className={styles.rectangle}>{lefthours[0]}</div>
-            <div className={styles.rectangle}>{lefthours[1]}</div>
-          </div>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            gap: "7.3rem",
-            marginLeft: "2rem",
-            alignItems: "center",
-            fontSize: "1rem",
-            marginTop: "1rem",
-            color: "white",
-            fontFamily: "monospace",
-          }}
-        >
-          <div>MONTHS</div>
-          <div>DAYS</div>
-          <div>HOURS</div>
-        </div>
-        <div>
-          <h1
-            style={{
-              fontWeight: "bolder",
-              color: "white",
-              fontSize: "2.5rem",
-              marginTop: "2rem",
-            }}
-          >
-            Join waitlist
-          </h1>
-          <h1
-            style={{
-              fontWeight: "bolder",
-              color: "white",
-              fontSize: "2.5rem",
-              marginTop: "-2rem",
-            }}
-          >
-            When we Launch
-          </h1>
-          <form onSubmit={handleSubmit}>
-            <div className={styles.searchp_div}>
-              <input
-                type="email"
-                id="email"
-                required
-                placeholder="Enter your email address"
-                className={styles.searchText}
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                // className=" rounded-l-full w-10 "
-              />
-              <button
-                type="submit"
-                style={{
-                  border: "none",
-                  borderRadius: "50%",
-                  height: "2.8rem",
-                  width: "2.8rem",
-                  backgroundColor: "#7065F0",
-                  position: "absolute",
-                  top: "2px",
-                  right: "2px",
-                  cursor: "pointer",
-                }}
-              >
-                <img
-                  src={arrow}
-                  alt="search_logo"
-                  style={{
-                    marginTop: "0.3rem",
-                    marginLeft: "0.3rem",
-                  }}
-                />
-              </button>
+              <div className={styles.rectangle}>{leftmonths[1]}</div>
             </div>
-          </form>
-        </div>
-      </div>
-      <div className={styles.seconddiv}>
-        <div
-          style={{
-            height: "29rem",
-            width: "29rem",
-            position: "absolute",
-            zIndex: "0",
-            marginLeft: "-7rem",
-            marginTop: "-1rem",
-          }}
-        >
-          <img
-            src={ellipse}
-            alt="img"
-            style={{ height: "100%", width: "100%", zIndex: "0" }}
-          />
-        </div>
-        <div style={{ position: "relative", zIndex: "10" }}>
-          <div
-            style={{
-              height: "25rem",
-              width: "12rem",
-              backgroundColor: "white",
-              boxShadow: "0 25px 50px -12px",
-              borderRadius: "1rem",
-              padding: "1rem",
-            }}
-          >
-            <div style={{ display: "flex" }}>
-              <div
-                style={{
-                  fontWeight: "bolder",
-                  fontSize: "0.75rem",
-                  lineHeight: "1rem",
-                }}
-              >
-                {`${hours}:${minutes}:${seconds}`}
-              </div>
-              <div style={{ marginLeft: "20%" }}>
-                <img
-                  src={Cellular}
-                  alt="img"
-                  style={{ marginRight: "0.2rem" }}
-                />
-                <img src={Wifi} alt="img" style={{ marginRight: "0.2rem" }} />
-                <img src={Battery} alt="img" />
-              </div>
+            <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
+              <div className={styles.rectangle}>{leftdays[0]}</div>
+              <div className={styles.rectangle}>{leftdays[1]}</div>
             </div>
-            <img
-              src={contact1}
-              alt="conatct_img"
+            <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
+              <div className={styles.rectangle}>{lefthours[0]}</div>
+              <div className={styles.rectangle}>{lefthours[1]}</div>
+            </div>
+          </div>
+          <div className={styles.monthtextdiv}>
+            <div>MONTHS</div>
+            <div>DAYS</div>
+            <div>HOURS</div>
+          </div>
+          <div>
+            <h1
               style={{
-                marginTop: "3rem",
-                marginLeft: "-1.7rem",
-                height: "50%",
-                width: "16rem",
-              }}
-            />
-            <div
-              style={{
-                marginTop: "1rem",
-                marginLeft: "2rem",
-                display: "flex",
-                flexDirection: "column",
-                gap: "1rem",
+                fontWeight: "bolder",
+                color: "white",
+                fontSize: "2.5rem",
+                marginTop: "2rem",
               }}
             >
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "1rem" }}
-              >
-                <img src={line} alt="line" style={{ width: "25%" }} />
-                <div style={{ color: "gray", fontSize: "0.75rem" }}>
-                  Join Us
-                </div>
-                <img src={line} alt="line" style={{ width: "25%" }} />
+              Get Notified
+            </h1>
+            <h1
+              style={{
+                fontWeight: "bolder",
+                color: "white",
+                fontSize: "2.5rem",
+                marginTop: "0rem",
+              }}
+            >
+              When we Launch
+            </h1>
+            <form onSubmit={handleSubmit}>
+              <div className={styles.searchp_div}>
+                <input
+                  type="email"
+                  id="email"
+                  required
+                  placeholder="Enter your email address"
+                  className={styles.searchText}
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                  // className=" rounded-l-full w-10 "
+                />
+                <button
+                  type="submit"
+                  style={{
+                    border: "none",
+                    borderRadius: "50%",
+                    height: "2.8rem",
+                    width: "2.8rem",
+                    backgroundColor: "#7065F0",
+                    position: "absolute",
+                    top: "2px",
+                    right: "2px",
+                    cursor: "pointer",
+                  }}
+                >
+                  <img
+                    src={arrow}
+                    alt="search_logo"
+                    style={{
+                      marginTop: "0.3rem",
+                      marginLeft: "0.3rem",
+                    }}
+                  />
+                </button>
               </div>
+            </form>
+          </div>
+        </div>
+        <div className={styles.seconddiv}>
+          <div className={styles.ellipse}>
+            <img
+              src={ellipse}
+              alt="img"
+              style={{ height: "100%", width: "100%", zIndex: "0" }}
+            />
+          </div>
+          <div style={{ position: "relative", zIndex: "10" }}>
+            <div className={styles.phonediv}>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div
+                  style={{
+                    fontWeight: "bolder",
+                    fontSize: "0.75rem",
+                    lineHeight: "1rem",
+                  }}
+                >
+                  {`${hours}:${minutes}:${seconds}`}
+                </div>
+                <div style={{}}>
+                  <img
+                    src={Cellular}
+                    alt="img"
+                    style={{ marginRight: "0.2rem" }}
+                  />
+                  <img src={Wifi} alt="img" style={{ marginRight: "0.2rem" }} />
+                  <img src={Battery} alt="img" />
+                </div>
+              </div>
+              <img
+                src={contact1}
+                alt="conatct_img"
+                className={styles.contact1div}
+              />
               <div
                 style={{
+                  marginTop: "1rem",
+                  marginLeft: "2rem",
                   display: "flex",
-                  alignItems: "center",
+                  flexDirection: "column",
                   gap: "1rem",
-                  marginLeft: "2.5rem",
                 }}
               >
                 <div
                   style={{
-                    height: "1.5rem",
-                    width: "1.5rem",
-                    border: "1px solid gray",
-                    borderRadius: "0.5rem",
-                    cursor: "pointer",
                     display: "flex",
-                    justifyContent: "center",
                     alignItems: "center",
+                    gap: "1rem",
                   }}
                 >
-                  <img
-                    src={google_logo}
-                    alt="google_logo"
-                    style={{
-                      height: "50%",
-                      width: "50%",
-                    }}
-                  />
+                  <img src={line} alt="line" style={{ width: "20%" }} />
+                  <div style={{ color: "gray", fontSize: "0.75rem" }}>
+                    Join Us
+                  </div>
+                  <img src={line} alt="line" style={{ width: "20%" }} />
                 </div>
                 <div
                   style={{
-                    height: "1.5rem",
-                    width: "1.5rem",
-                    border: "1px solid gray",
-                    borderRadius: "0.5rem",
-                    cursor: "pointer",
                     display: "flex",
-                    justifyContent: "center",
                     alignItems: "center",
+                    gap: "1rem",
+                    marginLeft: "25%",
                   }}
                 >
-                  <img
-                    src={apple_logo}
-                    alt="apple_logo"
+                  <div
                     style={{
-                      height: "50%",
-                      width: "50%",
+                      height: "1.5rem",
+                      width: "1.5rem",
+                      border: "1px solid gray",
+                      borderRadius: "0.5rem",
+                      // cursor: "pointer",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
                     }}
-                  />
+                  >
+                    <img
+                      src={google_logo}
+                      alt="google_logo"
+                      style={{
+                        height: "50%",
+                        width: "50%",
+                      }}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      height: "1.5rem",
+                      width: "1.5rem",
+                      border: "1px solid gray",
+                      borderRadius: "0.5rem",
+                      // cursor: "pointer",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <img
+                      src={apple_logo}
+                      alt="apple_logo"
+                      style={{
+                        height: "50%",
+                        width: "50%",
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div
-            style={{
-              height: "8rem",
-              position: "absolute",
-              borderRadius: "1.5rem",
-              top: "17rem",
-              left: "-5rem",
-              width: "8rem",
-              boxShadow: "0 25px 50px -12px",
-              backgroundColor: "white",
-            }}
-          >
-            <img
-              src={contact2}
-              alt="conatct_img"
-              style={{
-                height: "100%",
-                width: "90%",
-              }}
-            />
-          </div>
-          <div
-            style={{
-              height: "8rem",
-              position: "absolute",
-              borderRadius: "1.5rem",
-              top: "3rem",
-              right: "-5rem",
-              width: "8rem",
-              boxShadow: "0 25px 50px -12px",
-              backgroundColor: "white",
-            }}
-          >
-            <img
-              src={contact3}
-              alt="conatct_img"
-              style={{
-                height: "100%",
-                width: "100%",
-              }}
-            />
+            <div className={styles.contact2div}>
+              <img
+                src={contact2}
+                alt="conatct_img"
+                style={{
+                  height: "100%",
+                  width: "90%",
+                }}
+              />
+            </div>
+            <div className={styles.contact3div}>
+              <img
+                src={contact3}
+                alt="conatct_img"
+                style={{
+                  height: "100%",
+                  width: "100%",
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
       <div className={styles.thirddiv}>
         <div className={styles.instagram_div}>
-          <img
-            src={instagram}
-            alt="instagram_logo"
-            style={{ cursor: "pointer", height: "100%", width: "100%" }}
-          />
-          <img
-            src={linkedin}
-            alt="linkedin_logo"
-            style={{ cursor: "pointer", height: "100%", width: "100%" }}
-          />
+          <button
+            style={{ cursor: "pointer", background: "none", border: "none" }}
+          >
+            <img
+              src={instagram}
+              alt="instagram_logo"
+              style={{ height: "80%", width: "80%" }}
+            />
+          </button>
+          <button
+            style={{ cursor: "pointer", background: "none", border: "none" }}
+          >
+            <img
+              src={linkedin}
+              alt="linkedin_logo"
+              style={{ height: "70%", width: "70%" }}
+            />
+          </button>
         </div>
         <div>
           <img

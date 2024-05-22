@@ -31,10 +31,10 @@ const ThankyouModal = ({ onClose }) => {
         </div>
         <div style={{ textAlign: "center" }}>
           <h1 style={{ fontSize: "3rem", color: "#7065f0" }}>Thank You!</h1>
-          <p style={{ fontSize: "0.9rem", marginTop: "-1rem" }}>
+          <p style={{ fontSize: "0.9rem", marginTop: "0.5rem" }}>
             We recieved your message. Someone from our team
           </p>
-          <p style={{ fontSize: "0.9rem", marginTop: "-1rem" }}>
+          <p style={{ fontSize: "0.9rem", marginTop: "0rem" }}>
             will contact you soon.
           </p>
         </div>
