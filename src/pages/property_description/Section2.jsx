@@ -17,7 +17,8 @@ import location from "./location.svg";
 import heart from "./heart.svg";
 import share from "./share.svg";
 import customize from "./customize.svg";
-import "@google/model-viewer";
+// import "@google/model-viewer";
+import "@google/model-viewer/dist/model-viewer";
 
 const Section2 = () => {
   const list1 = [home1, home1, home1, home1, home1, home1, home1, home1, home1];
@@ -105,13 +106,14 @@ const Section2 = () => {
         <div className={styles.section2imgdiv2}>
           <div style={{ width: "100%" }}>
             {/* <model-viewer
-              src={housegrid1}
-              alt="A 3D model"
-              auto-rotate
-              camera-controls
-              ar
+              src="/Astronaut.glb"
+              ios-src=""
+              poster="https://cdn.glitch.com/36cb8393-65c6-408d-a538-055ada20431b%2Fposter-astronaut.png?v=1599079951717"
+              alt="A 3D model of an astronaut"
               shadow-intensity="1"
-              style={{ width: "100%" }}
+              camera-controls
+              auto-rotate
+              ar
             ></model-viewer> */}
             <img src={housegrid1} alt="home_img" style={{ width: "100%" }} />
           </div>

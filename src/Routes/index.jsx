@@ -6,7 +6,7 @@ import Home from "../pages/home/Home";
 import Desktop from "../pages/desktop/Home";
 import OtpModal from "../components/modals/OtpModal";
 import PropertyDescription from "../pages/property_description";
-import Property from "../pages/property";
+// import Property from "../pages/property";
 
 export const Router = () => {
   return (
@@ -18,7 +18,7 @@ export const Router = () => {
           path={"/home/property_description"}
           element={<PropertyDescription />}
         />
-        <Route path={"/home/property"} element={<Property />} />
+        {/* <Route path={"/home/property"} element={<Property />} /> */}
         {/*<Route path={"/signup"} element={<Signup />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/otp"} element={<OtpModal />} /> */}
