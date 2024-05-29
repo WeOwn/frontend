@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Navbar2 from "../../components/navbar/Navbar2";
@@ -18,10 +18,21 @@ import cloud from "./cloud.png";
 import stardesign from "./stardesign.png";
 import upright from "./upright.png";
 import wishlist_btn from "./wishlist_btn.png";
+import Sidebar1 from "../../components/sidebar/Sidebar1";
+import Sidebar2 from "../../components/sidebar/Sidebar2";
+import Sidebar3 from "../../components/sidebar/Sidebar3";
+import Sidebar4 from "../../components/sidebar/Sidebar4";
+import Sidebar5 from "../../components/sidebar/Sidebar5";
+import banner_img from "./banner_img.svg";
 
 function Home() {
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered1, setIsHovered1] = useState(false);
+  const [issideopen, setIssideopen] = useState(false);
+  const [isside2open, setIsside2open] = useState(false);
+  const [isside3open, setIsside3open] = useState(false);
+  const [isside4open, setIsside4open] = useState(false);
+  const [isside5open, setIsside5open] = useState(false);
 
   const handleHover = () => {
     setIsHovered(true);
@@ -36,6 +47,41 @@ function Home() {
 
   const handleLeave1 = () => {
     setIsHovered1(false);
+  };
+
+  const handlesideopen = () => {
+    setIssideopen(true);
+  };
+  const handlesideclose = () => {
+    setIssideopen(false);
+  };
+  const handleside2open = () => {
+    setIsside2open(true);
+  };
+  const handleside2close = () => {
+    setIsside2open(false);
+  };
+  const handleside3open = () => {
+    setIsside3open(true);
+  };
+  const handleside3close = () => {
+    setIsside3open(false);
+  };
+  const handleside4open = () => {
+    setIsside4open(true);
+  };
+  const handleside4close = () => {
+    setIsside4open(false);
+  };
+  const handleside5open = () => {
+    setIsside5open(true);
+  };
+  const handleside5close = () => {
+    setIsside5open(false);
+  };
+
+  const handleClickOutside = () => {
+    if (issideopen) setIssideopen(false);
   };
 
   const List1 = [
@@ -104,80 +150,161 @@ function Home() {
   }, []);
 
   return (
-    <div className={styles.maindiv}>
-      {changenav ? <Navbar2 /> : <Navbar />}
-      <div className={styles.HelloSection} id="hero-section">
-        <div className={styles.cloud1}>
-          <img src={cloud} alt="cloudimg" className={styles.cloud} />
-        </div>
-        <div className={styles.cloud2}>
-          <img src={cloud} alt="cloudimg" className={styles.cloud} />
-        </div>
-        <div className={styles.cloud3}>
-          <img src={cloud} alt="cloudimg" className={styles.cloud} />
-        </div>
-        <div className={styles.cloud4}>
-          <img src={cloud} alt="cloudimg" className={styles.cloud} />
-        </div>
-        <div className={styles.cloud5}>
-          <img src={cloud} alt="cloudimg" className={styles.cloud} />
-        </div>
-        <div className={styles.helloContentContainer}>
-          <div className={`${styles.mainHeading}`}>
-            Experience a 3D Real Estate Platform
+    <>
+      {issideopen && (
+        <Sidebar1
+          handleside2open={handleside2open}
+          handleside3open={handleside3open}
+          handleside4open={handleside4open}
+          handleside5open={handleside5open}
+        />
+      )}
+      {issideopen && isside2open && (
+        <Sidebar2 handleside2close={handleside2close} />
+      )}
+      {issideopen && isside3open && (
+        <Sidebar3 handleside3close={handleside3close} />
+      )}
+      {issideopen && isside4open && (
+        <Sidebar4 handleside4close={handleside4close} />
+      )}
+      {issideopen && isside5open && (
+        <Sidebar5 handleside5close={handleside5close} />
+      )}
+      <div className={styles.maindiv} onClick={handleClickOutside}>
+        {changenav ? (
+          <Navbar2 handlesideopen={handlesideopen} />
+        ) : (
+          <Navbar handlesideopen={handlesideopen} />
+        )}
+
+        <div className={styles.HelloSection} id="hero-section">
+          {/* <div className={styles.cloud1}>
+            <img src={cloud} alt="cloudimg" className={styles.cloud} />
           </div>
-          <div className={classNames(styles.subHeading)}>
-            weown provides easy way to visualize your dream house in seconds.to
-            visualize your dream house in seconds.
+          <div className={styles.cloud2}>
+            <img src={cloud} alt="cloudimg" className={styles.cloud} />
           </div>
-          <div className={styles.optionTooglerDiv}>
-            <OptionToogle />
-            <div className={styles.searchContainer}>
-              <Search />
+          <div className={styles.cloud3}>
+            <img src={cloud} alt="cloudimg" className={styles.cloud} />
+          </div>
+          <div className={styles.cloud4}>
+            <img src={cloud} alt="cloudimg" className={styles.cloud} />
+          </div>
+          <div className={styles.cloud5}>
+            <img src={cloud} alt="cloudimg" className={styles.cloud} />
+          </div> */}
+          <div className={styles.helloContentContainer}>
+            <div className={`${styles.mainHeading}`}>
+              Experience a 3D Real Estate Platform
+            </div>
+            <div className={classNames(styles.subHeading)}>
+              weown provides easy way to visualize your dream house in
+              seconds.to visualize your dream house in seconds.
+            </div>
+            <div className={styles.optionTooglerDiv}>
+              <OptionToogle />
+              <div className={styles.searchContainer}>
+                <Search />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className={styles.seconddiv}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
+        <div className={styles.seconddiv}>
+          <div>
+            <img src={stardesign} alt="img" />
+          </div>
+          <div
+            className={styles.home1}
+            style={
+              {
+                // gap: "2rem",
+                // flexWrap: "wrap",
+                // paddingTop: "6rem",
+              }
+            }
+          >
+            <div className={styles.searchSection}>
+              <div className={styles.searchSectionIntro}>
+                <div className={styles.searchSectionHeader}>
+                  What are you searching for?
+                </div>
+                <div className={styles.searchSectionDesc}>
+                  <div>
+                    Explore our handpicked selection of featured properties.
+                    Each listing offers a glimpse into exceptional homes and
+                    investments available through Weown. Click "View Details"
+                    for more information.
+                  </div>
+                </div>
 
-            width: "100%",
-
-            // marginInline: "auto",
-          }}
-        >
-          <div className={styles.searchSection}>
-            <div className={styles.searchSectionIntro}>
-              <div>
-                <img src={stardesign} alt="img" />
-              </div>
-              <div className={styles.searchSectionHeader}>
-                What are you searching for?
-              </div>
-              <div className={styles.searchSectionDesc}>
-                <div>
-                  Explore our handpicked selection of featured properties. Each
-                  listing offers a glimpse into exceptional homes and
-                  investments available through Weown. Click "View Details" for
-                  more information.
+                <div className={styles.searchInputContainer}>
+                  <input
+                    className={styles.searchInput}
+                    type="text"
+                    placeholder="Search"
+                  />
+                  <div
+                    style={{ position: "absolute", right: "2%", top: "30%" }}
+                  >
+                    <img
+                      src={searchlogo}
+                      style={{ height: "70%", width: "70%" }}
+                      alt="search"
+                    />
+                  </div>
                 </div>
               </div>
 
-              <div className={styles.searchInputContainer}>
-                <input
-                  className={styles.searchInput}
-                  type="text"
-                  placeholder="Search"
-                />
-                <div style={{ position: "absolute", right: "2%", top: "30%" }}>
+              <div className={styles.searchResults}>
+                <div
+                  className={styles.Search_Properties}
+                  onMouseEnter={handleHover}
+                  onMouseLeave={handleLeave}
+                >
+                  <div className={styles.searchProperty}>
+                    <div className={styles.propertyTitle}>Properties</div>
+                    <div className={styles.propertydesc}>
+                      Explore our handpicked selection of featured properties.
+                      Each listing offers a glimpse into exceptional homes and
+                      investments available through Weown. Click "View Details"
+                      for more information.
+                    </div>
+                  </div>
                   <img
-                    src={searchlogo}
-                    style={{ height: "70%", width: "70%" }}
-                    alt="search"
+                    className={styles.propertyImage}
+                    style={{ transform: isHovered ? "scale(1.3)" : "scale(1)" }}
+                    src={card1}
+                    alt="Card"
                   />
+                  <div className={styles.searchPropertyBg}></div>
+                </div>
+
+                <div
+                  className={styles.Search_Properties}
+                  onMouseEnter={handleHover1}
+                  onMouseLeave={handleLeave1}
+                >
+                  <div className={styles.searchProperty}>
+                    <div className={styles.propertyTitle}>Builders</div>
+                    <div className={styles.propertydesc}>
+                      <p>
+                        Explore our handpicked selection of featured properties.
+                        Each listing offers a glimpse into exceptional homes and
+                        investments available through Weown. Click "View
+                        Details" for more information.
+                      </p>
+                    </div>
+                  </div>
+                  <img
+                    className={styles.propertyImage}
+                    style={{
+                      transform: isHovered1 ? "scale(1.3)" : "scale(1)",
+                    }}
+                    src={card2}
+                    alt="Card"
+                  />
+                  <div className={styles.searchPropertyBg}></div>
                 </div>
               </div>
             </div>
@@ -188,7 +315,7 @@ function Home() {
                 display: "flex",
                 flexDirection: "column",
                 gap: "2rem",
-                // height: "15rem",
+                height: "18rem",
                 paddingInline: "1rem",
                 paddingBlock: "1.5rem",
                 borderRadius: "10px",
@@ -213,9 +340,10 @@ function Home() {
                 <div
                   style={{
                     backgroundColor: "white",
-                    // padding: "0.5rem",
+                    boxShadow: " 0 0 10px lightgrey",
+                    padding: "0.6rem 0.8rem",
                     // border: "1px solid black",
-                    // borderRadius: "10px",
+                    borderRadius: "15px",
                   }}
                 >
                   <img src={user1} alt="userlogo" />
@@ -285,172 +413,136 @@ function Home() {
               </div>
             </div>
           </div>
-          <div className={styles.searchResults}>
-            <div
-              className={styles.Search_Properties}
-              onMouseEnter={handleHover}
-              onMouseLeave={handleLeave}
-            >
-              <div className={styles.searchProperty}>
-                <div className={styles.propertyTitle}>Properties</div>
-                <div className={styles.propertydesc}>
-                  Explore our handpicked selection of featured properties. Each
-                  listing offers a glimpse into exceptional homes and
-                  investments available through Weown. Click "View Details" for
-                  more information.
-                </div>
-              </div>
-              <img
-                className={styles.propertyImage}
-                style={{ transform: isHovered ? "scale(1.3)" : "scale(1)" }}
-                src={card1}
-                alt="Card"
-              />
-              <div className={styles.searchPropertyBg}></div>
-            </div>
 
-            <div
-              className={styles.Search_Properties}
-              onMouseEnter={handleHover1}
-              onMouseLeave={handleLeave1}
-            >
-              <div className={styles.searchProperty}>
-                <div className={styles.propertyTitle}>Builders</div>
-                <div className={styles.propertydesc}>
-                  <p>
-                    Explore our handpicked selection of featured properties.
-                    Each listing offers a glimpse into exceptional homes and
-                    investments available through Weown. Click "View Details"
-                    for more information.
-                  </p>
-                </div>
-              </div>
-              <img
-                className={styles.propertyImage}
-                style={{ transform: isHovered1 ? "scale(1.3)" : "scale(1)" }}
-                src={card2}
-                alt="Card"
-              />
-              <div className={styles.searchPropertyBg}></div>
-            </div>
-          </div>
-        </div>
-
-        {/* featured properties */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-
-            width: "100%",
-
-            // marginInline: "auto",
-          }}
-        >
-          <div className={styles.FeaturedIntroContainer}>
-            <div className={styles.introContainer}>
-              <div>
-                <img src={stardesign} alt="img" />
-              </div>
-              <div className={styles.FeaturedSectionHeader}>
-                Featured Properties
-              </div>
-              <div className={styles.FeaturedSectionDesc}>
-                Explore our handpicked selection of featured properties. Each
-                listing offers a glimpse into exceptional homes and investments
-                available through Estatein. Click "View Details" for more
-                information.{" "}
-              </div>
-            </div>
-            <div className={styles.FeaturedButtonContainer}>
-              <button className={styles.FeaturedButton}>
-                View All Properties
-              </button>
-            </div>
-          </div>
-          <div className={styles.FeaturedPropertyContainer}>
-            {List1.map((obj) => (
-              <Propertycard key={obj.id} {...obj} />
-            ))}
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            paddingBottom: "3rem",
-            // width: "85%",
-            // marginInline: "auto",
-          }}
-        >
+          {/* featured properties */}
           <div
             style={{
               display: "flex",
-              flexDirection: "row",
-              marginTop: "6rem",
-              // marginLeft: "3rem",
-              // paddingInline: "4rem",
-              justifyContent: "space-between",
-              // gap: "15rem",
-              alignItems: "center",
+              flexDirection: "column",
+
+              width: "100%",
+
+              // marginInline: "auto",
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "1em",
-              }}
-            >
-              <div>
-                <img src={stardesign} alt="img" />
+            <div className={styles.FeaturedIntroContainer}>
+              <div className={styles.introContainer}>
+                <div>
+                  <img src={stardesign} alt="img" />
+                </div>
+                <div className={styles.FeaturedSectionHeader}>
+                  Featured Properties
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "space-between",
+                    gap: "2rem",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                  }}
+                >
+                  <div className={styles.FeaturedSectionDesc}>
+                    Explore our handpicked selection of featured properties.
+                    Each listing offers a glimpse into exceptional homes and
+                    investments available through Estatein. Click "View Details"
+                    for more information.{" "}
+                  </div>
+                  <div className={styles.FeaturedButtonContainer}>
+                    <button className={styles.FeaturedButton}>
+                      View All Properties
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div style={{ fontWeight: "bolder", fontSize: "2rem" }}>
-                Popular Builders
-              </div>
+            </div>
+            <div className={styles.FeaturedPropertyContainer}>
+              {List1.map((obj) => (
+                <Propertycard key={obj.id} {...obj} />
+              ))}
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              paddingBottom: "3rem",
+              // width: "85%",
+              // marginInline: "auto",
+            }}
+          >
+            <div className={styles.builderContainerp}>
               <div
                 style={{
-                  fontWeight: "400",
-                  fontSize: "0.9rem",
-                  lineHeight: "1.2rem",
-                  width: "70%",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1em",
                 }}
               >
-                Explore our handpicked selection of featured properties. Each
-                listing offers a glimpse into exceptional homes and investments
-                available through Estatein. Click "View Details" for more
-                information.{" "}
+                <div>
+                  <img src={stardesign} alt="img" />
+                </div>
+                <div style={{ fontWeight: "bolder", fontSize: "2rem" }}>
+                  Popular Builders
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "space-between",
+                    gap: "2rem",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontWeight: "400",
+                      fontSize: "0.9rem",
+                      lineHeight: "1.2rem",
+                      width: "70%",
+                    }}
+                  >
+                    Explore our handpicked selection of featured properties.
+                    Each listing offers a glimpse into exceptional homes and
+                    investments available through Estatein. Click "View Details"
+                    for more information.{" "}
+                  </div>
+
+                  <div>
+                    <button
+                      style={{
+                        paddingBlock: "1rem",
+                        // paddingInline: "2em",
+                        borderRadius: "10px",
+                        border: "1px solid #E1E1E1",
+                        marginRight: "0.5rem",
+                        backgroundColor: "#EAEAEA",
+                        cursor: "pointer",
+                        width: "10rem",
+                        color: "#0F0B3E",
+                      }}
+                    >
+                      View All Builders
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-            <div style={{ marginBlock: "3rem" }}>
-              <button
-                style={{
-                  paddingBlock: "1rem",
-                  // paddingInline: "2em",
-                  borderRadius: "5px",
-                  border: "0px solid #ccc",
-                  marginRight: "0.5rem",
-                  backgroundColor: "#EAEAEA",
-                  cursor: "pointer",
-                  width: "10rem",
-                }}
-              >
-                View All Builders
-              </button>
+            <div className={styles.builderContainer}>
+              {List2.map((obj) => (
+                <Builderscard key={obj.id} {...obj} />
+              ))}
             </div>
           </div>
-          <div className={styles.builderContainer}>
-            {List2.map((obj) => (
-              <Builderscard key={obj.id} {...obj} />
-            ))}
-          </div>
+          {/* <Aisection /> */}
         </div>
-        {/* <Aisection /> */}
-      </div>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 }
 

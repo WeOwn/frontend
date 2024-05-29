@@ -1,9 +1,9 @@
 .primary {
   background-color: rgba(112, 101, 240, 1);
   color: white;
-  padding: 0.7em;
+  padding: 1rem 2rem;
   border-radius: 5px;
-  width: 7em;
+  /* width: 7em; */
   text-align: center;
   cursor: pointer;
   border: none;

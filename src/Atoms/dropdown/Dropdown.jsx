@@ -12,9 +12,7 @@ const Dropdown = ({ megaMenuData, isOpen, openDropdown, closeDropdown }) => {
               {item.subcategories.map((subcat, subIndex) => (
                 <li key={subIndex}>
                   <div className={styles.subcategory}>
-                    <h6 style={{ fontSize: "0.9rem", color: "black" }}>
-                      {subcat.heading}
-                    </h6>
+                    <h6 style={{ fontSize: "0.9rem" }}>{subcat.heading}</h6>
                     <p style={{ fontSize: "0.75rem" }}>{subcat.para}</p>
                   </div>
                 </li>

@@ -8,8 +8,9 @@ import styles from "./styles.module.css";
 import Dropdown from "../../Atoms/dropdown/Dropdown";
 import hamburger from "./hamburger.png";
 import userimg from "./userimg.png";
+// import Sidebar from "../sidebar/Sidebar";
 
-function Navbar() {
+function Navbar({ handlesideopen }) {
   const megaMenuData = [
     {
       category: "Residential",
@@ -79,6 +80,10 @@ function Navbar() {
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
+  const opensidebar = () => {
+    handlesideopen();
+  };
+
   const openDropdown = () => {
     setDropdownOpen(true);
   };
@@ -88,86 +93,92 @@ function Navbar() {
   };
   //
   return (
-    <nav className={styles.navbar}>
-      <Link to="/">
-        <div className={styles.logo}>
-          <img src={LogoImage} alt="Logo" />
-        </div>
-      </Link>
-      <div className={styles.navCenter}>
-        <ul className={styles.navOptions}>
-          <li
-            className={`${styles.navItem} ${styles.megaDropdownContainer}`}
-            onMouseEnter={openDropdown}
-            // onMouseLeave={closeDropdown}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                gap: "0.3rem",
-              }}
+    <div>
+      <nav className={styles.navbar}>
+        <Link to="/">
+          <div className={styles.logo}>
+            <img
+              src={LogoImage}
+              alt="Logo"
+              style={{ width: "100%", height: "100%" }}
+            />
+          </div>
+        </Link>
+        <div className={styles.navCenter}>
+          <ul className={styles.navOptions}>
+            <li
+              className={`${styles.navItem} ${styles.megaDropdownContainer}`}
+              onMouseEnter={openDropdown}
+              // onMouseLeave={closeDropdown}
             >
-              <Link to="">View & Buy</Link>
-              <div>
-                <img src={Vector} alt="arrow" />
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: "0.3rem",
+                }}
+              >
+                <Link to="">View & Buy</Link>
+                <div>
+                  <img src={Vector} alt="arrow" />
+                </div>
               </div>
-            </div>
-            {isDropdownOpen && (
-              <Dropdown
-                megaMenuData={megaMenuData}
-                isOpen={isDropdownOpen}
-                openDropdown={openDropdown}
-                closeDropdown={closeDropdown}
-              />
-            )}
-          </li>
-          <li>
-            <Link to="">Search Builders</Link>
-          </li>
-          <li>
-            <Link to="">Group Investment</Link>
-          </li>
-          <li>
-            <Link to="">List Property</Link>
-          </li>
-          <li>
-            <Link to="">Compare</Link>
-          </li>
-        </ul>
-      </div>
-      <div className={styles.navRight}>
-        {/* <Link to="/signup" className={styles.registerButton}>
+              {isDropdownOpen && (
+                <Dropdown
+                  megaMenuData={megaMenuData}
+                  isOpen={isDropdownOpen}
+                  openDropdown={openDropdown}
+                  closeDropdown={closeDropdown}
+                />
+              )}
+            </li>
+            <li>
+              <Link to="">Search Builders</Link>
+            </li>
+            <li>
+              <Link to="">Group Investment</Link>
+            </li>
+            <li>
+              <Link to="">List Property</Link>
+            </li>
+            <li>
+              <Link to="">Compare</Link>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.navRight}>
+          {/* <Link to="/signup" className={styles.registerButton}>
           Register
         </Link>
         <Link to="/login" className={styles.loginButton}>
           Login
         </Link> */}
-        <div>
-          <img
-            src={hamburger}
-            alt="icon"
-            style={{ height: "60%", width: "60%" }}
-          />
+          <div onClick={opensidebar}>
+            <img
+              src={hamburger}
+              alt="icon"
+              style={{ height: "60%", width: "60%" }}
+            />
+          </div>
+          <div
+            style={{
+              backgroundColor: "White",
+              padding: "0.2rem",
+              borderRadius: "999px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src={userimg}
+              alt="icon"
+              style={{ height: "80%", width: "80%" }}
+            />
+          </div>
         </div>
-        <div
-          style={{
-            backgroundColor: "White",
-            padding: "0.2rem",
-            borderRadius: "999px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <img
-            src={userimg}
-            alt="icon"
-            style={{ height: "80%", width: "80%" }}
-          />
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 }
 

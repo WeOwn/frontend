@@ -15,17 +15,16 @@
     justify-content: space-around;
     align-items: center;
     background-color: #7065f0;
-    padding: 0.7em;
-   
+    padding: 1em;
+    color:#0F0B3E;
     font-family: "Urbanist", sans-serif;
-    z-index: 1000;
-    animation: fadeIn 0.5s forwards;
+    z-index: 999;
+    animation: fadeIn 1s forwards;
 
 }
   
-  .logo img {
-    max-height: 30px;
-    margin: 10px;
+  .logo{
+    width:8rem;
   }
 
   .center{
@@ -51,7 +50,7 @@
     background-color: #ffffff;
     padding:0.2rem 0.5rem;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 5px;
     /* background-color: black; */
     
   }

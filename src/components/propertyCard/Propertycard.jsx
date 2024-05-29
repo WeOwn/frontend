@@ -46,31 +46,31 @@ export const Propertycard = ({
           <div>
             <img
               src={bedroom_logo}
-              style={{ height: "70%", width: "70%" }}
+              style={{ height: "1rem", width: "1rem" }}
               alt="logo"
             />
           </div>
-          <span>{detail1}</span>
+          <span style={{ whiteSpace: "nowrap" }}>{detail1}</span>
         </div>
         <div className={styles.capsule}>
           <div>
             <img
               src={bathroom_logo}
-              style={{ height: "70%", width: "70%" }}
+              style={{ height: "1rem", width: "1rem" }}
               alt="logo"
             />
           </div>
-          <span>{detail2}</span>
+          <span style={{ whiteSpace: "nowrap" }}>{detail2}</span>
         </div>
         <div className={styles.capsule}>
           <div>
             <img
               src={villa_logo}
-              style={{ height: "70%", width: "70%" }}
+              style={{ height: "1rem", width: "1rem" }}
               alt="logo"
             />
           </div>
-          <span>{detail3}</span>
+          <span style={{ whiteSpace: "nowrap" }}>{detail3}</span>
         </div>
       </div>
 

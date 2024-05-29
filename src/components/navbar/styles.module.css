@@ -13,24 +13,27 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    
-    padding: 0.7em;
+    /* align-items: center; */
+    color:#0F0B3E;
+    /* color:red; */
+    padding: 1rem;
     background-color: #ffffff;
     font-family: "Urbanist", sans-serif;
-    z-index: 1000;
-    animation: fadeIn 0.5s forwards;
+    z-index: 999;
+    animation: fadeIn 1s forwards;
 
 }
   
-  .logo img {
-    max-height: 30px;
-    margin: 10px;
+  .logo  {
+    /* max-height: 30px; */
+    width: 8rem;
+    
   }
   
   .navCenter {
     display: flex;
     align-items: center;
+  
   }
   
   .navOptions {
@@ -44,7 +47,7 @@
   }
 
   .navOptions li a {
-    color: black;
+   
     text-decoration: none; 
     font-weight: 600;
     white-space: nowrap;

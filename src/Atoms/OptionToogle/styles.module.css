@@ -5,6 +5,7 @@
   align-items: center;
   height: auto;
   padding-top:20px;
+  overflow:auto;
   
   padding-inline:  10px;
   background: white;

@@ -3,59 +3,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logowhite from "./logowhite.png";
-import Vector from "./Vector.png";
+
 import styles from "./navbar2.module.css";
-import Dropdown from "../../Atoms/dropdown/Dropdown";
+
 import hamburger2 from "./hamburger2.png";
 import userimg from "./userimg.png";
 import searchlogo from "./searchlogo.png";
 
-function Navbar({ navbarColor }) {
-  const megaMenuData = [
-    {
-      category: "Residential",
-      subcategories: [
-        "Ready To Move",
-        "Subcategory 1.2",
-        "Subcategory 1.3",
-        "Subcategory 1.4",
-      ],
-    },
-    {
-      category: "Land/Plot",
-      subcategories: ["Subcategory 2.1"],
-    },
-    {
-      category: "Commercial",
-      subcategories: [
-        "Subcategory 2.1",
-        "Subcategory 2.2",
-        "Subcategory 2.3",
-        "Subcategory 2.4",
-        "Subcategory 2.5",
-      ],
-    },
-    {
-      category: "Top Localities",
-      subcategories: ["Subcategory 2.1"],
-    },
-  ];
-
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setDropdownOpen(true);
+function Navbar({ navbarColor, handlesideopen }) {
+  const opensidebar = () => {
+    handlesideopen();
   };
-
-  const closeDropdown = () => {
-    setDropdownOpen(false);
-  };
-  //
   return (
     <nav className={styles.navbar} style={{ backgroundColor: navbarColor }}>
       <Link to="/">
         <div className={styles.logo}>
-          <img src={logowhite} alt="Logo" />
+          <img
+            src={logowhite}
+            alt="Logo"
+            style={{ width: "100%", height: "100%" }}
+          />
         </div>
       </Link>
       <div className={styles.center}>
@@ -113,7 +80,7 @@ function Navbar({ navbarColor }) {
         <Link to="/login" className={styles.loginButton}>
           Login
         </Link> */}
-        <div>
+        <div onClick={opensidebar}>
           <img
             src={hamburger2}
             alt="icon"
