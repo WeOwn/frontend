@@ -4,6 +4,7 @@
   font-family: Urbanist;
   width: 100%;
   height: 100vh;
+
   color:#0F0B3E;
   /* color:red; */
   /* position:relative; */
@@ -12,6 +13,7 @@
   width:85%;
   margin-inline: auto;
   padding-top: 6rem;
+
 }
 
 .mainHeading {
