@@ -82,7 +82,7 @@ const Sidebar1 = ({
       <div className={styles.sections}>
         <div className={styles.section1}>
           <ul>
-            <li>
+            <li className={styles.listdiv}>
               <div className={styles.listsection1}>
                 <span>
                   <img src={a1} alt="img" />
@@ -90,7 +90,7 @@ const Sidebar1 = ({
                 <span>Orders & Payments</span>
               </div>
             </li>
-            <li>
+            <li className={styles.listdiv}>
               <div className={styles.listsection1}>
                 <span>
                   <img src={a2} alt="img" />
@@ -109,7 +109,7 @@ const Sidebar1 = ({
                 </div>
               </div>
             </li>
-            <li>
+            <li className={styles.listdiv}>
               <div className={styles.listsection1}>
                 <span>
                   <img src={a3} alt="img" />
@@ -117,7 +117,7 @@ const Sidebar1 = ({
                 <span>Saved Properties</span>
               </div>
             </li>
-            <li onClick={() => toggleDropdown(1)}>
+            <li onClick={() => toggleDropdown(1)} className={styles.listdiv}>
               <span>
                 <div className={styles.listsection1}>
                   <span>
@@ -136,7 +136,7 @@ const Sidebar1 = ({
         <hr />
         <div className={styles.section2}>
           <ul>
-            <li onClick={() => handleside2open()}>
+            <li onClick={() => handleside2open()} className={styles.listdiv}>
               <span>
                 <div className={styles.listsection1}>
                   <span>
@@ -149,7 +149,7 @@ const Sidebar1 = ({
                 <img src={right_arrow} alt="down_arrow" />
               </span>
             </li>
-            <li onClick={() => handleside3open()}>
+            <li onClick={() => handleside3open()} className={styles.listdiv}>
               <span>
                 <div className={styles.listsection1}>
                   <span>
@@ -162,7 +162,7 @@ const Sidebar1 = ({
                 <img src={right_arrow} alt="down_arrow" />
               </span>
             </li>
-            <li onClick={() => handleside4open()}>
+            <li onClick={() => handleside4open()} className={styles.listdiv}>
               <span>
                 <div className={styles.listsection1}>
                   <span>
@@ -175,7 +175,7 @@ const Sidebar1 = ({
                 <img src={right_arrow} alt="down_arrow" />
               </span>
             </li>
-            <li onClick={() => handleside5open()}>
+            <li onClick={() => handleside5open()} className={styles.listdiv}>
               <span>
                 <div className={styles.listsection1}>
                   <span>
@@ -193,7 +193,7 @@ const Sidebar1 = ({
         <hr />
         <div className={styles.section3}>
           <ul>
-            <li>
+            <li className={styles.listdiv}>
               <div className={styles.listsection1}>
                 <span>
                   <img src={a9} alt="img" />
@@ -201,7 +201,7 @@ const Sidebar1 = ({
                 <span>Area Guides</span>
               </div>
             </li>
-            <li>
+            <li className={styles.listdiv}>
               <div className={styles.listsection1}>
                 <span>
                   <img src={a10} alt="img" />
@@ -209,7 +209,7 @@ const Sidebar1 = ({
                 <span>Property Images</span>
               </div>
             </li>
-            <li>
+            <li className={styles.listdiv}>
               <div className={styles.listsection1}>
                 <span>
                   <img src={a11} alt="img" />
@@ -217,7 +217,7 @@ const Sidebar1 = ({
                 <span>Property Videos</span>
               </div>
             </li>
-            <li>
+            <li className={styles.listdiv}>
               <div className={styles.listsection1}>
                 <span>
                   <img src={a12} alt="img" />
@@ -230,8 +230,8 @@ const Sidebar1 = ({
         <hr />
         <div className={styles.section4}>
           <ul>
-            <li>About Us</li>
-            <li>Contact Us</li>
+            <li className={styles.listdiv}>About Us</li>
+            <li className={styles.listdiv}>Contact Us</li>
           </ul>
         </div>
       </div>

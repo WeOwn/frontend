@@ -42,7 +42,7 @@
   /* background: #7065f0; */
   background-image: url('./banner_img.svg');
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   /* background-attachment: fixed; */
    background-color: #7065f0;  /*fallback color */

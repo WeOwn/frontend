@@ -84,7 +84,7 @@ const Sidebar = ({ handleside5close }) => {
       <div className={styles.sections}>
         <div className={styles.section1}>
           <ul>
-            <li onClick={() => toggleDropdown(1)}>
+            <li onClick={() => toggleDropdown(1)} className={styles.listdiv}>
               <span>For Dealers/Builders</span>
 
               <span>

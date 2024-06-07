@@ -7,7 +7,7 @@ const Dropdown = ({ megaMenuData, isOpen, openDropdown, closeDropdown }) => {
       <div className={styles.grid}>
         {megaMenuData.map((item, index) => (
           <div key={index} className={styles.megaCategory}>
-            <h4>{item.category}</h4>
+            <h4 className={styles.heading}>{item.category}</h4>
             <ul>
               {item.subcategories.map((subcat, subIndex) => (
                 <li key={subIndex}>

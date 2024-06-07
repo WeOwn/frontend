@@ -23,6 +23,19 @@
     animation: fadeIn 1s forwards;
 
 }
+
+.sidebarouterContainer{
+  /* font-family: Urbanist; */
+    position: fixed;
+  top: 0;
+  left: 0; /* Initially hidden */
+  /* width: 256px; */
+  height: 100vh;
+  background:transparent;
+  /* background-color: black; */
+  width: 75%;
+  z-index:1000;
+}
   
   .logo  {
     /* max-height: 30px; */
@@ -67,7 +80,7 @@
     background-color:#7065f0;
     padding:0.5rem 0.8rem;
     border-radius: 999px;
-    cursor: pointer;
+    /* cursor: pointer; */
   }
   
   .navRight a {

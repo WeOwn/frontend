@@ -84,7 +84,7 @@ const Sidebar = ({ handleside4close }) => {
       <div className={styles.sections}>
         <div className={styles.section1}>
           <ul>
-            <li onClick={() => toggleDropdown(1)}>
+            <li onClick={() => toggleDropdown(1)} className={styles.listdiv}>
               <span>Property Services</span>
 
               <span>

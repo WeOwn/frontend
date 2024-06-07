@@ -122,7 +122,7 @@ const Sidebar = ({ handleside2close }) => {
       <div className={styles.sections}>
         <div className={styles.section1}>
           <ul>
-            <li onClick={() => toggleDropdown(1)}>
+            <li onClick={() => toggleDropdown(1)} className={styles.listdiv}>
               <span>Buy a home in Banglore</span>
 
               <span>
@@ -130,7 +130,7 @@ const Sidebar = ({ handleside2close }) => {
               </span>
             </li>
             {openDropdown === 1 ? <SearchBardrop list={list1} /> : null}
-            <li onClick={() => toggleDropdown(2)}>
+            <li onClick={() => toggleDropdown(2)} className={styles.listdiv}>
               <span>Commercial in Banglore</span>
 
               <span>
@@ -138,7 +138,7 @@ const Sidebar = ({ handleside2close }) => {
               </span>
             </li>
             {openDropdown === 2 ? <SearchBardrop list={list2} /> : null}
-            <li onClick={() => toggleDropdown(3)}>
+            <li onClick={() => toggleDropdown(3)} className={styles.listdiv}>
               <span>Top Areas for Residential</span>
 
               <span>
@@ -146,7 +146,7 @@ const Sidebar = ({ handleside2close }) => {
               </span>
             </li>
             {openDropdown === 3 ? <SearchBardrop list={list3} /> : null}
-            <li onClick={() => toggleDropdown(4)}>
+            <li onClick={() => toggleDropdown(4)} className={styles.listdiv}>
               <span>Top Areas For Commercial</span>
 
               <span>

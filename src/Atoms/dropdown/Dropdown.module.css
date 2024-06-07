@@ -1,6 +1,6 @@
 .megaDropdown {
   position: fixed;
-  top: 76px;
+  top: 75px;
   left:0;
  margin-inline: auto;
   width: 100%;
@@ -57,6 +57,7 @@
 ul{
   margin-top:1rem;
 }
-h4{
-  color:#7065f0
+.heading{
+  color:#7065f0;
+  font-size: 1rem;;
 }

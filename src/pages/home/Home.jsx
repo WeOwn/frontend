@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
-import Navbar2 from "../../components/navbar/Navbar2";
+// import Navbar2 from "../../components/navbar/Navbar2";
 import styles from "./styles.module.css";
 import Search from "../../components/Search";
 import classNames from "classnames";
@@ -18,21 +18,12 @@ import cloud from "./cloud.png";
 import stardesign from "./stardesign.png";
 import upright from "./upright.png";
 import wishlist_btn from "./wishlist_btn.png";
-import Sidebar1 from "../../components/sidebar/Sidebar1";
-import Sidebar2 from "../../components/sidebar/Sidebar2";
-import Sidebar3 from "../../components/sidebar/Sidebar3";
-import Sidebar4 from "../../components/sidebar/Sidebar4";
-import Sidebar5 from "../../components/sidebar/Sidebar5";
+
 import banner_img from "./banner_img.svg";
 
 function Home() {
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered1, setIsHovered1] = useState(false);
-  const [issideopen, setIssideopen] = useState(false);
-  const [isside2open, setIsside2open] = useState(false);
-  const [isside3open, setIsside3open] = useState(false);
-  const [isside4open, setIsside4open] = useState(false);
-  const [isside5open, setIsside5open] = useState(false);
 
   const handleHover = () => {
     setIsHovered(true);
@@ -47,41 +38,6 @@ function Home() {
 
   const handleLeave1 = () => {
     setIsHovered1(false);
-  };
-
-  const handlesideopen = () => {
-    setIssideopen(true);
-  };
-  const handlesideclose = () => {
-    setIssideopen(false);
-  };
-  const handleside2open = () => {
-    setIsside2open(true);
-  };
-  const handleside2close = () => {
-    setIsside2open(false);
-  };
-  const handleside3open = () => {
-    setIsside3open(true);
-  };
-  const handleside3close = () => {
-    setIsside3open(false);
-  };
-  const handleside4open = () => {
-    setIsside4open(true);
-  };
-  const handleside4close = () => {
-    setIsside4open(false);
-  };
-  const handleside5open = () => {
-    setIsside5open(true);
-  };
-  const handleside5close = () => {
-    setIsside5open(false);
-  };
-
-  const handleClickOutside = () => {
-    if (issideopen) setIssideopen(false);
   };
 
   const List1 = [
@@ -151,32 +107,8 @@ function Home() {
 
   return (
     <>
-      {issideopen && (
-        <Sidebar1
-          handleside2open={handleside2open}
-          handleside3open={handleside3open}
-          handleside4open={handleside4open}
-          handleside5open={handleside5open}
-        />
-      )}
-      {issideopen && isside2open && (
-        <Sidebar2 handleside2close={handleside2close} />
-      )}
-      {issideopen && isside3open && (
-        <Sidebar3 handleside3close={handleside3close} />
-      )}
-      {issideopen && isside4open && (
-        <Sidebar4 handleside4close={handleside4close} />
-      )}
-      {issideopen && isside5open && (
-        <Sidebar5 handleside5close={handleside5close} />
-      )}
-      <div className={styles.maindiv} onClick={handleClickOutside}>
-        {changenav ? (
-          <Navbar2 handlesideopen={handlesideopen} />
-        ) : (
-          <Navbar handlesideopen={handlesideopen} />
-        )}
+      <div className={styles.maindiv}>
+        <Navbar changenav={changenav} />
 
         <div className={styles.HelloSection} id="hero-section">
           {/* <div className={styles.cloud1}>
