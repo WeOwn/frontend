@@ -1,0 +1,46 @@
+.maindiv{
+    width:85%;
+    padding-top: 5rem;
+  
+    margin-inline: auto;
+    color:#0F0B3E;
+    display:flex;
+    flex-direction: column;
+    
+    align-items: center;
+    
+}
+
+.toggleContainer{
+    display:flex;
+    
+    gap:3rem;
+  
+    
+    border-bottom: 1px solid #F4F5F7;
+}
+
+.option{
+    color:#3F3D56;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 650;
+   
+}
+
+.option.active {
+    color: #7065f0;
+    border-bottom: 3px solid #7065f0;
+  }
+
+  .section1{
+    padding:2rem 0 4rem;
+   
+    width: 80%;
+  }
+  .section2{
+    padding:2rem 0 4rem;
+   
+    
+  }

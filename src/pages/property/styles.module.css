@@ -1,0 +1,44 @@
+.maindiv{
+    width:85%;
+    padding-top: 5rem;
+    /* background-color: yellow; */
+    margin-inline: auto;
+    color:#0F0B3E;
+    /* color:red; */
+}
+
+h4{
+    font-size: 2rem;
+    white-space: nowrap;
+}
+
+.section1{
+    padding:14rem 0 0rem 0;
+    /* margin-top: 10rem;; */
+}
+.section2{
+    padding:2rem 0;
+}
+
+.section1Container{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+   gap:5rem;
+   flex-wrap: wrap;
+}
+
+.section1imgdiv{
+    width:50%;
+    position:absolute ;  
+    right:0;
+    z-index:-1;
+   
+}
+
+.section2cardsp{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin-top: 2rem;
+    gap:2rem;
+}

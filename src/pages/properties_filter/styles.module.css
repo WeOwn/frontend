@@ -1,0 +1,117 @@
+.filterpageContainer{
+    /* width:30%; */
+    width: 85%;
+    padding: 8rem 0 2rem 0;
+    /* background-color: yellow; */
+    margin-inline: auto;
+    color:#0F0B3E;
+    display:flex;
+    gap:3rem;
+    justify-content: space-between;
+
+    /* color:red; */
+}
+@media(min-width:1900px) {
+    .filterpageContainer{
+        width:50%;
+    }
+}
+
+.filterdivContainer{
+    height:fit-content;
+    
+    /* left:0; */
+    overflow:auto;
+    width:60rem;
+    /* width: 25%; */
+    border:1px solid #CED4DD;
+    border-radius: 10px;
+    padding:2rem 1rem;
+    display:flex;
+    flex-direction: column;
+    gap:3rem;
+}
+
+
+.section2cardsp{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    /* margin-top: 2rem; */
+    gap:2rem;
+}
+
+.filtersection1{
+    width:90%;
+    display: flex;
+    flex-direction: column;
+    gap:0.5rem;
+}
+
+.filtersection3{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:0.5rem;
+    cursor:pointer;
+}
+
+.paraheading{
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.rotate180 {
+    transform: rotate(180deg);
+    /* transition: all 0.2s ease-in-out;  */
+  }
+
+  .switchContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    /* background-color: greenyellow; */
+}
+
+.switch {
+    width: 40px;
+    height: 15px;
+    background-color: #D6EFFF;
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.switch.on {
+    background-color: #4caf50;
+}
+
+.switch.off {
+    background-color: #D6EFFF;
+}
+
+.toggle {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top:-0.15rem;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), /* Bottom-right shadow */
+                -2px -2px 5px rgba(0, 0, 0, 0.1), /* Top-left shadow */
+                -2px 2px 5px rgba(0, 0, 0, 0.1), /* Bottom-left shadow */
+                2px -2px 5px rgba(0, 0, 0, 0.1); /* Top-right shadow */
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.toggleOn {
+    transform: translateX(20px);
+}
+
+.toggleOff {
+    transform: translateX(0);
+}
+
+
