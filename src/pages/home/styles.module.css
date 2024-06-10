@@ -4,6 +4,7 @@
   font-family: Urbanist;
   width: 100%;
   height: 100vh;
+
   color:#0F0B3E;
   /* color:red; */
   /* position:relative; */
@@ -18,6 +19,7 @@
   .seconddiv{
     width:50%;
   }
+
 }
 
 .mainHeading {
