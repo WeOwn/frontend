@@ -40,7 +40,7 @@ const Section2 = () => {
       price: "$550,000",
     },
     {
-      id: "3",
+      id: "4",
       img: "imglink",
       heading: "Seaside Serenity Villa",
       description:
@@ -51,7 +51,7 @@ const Section2 = () => {
       price: "$550,000",
     },
     {
-      id: "3",
+      id: "5",
       img: "imglink",
       heading: "Seaside Serenity Villa",
       description:
@@ -62,7 +62,7 @@ const Section2 = () => {
       price: "$550,000",
     },
     {
-      id: "3",
+      id: "6",
       img: "imglink",
       heading: "Seaside Serenity Villa",
       description:
@@ -73,7 +73,7 @@ const Section2 = () => {
       price: "$550,000",
     },
     {
-      id: "3",
+      id: "7",
       img: "imglink",
       heading: "Seaside Serenity Villa",
       description:
@@ -84,7 +84,7 @@ const Section2 = () => {
       price: "$550,000",
     },
     {
-      id: "3",
+      id: "8",
       img: "imglink",
       heading: "Seaside Serenity Villa",
       description:
@@ -95,7 +95,7 @@ const Section2 = () => {
       price: "$550,000",
     },
     {
-      id: "3",
+      id: "9",
       img: "imglink",
       heading: "Seaside Serenity Villa",
       description:
@@ -106,7 +106,7 @@ const Section2 = () => {
       price: "$550,000",
     },
     {
-      id: "3",
+      id: "10",
       img: "imglink",
       heading: "Seaside Serenity Villa",
       description:
@@ -117,7 +117,7 @@ const Section2 = () => {
       price: "$550,000",
     },
     {
-      id: "3",
+      id: "11",
       img: "imglink",
       heading: "Seaside Serenity Villa",
       description:
@@ -128,7 +128,7 @@ const Section2 = () => {
       price: "$550,000",
     },
     {
-      id: "3",
+      id: "12",
       img: "imglink",
       heading: "Seaside Serenity Villa",
       description:

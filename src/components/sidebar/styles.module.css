@@ -10,6 +10,8 @@
   
 
   /* transition: right 10s ease;  */
+  transition: all 1s ease;
+  
   box-shadow: -2px 0 5px rgba(0,0,0,0.5);
   overflow-y: auto; /* Scrollable content */
   z-index:1000;

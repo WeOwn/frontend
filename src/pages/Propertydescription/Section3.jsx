@@ -4,6 +4,8 @@ import housegrid1 from "./housegrid1.svg";
 import housegrid2 from "./housegrid2.svg";
 import home1 from "./home1.svg";
 import "@google/model-viewer/dist/model-viewer";
+import houseinterior3 from "./house_compressed.glb";
+import SocietyGlb from "./Society_compressed.glb";
 
 const Section3 = () => {
   const list1 = [
@@ -305,32 +307,34 @@ const Section3 = () => {
         </div>
         <div className={styles.section2imgdiv2}>
           <div style={{ width: "100%" }}>
-            {/* <model-viewer
-              src="https://heybuddystorage.blob.core.windows.net/s3-migratedheybuddy/3dmodel_weown/house%20interior3.glb"
+            <model-viewer
+              src={houseinterior3}
               ios-src=""
               poster={housegrid1}
               alt="A 3D model of a House interior"
               shadow-intensity="1"
+              scale="3000 3000 3000"
               camera-controls
-              auto-rotate
+              // auto-rotate
               ar
               style={{ width: "100%", height: "500px" }}
-            ></model-viewer> */}
-            <img src={housegrid1} alt="home_img" style={{ width: "100%" }} />
+            ></model-viewer>
+            {/* <img src={housegrid1} alt="home_img" style={{ width: "100%" }} /> */}
           </div>
           <div style={{ width: "100%" }}>
-            {/* <model-viewer
-              src="https://heybuddystorage.blob.core.windows.net/s3-migratedheybuddy/3dmodel_weown/Society%20Glb.glb"
+            <model-viewer
+              src={SocietyGlb}
               ios-src=""
               poster={housegrid2}
-              alt="A 3D model of an astronaut"
+              alt="A 3D model of an Society"
               shadow-intensity="1"
+              scale="100 100 100"
               camera-controls
-              auto-rotate
+              // auto-rotate
               ar
               style={{ width: "100%", height: "500px" }}
-            ></model-viewer> */}
-            <img src={housegrid2} alt="home_img" style={{ width: "100%" }} />
+            ></model-viewer>
+            {/* <img src={housegrid2} alt="home_img" style={{ width: "100%" }} /> */}
           </div>
         </div>
       </div>

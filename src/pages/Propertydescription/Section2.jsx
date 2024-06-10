@@ -19,8 +19,8 @@ import share from "./share.svg";
 import customize from "./customize.svg";
 // import "@google/model-viewer";
 import "@google/model-viewer/dist/model-viewer";
-// import houseinterior3 from "./houseinterior3.glb";
-// import SocietyGlb from "./SocietyGlb.glb";
+import houseinterior3 from "./house_compressed.glb";
+import SocietyGlb from "./Society_compressed.glb";
 
 const Section2 = () => {
   const list1 = [home1, home1, home1, home1, home1, home1, home1, home1, home1];
@@ -107,32 +107,34 @@ const Section2 = () => {
         </div>
         <div className={styles.section2imgdiv2}>
           <div style={{ width: "100%" }}>
-            {/*<model-viewer
-              src={SocietyGlb}
+            <model-viewer
+              src={houseinterior3}
               ios-src=""
               poster={housegrid1}
               alt="A 3D model of a House interior"
               shadow-intensity="1"
+              scale="3000 3000 3000"
               camera-controls
               // auto-rotate
               ar
               style={{ width: "100%", height: "500px" }}
-            ></model-viewer> */}
-            <img src={housegrid1} alt="home_img" style={{ width: "100%" }} />
+            ></model-viewer>
+            {/* <img src={housegrid1} alt="home_img" style={{ width: "100%" }} /> */}
           </div>
           <div style={{ width: "100%" }}>
-            {/* <model-viewer
-              src={houseinterior3}
+            <model-viewer
+              src={SocietyGlb}
               ios-src=""
               poster={housegrid2}
-              alt="A 3D model of an astronaut"
+              alt="A 3D model of an Society"
               shadow-intensity="1"
+              scale="2000 2000 2000"
               camera-controls
               // auto-rotate
               ar
               style={{ width: "100%", height: "500px" }}
-            ></model-viewer> */}
-            <img src={housegrid2} alt="home_img" style={{ width: "100%" }} />
+            ></model-viewer>
+            {/* <img src={housegrid2} alt="home_img" style={{ width: "100%" }} /> */}
           </div>
         </div>
         <div className={styles.section2imgdiv3}>
