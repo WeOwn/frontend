@@ -29,15 +29,17 @@ const Section2 = () => {
             fontWeight: "700",
 
             width: "fit-content",
+            whiteSpace: "wrap",
+            textAlign: "center",
           }}
         >
           You haven't searched anything yet!
         </h4>
 
-        <p style={{ marginTop: "1rem" }}>
+        <p style={{ marginTop: "1rem", textAlign: "center" }}>
           You will see your search history here, once you start searching for
         </p>
-        <p style={{ marginTop: "0.3rem" }}>
+        <p style={{ marginTop: "0.3rem", textAlign: "center" }}>
           properties, projects, localities or cities.
         </p>
       </div>

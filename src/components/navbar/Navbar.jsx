@@ -1,6 +1,6 @@
 // Navbar.js
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import LogoImage from "./logo.png";
 import Vector from "./Vector.png";
@@ -59,6 +59,29 @@ function Navbar({ changenav }) {
   const handleside5close = () => {
     setIsside5open(false);
   };
+
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  const handleMouseOver = () => {
+    setDropdownOpen(true);
+  };
+
+  const handleMouseOut = (event) => {
+    console.log("out out out");
+    // if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    //   setDropdownOpen(false);
+    // }
+    setDropdownOpen(false);
+  };
+
+  // useEffect(() => {
+  //   document.addEventListener("mouseover", handleMouseOut);
+  //   return () => {
+  //     document.removeEventListener("mouseover", handleMouseOut);
+  //   };
+  // }, []);
 
   const megaMenuData = [
     {
@@ -127,15 +150,6 @@ function Navbar({ changenav }) {
     },
   ];
 
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
-
-  const openDropdown = () => {
-    setDropdownOpen(true);
-  };
-
-  const closeDropdown = () => {
-    setDropdownOpen(false);
-  };
   //
   return (
     <div>
@@ -180,44 +194,46 @@ function Navbar({ changenav }) {
           </Link>
           <div className={styles.navCenter}>
             <ul className={styles.navOptions}>
-              <li
+              {/* <li
                 className={`${styles.navItem} ${styles.megaDropdownContainer}`}
                 onMouseEnter={openDropdown}
                 // onMouseLeave={closeDropdown}
+              > */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  gap: "0.3rem",
+                }}
+                className={styles.view}
+                ref={buttonRef}
+                onMouseOver={handleMouseOver}
+                onMouseOut={(e) => handleMouseOut(e)}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    gap: "0.3rem",
-                  }}
-                >
-                  <Link to="">View & Buy</Link>
-                  <div>
-                    <img src={Vector} alt="arrow" />
-                  </div>
+                <span className={styles.navoption}>View & Buy</span>
+                <div>
+                  <img src={Vector} alt="arrow" />
                 </div>
-                {isDropdownOpen && (
-                  <Dropdown
-                    megaMenuData={megaMenuData}
-                    isOpen={isDropdownOpen}
-                    openDropdown={openDropdown}
-                    closeDropdown={closeDropdown}
-                  />
-                )}
-              </li>
-              <li>
-                <Link to="">Search Builders</Link>
-              </li>
-              <li>
-                <Link to="">Group Investment</Link>
-              </li>
-              <li>
-                <Link to="">List Property</Link>
-              </li>
-              <li>
-                <Link to="">Compare</Link>
-              </li>
+              </div>
+              {isDropdownOpen && (
+                <Dropdown
+                  megaMenuData={megaMenuData}
+                  isOpen={isDropdownOpen}
+                  ref={dropdownRef}
+                  onMouseOver={handleMouseOver}
+                  onMouseOut={(e) => handleMouseOut(e)}
+                />
+              )}
+              {/* </li> */}
+
+              <span className={styles.navoption}>Search Builders</span>
+
+              <span className={styles.navoption}>Group Investment</span>
+
+              <span className={styles.navoption}>List Property</span>
+
+              <span className={styles.navoption}>Compare</span>
             </ul>
           </div>
           <div className={styles.navRight}>

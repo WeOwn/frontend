@@ -4,6 +4,7 @@ import builderimage from "./builder.png";
 import Button from "../../Atoms/Button";
 import Chip from "../../Atoms/Chip";
 import send from "./send.png";
+import { Link } from "react-router-dom";
 
 export const Builderscard = ({ heading, subheading }) => {
   return (
@@ -59,16 +60,18 @@ export const Builderscard = ({ heading, subheading }) => {
         >
           Contact Us
         </div>
-        <div
-          style={{
-            backgroundColor: "#703BF7",
-            padding: "0.5rem 1.5rem",
-            borderRadius: "999px",
-            color: "white",
-          }}
-        >
-          View
-        </div>
+        <Link to={"/builder"} style={{ textDecoration: "none" }}>
+          <div
+            style={{
+              backgroundColor: "#703BF7",
+              padding: "0.5rem 1.5rem",
+              borderRadius: "999px",
+              color: "white",
+            }}
+          >
+            View
+          </div>
+        </Link>
       </div>
     </div>
   );

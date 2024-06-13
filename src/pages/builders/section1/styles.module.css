@@ -1,0 +1,54 @@
+.maindiv{
+    width:100%;
+    /* height:100vh; */
+    position:relative;
+   
+}
+
+.section1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left:5%;
+    width:45%;
+    position:absolute;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    
+    align-items: center;
+   top:0;
+   bottom:0;    
+    left:0;
+}
+.introdiv{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;    
+}
+
+.headingdivp{
+    /* line-height: 1; */
+    /* width:50%; */
+    
+    /* background:yellow; */
+}
+
+.heading{
+    /* color: #000000; */
+    font-size: 2rem;
+    font-weight: 650;
+    white-space: wrap;
+    width:100%;
+    
+}
+
+.para{
+    color:#999999;
+    font-family: Inter;
+    width:60%;
+    /* background-color: yellow; */
+}
+
+.section2{
+    width:100%;
+    height:100%;
+}

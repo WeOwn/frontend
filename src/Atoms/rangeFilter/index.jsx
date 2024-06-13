@@ -3,8 +3,8 @@ import ReactSlider from "react-slider";
 import styles from "./styles.module.css";
 
 const Index = () => {
-  const MIN = 0;
-  const MAX = 100;
+  const MIN = 567567567568768;
+  const MAX = 10076767867;
   const [minbudget, setMinbudget] = useState(null);
   const [maxbudget, setMaxbudget] = useState(null);
 
@@ -29,7 +29,7 @@ const Index = () => {
       <ReactSlider
         className={styles.slider}
         thumbClassName={styles.thumb}
-        defaultValue={[0, 100]}
+        defaultValue={[0, 10787680]}
         ariaLabel={["Lower thumb", "Upper thumb"]}
         ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
         onChange={handleSliderChange}

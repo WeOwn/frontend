@@ -36,7 +36,7 @@ const Section6 = () => {
           style={{ width: "100%", height: "100%" }}
         />
       </div>
-      <h4 style={{ fontSize: "2rem", fontWeight: "650" }}>
+      <h4 style={{ fontSize: "2rem", fontWeight: "650", whiteSpace: "wrap" }}>
         Reviews About Seaside Serenity Villa
       </h4>
       <div
@@ -93,7 +93,9 @@ const Section6 = () => {
                 gap: "1rem",
               }}
             >
-              <div style={{ fontWeight: "600" }}>{review.heading}</div>
+              <div style={{ fontWeight: "600", whiteSpace: "nowrap" }}>
+                {review.heading}
+              </div>
               <p style={{ fontSize: "0.9rem", fontWeight: "500" }}>
                 {review.para}
               </p>
@@ -124,12 +126,15 @@ const Section6 = () => {
                   />
                 </div>
                 <div>
-                  <p style={{ fontWeight: "550" }}>{review.name}</p>
+                  <p style={{ fontWeight: "550", whiteSpace: "nowrap" }}>
+                    {review.name}
+                  </p>
                   <p
                     style={{
                       color: "grey",
                       fontSize: "0.8rem",
                       marginTop: "0.5rem",
+                      whiteSpace: "nowrap",
                     }}
                   >
                     {review.location}

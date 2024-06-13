@@ -1,0 +1,43 @@
+.maindiv{
+    width:100%;
+    /* height:100vh; */
+    position:relative;
+}
+
+.section1{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    padding-left:3rem;
+    width:45%;
+    position:absolute;
+    background-color: rgba(255, 255, 255, 0.91);
+    align-items: center;
+   top:0;
+   bottom:0;    
+    left:0;
+}
+.introdiv{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;    
+}
+
+.headingdivp{
+    line-height: 1;
+}
+
+.heading{
+    /* color: #000000; */
+    font-size:3rem;
+    font-weight: 900;
+}
+
+.para{
+    color:#B9B9B9;
+}
+
+.section2{
+    width:100%;
+    height:100%;
+}

@@ -1,35 +1,102 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import down_arrow from "./down_arrow.svg";
-import { classNames } from "classnames";
+import Rangefilter from "../../../Atoms/rangeFilter";
 
 const Search = () => {
-  const [isopen, setIsopen] = useState(0);
-  const [var1, setVar1] = useState("Location");
-  const [var2, setVar2] = useState("Property Type");
-  const [var3, setVar3] = useState("Price Range");
-  const [var4, setVar4] = useState("Proerty Size");
-  const [var5, setVar5] = useState("Build Year");
+  const [isopen, setIsopen] = useState(-1);
+  const [dropdownname, setdropdownname] = useState([
+    "Location",
+    "Property Type",
+    "Price Range",
+    "Property Size",
+    "Build Year",
+  ]);
 
-  const list1 = ["Banglore", "Delhi", "Noida"];
-  const list2 = ["Land", "Commercial", "Industrial"];
-  const list3 = ["10-20", "30-50", "60-70"];
-  const list4 = ["1000 sq.ft", "2000 sq.ft", "3000 sq.ft"];
-  const list5 = ["2015", "2018", "2020"];
+  const dropdownRefs = useRef([]);
 
   const handleIsopen = (id) => {
-    if (isopen === id) setIsopen(0);
+    if (isopen === id) setIsopen(-1);
     else setIsopen(id);
   };
 
   const handlevar = (name, id) => {
-    if (id === 1) setVar1(name);
-    else if (id === 2) setVar2(name);
-    else if (id === 3) setVar3(name);
-    else if (id === 4) setVar4(name);
-    else if (id === 5) setVar5(name);
-    setIsopen(0);
+    setdropdownname((prevState) => {
+      return prevState.map((item, idx) => {
+        return idx === id ? name : item;
+      });
+    });
+    setIsopen(-1);
   };
+
+  const handleClickOutside = (event) => {
+    if (
+      dropdownRefs.current.some(
+        (ref) => ref.current && !ref.current.contains(event.target)
+      )
+    ) {
+      setIsopen(-1);
+    }
+  };
+
+  const list = [
+    {
+      id: 0,
+      location: [
+        "Banglore",
+        "Chennai",
+        "Mumbai",
+        "Jaipur",
+        "Kolkata",
+        "Mysore",
+        "Darjeeling",
+        "Ahemdabad",
+      ],
+    },
+
+    {
+      id: 1,
+      location: [
+        "Residential Property",
+        "Commercial Property",
+        "Land",
+        "Industral Property",
+        "Farm Houses",
+        "Builder floor Apartments",
+        "Holiday homes",
+        "Heritage property",
+      ],
+    },
+
+    {
+      id: 2,
+      location: ["hello3"],
+    },
+    {
+      id: 3,
+      location: ["hello4"],
+    },
+    {
+      id: 4,
+      location: ["2015", "2018", "2020"],
+    },
+  ];
+
+  useEffect(() => {
+    // Initialize refs array if not already done
+    if (dropdownRefs.current.length !== list.length) {
+      dropdownRefs.current = Array(list.length)
+        .fill()
+        .map((_, i) => dropdownRefs.current[i] || React.createRef());
+    }
+  }, [list.length]);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={styles.searchContainer}>
@@ -59,6 +126,7 @@ const Search = () => {
               border: "none",
               color: "white",
               fontSize: "0.8rem",
+              whiteSpace: "nowrap",
             }}
           >
             Find Property
@@ -67,195 +135,54 @@ const Search = () => {
       </div>
 
       <div className={styles.section2}>
-        <div>
-          <div className={styles.selectBox} onClick={() => handleIsopen(1)}>
-            <span
-              style={{
-                fontSize: "0.9rem",
-                whiteSpace: "nowrap",
-                color: "#999999",
-              }}
+        {list.map((obj, idx) => {
+          return (
+            <div
+              className={styles.selectBox}
+              key={obj.id}
+              ref={dropdownRefs.current[idx]}
+              onClick={() => handleIsopen(idx)}
             >
-              {var1}
-            </span>
-            <div className={styles.arrowimgdiv}>
-              <img
-                src={down_arrow}
-                alt="img"
-                style={{ width: "100%", height: "100%" }}
-                className={isopen === 1 && styles.rotate180}
-              />
+              <span
+                style={{
+                  fontSize: "0.9rem",
+                  whiteSpace: "nowrap",
+                  color: "#999999",
+                }}
+              >
+                {dropdownname[idx]}
+              </span>
+              <div className={styles.arrowimgdiv}>
+                <img
+                  src={down_arrow}
+                  alt="img"
+                  style={{ width: "100%", height: "100%" }}
+                  className={isopen === idx && styles.rotate180}
+                />
+              </div>
+              {isopen === idx && (
+                <div className={styles.optionBox}>
+                  {idx === 2 || idx === 3 ? (
+                    <Rangefilter />
+                  ) : (
+                    <ul>
+                      {obj?.location?.map((name, index) => {
+                        return (
+                          <li
+                            onClick={() => handlevar(name, idx)}
+                            style={{ whiteSpace: "nowrap" }}
+                          >
+                            {name}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </div>
+              )}
             </div>
-          </div>
-          {isopen === 1 && (
-            <div className={styles.optionBox}>
-              <ul>
-                {list1.map((name, index) => {
-                  return (
-                    <li
-                      onClick={() => handlevar(name, 1)}
-                      style={{ whiteSpace: "nowrap" }}
-                    >
-                      {name}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
-        </div>
-
-        <div>
-          <div className={styles.selectBox} onClick={() => handleIsopen(2)}>
-            <span
-              style={{
-                fontSize: "0.9rem",
-                whiteSpace: "nowrap",
-                color: "#999999",
-              }}
-            >
-              {var2}
-            </span>
-            <div className={styles.arrowimgdiv}>
-              <img
-                src={down_arrow}
-                alt="img"
-                style={{ width: "100%", height: "100%" }}
-                className={isopen === 2 && styles.rotate180}
-              />
-            </div>
-          </div>
-          {isopen === 2 && (
-            <div className={styles.optionBox}>
-              <ul>
-                {list2.map((name, index) => {
-                  return (
-                    <li
-                      onClick={() => handlevar(name, 2)}
-                      style={{ whiteSpace: "nowrap" }}
-                    >
-                      {name}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
-        </div>
-
-        <div>
-          <div className={styles.selectBox} onClick={() => handleIsopen(3)}>
-            <span
-              style={{
-                fontSize: "0.9rem",
-                whiteSpace: "nowrap",
-                color: "#999999",
-              }}
-            >
-              {var3}
-            </span>
-            <div className={styles.arrowimgdiv}>
-              <img
-                src={down_arrow}
-                alt="img"
-                style={{ width: "100%", height: "100%" }}
-                className={isopen === 3 && styles.rotate180}
-              />
-            </div>
-          </div>
-          {isopen === 3 && (
-            <div className={styles.optionBox}>
-              <ul>
-                {list3.map((name, index) => {
-                  return (
-                    <li
-                      onClick={() => handlevar(name, 3)}
-                      style={{ whiteSpace: "nowrap" }}
-                    >
-                      {name}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
-        </div>
-
-        <div>
-          <div className={styles.selectBox} onClick={() => handleIsopen(4)}>
-            <span
-              style={{
-                fontSize: "0.9rem",
-                whiteSpace: "nowrap",
-                color: "#999999",
-              }}
-            >
-              {var4}
-            </span>
-            <div className={styles.arrowimgdiv}>
-              <img
-                src={down_arrow}
-                alt="img"
-                style={{ width: "100%", height: "100%" }}
-                className={isopen === 4 && styles.rotate180}
-              />
-            </div>
-          </div>
-          {isopen === 4 && (
-            <div className={styles.optionBox}>
-              <ul>
-                {list4.map((name, index) => {
-                  return (
-                    <li
-                      onClick={() => handlevar(name, 4)}
-                      style={{ whiteSpace: "nowrap" }}
-                    >
-                      {name}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
-        </div>
-
-        <div>
-          <div className={styles.selectBox} onClick={() => handleIsopen(5)}>
-            <span
-              style={{
-                fontSize: "0.9rem",
-                whiteSpace: "nowrap",
-                color: "#999999",
-              }}
-            >
-              {var5}
-            </span>
-            <div className={styles.arrowimgdiv}>
-              <img
-                src={down_arrow}
-                alt="img"
-                style={{ width: "100%", height: "100%" }}
-                className={isopen === 5 && styles.rotate180}
-              />
-            </div>
-          </div>
-          {isopen === 5 && (
-            <div className={styles.optionBox}>
-              <ul>
-                {list5.map((name, index) => {
-                  return (
-                    <li
-                      onClick={() => handlevar(name, 5)}
-                      style={{ whiteSpace: "nowrap" }}
-                    >
-                      {name}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
-        </div>
+          );
+        })}
       </div>
     </div>
   );

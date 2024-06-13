@@ -9,7 +9,7 @@ import youtube from "./youtube.png";
 
 const Footer = () => {
   return (
-    <div>
+    <div className={styles.footerdiv}>
       <div className={styles.footer}>
         <div className={styles.maindiv}>
           <div className={styles.grid}>
@@ -97,7 +97,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className={styles.copyright}>
+      {/* <div className={styles.copyright}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <p className={styles.copyrightpara} style={{ marginRight: "1rem" }}>
             @2023 WeOwn. All Rights Reserved.
@@ -118,7 +118,7 @@ const Footer = () => {
             <img src={youtube} alt="img" style={{ height: "50%" }} />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

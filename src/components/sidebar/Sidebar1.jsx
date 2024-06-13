@@ -26,6 +26,11 @@ const Sidebar1 = ({
   handleside5open,
 }) => {
   const [openDropdown, setOpenDropdown] = useState(0);
+  // const [isMounted, setIsMounted] = useState(false);
+
+  // useEffect(() => {
+  //   setIsMounted(true);
+  // }, []);
 
   const toggleDropdown = (index) => {
     setOpenDropdown(openDropdown === index ? 0 : index);
@@ -34,7 +39,7 @@ const Sidebar1 = ({
   const list = ["Contacted Property", "Seen Property", "Saved Search List"];
 
   return (
-    <div className={styles.sidebarContainer}>
+    <div className={`${styles.sidebarContainer}  `}>
       <div
         style={{
           backgroundColor: "white",

@@ -8,8 +8,8 @@ const Section1 = () => {
   return (
     <div style={{ position: "relative" }}>
       <div className={styles.section1Container}>
-        <div style={{ width: "40%" }}>
-          <h4>Find Your Dream Property</h4>
+        <div className={styles.section1textdiv}>
+          <h4 style={{ whiteSpace: "wrap" }}>Find Your Dream Property</h4>
           <p style={{ color: "#999999", width: "100%", marginTop: "1rem" }}>
             Our portfolio of properties is as diverse as your dreams. Explore
             ther following categories to find the perfect property that

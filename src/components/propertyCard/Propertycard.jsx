@@ -7,6 +7,7 @@ import villa_logo from "./Villa_logo.png";
 import Button from "../../Atoms/Button";
 import Chip from "../../Atoms/Chip";
 import wishlist_btn from "./wishlist_btn.png";
+import { Link } from "react-router-dom";
 
 export const Propertycard = ({
   img,
@@ -79,24 +80,25 @@ export const Propertycard = ({
           <div>Price</div>
           <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>{price}</div>
         </div>
-
-        <div className={styles.propertyButton}>
-          <Button
-            style={{
-              backgroundColor: "rgba(112, 101, 240, 1)",
-              color: "white",
-              paddingBlock: "1em",
-              // paddingInline: "1em",
-              borderRadius: "8px",
-              border: "0px solid",
-              cursor: "pointer",
-              width: "8rem",
-              marginLeft: "1rem",
-            }}
-          >
-            View Property
-          </Button>
-        </div>
+        <Link to={"/property_description"}>
+          <div className={styles.propertyButton}>
+            <Button
+              style={{
+                backgroundColor: "rgba(112, 101, 240, 1)",
+                color: "white",
+                paddingBlock: "1em",
+                // paddingInline: "1em",
+                borderRadius: "8px",
+                border: "0px solid",
+                cursor: "pointer",
+                width: "8rem",
+                marginLeft: "1rem",
+              }}
+            >
+              View Property
+            </Button>
+          </div>
+        </Link>
       </div>
       {/* <Chip></Chip> */}
     </div>

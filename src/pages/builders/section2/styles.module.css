@@ -1,0 +1,26 @@
+.maindiv{
+    width:85%;
+    
+    margin-inline:auto;
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+    /* align-items: center; */
+}
+
+.heading{
+    text-align: center;
+    color:#37393F;
+}
+
+.imgdiv{
+    background-color: #7065f0;
+    padding:1rem;
+    border-radius: 50%;
+}
+
+.builderContainer{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:2rem;
+}
