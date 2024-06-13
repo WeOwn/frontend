@@ -28,15 +28,16 @@
    
     border:none;
     outline:none;
-    /* position: relative; */
+    position: absolute;
 }
 
 .thumbValue{
     /* position:absolute; */
     /* display: none; */
     margin-top:-2rem;
+    /* bottom:1rem; */
     background-color: #7065F0;
-    width: fit-content;
+    min-width: fit-content;
     padding: 0.5rem;
     border-radius: 5px;
     

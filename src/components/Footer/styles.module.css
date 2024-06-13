@@ -1,6 +1,15 @@
+/* .footerdiv{
+    position: absolute;
+    bottom: -80vh;
+    left: 0;
+    right: 0;
+} */
+
+
 .footer{
     background-color: #7065f0;
     padding:4rem;
+    
     
 }
 

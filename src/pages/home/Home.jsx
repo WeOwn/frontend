@@ -21,6 +21,7 @@ import upright from "./upright.png";
 import wishlist_btn from "./wishlist_btn.png";
 
 import banner_img from "./banner_img.svg";
+import { Link } from "react-router-dom";
 
 
 function Home() {
@@ -109,9 +110,8 @@ function Home() {
 
   return (
     <>
+      <Navbar changenav={changenav} />
       <div className={styles.maindiv}>
-        <Navbar changenav={changenav} />
-
         <div className={styles.HelloSection} id="hero-section">
           {/* <div className={styles.cloud1}>
             <img src={cloud} alt="cloudimg" className={styles.cloud} />
@@ -129,13 +129,18 @@ function Home() {
             <img src={cloud} alt="cloudimg" className={styles.cloud} />
           </div> */}
           <div className={styles.helloContentContainer}>
-            <div className={`${styles.mainHeading}`}>
-              Experience a 3D Real Estate Platform
+            <div className={styles.mainheadingdiv}>
+              <div className={`${styles.mainHeading}`}>
+                Experience a 3D Real
+              </div>
+              <div className={`${styles.mainHeading}`}>Estate Platform</div>
             </div>
-            <div className={classNames(styles.subHeading)}>
-              weown provides easy way to visualize your dream house in
-              seconds.to visualize your dream house in seconds.
+
+            <div className={styles.subHeading}>
+              weown provides easy way to visualize your dream house in seconds.
+              to visualize your dream house in seconds.
             </div>
+
             <div className={styles.optionTooglerDiv}>
               <OptionToogle />
               <div className={styles.searchContainer}>
@@ -191,55 +196,61 @@ function Home() {
               </div>
 
               <div className={styles.searchResults}>
-                <div
-                  className={styles.Search_Properties}
-                  onMouseEnter={handleHover}
-                  onMouseLeave={handleLeave}
-                >
-                  <div className={styles.searchProperty}>
-                    <div className={styles.propertyTitle}>Properties</div>
-                    <div className={styles.propertydesc}>
-                      Explore our handpicked selection of featured properties.
-                      Each listing offers a glimpse into exceptional homes and
-                      investments available through Weown. Click "View Details"
-                      for more information.
-                    </div>
-                  </div>
-                  <img
-                    className={styles.propertyImage}
-                    style={{ transform: isHovered ? "scale(1.3)" : "scale(1)" }}
-                    src={card1}
-                    alt="Card"
-                  />
-                  <div className={styles.searchPropertyBg}></div>
-                </div>
-
-                <div
-                  className={styles.Search_Properties}
-                  onMouseEnter={handleHover1}
-                  onMouseLeave={handleLeave1}
-                >
-                  <div className={styles.searchProperty}>
-                    <div className={styles.propertyTitle}>Builders</div>
-                    <div className={styles.propertydesc}>
-                      <p>
+                <Link to={"/properties"}>
+                  <div
+                    className={styles.Search_Properties}
+                    onMouseEnter={handleHover}
+                    onMouseLeave={handleLeave}
+                  >
+                    <div className={styles.searchProperty}>
+                      <div className={styles.propertyTitle}>Properties</div>
+                      <div className={styles.propertydesc}>
                         Explore our handpicked selection of featured properties.
                         Each listing offers a glimpse into exceptional homes and
                         investments available through Weown. Click "View
                         Details" for more information.
-                      </p>
+                      </div>
                     </div>
+                    <img
+                      className={styles.propertyImage}
+                      style={{
+                        transform: isHovered ? "scale(1.3)" : "scale(1)",
+                      }}
+                      src={card1}
+                      alt="Card"
+                    />
+                    <div className={styles.searchPropertyBg}></div>
                   </div>
-                  <img
-                    className={styles.propertyImage}
-                    style={{
-                      transform: isHovered1 ? "scale(1.3)" : "scale(1)",
-                    }}
-                    src={card2}
-                    alt="Card"
-                  />
-                  <div className={styles.searchPropertyBg}></div>
-                </div>
+                </Link>
+
+                <Link to={"/builders"}>
+                  <div
+                    className={styles.Search_Properties}
+                    onMouseEnter={handleHover1}
+                    onMouseLeave={handleLeave1}
+                  >
+                    <div className={styles.searchProperty}>
+                      <div className={styles.propertyTitle}>Builders</div>
+                      <div className={styles.propertydesc}>
+                        <p>
+                          Explore our handpicked selection of featured
+                          properties. Each listing offers a glimpse into
+                          exceptional homes and investments available through
+                          Weown. Click "View Details" for more information.
+                        </p>
+                      </div>
+                    </div>
+                    <img
+                      className={styles.propertyImage}
+                      style={{
+                        transform: isHovered1 ? "scale(1.3)" : "scale(1)",
+                      }}
+                      src={card2}
+                      alt="Card"
+                    />
+                    <div className={styles.searchPropertyBg}></div>
+                  </div>
+                </Link>
               </div>
             </div>
 
@@ -383,11 +394,13 @@ function Home() {
                     investments available through Estatein. Click "View Details"
                     for more information.{" "}
                   </div>
-                  <div className={styles.FeaturedButtonContainer}>
-                    <button className={styles.FeaturedButton}>
-                      View All Properties
-                    </button>
-                  </div>
+                  <Link to={"/properties"}>
+                    <div className={styles.FeaturedButtonContainer}>
+                      <button className={styles.FeaturedButton}>
+                        View All Properties
+                      </button>
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -445,24 +458,25 @@ function Home() {
                     investments available through Estatein. Click "View Details"
                     for more information.{" "}
                   </div>
-
-                  <div>
-                    <button
-                      style={{
-                        paddingBlock: "1rem",
-                        // paddingInline: "2em",
-                        borderRadius: "10px",
-                        border: "1px solid #E1E1E1",
-                        marginRight: "0.5rem",
-                        backgroundColor: "#EAEAEA",
-                        cursor: "pointer",
-                        width: "10rem",
-                        color: "#0F0B3E",
-                      }}
-                    >
-                      View All Builders
-                    </button>
-                  </div>
+                  <Link to={"/builders"}>
+                    <div>
+                      <button
+                        style={{
+                          paddingBlock: "1rem",
+                          // paddingInline: "2em",
+                          borderRadius: "10px",
+                          border: "1px solid #E1E1E1",
+                          marginRight: "0.5rem",
+                          backgroundColor: "#EAEAEA",
+                          cursor: "pointer",
+                          width: "10rem",
+                          color: "#0F0B3E",
+                        }}
+                      >
+                        View All Builders
+                      </button>
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 const Section5 = () => {
   return (
     <div>
-      <h4 style={{ fontSize: "2rem", fontWeight: "650" }}>
+      <h4 style={{ fontSize: "2rem", fontWeight: "650", whiteSpace: "wrap" }}>
         Inquire About Seaside Serenity Villa
       </h4>
       <p style={{ marginTop: "0.9rem", fontWeight: "550" }}>

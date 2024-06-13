@@ -1,12 +1,14 @@
 .primary {
   background-color: rgba(112, 101, 240, 1);
   color: white;
-  padding: 1rem 2rem;
-  border-radius: 5px;
+  padding: 1rem 3rem;
+  border-radius: 10px;
   /* width: 7em; */
   text-align: center;
   cursor: pointer;
   border: none;
+  font-weight: 550;
+  font-size: 0.9rem;
 }
 
 .secondary {

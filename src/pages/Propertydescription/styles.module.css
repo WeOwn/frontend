@@ -6,6 +6,18 @@
     color:#0F0B3E;
     /* color:red; */
 }
+@media(min-width:1800px) {
+ 
+  .maindiv{
+    width:60%;
+  }
+}
+
+/* @media(min-width:1800px) {
+  .maindiv{
+    width:50%;
+  }
+} */
 
 .toggleContainer{
     display:flex;
@@ -69,6 +81,7 @@
     display: flex;
     align-items: center;
     gap: 2rem;
+    flex-wrap: wrap;
   }
 
   .section2imgdivp{
@@ -81,6 +94,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    overflow:"auto";
   }
   .section2imgdiv1{
     display: flex;
@@ -92,7 +106,7 @@
     width:100%;
     background-color: #E3E3E3;
     border-radius: 10px;
-    /* overflow: auto; */
+    overflow: auto;
     /* overflow:hidden; */
     
   }
@@ -164,6 +178,7 @@
     flex-direction: column;
     gap: 2rem;
     padding:2rem 2rem 1rem;
+    overflow:auto;
 }
 
 .section3{

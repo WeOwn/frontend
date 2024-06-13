@@ -13,11 +13,12 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-    /* align-items: center; */
+    align-items: center;
     color:#0F0B3E;
     /* color:red; */
-    padding: 1rem;
+    padding-inline: 1rem;
     background-color: #ffffff;
+    /* background-color: yellow; */
     font-family: "Urbanist", sans-serif;
     z-index: 999;
     animation: fadeIn 1s forwards;
@@ -52,12 +53,22 @@
   .navOptions {
     list-style: none;
     display: flex;
+    gap:2rem;
     margin: 0;
     padding: 0;
     
     
    
   }
+  .navoption {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 76px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  
 
   .navOptions li a {
    
@@ -105,4 +116,7 @@
   width: 5em;
   text-align: center;
 }
+
+
+/* .view:hover .rotate */
 

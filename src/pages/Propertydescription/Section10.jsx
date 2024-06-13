@@ -35,7 +35,7 @@ const Section10 = () => {
           style={{ width: "100%", height: "100%" }}
         />
       </div>
-      <h4 style={{ fontSize: "2rem", fontWeight: "650" }}>
+      <h4 style={{ fontSize: "2rem", fontWeight: "650", whiteSpace: "wrap" }}>
         Frequently Asked Questions
       </h4>
       <div
@@ -106,6 +106,7 @@ const Section10 = () => {
                   borderRadius: "10px",
                   fontSize: "0.9rem",
                   color: "#7065f0",
+                  whiteSpace: "nowrap",
                 }}
               >
                 Read More

@@ -45,7 +45,13 @@ const Section3 = () => {
     <div>
       <div className={styles.section3div1}>
         <div>
-          <h4 style={{ fontSize: "2rem", fontWeight: "650" }}>
+          <h4
+            style={{
+              fontSize: "2rem",
+              fontWeight: "650",
+              whiteSpace: "wrap",
+            }}
+          >
             Comprehensive Pricing Details
           </h4>
           <p style={{ marginTop: "0.9rem", fontWeight: "550", width: "80%" }}>
@@ -65,6 +71,8 @@ const Section3 = () => {
             display: "flex",
             alignItems: "center",
             gap: "1rem",
+            whiteSpace: "noWrap",
+            overflow: "auto",
           }}
         >
           <span style={{ fontWeight: "600", fontSize: "1.1rem" }}>Note</span>
@@ -85,7 +93,12 @@ const Section3 = () => {
         <div style={{ marginTop: "3rem" }}>
           <p style={{ fontSize: "0.9rem", fontWeight: "550" }}>Listing Price</p>
           <p
-            style={{ fontSize: "2rem", fontWeight: "600", marginTop: "0.5rem" }}
+            style={{
+              fontSize: "2rem",
+              fontWeight: "600",
+              marginTop: "0.5rem",
+              whiteSpace: "noWrap",
+            }}
           >
             $1,250,000
           </p>
@@ -115,6 +128,7 @@ const Section3 = () => {
               borderRadius: "10px",
               fontSize: "0.9rem",
               fontWeight: "550",
+              whiteSpace: "noWrap",
             }}
           >
             Learn More
@@ -145,6 +159,7 @@ const Section3 = () => {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
+                  overflow: "auto",
                 }}
               >
                 <p style={{ color: "#7065f0", fontSize: "0.9rem" }}>
@@ -197,6 +212,7 @@ const Section3 = () => {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
+                  overflow: "auto",
                 }}
               >
                 <p style={{ color: "#7065f0", fontSize: "0.9rem" }}>
@@ -237,6 +253,7 @@ const Section3 = () => {
                 flexDirection: "column",
                 gap: "1rem",
                 marginTop: "4rem",
+                overflow: "auto",
               }}
             >
               <p style={{ color: "#7065f0", fontSize: "0.9rem" }}>
@@ -263,80 +280,6 @@ const Section3 = () => {
             </div>
           );
         })}
-      </div>
-      <div className={styles.section2imgdivp} style={{ marginTop: "6rem" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
-          <div
-            style={{
-              backgroundColor: "#7065f0",
-              display: "",
-              padding: "0.8rem 2.5rem",
-              borderRadius: "10px",
-            }}
-          >
-            <button
-              style={{
-                backgroundColor: "transparent",
-                border: "none",
-                color: "white",
-              }}
-            >
-              3D Images
-            </button>
-          </div>
-          <div>
-            <button
-              style={{
-                backgroundColor: "transparent",
-                border: "none",
-                color: "#7065f0",
-              }}
-            >
-              Floor Plan
-            </button>
-          </div>
-        </div>
-        <div className={styles.section2imgdiv1}>
-          {list2.map((img, index) => {
-            return (
-              <div style={{ width: "10%" }}>
-                <img src={img} alt="home_img" style={{ width: "100%" }} />
-              </div>
-            );
-          })}
-        </div>
-        <div className={styles.section2imgdiv2}>
-          <div style={{ width: "100%" }}>
-            <model-viewer
-              src={houseinterior3}
-              ios-src=""
-              poster={housegrid1}
-              alt="A 3D model of a House interior"
-              shadow-intensity="1"
-              scale="3000 3000 3000"
-              camera-controls
-              // auto-rotate
-              ar
-              style={{ width: "100%", height: "500px" }}
-            ></model-viewer>
-            {/* <img src={housegrid1} alt="home_img" style={{ width: "100%" }} /> */}
-          </div>
-          <div style={{ width: "100%" }}>
-            <model-viewer
-              src={SocietyGlb}
-              ios-src=""
-              poster={housegrid2}
-              alt="A 3D model of an Society"
-              shadow-intensity="1"
-              scale="100 100 100"
-              camera-controls
-              // auto-rotate
-              ar
-              style={{ width: "100%", height: "500px" }}
-            ></model-viewer>
-            {/* <img src={housegrid2} alt="home_img" style={{ width: "100%" }} /> */}
-          </div>
-        </div>
       </div>
     </div>
   );

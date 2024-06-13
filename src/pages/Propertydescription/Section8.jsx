@@ -49,7 +49,7 @@ const Section8 = () => {
           style={{ width: "100%", height: "100%" }}
         />
       </div>
-      <h4 style={{ fontSize: "2rem", fontWeight: "650" }}>
+      <h4 style={{ fontSize: "2rem", fontWeight: "650", whiteSpace: "wrap" }}>
         Project By Shapoorji Pallonj
       </h4>
 

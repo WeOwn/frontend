@@ -141,7 +141,7 @@ const Section2 = () => {
   ];
 
   return (
-    <div>
+    <div className={styles.section2Container}>
       <div style={{ width: "3rem", marginLeft: "-1rem" }}>
         <img
           src={stardesign}
@@ -149,7 +149,14 @@ const Section2 = () => {
           style={{ width: "100%", height: "100%" }}
         />
       </div>
-      <h4 style={{ fontSize: "2rem", fontWeight: "650", marginTop: "0.5rem" }}>
+      <h4
+        style={{
+          fontSize: "2rem",
+          fontWeight: "650",
+          marginTop: "0.5rem",
+          whiteSpace: "wrap",
+        }}
+      >
         Discover a World Property
       </h4>
 

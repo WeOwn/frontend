@@ -19,7 +19,7 @@ import share from "./share.svg";
 import customize from "./customize.svg";
 // import "@google/model-viewer";
 import "@google/model-viewer/dist/model-viewer";
-import houseinterior3 from "./house_compressed.glb";
+import houseinterior3 from "./Houseglb.glb";
 import SocietyGlb from "./Society_compressed.glb";
 
 const Section2 = () => {
@@ -35,7 +35,9 @@ const Section2 = () => {
     <div className={styles.section2main}>
       <div className={styles.section2intro}>
         <div className={styles.section2heading}>
-          <h4 style={{ fontSize: "1.5rem", fontWeight: "650" }}>
+          <h4
+            style={{ fontSize: "1.5rem", fontWeight: "650", flexWrap: "wrap" }}
+          >
             Seaside Serenity Villa
           </h4>
           <div
@@ -51,7 +53,7 @@ const Section2 = () => {
             }}
           >
             <img src={location} alt="img" style={{ width: "1rem" }} />
-            <span>Mailibu, California</span>
+            <span style={{ whiteSpace: "noWrap" }}>Mailibu, California</span>
           </div>
         </div>
         <div className={styles.section2buttondiv}>
@@ -69,6 +71,7 @@ const Section2 = () => {
               style={{
                 color: "grey",
                 fontSize: "0.9rem",
+                whiteSpace: "noWrap",
               }}
             >
               Save
@@ -80,6 +83,7 @@ const Section2 = () => {
               backgroundColor: "#7065f0",
               padding: "0.8rem 2.5rem",
               borderRadius: "10px",
+              width: "fit-content",
             }}
           >
             <button
@@ -87,6 +91,7 @@ const Section2 = () => {
                 backgroundColor: "transparent",
                 border: "none",
                 color: "white",
+                whiteSpace: "noWrap",
               }}
             >
               Contact Builder
@@ -96,10 +101,50 @@ const Section2 = () => {
       </div>
 
       <div className={styles.section2imgdivp}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "2rem",
+            flexWrap: "wrap",
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "#7065f0",
+              display: "",
+              padding: "0.8rem 2.5rem",
+              borderRadius: "10px",
+            }}
+          >
+            <button
+              style={{
+                backgroundColor: "transparent",
+                border: "none",
+                color: "white",
+                whiteSpace: "noWrap",
+              }}
+            >
+              Hi-Res Images
+            </button>
+          </div>
+          <div>
+            <button
+              style={{
+                backgroundColor: "transparent",
+                border: "none",
+                color: "#7065f0",
+                whiteSpace: "noWrap",
+              }}
+            >
+              Floor Plan
+            </button>
+          </div>
+        </div>
         <div className={styles.section2imgdiv1}>
           {list1.map((img, index) => {
             return (
-              <div className={styles.rowimg}>
+              <div style={{ width: "10%" }}>
                 <img src={img} alt="home_img" style={{ width: "100%" }} />
               </div>
             );
@@ -128,7 +173,7 @@ const Section2 = () => {
               poster={housegrid2}
               alt="A 3D model of an Society"
               shadow-intensity="1"
-              scale="2000 2000 2000"
+              scale="100 100 100"
               camera-controls
               // auto-rotate
               ar
@@ -137,6 +182,7 @@ const Section2 = () => {
             {/* <img src={housegrid2} alt="home_img" style={{ width: "100%" }} /> */}
           </div>
         </div>
+
         <div className={styles.section2imgdiv3}>
           <div
             style={{
@@ -197,6 +243,7 @@ const Section2 = () => {
                 style={{
                   color: "grey",
                   fontSize: "0.9rem",
+                  whiteSpace: "noWrap",
                 }}
               >
                 Save
@@ -217,6 +264,7 @@ const Section2 = () => {
                 style={{
                   color: "grey",
                   fontSize: "0.9rem",
+                  whiteSpace: "noWrap",
                 }}
               >
                 Customize
@@ -233,10 +281,16 @@ const Section2 = () => {
                 backgroundColor: "rgba(112, 101, 240, 0.12)",
                 padding: "0.6rem 1rem 0.6rem 0.6rem",
                 borderRadius: "10px",
+                flexWrap: "wrap",
               }}
             >
               <div
-                style={{ display: "flex", alignItems: "center", gap: "1rem" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "1rem",
+                  // flexWrap: "wrap",
+                }}
               >
                 <div style={{ width: "25%" }}>
                   <img src={user} alt="user img" style={{ width: "100%" }} />
@@ -246,6 +300,7 @@ const Section2 = () => {
                     style={{
                       fontSize: "0.9rem",
                       fontWeight: "600",
+                      whiteSpace: "noWrap",
                     }}
                   >
                     Shapoorji Pallonj
@@ -255,6 +310,7 @@ const Section2 = () => {
                       fontSize: "0.75rem",
                       fontWeight: "bolder",
                       color: "#7065f0",
+                      whiteSpace: "noWrap",
                     }}
                   >
                     Builder
@@ -273,6 +329,7 @@ const Section2 = () => {
                     backgroundColor: "transparent",
                     border: "none",
                     color: "white",
+                    whiteSpace: "noWrap",
                   }}
                 >
                   Visit
@@ -285,7 +342,15 @@ const Section2 = () => {
 
       <div className={styles.section2descriptionp}>
         <div className={styles.section2description}>
-          <h4 style={{ fontSize: "1.1rem", fontWeight: "600" }}>Description</h4>
+          <h4
+            style={{
+              fontSize: "1.1rem",
+              fontWeight: "600",
+              whiteSpace: "noWrap",
+            }}
+          >
+            Description
+          </h4>
           <p
             style={{
               fontSize: "0.8rem",
@@ -300,7 +365,12 @@ const Section2 = () => {
           </p>
 
           <div
-            style={{ display: "flex", flexDirection: "column", gap: "2rem" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "2rem",
+              overflow: "auto",
+            }}
           >
             <div
               style={{
@@ -330,11 +400,25 @@ const Section2 = () => {
                   <span style={{ width: "1rem" }}>
                     <img src={shape1} alt="img" style={{ width: "100%" }} />
                   </span>
-                  <span style={{ fontSize: "0.9rem", fontWeight: "550" }}>
+                  <span
+                    style={{
+                      fontSize: "0.9rem",
+                      fontWeight: "550",
+                      whiteSpace: "noWrap",
+                    }}
+                  >
                     Bedrooms
                   </span>
                 </div>
-                <p style={{ fontSize: "1.1rem", fontWeight: "650" }}>04</p>
+                <p
+                  style={{
+                    fontSize: "1.1rem",
+                    fontWeight: "650",
+                    whiteSpace: "noWrap",
+                  }}
+                >
+                  04
+                </p>
               </div>
               <div
                 style={{
@@ -356,11 +440,25 @@ const Section2 = () => {
                   <span style={{ width: "1rem" }}>
                     <img src={shape2} alt="img" style={{ width: "100%" }} />
                   </span>
-                  <span style={{ fontSize: "0.9rem", fontWeight: "550" }}>
+                  <span
+                    style={{
+                      fontSize: "0.9rem",
+                      fontWeight: "550",
+                      whiteSpace: "noWrap",
+                    }}
+                  >
                     Bathrooms
                   </span>
                 </div>
-                <p style={{ fontSize: "1.1rem", fontWeight: "650" }}>03</p>
+                <p
+                  style={{
+                    fontSize: "1.1rem",
+                    fontWeight: "650",
+                    whiteSpace: "noWrap",
+                  }}
+                >
+                  03
+                </p>
               </div>
               <div
                 style={{
@@ -382,11 +480,23 @@ const Section2 = () => {
                   <span style={{ width: "1rem" }}>
                     <img src={shape3} alt="img" style={{ width: "100%" }} />
                   </span>
-                  <span style={{ fontSize: "0.9rem", fontWeight: "550" }}>
+                  <span
+                    style={{
+                      fontSize: "0.9rem",
+                      fontWeight: "550",
+                      whiteSpace: "noWrap",
+                    }}
+                  >
                     Area
                   </span>
                 </div>
-                <p style={{ fontSize: "1.1rem", fontWeight: "650" }}>
+                <p
+                  style={{
+                    fontSize: "1.1rem",
+                    fontWeight: "650",
+                    whiteSpace: "noWrap",
+                  }}
+                >
                   2,500 square feet
                 </p>
               </div>
@@ -419,11 +529,25 @@ const Section2 = () => {
                   <span style={{ width: "1rem" }}>
                     <img src={shape4} alt="img" style={{ width: "100%" }} />
                   </span>
-                  <span style={{ fontSize: "0.9rem", fontWeight: "550" }}>
+                  <span
+                    style={{
+                      fontSize: "0.9rem",
+                      fontWeight: "550",
+                      whiteSpace: "noWrap",
+                    }}
+                  >
                     Swimming Pools
                   </span>
                 </div>
-                <p style={{ fontSize: "1.1rem", fontWeight: "650" }}>05</p>
+                <p
+                  style={{
+                    fontSize: "1.1rem",
+                    fontWeight: "650",
+                    whiteSpace: "noWrap",
+                  }}
+                >
+                  05
+                </p>
               </div>
               <div
                 style={{
@@ -445,11 +569,25 @@ const Section2 = () => {
                   <span style={{ width: "1rem" }}>
                     <img src={shape5} alt="img" style={{ width: "100%" }} />
                   </span>
-                  <span style={{ fontSize: "0.9rem", fontWeight: "550" }}>
+                  <span
+                    style={{
+                      fontSize: "0.9rem",
+                      fontWeight: "550",
+                      whiteSpace: "noWrap",
+                    }}
+                  >
                     Location
                   </span>
                 </div>
-                <p style={{ fontSize: "1.1rem", fontWeight: "650" }}>Delhi</p>
+                <p
+                  style={{
+                    fontSize: "1.1rem",
+                    fontWeight: "650",
+                    whiteSpace: "noWrap",
+                  }}
+                >
+                  Delhi
+                </p>
               </div>
               <div
                 style={{
@@ -471,11 +609,23 @@ const Section2 = () => {
                   <span style={{ width: "1rem" }}>
                     <img src={shape6} alt="img" style={{ width: "100%" }} />
                   </span>
-                  <span style={{ fontSize: "0.9rem", fontWeight: "550" }}>
+                  <span
+                    style={{
+                      fontSize: "0.9rem",
+                      fontWeight: "550",
+                      whiteSpace: "noWrap",
+                    }}
+                  >
                     Type
                   </span>
                 </div>
-                <p style={{ fontSize: "1.1rem", fontWeight: "650" }}>
+                <p
+                  style={{
+                    fontSize: "1.1rem",
+                    fontWeight: "650",
+                    whiteSpace: "noWrap",
+                  }}
+                >
                   Residential
                 </p>
               </div>
@@ -576,7 +726,12 @@ const Section2 = () => {
           </div>
         </div>
         <div className={styles.section2features}>
-          <h4 style={{ fontSize: "1.1rem", fontWeight: "600" }}>
+          <h4
+            style={{
+              fontSize: "1.1rem",
+              fontWeight: "600",
+            }}
+          >
             Key Features and Amenities
           </h4>
 
@@ -601,6 +756,7 @@ const Section2 = () => {
                       fontSize: "0.8rem",
                       fontWeight: "600",
                       lineHeight: "1.2rem",
+                      whiteSpace: "noWrap",
                     }}
                   >
                     {text}

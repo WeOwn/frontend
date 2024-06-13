@@ -6,6 +6,7 @@
   height: 100vh;
 
   color:#0F0B3E;
+  margin-inline: auto;
   /* color:red; */
   /* position:relative; */
 }
@@ -15,32 +16,36 @@
   padding-top: 6rem;
 }
 @media(min-width:1800px) {
- 
-  .seconddiv{
-    width:50%;
+  .maindiv{
+      width:60%;
   }
 
+}
+.mainheadingdiv{
+  padding-top: 0;
 }
 
 .mainHeading {
   color: #ffffff;
 
-  font-size: 3.8em;
-  font-weight: 600;
+  font-size: 4.5rem;
+  font-weight: 650;
   letter-spacing: 0em;
   text-align: center;
-  margin-top: 3em;
+  
 }
 
 .subHeading {
   font-family: Outfit;
   font-size: 1em;
   font-weight: 400;
-  line-height: 1.4em;
+  /* line-height: 1.4em; */
   letter-spacing: 0em;
   text-align: center;
   color: #ffffff;
-  width: 75%;
+  width:70%;
+  margin-top: -4rem;
+  
 }
 
 /* hello section */
@@ -50,14 +55,14 @@
   /* background: #7065f0; */
   background-image: url('./banner_img.svg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   /* background-attachment: fixed; */
    background-color: #7065f0;  /*fallback color */
   /* background-blend-mode: overlay; */
   display: flex;
   justify-content: center;
-  padding-top:4em;
+  padding-top:76px;
 }
 .cloud1{
   position: absolute;
@@ -100,22 +105,35 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 3em;
-  padding: 20px;
+  /* background:black; */
+  gap: 5rem;
+  padding: 12rem 1rem 1rem;
+}
+@media(max-width:1200px) {
+  .helloContentContainer{
+    width:100%;
+  }
 }
 
 .optionTooglerDiv {
   display: flex;
   flex-direction: column;
   width: 100%;
+  /* background: black; */
   align-items: center;
   
 }
 .searchContainer {
   
-  width: 85%;
+  width: 88%;
   margin-bottom: 2rem;
   /* padding:2rem 0; */
+}
+
+@media(max-width:1023px) {
+  .searchContainer{
+    width:100%;
+  }
 }
 
 /* search and exprole section */

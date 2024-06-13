@@ -29,11 +29,11 @@ const OptionToogle = ({ onChange = () => {} }) => {
           onClick={() => {
             changeHandler(option);
           }}
-          className={classNames(styles.text, {
+          className={classNames(styles.textdivp, {
             [styles.active]: active === option.label,
           })}
         >
-          {option.label}
+          <span className={styles.text}>{option.label}</span>
         </div>
       ))}
     </div>

@@ -27,7 +27,7 @@ const Section11 = () => {
           style={{ width: "100%", height: "100%" }}
         />
       </div>
-      <h4 style={{ fontSize: "2rem", fontWeight: "650" }}>
+      <h4 style={{ fontSize: "2rem", fontWeight: "650", whiteSpace: "wrap" }}>
         Let's Get To Numbers
       </h4>
       <div
@@ -36,6 +36,8 @@ const Section11 = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          gap: "2rem",
+          flexWrap: "wrap",
           marginTop: "0.5rem",
         }}
       >
@@ -49,7 +51,7 @@ const Section11 = () => {
             backgroundColor: "#EAEAEA",
             border: "1px solid #E1E1E1",
             padding: "0.8rem 1rem",
-
+            // flexWrap: "nowrap",
             borderRadius: "10px",
             fontSize: "0.9rem",
           }}
@@ -90,7 +92,9 @@ const Section11 = () => {
                   style={{ width: "100%", height: "100%" }}
                 />
               </div>
-              <div style={{ fontWeight: "600" }}>{faq.heading}</div>
+              <div style={{ fontWeight: "600", whiteSpace: "nowrap" }}>
+                {faq.heading}
+              </div>
               <p style={{ fontSize: "0.9rem" }}>{faq.para}</p>
             </div>
           );
