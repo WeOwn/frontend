@@ -4,22 +4,35 @@
   justify-content: space-around;
   align-items: center;
   height: auto;
-  padding: 20px 0;
+  padding-top:20px;
+  overflow:auto;
+  
+  padding-inline:  10px;
   background: white;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  border-bottom:0.5px solid #7065f0;
+  
   white-space:nowrap;
 }
 
-.text {
+.textdivp {
   cursor: pointer;
   margin: 0 10px;
-  font-family: Outfit;
-  font-size: 15px;
-  font-weight: 500;
+  
+  /* background:red; */
+  /* padding-inline:2rem; */
 }
 
-.text.active {
+.text{
+  font-family: Outfit;
+  font-size: 1rem;
+ 
+  font-weight: 550;
+}
+
+.textdivp.active {
   color: #7065f0;
   border-bottom: 3px solid #7065f0;
+  /* background:yellow; */
 }

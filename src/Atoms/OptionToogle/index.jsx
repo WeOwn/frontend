@@ -5,9 +5,10 @@ import styles from "./styles.module.css"; // Import the CSS file
 const options = [
   { label: "Buy", value: "buy" },
   { label: "Rent", value: "rent" },
-  { label: "Top Builders", value: "topBuilder" },
-  { label: "Group Investment", value: "ginvestment" },
-  { label: "Compare", value: "compare" },
+  { label: "New Launch", value: "New Launch" },
+  { label: "Commercial", value: "Commercial" },
+  { label: "Plot/Land", value: "Plot/Land" },
+  { label: "Projects", value: "Projects" },
 ];
 
 const OptionToogle = ({ onChange = () => {} }) => {
@@ -24,14 +25,15 @@ const OptionToogle = ({ onChange = () => {} }) => {
       {options.map((option, index) => (
         <div
           key={index}
+          style={{ height: "3rem" }}
           onClick={() => {
             changeHandler(option);
           }}
-          className={classNames(styles.text, {
+          className={classNames(styles.textdivp, {
             [styles.active]: active === option.label,
           })}
         >
-          {option.label}
+          <span className={styles.text}>{option.label}</span>
         </div>
       ))}
     </div>
