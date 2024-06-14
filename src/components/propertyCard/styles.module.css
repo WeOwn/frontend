@@ -49,8 +49,8 @@
     flex-direction: row;
     padding-block: 1rem;
     /* justify-content: space-between; */
-    gap:0.1rem;
-    flex-wrap: wrap;
+    gap:0.5rem;
+    /* flex-wrap: wrap; */
     /* margin-left:1rem; */
     /* gap:0.5rem; */
 }
@@ -72,13 +72,31 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap:0.1rem;
-    flex-wrap: wrap;
+    gap:3rem;
+    /* flex-wrap: wrap; */
     
     /* gap:4rem; */
 
     /* margin-left:1rem; */
 }
+
+
+/* @media(max-width:450px) {
+    .details{
+        flex-wrap:wrap;
+    }
+    .pricediv{
+        gap:0rem;
+    }
+} */
+/* @media(max-width:490px) {
+    .details{
+        flex-wrap:wrap;
+    }
+    .pricediv{
+        gap:1rem;
+    }
+} */
 
 .pricesection{
     display: flex;

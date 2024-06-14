@@ -5,15 +5,73 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
+
+
 
 .heading{
     text-align: center;
     color:#37393F;
 }
 
+.section2{
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:1rem;
+    overflow:auto;
+}
+
+@media(max-width:650px) {
+    .section2{
+        grid-template-columns: repeat(1,1fr);
+    }
+}
+
+@media(min-width:651px) and (max-width:870px) {
+    .section2{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+
+
+.card{
+    background-color: #F4F4F4;
+    border-radius: 20px;
+    padding:1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cardtextdiv{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap:3rem
+    
+}
+
+.cardheadingdivp{
+    display:flex;
+    flex-direction: column;
+    gap:0.2rem;
+}
+
+.cardheading{
+    font-size: 1.2rem;
+    font-weight: 650;
+}
+
 .imgdiv{
     background-color: #7065f0;
-    padding:1rem;
+    padding:0.5rem;
     border-radius: 50%;
+    width:3.5rem;
+    height:3.5rem;
 }
+
+
+

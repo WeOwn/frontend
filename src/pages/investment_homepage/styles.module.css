@@ -7,10 +7,28 @@
     /* color:red; */
 }
 
+@media(min-width:1800px) {
+    .maindiv{
+        width:60%;
+    }
+}
+
 .section1{
     padding:2rem 0 0rem 0;
     /* margin-top: 10rem;; */
 }
 .section2{
+    padding:2rem 0;
+}
+.section3{
+    padding:2rem 0;
+}
+.section4{
+    padding:2rem 0;
+}
+.section5{
+    padding:2rem 0;
+}
+.section6{
     padding:2rem 0;
 }
