@@ -9,10 +9,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-left:5%;
+    
+    /* padding-left:5%; */
     width:45%;
     position:absolute;
-    /* background-color: rgba(255, 255, 255, 0.8); */
+    background-color: rgba(255, 255, 255, 0.8);
+    /* background:red; */
+   
+    z-index:0;
     
     align-items: center;
    top:0;
@@ -22,7 +26,42 @@
 .introdiv{
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;    
+   /* align-items: center; */
+    gap: 1.5rem;  
+    width:70%;
+    /* background-color: yellow;;   */
+}
+@media(max-width:850px) {
+    .section1{
+        position: static;
+        width:100%;
+    }
+    .maindiv{
+        position:static;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        gap:2rem;
+    }
+    .section2{
+        position:relative;
+    }
+
+    .headingdivp{
+        /* background:yellow; */
+        text-align: center;
+
+    }
+}
+@media(max-width:1000px) {
+    .introdiv{
+        padding:1rem 0 0 0;
+        width:90%;
+    }
+    .section1{
+        align-items: start;
+
+    }
 }
 
 .headingdivp{
@@ -44,7 +83,8 @@
 .para{
     color:#999999;
     font-family: Inter;
-    width:60%;
+    /* width:60%; */
+    text-align:left;
     /* background-color: yellow; */
 }
 

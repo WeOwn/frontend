@@ -37,9 +37,8 @@ const Section1 = () => {
 
       <div className={styles.section2}>
         <img src={banner} alt="img" style={{ width: "100%", height: "100%" }} />
+        <Searchbar />
       </div>
-
-      <Searchbar />
     </div>
   );
 };

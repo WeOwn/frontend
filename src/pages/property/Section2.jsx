@@ -161,9 +161,9 @@ const Section2 = () => {
       </h4>
 
       <p style={{ color: "#999999", width: "80%", marginTop: "1rem" }}>
-        Find answers to common questions about Estateins's services, property
-        listing, and the real estate process. We're here to provide clarity and
-        assist you every tep of the way
+        Our portfolio of properties is as diverse as your dreams. Explore ther
+        following categories to find the perfect property that resonates with
+        your vision of home.
       </p>
       <div style={{ marginTop: "4rem" }}>
         <Toggle />

@@ -1,0 +1,20 @@
+.maindiv{
+    width:85%;
+    margin-inline:auto;
+}
+
+.FeaturedPropertyContainer {
+    /* padding-inline: 5.5rem; */
+    padding-top:3rem;
+    overflow:auto;
+    width:100%;
+    /* margin-left:3rem; */
+    /* padding-inline:4rem; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    /* justify-content: space-between; */
+    gap:2rem;
+    /* margin-inline: 4rem; */
+  }
