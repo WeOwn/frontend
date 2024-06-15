@@ -60,6 +60,12 @@
     gap:2rem;
 }
 
+@media(max-width:450px) {
+    .section2cardsp{
+        overflow:auto;
+    }
+}
+
 @media(max-width: 1180px) {
     .section2cardsp{
     grid-template-columns: repeat(1,1fr);

@@ -2,6 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import down_arrow from "./down_arrow.svg";
 import Rangefilter from "../../../Atoms/rangeFilter";
+import droplogo1 from "./droplogo1.svg";
+import droplogo2 from "./droplogo2.svg";
+import droplogo3 from "./droplogo3.svg";
+import droplogo4 from "./droplogo4.svg";
+import droplogo5 from "./droplogo5.svg";
 
 const Search = () => {
   const [isopen, setIsopen] = useState(-1);
@@ -13,7 +18,7 @@ const Search = () => {
     "Build Year",
   ]);
 
-  const dropdownRefs = useRef([]);
+  // const dropdownRefs = useRef([]);
 
   const handleIsopen = (id) => {
     if (isopen === id) setIsopen(-1);
@@ -26,22 +31,24 @@ const Search = () => {
         return idx === id ? name : item;
       });
     });
+
     setIsopen(-1);
   };
 
-  const handleClickOutside = (event) => {
-    if (
-      dropdownRefs.current.some(
-        (ref) => ref.current && !ref.current.contains(event.target)
-      )
-    ) {
-      setIsopen(-1);
-    }
-  };
+  // const handleClickOutside = (event) => {
+  //   if (
+  //     dropdownRefs.current.some(
+  //       (ref) => ref.current && !ref.current.contains(event.target)
+  //     )
+  //   ) {
+  //     setIsopen(-1);
+  //   }
+  // };
 
   const list = [
     {
       id: 0,
+      img: droplogo1,
       location: [
         "Banglore",
         "Chennai",
@@ -56,6 +63,7 @@ const Search = () => {
 
     {
       id: 1,
+      img: droplogo2,
       location: [
         "Residential Property",
         "Commercial Property",
@@ -70,33 +78,36 @@ const Search = () => {
 
     {
       id: 2,
+      img: droplogo3,
       location: ["hello3"],
     },
     {
       id: 3,
+      img: droplogo4,
       location: ["hello4"],
     },
     {
       id: 4,
+      img: droplogo5,
       location: ["2015", "2018", "2020"],
     },
   ];
 
-  useEffect(() => {
-    // Initialize refs array if not already done
-    if (dropdownRefs.current.length !== list.length) {
-      dropdownRefs.current = Array(list.length)
-        .fill()
-        .map((_, i) => dropdownRefs.current[i] || React.createRef());
-    }
-  }, [list.length]);
+  // useEffect(() => {
+  //   // Initialize refs array if not already done
+  //   if (dropdownRefs.current.length !== list.length) {
+  //     dropdownRefs.current = Array(list.length)
+  //       .fill()
+  //       .map((_, i) => dropdownRefs.current[i] || React.createRef());
+  //   }
+  // }, [list.length]);
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
 
   return (
     <div className={styles.searchContainer}>
@@ -108,7 +119,7 @@ const Search = () => {
             background: "transparent",
             border: "none",
             outline: "none",
-            width: "70%",
+            minWidth: "70%",
             fontSize: "1.1rem",
           }}
         />
@@ -140,18 +151,27 @@ const Search = () => {
             <div
               className={styles.selectBox}
               key={obj.id}
-              ref={dropdownRefs.current[idx]}
+              // ref={dropdownRefs.current[idx]}
               onClick={() => handleIsopen(idx)}
             >
-              <span
-                style={{
-                  fontSize: "0.9rem",
-                  whiteSpace: "nowrap",
-                  color: "#999999",
-                }}
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
               >
-                {dropdownname[idx]}
-              </span>
+                <div style={{ width: "0.9rem" }}>
+                  <img src={obj.img} alt="logo" style={{ width: "100%" }} />
+                </div>
+                <span
+                  style={{
+                    fontSize: "0.9rem",
+                    whiteSpace: "nowrap",
+                    color: "#999999",
+                    paddingLeft: "0.5rem",
+                    borderLeft: "1px solid #E1E1E1",
+                  }}
+                >
+                  {dropdownname[idx]}
+                </span>
+              </div>
               <div className={styles.arrowimgdiv}>
                 <img
                   src={down_arrow}

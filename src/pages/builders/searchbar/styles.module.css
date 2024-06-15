@@ -12,8 +12,39 @@
     right:20%;
     z-index:1;
     border-radius: 10px;
+    overflow:auto;
+    gap:0.5rem;
+}
+
+@media(max-width:850px) {
+    .maindiv{
+        bottom:1rem;
+    }
+}
+
+@media(min-width:851px) and (max-width:1150px) {
+    .maindiv{
+        bottom:0rem;
+    }
 }
 
 .inputBox{
-    width:80%;
+    min-width:80%;
+    /* background-color: yellow;; */
+}
+
+@media(max-width:660px) {
+    .inputBox{
+        min-width:30%;
+        /* background:black; */
+    }
+}
+
+
+
+@media(min-width:661px) and (max-width:1160px) {
+    .inputBox{
+        min-width:70%;
+        /* background-color: green;; */
+    }
 }
