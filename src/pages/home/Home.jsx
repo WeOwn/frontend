@@ -92,7 +92,7 @@ function Home() {
     if (heroSection) {
       const heroSectionHeight = heroSection.offsetHeight;
       const navbarHeight = 76;
-      console.log(heroSectionHeight);
+
       if (window.scrollY >= heroSectionHeight - navbarHeight) {
         setChangeNav(true);
       } else {

@@ -1,6 +1,7 @@
 import React from "react";
 import homelogo from "./homelogo.svg";
 import zoomlogo from "./zoomlogo.svg";
+import locationimg from "./locationimg.svg";
 
 const Section4 = () => {
   const list1 = [
@@ -46,6 +47,9 @@ const Section4 = () => {
       </div>
 
       {/* Map container <div></div> */}
+      <div style={{ width: "100%", marginTop: "2rem" }}>
+        <img src={locationimg} alt="img" style={{ width: "100%" }} />
+      </div>
 
       <div
         style={{

@@ -15,7 +15,6 @@ const Section1 = ({ onChange = () => {} }) => {
   function changeHandler(option) {
     setActive(option.label);
     onChange(option);
-    console.log(option);
   }
 
   return (
