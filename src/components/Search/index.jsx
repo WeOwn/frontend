@@ -39,9 +39,9 @@ const Search = () => {
     setIsopen(-1);
   };
 
-  function serachInputHandler(value) {
-    console.log(value);
-  }
+  // function serachInputHandler(value) {
+
+  // }
 
   const location = ["Banglore", "Delhi", "Ahemdabad"];
 

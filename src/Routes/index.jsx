@@ -7,6 +7,7 @@ import InvestmentHomepage from "../pages/investment_homepage";
 import Desktop from "../pages/desktop/Home";
 import OtpModal from "../components/modals/OtpModal";
 import PropertyDescription from "../pages/Propertydescription";
+import GroupInvestment from "../pages/group_investment";
 import Property from "../pages/property";
 import Profile from "../pages/profile";
 import PropertiesFilter from "../pages/properties_filter";
@@ -20,6 +21,7 @@ export const Router = () => {
         <Route index element={<Desktop />} />
         <Route path={"/home"} element={<Home />} />
         <Route path={"/investment_homepage"} element={<InvestmentHomepage />} />
+        <Route path={"/group_investment"} element={<GroupInvestment />} />
         <Route
           path={"/property_description"}
           element={<PropertyDescription />}

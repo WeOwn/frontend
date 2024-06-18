@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import down_arrow from "./down_arrow.svg";
-import Rangefilter from "../../../Atoms/rangeFilter";
+import Rangefilter from "../../../Atoms/rangeSlider";
 import droplogo1 from "./droplogo1.svg";
 import droplogo2 from "./droplogo2.svg";
 import droplogo3 from "./droplogo3.svg";

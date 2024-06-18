@@ -28,9 +28,9 @@ const PropertyDescription = () => {
         <div className={styles.section3}>
           <Section3 />
         </div>
-        {/* <div className={styles.section4}>
+        <div className={styles.section4}>
           <Section4 />
-        </div> */}
+        </div>
         <div className={styles.section5}>
           <Section5 />
         </div>

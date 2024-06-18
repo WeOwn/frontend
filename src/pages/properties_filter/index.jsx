@@ -3,14 +3,25 @@ import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import styles from "./styles.module.css";
 import { Propertycard } from "../../components/propertyCard/Propertycard";
-import RangeFilter from "../../Atoms/rangeFilter";
+// import RangeFilter from "../../Atoms/rangeFilter";
+import RangeFilter from "../../Atoms/rangeSlider";
 import down_arrow from "./down_arrow.svg";
 import Dropdown from "./dropdown";
 import Checkbox from "./checkbox";
+import AppliedFilters from "./appliedfilters";
+import { useDispatch, useSelector } from "react-redux";
+import { removeAll } from "../../redux/filterslice";
 
 const Index = () => {
+  // console.log(appliedfilters);
+  const rangeSlider = useSelector((store) => store.filters.rangeSlider);
+  const filters = useSelector((store) => store.filters.appliedfilters);
+  const dispatch = useDispatch();
+
   const [isopen, setisopen] = useState([false, false, false, false, false]);
   const [isOn, setIsOn] = useState([false, false, false, false]);
+
+  // const [appliedfilter, setAppliedFilter] = useState(false);
 
   const handleopendropdown = (index) => {
     setisopen((prevStates) =>
@@ -23,6 +34,11 @@ const Index = () => {
       prevStates.map((state, i) => (i === index ? !state : state))
     );
   };
+
+  const handleremoveAll = () => {
+    dispatch(removeAll());
+  };
+
   const List1 = [
     {
       id: "1",
@@ -225,6 +241,32 @@ const Index = () => {
       <Navbar />
       <div className={styles.filterpageContainer}>
         <div className={styles.filterdivContainer}>
+          {((rangeSlider?.length > 0 &&
+            (rangeSlider[0] !== 0 || rangeSlider[1] !== 100)) ||
+            filters?.length > 0) && (
+            <div className={styles.filteritemsdivp}>
+              <div
+                className={styles.filteritemssection1}
+                // onClick={() => handleopendropdown(0)}
+              >
+                <p className={styles.paraheading}>Applied Filters</p>
+                <div style={{ cursor: "pointer" }} onClick={handleremoveAll}>
+                  <span
+                    style={{
+                      color: "#0078DB",
+                      fontWeight: "600",
+                      fontSize: "0.9rem",
+                    }}
+                  >
+                    Clear all
+                  </span>
+                </div>
+              </div>
+              {/* {appliedfilters&&appliedfilters?.map()} */}
+              <AppliedFilters />
+            </div>
+          )}
+
           <div className={styles.filtersection1}>
             <div
               style={{

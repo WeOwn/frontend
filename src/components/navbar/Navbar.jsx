@@ -69,7 +69,6 @@ function Navbar({ changenav }) {
   };
 
   const handleMouseOut = (event) => {
-    console.log("out out out");
     // if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
     //   setDropdownOpen(false);
     // }
@@ -183,7 +182,7 @@ function Navbar({ changenav }) {
       </div>
       {!changenav ? (
         <nav className={styles.navbar}>
-          <Link to="/">
+          <Link to="/home">
             <div className={styles.logo}>
               <img
                 src={LogoImage}

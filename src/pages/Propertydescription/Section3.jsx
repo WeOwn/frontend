@@ -19,9 +19,6 @@ const Section3 = () => {
       price: "$3,000",
       para: "Approximate cost for legal services, including the transfer",
     },
-  ];
-
-  const list12 = [
     {
       heading: "Home Inspection",
       price: "$500",
@@ -33,6 +30,7 @@ const Section3 = () => {
       para: "Annual cost for comprhensive property insurance",
     },
   ];
+
   const list13 = [
     {
       heading: "Mortgage Fees",
@@ -135,27 +133,15 @@ const Section3 = () => {
           </div>
         </div>
 
-        <div
-          style={{
-            marginTop: "4rem",
-            width: "95%",
-            marginInline: "auto",
-            display: "flex",
-            alignItems: "center",
-            // justifyContent: "space-between",
-            justifyContent: "center",
-            gap: "1rem",
-            flexWrap: "wrap",
-          }}
-        >
+        <div className={styles.section3grid}>
           {list1.map((obj, index) => {
             return (
               <div
                 style={{
                   backgroundColor: "rgba(112, 101, 240, 0.09)",
-                  padding: "1rem 4rem 1rem 1rem",
+                  padding: "1rem",
                   borderRadius: "10px",
-                  // width: "49.5%",
+                  // width: "100%",
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
@@ -187,31 +173,19 @@ const Section3 = () => {
             );
           })}
         </div>
-
-        <div
-          style={{
-            marginTop: "4rem",
-            width: "95%",
-            marginInline: "auto",
-            display: "flex",
-            alignItems: "center",
-            // justifyContent: "space-between",
-            justifyContent: "center",
-            gap: "1rem",
-            flexWrap: "wrap",
-          }}
-        >
-          {list12.map((obj, index) => {
+        <div style={{ marginInline: "auto", width: "95%" }}>
+          {list13.map((obj, index) => {
             return (
               <div
                 style={{
                   backgroundColor: "rgba(112, 101, 240, 0.09)",
                   padding: "1rem 4rem 1rem 1rem",
                   borderRadius: "10px",
-                  // width: "49.5%",
+
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
+
                   overflow: "auto",
                 }}
               >
@@ -240,46 +214,6 @@ const Section3 = () => {
             );
           })}
         </div>
-
-        {list13.map((obj, index) => {
-          return (
-            <div
-              style={{
-                backgroundColor: "rgba(112, 101, 240, 0.09)",
-                padding: "1rem 4rem 1rem 1rem",
-                borderRadius: "10px",
-                width: "95%",
-                display: "flex",
-                flexDirection: "column",
-                gap: "1rem",
-                marginTop: "4rem",
-                overflow: "auto",
-              }}
-            >
-              <p style={{ color: "#7065f0", fontSize: "0.9rem" }}>
-                {obj.heading}
-              </p>
-              <div
-                style={{ display: "flex", gap: "1rem", alignItems: "center" }}
-              >
-                <span style={{ color: "#7065f0", fontWeight: "600" }}>
-                  {obj.price}
-                </span>
-                <div
-                  style={{
-                    backgroundColor: "#7065f0",
-                    color: "white",
-                    borderRadius: "999px",
-                    padding: "0.5rem 0.8rem",
-                    fontSize: "0.9rem",
-                  }}
-                >
-                  <p style={{ whiteSpace: "nowrap" }}>{obj.para}</p>
-                </div>
-              </div>
-            </div>
-          );
-        })}
       </div>
     </div>
   );
