@@ -1,0 +1,21 @@
+
+
+.slider{
+    position: relative;
+    border-radius: 50%;
+    height:20rem;
+    width: 20rem;
+    border:10px solid #ddd;
+}
+
+.progress1{
+    position: absolute;
+    /* border-radius: 50%;
+   left:50%; */
+
+   /* right:50%; */
+    /* border:10px solid red; */
+
+}
+
+

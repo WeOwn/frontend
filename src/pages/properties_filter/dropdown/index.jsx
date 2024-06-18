@@ -1,7 +1,14 @@
 import React from "react";
 import styles from "./styles.module.css";
+import { useDispatch } from "react-redux";
+import { setFilters } from "../../../redux/filterslice";
 
-const index = ({ list, type }) => {
+const Index = ({ list, type }) => {
+  const dispatch = useDispatch();
+  const handleAppliedfilter = (name, index) => {
+    dispatch(setFilters(name));
+  };
+
   return (
     <div className={type === "column" ? styles.column : styles.flex}>
       {list.map((tag, index) => {
@@ -15,7 +22,9 @@ const index = ({ list, type }) => {
               width: "fit-content",
               color: "#42526E",
               fontSize: "0.8rem",
+              cursor: "pointer",
             }}
+            onClick={() => handleAppliedfilter(tag.name)}
           >
             {tag.name}
           </div>
@@ -25,4 +34,4 @@ const index = ({ list, type }) => {
   );
 };
 
-export default index;
+export default Index;

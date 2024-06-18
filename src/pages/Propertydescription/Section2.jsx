@@ -19,10 +19,66 @@ import share from "./share.svg";
 import customize from "./customize.svg";
 // import "@google/model-viewer";
 import "@google/model-viewer/dist/model-viewer";
-import houseinterior3 from "./Houseglb.glb";
-import SocietyGlb from "./Society_compressed.glb";
+// import houseinterior3 from "./Houseglb.glb";
+// import SocietyGlb from "./Society_compressed.glb";
 
 const Section2 = () => {
+  const descriptionlist = [
+    {
+      id: 1,
+      img: shape1,
+      type: "Bedrooms",
+      about: "04",
+    },
+    {
+      id: 2,
+      img: shape2,
+      type: "Bathrooms",
+      about: "03",
+    },
+    {
+      id: 3,
+      img: shape3,
+      type: "Area",
+      about: "2,500 Square Feet",
+    },
+    {
+      id: 4,
+      img: shape4,
+      type: "Swimming pools",
+      about: "05",
+    },
+    {
+      id: 5,
+      img: shape5,
+      type: "Location",
+      about: "Delhi",
+    },
+    {
+      id: 6,
+      img: shape6,
+      type: "Type",
+      about: "Residential",
+    },
+    {
+      id: 7,
+      img: shape1,
+      type: "Construction Stage",
+      about: "Pre-launch",
+    },
+    {
+      id: 8,
+      img: shape2,
+      type: "Accessibility",
+      about: "Elevators",
+    },
+    {
+      id: 9,
+      img: shape3,
+      type: "Area",
+      about: "2,500 Square Feet",
+    },
+  ];
   const list1 = [home1, home1, home1, home1, home1, home1, home1, home1, home1];
   const list2 = [
     "Expansive oceanfront terrace for outdoor entertaining",
@@ -152,7 +208,7 @@ const Section2 = () => {
         </div>
         <div className={styles.section2imgdiv2}>
           <div style={{ width: "100%" }}>
-            <model-viewer
+            {/* <model-viewer
               src={houseinterior3}
               ios-src=""
               poster={housegrid1}
@@ -163,11 +219,11 @@ const Section2 = () => {
               // auto-rotate
               ar
               style={{ width: "100%", height: "500px" }}
-            ></model-viewer>
-            {/* <img src={housegrid1} alt="home_img" style={{ width: "100%" }} /> */}
+            ></model-viewer> */}
+            <img src={housegrid1} alt="home_img" style={{ width: "100%" }} />
           </div>
           <div style={{ width: "100%" }}>
-            <model-viewer
+            {/* <model-viewer
               src={SocietyGlb}
               ios-src=""
               poster={housegrid2}
@@ -178,8 +234,8 @@ const Section2 = () => {
               // auto-rotate
               ar
               style={{ width: "100%", height: "500px" }}
-            ></model-viewer>
-            {/* <img src={housegrid2} alt="home_img" style={{ width: "100%" }} /> */}
+            ></model-viewer> */}
+            <img src={housegrid2} alt="home_img" style={{ width: "100%" }} />
           </div>
         </div>
 
@@ -364,365 +420,66 @@ const Section2 = () => {
             epotime of coastal living
           </p>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "2rem",
-              overflow: "auto",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "5rem",
-                // justifyContent: "space-between",
-                paddingTop: "1rem",
-                borderTop: "1px solid #E3E3E3",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem",
-                  // backgroundColor: "yellow",
-                }}
-              >
+          <div className={styles.section2grid}>
+            {descriptionlist.map((obj, index) => {
+              return (
                 <div
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
+                    paddingBlock: "1rem",
+                    borderTop: "1px solid #E3E3E3",
                   }}
                 >
-                  <span style={{ width: "1rem" }}>
-                    <img src={shape1} alt="img" style={{ width: "100%" }} />
-                  </span>
-                  <span
+                  <div
+                    key={obj.id}
                     style={{
-                      fontSize: "0.9rem",
-                      fontWeight: "550",
-                      whiteSpace: "noWrap",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "0.5rem",
+                      paddingInline: "1rem",
+                      borderRight:
+                        index !== 2 && index !== 5 && index !== 8
+                          ? "1px solid #E3E3E3"
+                          : "",
+                      // backgroundColor: "yellow",
                     }}
                   >
-                    Bedrooms
-                  </span>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                      }}
+                    >
+                      <span style={{ width: "1rem" }}>
+                        <img
+                          src={obj.img}
+                          alt="img"
+                          style={{ width: "100%" }}
+                        />
+                      </span>
+                      <span
+                        style={{
+                          fontSize: "0.9rem",
+                          fontWeight: "550",
+                          whiteSpace: "noWrap",
+                        }}
+                      >
+                        {obj.type}
+                      </span>
+                    </div>
+                    <p
+                      style={{
+                        fontSize: "1.1rem",
+                        fontWeight: "650",
+                        whiteSpace: "noWrap",
+                      }}
+                    >
+                      {obj.about}
+                    </p>
+                  </div>
                 </div>
-                <p
-                  style={{
-                    fontSize: "1.1rem",
-                    fontWeight: "650",
-                    whiteSpace: "noWrap",
-                  }}
-                >
-                  04
-                </p>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem",
-                  // backgroundColor: "yellow",
-                  padding: "0 0 0 1rem",
-                  borderLeft: "1px solid #E3E3E3",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                  }}
-                >
-                  <span style={{ width: "1rem" }}>
-                    <img src={shape2} alt="img" style={{ width: "100%" }} />
-                  </span>
-                  <span
-                    style={{
-                      fontSize: "0.9rem",
-                      fontWeight: "550",
-                      whiteSpace: "noWrap",
-                    }}
-                  >
-                    Bathrooms
-                  </span>
-                </div>
-                <p
-                  style={{
-                    fontSize: "1.1rem",
-                    fontWeight: "650",
-                    whiteSpace: "noWrap",
-                  }}
-                >
-                  03
-                </p>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem",
-                  // backgroundColor: "yellow",
-                  padding: "0 0 0 1rem",
-                  borderLeft: "1px solid #E3E3E3",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                  }}
-                >
-                  <span style={{ width: "1rem" }}>
-                    <img src={shape3} alt="img" style={{ width: "100%" }} />
-                  </span>
-                  <span
-                    style={{
-                      fontSize: "0.9rem",
-                      fontWeight: "550",
-                      whiteSpace: "noWrap",
-                    }}
-                  >
-                    Area
-                  </span>
-                </div>
-                <p
-                  style={{
-                    fontSize: "1.1rem",
-                    fontWeight: "650",
-                    whiteSpace: "noWrap",
-                  }}
-                >
-                  2,500 square feet
-                </p>
-              </div>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "4.2rem",
-                // justifyContent: "space-between",
-                paddingTop: "1rem",
-                borderTop: "1px solid #E3E3E3",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem",
-                  // backgroundColor: "yellow",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                  }}
-                >
-                  <span style={{ width: "1rem" }}>
-                    <img src={shape4} alt="img" style={{ width: "100%" }} />
-                  </span>
-                  <span
-                    style={{
-                      fontSize: "0.9rem",
-                      fontWeight: "550",
-                      whiteSpace: "noWrap",
-                    }}
-                  >
-                    Swimming Pools
-                  </span>
-                </div>
-                <p
-                  style={{
-                    fontSize: "1.1rem",
-                    fontWeight: "650",
-                    whiteSpace: "noWrap",
-                  }}
-                >
-                  05
-                </p>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem",
-                  // backgroundColor: "yellow",
-                  padding: "0 0 0 1rem",
-                  borderLeft: "1px solid #E3E3E3",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                  }}
-                >
-                  <span style={{ width: "1rem" }}>
-                    <img src={shape5} alt="img" style={{ width: "100%" }} />
-                  </span>
-                  <span
-                    style={{
-                      fontSize: "0.9rem",
-                      fontWeight: "550",
-                      whiteSpace: "noWrap",
-                    }}
-                  >
-                    Location
-                  </span>
-                </div>
-                <p
-                  style={{
-                    fontSize: "1.1rem",
-                    fontWeight: "650",
-                    whiteSpace: "noWrap",
-                  }}
-                >
-                  Delhi
-                </p>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem",
-                  // backgroundColor: "yellow",
-                  padding: "0 0 0 1rem",
-                  borderLeft: "1px solid #E3E3E3",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                  }}
-                >
-                  <span style={{ width: "1rem" }}>
-                    <img src={shape6} alt="img" style={{ width: "100%" }} />
-                  </span>
-                  <span
-                    style={{
-                      fontSize: "0.9rem",
-                      fontWeight: "550",
-                      whiteSpace: "noWrap",
-                    }}
-                  >
-                    Type
-                  </span>
-                </div>
-                <p
-                  style={{
-                    fontSize: "1.1rem",
-                    fontWeight: "650",
-                    whiteSpace: "noWrap",
-                  }}
-                >
-                  Residential
-                </p>
-              </div>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "3rem",
-                // justifyContent: "space-between",
-                paddingTop: "1rem",
-                borderTop: "1px solid #E3E3E3",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem",
-                  // backgroundColor: "yellow",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                  }}
-                >
-                  <span style={{ width: "1rem" }}>
-                    <img src={shape1} alt="img" style={{ width: "100%" }} />
-                  </span>
-                  <span style={{ fontSize: "0.9rem", fontWeight: "550" }}>
-                    Construction Stage
-                  </span>
-                </div>
-                <p style={{ fontSize: "1.1rem", fontWeight: "650" }}>
-                  Pre-launch
-                </p>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem",
-                  // backgroundColor: "yellow",
-                  padding: "0 0 0 1rem",
-                  borderLeft: "1px solid #E3E3E3",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                  }}
-                >
-                  <span style={{ width: "1rem" }}>
-                    <img src={shape2} alt="img" style={{ width: "100%" }} />
-                  </span>
-                  <span style={{ fontSize: "0.9rem", fontWeight: "550" }}>
-                    Accessibility
-                  </span>
-                </div>
-                <p style={{ fontSize: "1.1rem", fontWeight: "650" }}>
-                  Elevators
-                </p>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem",
-                  // backgroundColor: "yellow",
-                  padding: "0 0 0 1rem",
-                  borderLeft: "1px solid #E3E3E3",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                  }}
-                >
-                  <span style={{ width: "1rem" }}>
-                    <img src={shape3} alt="img" style={{ width: "100%" }} />
-                  </span>
-                  <span style={{ fontSize: "0.9rem", fontWeight: "550" }}>
-                    Area
-                  </span>
-                </div>
-                <p style={{ fontSize: "1.1rem", fontWeight: "650" }}>
-                  25,000 square feet
-                </p>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
         <div className={styles.section2features}>

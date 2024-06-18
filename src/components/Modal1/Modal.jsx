@@ -109,7 +109,7 @@ const Modal = ({ onClose, children }) => {
                   </div>
                   <div>
                     <input
-                      type="text"
+                      type="digit"
                       id="number"
                       required
                       placeholder="Phone Number"
