@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "./Dropdown.module.css";
+import styles from "./styles.module.css";
 
-const Dropdown = ({ megaMenuData, isOpen, openDropdown, closeDropdown }) => {
+const index = ({ navdropdownlist, closeDropdown }) => {
   return (
     <div className={styles.megaDropdown} onMouseLeave={closeDropdown}>
       <div className={styles.grid}>
-        {megaMenuData.map((item, index) => (
+        {navdropdownlist.map((item, index) => (
           <div key={index} className={styles.megaCategory}>
             <h4 className={styles.heading}>{item.category}</h4>
             <ul>
@@ -25,4 +25,4 @@ const Dropdown = ({ megaMenuData, isOpen, openDropdown, closeDropdown }) => {
   );
 };
 
-export default Dropdown;
+export default index;

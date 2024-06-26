@@ -238,7 +238,6 @@ const Index = () => {
 
   return (
     <div>
-      <Navbar />
       <div className={styles.filterpageContainer}>
         <div className={styles.filterdivContainer}>
           {((rangeSlider?.length > 0 &&
@@ -504,7 +503,6 @@ const Index = () => {
           ))}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

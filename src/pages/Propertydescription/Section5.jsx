@@ -7,7 +7,10 @@ const Section5 = () => {
       <h4 style={{ fontSize: "2rem", fontWeight: "650", whiteSpace: "wrap" }}>
         Inquire About Seaside Serenity Villa
       </h4>
-      <p style={{ marginTop: "0.9rem", fontWeight: "550" }}>
+      <p
+        style={{ marginTop: "0.9rem", fontWeight: "550" }}
+        className={styles.desc}
+      >
         Interested in this property? Fill out the form below, and our real
         estate expert will get back to you with more details, including
         scheduling a viewing and answering any questions you may have.
@@ -153,6 +156,7 @@ const Section5 = () => {
                     backgroundColor: "transparent",
                     border: "none",
                     color: "white",
+                    fontSize: "0.9rem",
                   }}
                 >
                   Send Your Message

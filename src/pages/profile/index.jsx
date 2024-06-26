@@ -7,17 +7,13 @@ import Section2 from "./Section2.jsx";
 
 const index = () => {
   return (
-    <div className={styles.wrapper}>
-      <Navbar />
-      <div className={styles.maindiv}>
-        <div className={styles.section1}>
-          <Section1 />
-        </div>
-        <div className={styles.section2}>
-          <Section2 />
-        </div>
+    <div className={styles.maindiv}>
+      <div className={styles.section1}>
+        <Section1 />
       </div>
-      <Footer />
+      <div className={styles.section2}>
+        <Section2 />
+      </div>
     </div>
   );
 };

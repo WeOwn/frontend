@@ -3,7 +3,7 @@
 .maindiv {
   font-family: Urbanist;
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   color:#0F0B3E;
   margin-inline: auto;
   /* color:red; */
@@ -33,6 +33,8 @@
   
 }
 
+
+
 .subHeading {
   font-family: Outfit;
   font-size: 1em;
@@ -44,6 +46,16 @@
   width:70%;
   margin-top: -4rem;
   
+}
+@media(max-width:500px) {
+  .mainHeading{
+    font-size: 2rem;
+    font-weight: 650;
+  }
+  .subHeading{
+    font-size: 0.8rem;
+    width:50%;
+  }
 }
 
 /* hello section */
@@ -61,6 +73,12 @@
   display: flex;
   justify-content: center;
   padding-top:76px;
+}
+
+@media(max-width:768px) {
+  .HelloSection{
+    background-image: none;
+  }
 }
 .cloud1{
   position: absolute;
@@ -128,6 +146,7 @@
   /* padding:2rem 0; */
 }
 
+
 @media(max-width:1023px) {
   .searchContainer{
     width:100%;
@@ -154,6 +173,7 @@
   margin-left:0rem;
   /* background-color: black; */
   /* width:50%; */
+  /* margin-inline: auto; */
   
   /* padding-inline:4rem; */
   /* width:85%; */
@@ -195,6 +215,7 @@
   padding: 1em;
   /* width: 20%; */
 }
+
 .searchInput {
   
   
@@ -205,26 +226,37 @@
   
 }
 .searchResults {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  /* flex-direction: row; */
   /* flex-wrap: wrap; */
   /* justify-content:center; */
-  margin-left: 0rem;
+  /* margin-left: 0rem; */
   /* height:0rem; */
   /* width:70%; */
   /* padding-inline: 4rem; */
   /* margin-top: -4rem; */
   gap:1.5rem;
   margin-right: 1rem;
+  overflow:auto;
+  /* background:red; */
   
   
   /* justify-content: start; */
 }
+@media(max-width:590px) {
+  .searchResults{
+    margin-right: 0rem;
+    grid-template-columns: repeat(1,1fr);
+  }
+}
 .Search_Properties {
   position: relative;
   overflow: hidden;
-  width: 20rem;
-  height: 15rem;
+  height:100%;
+  width:100%;
+  /* width: 20rem;
+  height: 15rem; */
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
@@ -239,6 +271,7 @@
   justify-content: flex-end;
   color: #fff;
   z-index: 2;
+  
   text-align: center;
 }
 .propertyTitle {
@@ -246,11 +279,17 @@
   font-weight: bold;
 }
 .propertydesc {
+  
   padding: 1em;
   font-size: 0.75em;
   margin-bottom: 3em;
   line-height: 1.1rem;
 }
+/* @media(max-width:300px) {
+  .propertydesc{
+    display: none;
+  }
+} */
 .propertyImage {
   width: 100%;
   height: 100%;
@@ -266,6 +305,23 @@
   height: 100%;
   background: rgba(112, 101, 240, 0.8);
   z-index: 1;
+}
+
+.profileContainerdiv{
+  background-color: #EAEAEA;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 18rem;
+  padding-inline: 1rem;
+  padding-block: 1.5rem;
+  border-radius: 10px;
+}
+@media(max-width:270px) {
+  .profileContainerdiv{
+    width:80vw;
+    overflow:auto;
+  }
 }
 
 /* featured Properties section */
@@ -289,10 +345,25 @@
   font-size: 2rem;
 }
 .FeaturedSectionDesc {
-  font-weight: 400;
-  font-size: 0.9em;
-  width: 70%;
-  line-height: 1.2rem;
+  
+}
+@media(max-width:590px) {
+  /* .searchSectionIntro{
+    align-items: center;
+  } */
+  .FeaturedSectionDesc{
+    width:90%;
+  }
+  .searchSectionDesc {
+    /* font-weight: 500; */
+    
+    
+      width:90%;
+    
+  }
+  .searchInputContainer {
+    width:100%;
+  }
 }
 .FeaturedButtonContainer {
   /* margin: 3em; */
@@ -306,6 +377,7 @@
   color:#0F0B3E;
   background-color: #EAEAEA;
   cursor: pointer;
+  font-size: 1rem;
 }
 .FeaturedPropertyContainer {
   /* padding-inline: 5.5rem; */
@@ -356,9 +428,9 @@
 
 .AISectionDesc {
   font-weight: 400;
-  font-size: 0.9em;
+  font-size: 0.9rem;
   /* width: 50%; */
-  line-height: 1.2em;
+  line-height: 1.2rem;
 }
 
 
@@ -378,12 +450,22 @@
 
 }
 
-@media(max-width:700px){
-
-
-
-
-.searchResults{
-  flex-direction: column;
+.desc{
+  font-weight: 400;
+  font-size: 0.9rem;
+  width: 70%;
+  line-height: 1.2rem;
+  
+  width: 80%;
 }
+
+@media(max-width:800px) {
+  .desc{
+    width:100%;
+  }
 }
+
+
+
+
+

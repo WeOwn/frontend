@@ -3,7 +3,7 @@ import OtpModal from "../../components/modals/OtpModal";
 import styles from "./style.module.css";
 import bannerImage from "./home.png";
 import googleLogo from "./google.png";
-import axios from "axios";
+
 import { Link } from "react-router-dom";
 import otpService from "../../service/otpService";
 
@@ -20,6 +20,8 @@ function Login() {
       alert("Invalid Phone Number");
       return;
     }
+
+    console.log("Phone Number:", phone); // Log phone number before API call
 
     try {
       const response = await otpService.getOtp(phone);
@@ -59,9 +61,31 @@ function Login() {
         <img className={styles.homeimg} src={bannerImage} alt="Banner Image" />
 
         <div className={styles.blurdiv}>
-          <h1>Welcome To Weown</h1>
-          <br></br>
-          <h1>We're glad you're here</h1>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "start",
+              gap: "1rem",
+            }}
+          >
+            <span>Welcome To Weown</span>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "start",
+              }}
+            >
+              <h1 style={{ fontSize: "2.5rem", fontWeight: "800" }}>
+                Welcoming To Weown
+              </h1>
+
+              <h1 style={{ fontSize: "2.5rem", fontWeight: "800" }}>
+                We're glad you're here
+              </h1>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -98,36 +122,69 @@ function Login() {
                 required
               />
             </div>
-
-            <div className={styles["terms-checkbox"]}>
-              <input
-                type="checkbox"
-                id="terms"
-                name="terms"
-                className={styles.checkedField}
-                checked={termsAccepted}
-                onChange={(e) => setTermsAccepted(e.target.checked)}
-                required
-              />
-              <label htmlFor="terms">Remember me</label>
+            <div className={styles.registerPhone}>
+              <div className={styles["terms-checkbox"]}>
+                <input
+                  type="checkbox"
+                  id="terms"
+                  name="terms"
+                  className={styles.checkedField}
+                  checked={termsAccepted}
+                  onChange={(e) => setTermsAccepted(e.target.checked)}
+                />
+                <label
+                  htmlFor="terms"
+                  style={{ cursor: "pointer", color: "#343434" }}
+                >
+                  Remember me
+                </label>
+              </div>
+              <button type="submit" className={styles["register-button"]}>
+                Login
+              </button>
             </div>
-            <button type="submit" className={styles["register-button"]}>
-              Login
-            </button>
           </form>
-
-          <div className={styles["login-link"]}>
-            Don't have an account? <Link to="/signup">Register</Link>
-          </div>
-          <div className={styles["social-login"]}>
-            <button className={styles["google-login"]}>
-              <img
-                src={googleLogo}
-                alt="Google Logo"
-                className={styles["google-logo"]}
-              />
-              Continue with Google
-            </button>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "1.5rem",
+            }}
+          >
+            <div className={styles["login-link"]}>
+              <span
+                style={{
+                  textDecoration: "none",
+                  fontWeight: "500",
+                }}
+              >
+                Don't have an account?,{" "}
+              </span>
+              <Link to="/signup" style={{ textDecoration: "none" }}>
+                <span
+                  style={{
+                    textDecoration: "none",
+                    color: "#7065f0",
+                    fontWeight: "650",
+                    cursor: "pointer",
+                  }}
+                >
+                  Register
+                </span>
+              </Link>
+            </div>
+            <div style={{ fontWeight: "600", fontSize: "1.1rem" }}>or</div>
+            <div className={styles["social-login"]}>
+              <button className={styles["google-login"]}>
+                <img
+                  src={googleLogo}
+                  alt="Google Logo"
+                  className={styles["google-logo"]}
+                />
+                Continue with Google
+              </button>
+            </div>
           </div>
         </main>
       </div>
@@ -142,7 +199,7 @@ function Login() {
           userData={{
             phoneNumber: phone,
           }}
-          apiEndpoint="https://weownbackend.azurewebsites.net/user/signup"
+          apiEndpoint="https://weown-backend.azurewebsites.net/user/login"
         />
       )}
     </div>

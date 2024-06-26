@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./styles.module.css";
 import EMI from "./EMI.svg";
 import stardesign2 from "./stardesign2.svg";
 
@@ -41,7 +42,7 @@ const Section11 = () => {
           marginTop: "0.5rem",
         }}
       >
-        <p style={{ color: "#525252", width: "80%" }}>
+        <p style={{ color: "#525252" }} className={styles.desc}>
           Explore Our handpicked selection of feautered properties. Each
           lisiting offers a glimpse into exceptional homes and investments
           available through Estatein. Click "View Details" for more information.

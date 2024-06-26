@@ -3,54 +3,20 @@ import styles from "./styles.module.css";
 import user1 from "./user1.png";
 import down_arrow from "./down_arrow.svg";
 import left_arrow from "./left_arrow.svg";
-import SearchBardrop from "../../Atoms/searchbardrop/SearchBardrop";
+import Dropdownlist from "../../Atoms/dropdownlist";
 
-const Sidebar = ({ handleside2close }) => {
-  const [openDropdown, setOpenDropdown] = useState(0);
+const Sidebar = ({ heading, list, handlesideclose }) => {
+  const arr = list.map(() => false);
 
-  const toggleDropdown = (index) => {
-    setOpenDropdown(openDropdown === index ? 0 : index);
+  const [isopenDropdown, setIsOpenDropdown] = useState(arr);
+
+  const handleisopendropdown = (index) => {
+    setIsOpenDropdown((prevstate) => {
+      return prevstate.map((state, id) => {
+        return id === index ? !state : state;
+      });
+    });
   };
-
-  const list1 = [
-    "Verified Properties",
-    "Flats",
-    "Builder Floors",
-    "Independent House",
-    "Plots/Land",
-    "Service Apartments",
-    "New Projects",
-  ];
-  const list2 = [
-    "Verified Properties",
-    "Ready to Move office spaces",
-    "Co-working office spaces",
-    "Shops",
-    "Showrooms",
-    "Industrial Lands/Plots",
-    "Commercial Lands/Inst. Lands",
-    "Agricultural/Farm Land",
-  ];
-  const list3 = [
-    "Verified Properties",
-    "Ready to Move office spaces",
-    "Co-working office spaces",
-    "Shops",
-    "Showrooms",
-    "Industrial Lands/Plots",
-    "Commercial Lands/Inst. Lands",
-    "Agricultural/Farm Land",
-  ];
-  const list4 = [
-    "Verified Properties",
-    "Ready to Move office spaces",
-    "Co-working office spaces",
-    "Shops",
-    "Showrooms",
-    "Industrial Lands/Plots",
-    "Commercial Lands/Inst. Lands",
-    "Agricultural/Farm Land",
-  ];
 
   return (
     <div className={styles.sidebarContainer}>
@@ -109,51 +75,44 @@ const Sidebar = ({ handleside2close }) => {
       >
         <span
           style={{ position: "absolute", left: "-1.5rem", cursor: "pointer" }}
-          onClick={() => handleside2close()}
+          onClick={handlesideclose}
         >
           <img src={left_arrow} alt="img" />
         </span>
         <span>
           <h4 style={{ fontSize: "1.2rem", fontWeight: "650", color: "black" }}>
-            For Buyers
+            {heading}
           </h4>
         </span>
       </div>
       <div className={styles.sections}>
         <div className={styles.section1}>
           <ul>
-            <li onClick={() => toggleDropdown(1)} className={styles.listdiv}>
-              <span>Buy a home in Banglore</span>
+            {list.map((dropdown, index) => {
+              return (
+                <div>
+                  <li
+                    onClick={() => handleisopendropdown(index)}
+                    className={styles.listdiv}
+                  >
+                    <span>{dropdown.title}</span>
 
-              <span>
-                <img src={down_arrow} alt="down_arrow" />
-              </span>
-            </li>
-            {openDropdown === 1 ? <SearchBardrop list={list1} /> : null}
-            <li onClick={() => toggleDropdown(2)} className={styles.listdiv}>
-              <span>Commercial in Banglore</span>
-
-              <span>
-                <img src={down_arrow} alt="down_arrow" />
-              </span>
-            </li>
-            {openDropdown === 2 ? <SearchBardrop list={list2} /> : null}
-            <li onClick={() => toggleDropdown(3)} className={styles.listdiv}>
-              <span>Top Areas for Residential</span>
-
-              <span>
-                <img src={down_arrow} alt="down_arrow" />
-              </span>
-            </li>
-            {openDropdown === 3 ? <SearchBardrop list={list3} /> : null}
-            <li onClick={() => toggleDropdown(4)} className={styles.listdiv}>
-              <span>Top Areas For Commercial</span>
-
-              <span>
-                <img src={down_arrow} alt="down_arrow" />
-              </span>
-            </li>
-            {openDropdown === 4 ? <SearchBardrop list={list4} /> : null}
+                    <span>
+                      <img
+                        src={down_arrow}
+                        alt="down_arrow"
+                        className={
+                          isopenDropdown[index] === true ? styles.rotate180 : ""
+                        }
+                      />
+                    </span>
+                  </li>
+                  {isopenDropdown[index] ? (
+                    <Dropdownlist list={dropdown.dropdownlist} />
+                  ) : null}
+                </div>
+              );
+            })}
           </ul>
         </div>
       </div>

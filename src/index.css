@@ -6,7 +6,15 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Urbanist;
+     
+    
 }
+
+/* @media(max-width:768px) {
+     *{
+        overflow:auto;
+    } 
+} */
 
 html, body {
     margin: 0;
@@ -27,3 +35,45 @@ html, body {
   .Appdiv{
     animation: fadeIn 1s forwards;
   } */
+
+
+  @media (max-width: 1200px) {
+    html {
+      font-size: 15px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    html {
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    html {
+      font-size: 13px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    html {
+      font-size: 12px;
+    }
+  }
+
+  @media(max-width:300px) {
+    html{
+        font-size: 10px;
+    }
+  }
+  @media(max-width:250px) {
+    html{
+        font-size: 8px;
+    }
+  }
+  @media(max-width:150px) {
+    html{
+        font-size: 6px;
+    }
+  }
+  
