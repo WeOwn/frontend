@@ -10,6 +10,7 @@ import card1 from "./card1.png";
 import card2 from "./card2.png";
 import { Propertycard } from "../../components/propertyCard/Propertycard";
 import { Builderscard } from "../../components/builderscard/Builderscard";
+
 import searchlogo from "./searchlogo.png";
 import user1 from "./user1.png";
 import Aisection from "./Aisection";
@@ -22,6 +23,7 @@ import wishlist_btn from "./wishlist_btn.png";
 import banner_img from "./banner_img.svg";
 import { Link } from "react-router-dom";
 import Searchmob from "../../components/searchmob";
+
 
 function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -426,6 +428,7 @@ function Home() {
               // marginInline: "auto",
             }}
           >
+
             <div className={styles.builderContainerp}>
               <div
                 style={{
@@ -487,6 +490,7 @@ function Home() {
           </div>
           {/* <Aisection /> */}
         </div>
+
       </div>
     </>
   );

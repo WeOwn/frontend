@@ -3,7 +3,9 @@
 .maindiv {
   font-family: Urbanist;
   width: 100%;
+
   /* height: 100vh; */
+
   color:#0F0B3E;
   margin-inline: auto;
   /* color:red; */
@@ -18,6 +20,7 @@
   .maindiv{
       width:60%;
   }
+
 }
 .mainheadingdiv{
   padding-top: 0;
