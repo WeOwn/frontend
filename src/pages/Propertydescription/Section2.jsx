@@ -22,6 +22,7 @@ import customize from "./customize.svg";
 import Play from "./Play.svg";
 // import "@google/model-viewer";
 import "@google/model-viewer/dist/model-viewer";
+import { Link } from "react-router-dom";
 // import houseinterior3 from "./Houseglb.glb";
 // import SocietyGlb from "./Society_compressed.glb";
 
@@ -197,26 +198,28 @@ const Section2 = () => {
             </span>
             <img src={heart} alt="img" style={{ width: "1rem" }} />
           </div>
-          <div
-            style={{
-              backgroundColor: "#7065f0",
-              padding: "0.8rem 2.5rem",
-              borderRadius: "10px",
-              width: "fit-content",
-            }}
-          >
-            <button
+          <Link to="/contact_builders" style={{}}>
+            <div
               style={{
-                backgroundColor: "transparent",
-                border: "none",
-                color: "white",
-                whiteSpace: "noWrap",
-                fontSize: "0.9rem",
+                backgroundColor: "#7065f0",
+                padding: "0.8rem 2.5rem",
+                borderRadius: "10px",
+                width: "fit-content",
               }}
             >
-              Contact Builder
-            </button>
-          </div>
+              <button
+                style={{
+                  backgroundColor: "transparent",
+                  border: "none",
+                  color: "white",
+                  whiteSpace: "noWrap",
+                  fontSize: "0.9rem",
+                }}
+              >
+                Contact Builder
+              </button>
+            </div>
+          </Link>
         </div>
       </div>
 
