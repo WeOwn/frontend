@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./styles.module.css";
 import zoomlogo from "./zoomlogo.svg";
 import stardesign from "./stardesign.svg";
 import floorplan from "./floorplan.svg";
@@ -21,9 +22,11 @@ const section7 = () => {
           alignItems: "center",
           justifyContent: "space-between",
           marginTop: "0.5rem",
+          gap: "2rem",
+          flexWrap: "wrap",
         }}
       >
-        <p style={{ color: "grey", width: "80%" }}>
+        <p style={{ color: "grey" }} className={styles.desc}>
           Find answers to common questions about Estateins's services, property
           listing, and the real estate process. We're here to provide clarity
           and assist you every tep of the way

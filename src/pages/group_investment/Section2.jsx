@@ -151,6 +151,7 @@ const Section2 = () => {
                 border: "none",
                 color: "white",
                 whiteSpace: "noWrap",
+                fontSize: "0.9rem",
               }}
             >
               Invest Now
@@ -163,7 +164,7 @@ const Section2 = () => {
         <div className={styles.section2imgdiv1}>
           {list1.map((img, index) => {
             return (
-              <div style={{ width: "10%" }}>
+              <div style={{ minWidth: "5rem" }}>
                 <img src={img} alt="home_img" style={{ width: "100%" }} />
               </div>
             );
@@ -292,17 +293,7 @@ const Section2 = () => {
             </div>
           </div>
           <div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "5rem",
-                backgroundColor: "rgba(112, 101, 240, 0.12)",
-                padding: "0.6rem 1rem 0.6rem 0.6rem",
-                borderRadius: "10px",
-                flexWrap: "wrap",
-              }}
-            >
+            <div className={styles.profilebuttondivp}>
               <div
                 style={{
                   display: "flex",
@@ -349,6 +340,7 @@ const Section2 = () => {
                     border: "none",
                     color: "white",
                     whiteSpace: "noWrap",
+                    fontSize: "0.9rem",
                   }}
                 >
                   Visit
@@ -366,6 +358,7 @@ const Section2 = () => {
             flexDirection: "column",
             gap: "1rem",
             justifyContent: "space-between",
+            width: "100%",
           }}
         >
           <div>
@@ -437,7 +430,7 @@ const Section2 = () => {
                     padding: "0.5rem",
                   }}
                 >
-                  $
+                  ₹
                 </span>
                 <span style={{ padding: "0.5rem", color: "#999999" }}>
                   2,19,50,00,000
@@ -461,7 +454,7 @@ const Section2 = () => {
                     padding: "0.5rem",
                   }}
                 >
-                  $
+                  ₹
                 </span>
                 <span style={{ padding: "0.5rem", color: "#999999" }}>
                   2,19,50,00,000
@@ -487,7 +480,7 @@ const Section2 = () => {
                     padding: "0.5rem",
                   }}
                 >
-                  $
+                  ₹
                 </span>
                 <span style={{ padding: "0.5rem", color: "#999999" }}>
                   2,19,50,00,000
@@ -609,13 +602,7 @@ const Section2 = () => {
               </span>
             </div>
 
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(2,1fr)",
-                rowGap: "3rem",
-              }}
-            >
+            <div className={styles.section2features1grid}>
               <div
                 style={{
                   display: "flex",
@@ -740,7 +727,10 @@ const Section2 = () => {
               <span style={{ fontSize: "0.8rem", fontWeight: "550" }}>
                 Monthly Cash Flow
               </span>
-              <div style={{ width: "0.5rem", marginTop: "-0.25rem" }}>
+              <div
+                style={{ width: "0.5rem", marginTop: "-0.25rem" }}
+                className={styles.rotate180}
+              >
                 <img
                   src={down_arrow}
                   alt="img"
@@ -792,7 +782,7 @@ const Section2 = () => {
                 >
                   <span style={{ fontSize: "0.65rem" }}>Monthly Rent</span>
                   <span style={{ fontSize: "0.75rem", fontWeight: "550" }}>
-                    $ 18741
+                    ₹ 18741
                   </span>
                 </div>
                 <div
@@ -811,7 +801,7 @@ const Section2 = () => {
                     Property Management Fee
                   </span>
                   <span style={{ fontSize: "0.75rem", fontWeight: "550" }}>
-                    $ 2167
+                    ₹ 2167
                   </span>
                 </div>
 
@@ -829,7 +819,7 @@ const Section2 = () => {
                 >
                   <span style={{ fontSize: "0.65rem" }}>10% TDS</span>
                   <span style={{ fontSize: "0.75rem", fontWeight: "550" }}>
-                    $ 1874
+                    ₹ 1874
                   </span>
                 </div>
               </div>
@@ -857,7 +847,7 @@ const Section2 = () => {
                   Min Investment
                 </span>
                 <span style={{ fontWeight: "650", fontSize: "1.1rem" }}>
-                  $30 Lakhs
+                  ₹30 Lakhs
                 </span>
               </div>
               <div

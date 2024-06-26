@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./styles.module.css";
 import home1 from "./home1.svg";
+import home2 from "./home2.svg";
+import home3 from "./home3.svg";
 import housegrid1 from "./housegrid1.svg";
 import housegrid2 from "./housegrid2.svg";
 import logo1 from "./logo1.svg";
@@ -17,6 +19,7 @@ import location from "./location.svg";
 import heart from "./heart.svg";
 import share from "./share.svg";
 import customize from "./customize.svg";
+import Play from "./Play.svg";
 // import "@google/model-viewer";
 import "@google/model-viewer/dist/model-viewer";
 // import houseinterior3 from "./Houseglb.glb";
@@ -79,7 +82,60 @@ const Section2 = () => {
       about: "2,500 Square Feet",
     },
   ];
-  const list1 = [home1, home1, home1, home1, home1, home1, home1, home1, home1];
+
+  const [launchimgid, setLaunchimgid] = useState(1);
+  const list1 = [
+    {
+      id: 1,
+      smallimg: home1,
+      largeimg: home1,
+    },
+    {
+      id: 2,
+      smallimg: home2,
+      largeimg: home2,
+    },
+    {
+      id: 3,
+      smallimg: home3,
+      largeimg: housegrid1,
+    },
+    {
+      id: 4,
+      smallimg: home1,
+      largeimg: home1,
+    },
+    {
+      id: 5,
+      smallimg: home1,
+      largeimg: home1,
+    },
+    {
+      id: 6,
+      smallimg: home1,
+      largeimg: home1,
+    },
+    {
+      id: 7,
+      smallimg: home1,
+      largeimg: home1,
+    },
+    {
+      id: 1,
+      smallimg: home1,
+      largeimg: home1,
+    },
+    {
+      id: 8,
+      smallimg: home1,
+      largeimg: home1,
+    },
+    {
+      id: 9,
+      smallimg: home1,
+      largeimg: home1,
+    },
+  ];
   const list2 = [
     "Expansive oceanfront terrace for outdoor entertaining",
     "Gourmnet kitchen with top-of-the-line appliances",
@@ -87,6 +143,13 @@ const Section2 = () => {
     "Master suite with a spa-inpspired bathroom and ocean-facing balcony",
     "Private garage and apmle storage space",
   ];
+  const [launchexpbtn, setLaunchexpbtn] = useState(false);
+  const handleopenLaunchexp = () => {
+    setLaunchexpbtn(true);
+  };
+  const handlecloseLaunchexp = () => {
+    setLaunchexpbtn(false);
+  };
   return (
     <div className={styles.section2main}>
       <div className={styles.section2intro}>
@@ -148,6 +211,7 @@ const Section2 = () => {
                 border: "none",
                 color: "white",
                 whiteSpace: "noWrap",
+                fontSize: "0.9rem",
               }}
             >
               Contact Builder
@@ -157,14 +221,7 @@ const Section2 = () => {
       </div>
 
       <div className={styles.section2imgdivp}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "2rem",
-            flexWrap: "wrap",
-          }}
-        >
+        <div style={{}} className={styles.section2imgdivbuttondivp}>
           <div
             style={{
               backgroundColor: "#7065f0",
@@ -179,6 +236,7 @@ const Section2 = () => {
                 border: "none",
                 color: "white",
                 whiteSpace: "noWrap",
+                fontSize: "0.9rem",
               }}
             >
               Hi-Res Images
@@ -191,6 +249,7 @@ const Section2 = () => {
                 border: "none",
                 color: "#7065f0",
                 whiteSpace: "noWrap",
+                fontSize: "0.9rem",
               }}
             >
               Floor Plan
@@ -198,45 +257,89 @@ const Section2 = () => {
           </div>
         </div>
         <div className={styles.section2imgdiv1}>
-          {list1.map((img, index) => {
+          {list1.map((obj, index) => {
             return (
-              <div style={{ width: "10%" }}>
-                <img src={img} alt="home_img" style={{ width: "100%" }} />
+              <div
+                key={obj.id}
+                style={{
+                  // borderRadius: "10px",
+                  // backgroundColor: "#FFFFFF",
+                  minWidth: "5rem",
+                  cursor: "pointer",
+                }}
+                onClick={() => setLaunchimgid(obj.id)}
+              >
+                <img
+                  src={obj.smallimg}
+                  alt="home_img"
+                  style={{
+                    width: "100%",
+
+                    borderRadius: "5px",
+                  }}
+                />
               </div>
             );
           })}
         </div>
-        <div className={styles.section2imgdiv2}>
+        <div
+          className={styles.section2imgdiv2}
+          onMouseOver={handleopenLaunchexp}
+          onMouseLeave={handlecloseLaunchexp}
+        >
           <div style={{ width: "100%" }}>
-            {/* <model-viewer
-              src={houseinterior3}
-              ios-src=""
-              poster={housegrid1}
-              alt="A 3D model of a House interior"
-              shadow-intensity="1"
-              scale="3000 3000 3000"
-              camera-controls
-              // auto-rotate
-              ar
-              style={{ width: "100%", height: "500px" }}
-            ></model-viewer> */}
-            <img src={housegrid1} alt="home_img" style={{ width: "100%" }} />
+            <img
+              src={list1[launchimgid - 1].largeimg}
+              alt="home_img"
+              style={{ width: "100%", borderRadius: "5px" }}
+            />
           </div>
-          <div style={{ width: "100%" }}>
-            {/* <model-viewer
-              src={SocietyGlb}
-              ios-src=""
-              poster={housegrid2}
-              alt="A 3D model of an Society"
-              shadow-intensity="1"
-              scale="100 100 100"
-              camera-controls
-              // auto-rotate
-              ar
-              style={{ width: "100%", height: "500px" }}
-            ></model-viewer> */}
-            <img src={housegrid2} alt="home_img" style={{ width: "100%" }} />
-          </div>
+          {launchexpbtn && (
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <div className={styles.launchexpbtndivp}></div>
+              <div
+                style={{
+                  position: "absolute",
+                  zIndex: "2",
+                  backgroundColor: "#7065f0",
+                  padding: "0.8rem 2.5rem",
+                  borderRadius: "10px",
+                  width: "fit-content",
+                  display: "flex",
+                  alignItems: "center",
+                  opacity: "1",
+
+                  gap: "0.5rem",
+                  cursor: "pointer",
+                }}
+              >
+                <div style={{ width: "1rem" }}>
+                  <img src={Play} alt="img" style={{ width: "100%" }} />
+                </div>
+                <button
+                  style={{
+                    backgroundColor: "transparent",
+                    border: "none",
+                    color: "white",
+                    whiteSpace: "noWrap",
+                    cursor: "pointer",
+                  }}
+                  className={styles.buttontext}
+                >
+                  LAUNCH EXPERIENCE
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className={styles.section2imgdiv3}>
@@ -329,17 +432,7 @@ const Section2 = () => {
             </div>
           </div>
           <div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "5rem",
-                backgroundColor: "rgba(112, 101, 240, 0.12)",
-                padding: "0.6rem 1rem 0.6rem 0.6rem",
-                borderRadius: "10px",
-                flexWrap: "wrap",
-              }}
-            >
+            <div className={styles.profilebuttondivp}>
               <div
                 style={{
                   display: "flex",
@@ -386,6 +479,7 @@ const Section2 = () => {
                     border: "none",
                     color: "white",
                     whiteSpace: "noWrap",
+                    fontSize: "0.9rem",
                   }}
                 >
                   Visit

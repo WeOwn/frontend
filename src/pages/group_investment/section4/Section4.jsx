@@ -35,7 +35,7 @@ const Section4 = () => {
     {
       id: 2,
       title: "Rent Per sq.ft",
-      number: "$96",
+      number: "₹96",
     },
     {
       id: 3,

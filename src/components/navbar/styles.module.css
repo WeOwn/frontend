@@ -23,6 +23,7 @@
     font-family: "Urbanist", sans-serif;
     z-index: 999;
     animation: fadeIn 1s forwards;
+    height: 76px;
 
 }
 
@@ -37,6 +38,8 @@
   /* background-color: black; */
   width: 75%;
   z-index:1000;
+  background-color: black;
+  opacity: 0.5;
 }
   
   .logo  {
@@ -44,6 +47,8 @@
     width: 8rem;
     
   }
+
+  
   
   .navCenter {
     display: flex;
@@ -54,6 +59,7 @@
   .navOptions {
     list-style: none;
     display: flex;
+    align-items: center;
     gap:2rem;
     margin: 0;
     padding: 0;
@@ -61,14 +67,24 @@
     
    
   }
+
+  @media(max-width:1000px) {
+    .logo{
+      width:5rem;
+    }
+    .navOptions {
+      gap:1rem;
+    }
+  }
   
   .navoption {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 76px;
+    
     font-weight: 600;
     white-space: nowrap;
+    /* cursor:pointer; */
   }
   
 
@@ -80,10 +96,10 @@
   }
   
   
-  .navOptions li {
+  /* .navOptions li {
     margin-right: 25px;
     
-  }
+  } */
   
   .navRight {
     display: flex;

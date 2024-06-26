@@ -160,7 +160,7 @@ const Section2 = () => {
         Discover a World Property
       </h4>
 
-      <p style={{ color: "#999999", width: "80%", marginTop: "1rem" }}>
+      <p style={{ color: "#999999", width: "100%", marginTop: "1rem" }}>
         Our portfolio of properties is as diverse as your dreams. Explore ther
         following categories to find the perfect property that resonates with
         your vision of home.

@@ -2,8 +2,13 @@
 import api from "../apiGateway";
 
 const otpService = {
-  getOtp(phone) {
-    return api.get(`/user/otp?phoneNumber=${phone}`);
+  async getOtp(phone) {
+    return await api.get(`/user/otp?phoneNumber=${phone}`);
+    // return await api.get(`/user/otp`, {
+    //   params: {
+    //     phoneNumber: phone,
+    //   },
+    // });
   },
 };
 

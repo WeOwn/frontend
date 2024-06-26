@@ -12,7 +12,6 @@ import Section6 from "./section6/Section6";
 const Property = () => {
   return (
     <>
-      <Navbar />
       <div className={styles.maindiv}>
         <div className={styles.section1}>
           <Section1 />
@@ -33,7 +32,6 @@ const Property = () => {
           <Section6 />
         </div>
       </div>
-      <Footer />
     </>
   );
 };

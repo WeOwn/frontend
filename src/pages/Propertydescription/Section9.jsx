@@ -64,7 +64,7 @@ const Section8 = () => {
           marginTop: "0.5rem",
         }}
       >
-        <p style={{ color: "#525252", width: "80%" }}>
+        <p style={{ color: "#525252" }} className={styles.desc}>
           Find answers to common questions about Estateins's services, property
           listing, and the real estate process. We're here to provide clarity
           and assist you every tep of the way

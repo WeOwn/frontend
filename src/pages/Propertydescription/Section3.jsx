@@ -52,7 +52,10 @@ const Section3 = () => {
           >
             Comprehensive Pricing Details
           </h4>
-          <p style={{ marginTop: "0.9rem", fontWeight: "550", width: "80%" }}>
+          <p
+            style={{ marginTop: "0.9rem", fontWeight: "550" }}
+            className={styles.desc}
+          >
             At Estatein, transparency is key. We want you to have a clear
             undertanding of all costs associated with your property investment.
             Below, we break down the pricing for Seaside Sereanity Villa to help

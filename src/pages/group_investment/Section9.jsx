@@ -62,11 +62,12 @@ const Section9 = () => {
                     border: "none",
                     color: "white",
                     whiteSpace: "noWrap",
+                    fontSize: "0.9rem",
                   }}
                 >
                   {obj.download}
                 </button>
-                <div>
+                <div style={{ width: "1rem" }}>
                   <img
                     src={downloadlogo}
                     alt="img"

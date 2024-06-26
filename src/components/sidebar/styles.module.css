@@ -19,6 +19,30 @@
   gap:1rem; 
 }
 
+/* @media(max-width:450px) {
+  .sidebarContainer{
+    width:90%;
+  }
+} */
+
+@media (max-width:500px) {
+  .sidebarContainer{
+    width:70%;
+  }
+}
+
+@media(min-width:501px) and (max-width:860px) {
+  .sidebarContainer{
+    width:35%;
+  }
+}
+
+@media(min-width:861px) and (max-width:1100px)  {
+  .sidebarContainer{
+    width:30%;
+  }
+}
+
 .visible {
   opacity: 1;
   transform: translateX(0);
@@ -82,7 +106,8 @@ hr{
     border-radius: 6px;
   }
 
-
-  
-
+  .rotate180 {
+    transform: rotate(180deg);
+    /* transition: all 0.2s ease-in-out;  */
+  }
  

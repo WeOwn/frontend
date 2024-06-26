@@ -3,9 +3,10 @@ import OtpModal from "../../components/modals/OtpModal";
 import styles from "./style.module.css";
 import bannerImage from "./home.png";
 import googleLogo from "./google.png";
-import axios from "axios";
+
 import { Link } from "react-router-dom";
 import userService from "../../service/userService";
+import otpService from "../../service/otpService";
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -23,52 +24,39 @@ function Signup() {
       return;
     }
 
-    // try {
+    try {
       // Make API call to request OTP using axios
-      // const response = await axios.get(
-      //   "https://weownbackend.azurewebsites.net/user/otp",
-      //   {
-      //     params: { phoneNumber: phone },
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       // Include any additional headers if needed
-      //     },
-      //   }
-      // );
+      const response = await otpService.getOtp(phone);
 
-    //   // Check if the response is successful (status code 200)
-    //   if (response.status === 200) {
-    //     // Handle the response data as needed
+      // Check if the response is successful (status code 200)
+      if (response.status === 200) {
+        // Handle the response data as needed
 
-    //     console.log("API Response:", response.data);
+        console.log("API Response:", response.data);
 
-    //     // Display OTP modal
-    //     setShowOtp(true);
-    //   }
-    //   else if(response.status===502){
-      
-    //     <OtpModal/>
-    //   }
-      
-    //   else {
-    //     // Handle error responses
-    //     console.error("API Error:", response.status, response.statusText);
-    //     alert("Failed to request OTP. Please try again.");
-    //   }
-    // } catch (error) {
-    //   return(
-    //     <OtpModal/>
-    //   );
-      // console.error("API Request Error:", error);
-      // alert("Failed to request OTP. Please try again.");
-    // }
+        // Display OTP modal
+        setShowOtp(true);
+      }
+      //else if (response.status === 502) {
+      //   <OtpModal />;
+      // }
+      else {
+        // Handle error responses
+        console.error("API Error:", response.status, response.statusText);
+        alert("Failed to request OTP. Please try again.");
+      }
+    } catch (error) {
+      // return <OtpModal />;
+      console.error("API Request Error:", error);
+      alert("Failed to request OTP. Please try again.");
+    }
 
-    // console.log("Form submitted:", {
-    //   firstName,
-    //   lastName,
-    //   phone,
-    //   termsAccepted,
-    // });
+    console.log("Form submitted:", {
+      firstName,
+      lastName,
+      phone,
+      termsAccepted,
+    });
   };
 
   const closeOtpModal = () => {
@@ -81,9 +69,31 @@ function Signup() {
         <img className={styles.homeimg} src={bannerImage} alt="Banner Image" />
 
         <div className={styles.blurdiv}>
-          <h1>Welcome To Weown</h1>
-          <br></br>
-          <h1>We're glad you're here</h1>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "start",
+              gap: "1rem",
+            }}
+          >
+            <span>Welcome To Weown</span>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "start",
+              }}
+            >
+              <h1 style={{ fontSize: "2.5rem", fontWeight: "800" }}>
+                Welcoming To Weown
+              </h1>
+
+              <h1 style={{ fontSize: "2.5rem", fontWeight: "800" }}>
+                We're glad you're here
+              </h1>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -107,88 +117,117 @@ function Signup() {
         </div>
         <main className={styles.main}>
           <form className={styles["signup-form"]} onSubmit={handleSubmit}>
-            <div className={styles.namefield}>
-              <div className={styles["name-inputs"]}>
-                <label htmlFor="firstName">First name </label>
-                <input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  className={styles.nameInput}
-                  placeholder="Your first name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  required
-                />
-              </div>
-              <div className={styles["last-name-inputs"]}>
-                <label htmlFor="lastName">Last name</label>
-                <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  className={styles.nameInput}
-                  placeholder="Your last name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
             <div className={styles.inputPhone}>
-              <label htmlFor="phone">Phone</label>
-              <input
-                type="tel"
-                id="phone"
-                placeholder="Your phone number"
-                name="phone"
-                className={styles.nameInput}
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                required
-              />
+              <div className={styles.namefield}>
+                <div className={styles["name-inputs"]}>
+                  <label htmlFor="firstName">First name </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    className={styles.nameInput}
+                    placeholder="Your first name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className={styles["last-name-inputs"]}>
+                  <label htmlFor="lastName">Last name</label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    className={styles.nameInput}
+                    placeholder="Your last name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="phone">Phone</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  placeholder="Your phone number"
+                  name="phone"
+                  className={styles.nameInput}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                />
+              </div>
             </div>
-            {/* <OtpModal phone={phone} /> */}
-            
-
-            <div className={styles["terms-checkbox"]}>
-              <input
-                type="checkbox"
-                id="terms"
-                name="terms"
-                className={styles.checkedField}
-                checked={termsAccepted}
-                onChange={(e) => setTermsAccepted(e.target.checked)}
-                required
-              />
-              <label htmlFor="terms">Accept terms and conditions</label>
+            <div className={styles.registerPhone}>
+              <div className={styles["terms-checkbox"]}>
+                <input
+                  type="checkbox"
+                  id="terms"
+                  name="terms"
+                  className={styles.checkedField}
+                  checked={termsAccepted}
+                  onChange={(e) => setTermsAccepted(e.target.checked)}
+                />
+                <label
+                  htmlFor="terms"
+                  style={{ cursor: "pointer", color: "#343434" }}
+                >
+                  Accept terms and conditions
+                </label>
+              </div>
+              <button type="submit" className={styles["register-button"]}>
+                Register
+              </button>
             </div>
-            <button onClick={() => {
-              return(             
-                <Link to="/otp"></Link>
-              );
-            }} type="submit" className={styles["register-button"]}>
-              <Link to="/otp">Register</Link>
-            </button>
           </form>
-
-          <div className={styles["login-link"]}>
-            Already have an account? <Link to="/login">Login</Link>
-          </div>
-          <div className={styles["social-login"]}>
-            <button className={styles["google-login"]}>
-              <img
-                src={googleLogo}
-                alt="Google Logo"
-                className={styles["google-logo"]}
-              />
-              Continue with Google
-            </button>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "1.5rem",
+            }}
+          >
+            <div className={styles["login-link"]}>
+              <span
+                style={{
+                  textDecoration: "none",
+                  fontWeight: "500",
+                }}
+              >
+                Already have an account?,{" "}
+              </span>
+              <Link to="/login" style={{ textDecoration: "none" }}>
+                <span
+                  style={{
+                    textDecoration: "none",
+                    color: "#7065f0",
+                    fontWeight: "650",
+                    cursor: "pointer",
+                  }}
+                >
+                  Login
+                </span>
+              </Link>
+            </div>
+            <div style={{ fontWeight: "600", fontSize: "1.1rem" }}>or</div>
+            <div className={styles["social-login"]}>
+              <button className={styles["google-login"]}>
+                <img
+                  src={googleLogo}
+                  alt="Google Logo"
+                  className={styles["google-logo"]}
+                />
+                Continue with Google
+              </button>
+            </div>
           </div>
         </main>
       </div>
 
-      {/* {showOtp && (
+      {showOtp && (
         <OtpModal
           onClose={closeOtpModal}
           onSubmit={(apiEndpoint, data) => {
@@ -196,13 +235,11 @@ function Signup() {
             console.log("Data to send:", data);
           }}
           userData={{
-            fname: firstName,
-            lname: lastName,
             phoneNumber: phone,
           }}
-          apiEndpoint="https://weownbackend.azurewebsites.net/user/signup"
+          apiEndpoint="https://weown-backend.azurewebsites.net/user/signup"
         />
-      )} */}
+      )}
     </div>
   );
 }

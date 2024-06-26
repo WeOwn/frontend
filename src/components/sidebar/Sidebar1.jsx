@@ -3,7 +3,8 @@ import styles from "./styles.module.css";
 import user1 from "./user1.png";
 import down_arrow from "./down_arrow.svg";
 import right_arrow from "./right_arrow.svg";
-import SearchBardrop from "../../Atoms/searchbardrop/SearchBardrop";
+import SearchBardrop from "../../Atoms/dropdownlist";
+import Sidebar2 from "./Sidebar2";
 import a1 from "./1.svg";
 import a2 from "./2.svg";
 import a3 from "./3.svg";
@@ -19,18 +20,188 @@ import a12 from "./12.svg";
 import star from "./star.svg";
 import fraud from "./fraud.svg";
 
-const Sidebar1 = ({
-  handleside2open,
-  handleside3open,
-  handleside4open,
-  handleside5open,
-}) => {
-  const [openDropdown, setOpenDropdown] = useState(0);
-  // const [isMounted, setIsMounted] = useState(false);
+const Sidebar1 = () => {
+  const list1 = [
+    {
+      id: 1,
+      img: a5,
+      name: "For Buyers",
+    },
+    {
+      id: 2,
+      img: a6,
+      name: "For Tenants",
+    },
 
-  // useEffect(() => {
-  //   setIsMounted(true);
-  // }, []);
+    {
+      id: 3,
+      img: a7,
+      name: "For Owners",
+    },
+    {
+      id: 4,
+      img: a8,
+      name: "For Dealers/Builders",
+    },
+  ];
+  const list2 = [
+    {
+      id: 1,
+      title: "Buy a home in Banglore",
+      dropdownlist: [
+        "Verified Properties",
+        "Flats",
+        "Builder Floors",
+        "Independent House",
+        "Plots/Land",
+        "Service Apartments",
+        "New Projects",
+      ],
+    },
+    {
+      id: 2,
+      title: "Commercial in Banglore",
+      dropdownlist: [
+        "Verified Properties",
+        "Ready to Move office spaces",
+        "Co-working office spaces",
+        "Shops",
+        "Showrooms",
+        "Industrial Lands/Plots",
+        "Commercial Lands/Inst. Lands",
+        "Agricultural/Farm Land",
+      ],
+    },
+    {
+      id: 3,
+      title: "Top Areas for Residential",
+      dropdownlist: [
+        "Verified Properties",
+        "Ready to Move office spaces",
+        "Co-working office spaces",
+        "Shops",
+        "Showrooms",
+        "Industrial Lands/Plots",
+        "Commercial Lands/Inst. Lands",
+        "Agricultural/Farm Land",
+      ],
+    },
+    {
+      id: 4,
+      title: "Top Areas For Commercial",
+      dropdownlist: [
+        "Verified Properties",
+        "Ready to Move office spaces",
+        "Co-working office spaces",
+        "Shops",
+        "Showrooms",
+        "Industrial Lands/Plots",
+        "Commercial Lands/Inst. Lands",
+        "Agricultural/Farm Land",
+      ],
+    },
+  ];
+  const list3 = [
+    {
+      id: 1,
+      title: "Rent a home in Banglore",
+      dropdownlist: [
+        "All Properties",
+        "Verified Properties",
+        "Flats",
+        "Builder Floors",
+        "Independent House",
+        "Serviced Apartments",
+        "Studio Apartments/1 RK Flats",
+      ],
+    },
+    {
+      id: 2,
+      title: "PG/Co-living in Banglore",
+      dropdownlist: [
+        "All Properties",
+        "PG for Boys",
+        "PG for Girls",
+        "Single Room PG",
+        "Double Sharing PG",
+      ],
+    },
+    {
+      id: 3,
+      title: "Commercial in Banglore",
+      dropdownlist: [
+        "Verified Properties",
+        "Ready to Move office spaces",
+        "Co-working office spaces",
+        "Shops",
+        "Showrooms",
+        "Industrial Lands/Plots",
+        "Commercial Lands/Inst. Lands",
+        "Agricultural/Farm Land",
+      ],
+    },
+    {
+      id: 4,
+      title: "Top Areas For Residential",
+      dropdownlist: [
+        "Verified Properties",
+        "Ready to Move office spaces",
+        "Co-working office spaces",
+        "Shops",
+        "Showrooms",
+        "Industrial Lands/Plots",
+        "Commercial Lands/Inst. Lands",
+        "Agricultural/Farm Land",
+      ],
+    },
+    {
+      id: 5,
+      title: "Top Areas For Commercial",
+      dropdownlist: [
+        "Verified Properties",
+        "Ready to Move office spaces",
+        "Co-working office spaces",
+        "Shops",
+        "Showrooms",
+        "Industrial Lands/Plots",
+        "Commercial Lands/Inst. Lands",
+        "Agricultural/Farm Land",
+      ],
+    },
+  ];
+
+  const list4 = [
+    {
+      id: 1,
+      title: "Property Services",
+      dropdownlist: ["Post Property for Free", "Owner Services"],
+    },
+  ];
+  const list5 = [
+    {
+      id: 1,
+      title: "For Dealers/Builders",
+      dropdownlist: ["Post Property", "Dealer Services", "Builder Services"],
+    },
+  ];
+
+  const arr = list1.map(() => false);
+  const [issideopen, setIssideopen] = useState(arr);
+
+  const handlesideopen = (id) => {
+    const arr = issideopen.map(() => false);
+    arr[id] = true;
+    setIssideopen(arr);
+  };
+
+  const handlesideclose = (e, id) => {
+    e.stopPropagation();
+    const arr = [...issideopen];
+    arr[id] = false;
+    setIssideopen(arr);
+  };
+
+  const [openDropdown, setOpenDropdown] = useState(0);
 
   const toggleDropdown = (index) => {
     setOpenDropdown(openDropdown === index ? 0 : index);
@@ -141,58 +312,44 @@ const Sidebar1 = ({
         <hr />
         <div className={styles.section2}>
           <ul>
-            <li onClick={() => handleside2open()} className={styles.listdiv}>
-              <span>
-                <div className={styles.listsection1}>
+            {list1.map((obj, index) => {
+              return (
+                <li
+                  key={obj.id}
+                  className={styles.listdiv}
+                  onClick={(e) => handlesideopen(index)}
+                >
                   <span>
-                    <img src={a5} alt="img" />
+                    <div className={styles.listsection1}>
+                      <span>
+                        <img src={obj.img} alt="img" />
+                      </span>
+                      <span>{obj.name}</span>
+                    </div>
                   </span>
-                  <span>For Buyers</span>
-                </div>
-              </span>
-              <span>
-                <img src={right_arrow} alt="down_arrow" />
-              </span>
-            </li>
-            <li onClick={() => handleside3open()} className={styles.listdiv}>
-              <span>
-                <div className={styles.listsection1}>
                   <span>
-                    <img src={a6} alt="img" />
+                    <img src={right_arrow} alt="down_arrow" />
                   </span>
-                  <span>ForTentants</span>
-                </div>
-              </span>
-              <span>
-                <img src={right_arrow} alt="down_arrow" />
-              </span>
-            </li>
-            <li onClick={() => handleside4open()} className={styles.listdiv}>
-              <span>
-                <div className={styles.listsection1}>
-                  <span>
-                    <img src={a7} alt="img" />
-                  </span>
-                  <span>For Owners</span>
-                </div>
-              </span>
-              <span>
-                <img src={right_arrow} alt="down_arrow" />
-              </span>
-            </li>
-            <li onClick={() => handleside5open()} className={styles.listdiv}>
-              <span>
-                <div className={styles.listsection1}>
-                  <span>
-                    <img src={a8} alt="img" />
-                  </span>
-                  <span>For Dealers/Builders</span>
-                </div>
-              </span>
-              <span>
-                <img src={right_arrow} alt="down_arrow" />
-              </span>
-            </li>
+                  {issideopen[index] ? (
+                    <Sidebar2
+                      heading={obj.name}
+                      handlesideclose={(e) => handlesideclose(e, index)}
+                      list={
+                        index === 0
+                          ? list2
+                          : index === 1
+                          ? list3
+                          : index === 2
+                          ? list4
+                          : index === 3
+                          ? list5
+                          : null
+                      }
+                    />
+                  ) : null}
+                </li>
+              );
+            })}
           </ul>
         </div>
         <hr />

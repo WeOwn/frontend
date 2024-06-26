@@ -8,7 +8,6 @@ import Section2 from "./Section2.jsx";
 const index = () => {
   return (
     <div className={styles.wrapper}>
-      <Navbar />
       <div className={styles.maindiv}>
         <div className={styles.section1}>
           <Section1 />
@@ -17,7 +16,6 @@ const index = () => {
           <Section2 />
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

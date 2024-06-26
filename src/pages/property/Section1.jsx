@@ -11,8 +11,8 @@ const Section1 = () => {
         <div className={styles.section1textdiv}>
           <h4 style={{ whiteSpace: "wrap" }}>Find Your Dream Property</h4>
           <p style={{ color: "#999999", width: "100%", marginTop: "1rem" }}>
-            Welecome to weown, where your dream property awaits in every comer
-            of our beautiful world. Explore our curated selection of properties,
+            Welcome to weown, where your dream property awaits in every comer of
+            our beautiful world. Explore our curated selection of properties,
             each offering a unique story and a chance to redefine your life.
             With categories to suit every dreamer, your journey.
           </p>

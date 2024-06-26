@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css";
+import search_logo from "./search_logo.svg";
 
 const Searchbar = () => {
   return (
@@ -23,8 +24,15 @@ const Searchbar = () => {
           padding: "0.8rem 2.5rem",
           borderRadius: "10px",
           width: "fit-content",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "1rem",
         }}
       >
+        <div style={{ width: "1rem" }}>
+          <img src={search_logo} alt="img" style={{ width: "100%" }} />
+        </div>
         <button
           style={{
             backgroundColor: "transparent",
@@ -32,6 +40,7 @@ const Searchbar = () => {
             color: "white",
             whiteSpace: "noWrap",
           }}
+          className={styles.buttontext}
         >
           Find builder
         </button>
