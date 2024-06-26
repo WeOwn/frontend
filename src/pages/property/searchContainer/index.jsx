@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import down_arrow from "./down_arrow.svg";
 import Rangefilter from "../../../Atoms/rangeSlider";
+import search_logo from "./search_logo.svg";
 import droplogo1 from "./droplogo1.svg";
 import droplogo2 from "./droplogo2.svg";
 import droplogo3 from "./droplogo3.svg";
@@ -112,33 +113,42 @@ const Search = () => {
   return (
     <div className={styles.searchContainer}>
       <div className={styles.section1}>
-        <input
-          type="text"
-          placeholder="Search For Property"
-          style={{
-            background: "transparent",
-            border: "none",
-            outline: "none",
-            minWidth: "70%",
-            fontSize: "1.1rem",
-          }}
-        />
-
+        <div className={styles.inputBox}>
+          <input
+            type="text"
+            placeholder="Search For Property"
+            style={{
+              background: "transparent",
+              // border: "1px solid black",
+              width: "100%",
+              height: "100%",
+              fontSize: "1rem",
+            }}
+          />
+        </div>
         <div
           style={{
             backgroundColor: "#7065f0",
             padding: "0.8rem 2.5rem",
             borderRadius: "10px",
+            width: "fit-content",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "1rem",
           }}
         >
+          <div style={{ width: "1rem" }}>
+            <img src={search_logo} alt="img" style={{ width: "100%" }} />
+          </div>
           <button
             style={{
               backgroundColor: "transparent",
               border: "none",
               color: "white",
-              fontSize: "0.8rem",
-              whiteSpace: "nowrap",
+              whiteSpace: "noWrap",
             }}
+            className={styles.buttontext}
           >
             Find Property
           </button>

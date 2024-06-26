@@ -49,7 +49,7 @@ const Section2 = () => {
                 fontWeight: "400",
                 fontSize: "0.9rem",
                 lineHeight: "1.2rem",
-                width: "70%",
+                width: "100%",
                 color: "#999999",
               }}
             >

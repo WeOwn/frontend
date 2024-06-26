@@ -13,27 +13,39 @@ import Profile from "../pages/profile";
 import PropertiesFilter from "../pages/properties_filter";
 import Builder from "../pages/builder";
 import Builders from "../pages/builders";
+import ProtectedRoute from "./ProtectedRoute";
+import Layout from "./Layout";
 
 export const Router = () => {
   return (
     <Routes>
       <Route path={"/"}>
         <Route index element={<Desktop />} />
-        <Route path={"/home"} element={<Home />} />
-        <Route path={"/investment_homepage"} element={<InvestmentHomepage />} />
-        <Route path={"/group_investment"} element={<GroupInvestment />} />
-        <Route
-          path={"/property_description"}
-          element={<PropertyDescription />}
-        />
-        <Route path={"/properties"} element={<Property />} />
-        <Route path={"/profile"} element={<Profile />} />
-        <Route path={"/properties_filter"} element={<PropertiesFilter />} />
-        <Route path={"/builder"} element={<Builder />} />
-        <Route path={"/builders"} element={<Builders />} />
         <Route path={"/signup"} element={<Signup />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/otp"} element={<OtpModal />} />
+
+        <Route element={<Layout />}>
+          <Route path={"/user"} element={<ProtectedRoute />}>
+            <Route path={"profile"} element={<Profile />} />
+          </Route>
+          <Route path={"/home"} element={<Home />} />
+          <Route
+            path={"/investment_homepage"}
+            element={<InvestmentHomepage />}
+          />
+          <Route path={"/group_investment"} element={<GroupInvestment />} />
+          <Route
+            path={"/property_description"}
+            element={<PropertyDescription />}
+          />
+          <Route path={"/properties"} element={<Property />} />
+
+          <Route path={"/properties_filter"} element={<PropertiesFilter />} />
+          <Route path={"/builder"} element={<Builder />} />
+          <Route path={"/builders"} element={<Builders />} />
+        </Route>
+
         {/* <Route path={"/desktop"} element={<Desktop />} /> */}
       </Route>
     </Routes>

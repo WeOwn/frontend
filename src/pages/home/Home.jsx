@@ -22,6 +22,7 @@ import wishlist_btn from "./wishlist_btn.png";
 
 import banner_img from "./banner_img.svg";
 import { Link } from "react-router-dom";
+import Searchmob from "../../components/searchmob";
 
 
 function Home() {
@@ -108,6 +109,19 @@ function Home() {
     };
   }, []);
 
+  const [mobsize, setMobSize] = useState(false);
+
+  const handleresize = () => {
+    if (window.innerWidth <= 768) setMobSize(true);
+    else setMobSize(false);
+  };
+
+  useEffect(() => {
+    handleresize();
+    window.addEventListener("resize", handleresize);
+    return () => window.removeEventListener("resize", handleresize);
+  });
+
   return (
     <>
       <Navbar changenav={changenav} />
@@ -141,17 +155,23 @@ function Home() {
               to visualize your dream house in seconds.
             </div>
 
-            <div className={styles.optionTooglerDiv}>
-              <OptionToogle />
-              <div className={styles.searchContainer}>
-                <Search />
+            {!mobsize ? (
+              <div className={styles.optionTooglerDiv}>
+                <OptionToogle />
+                <div className={styles.searchContainer}>
+                  <Search />
+                </div>
               </div>
-            </div>
+            ) : (
+              <div style={{ width: "100%" }}>
+                <Searchmob />
+              </div>
+            )}
           </div>
         </div>
         <div className={styles.seconddiv}>
-          <div>
-            <img src={stardesign} alt="img" />
+          <div style={{ width: "3rem" }}>
+            <img src={stardesign} alt="img" style={{ width: "100%" }} />
           </div>
           <div
             className={styles.home1}
@@ -168,7 +188,7 @@ function Home() {
                 <div className={styles.searchSectionHeader}>
                   What are you searching for?
                 </div>
-                <div className={styles.searchSectionDesc}>
+                <div className={styles.desc}>
                   <div>
                     Explore our handpicked selection of featured properties.
                     Each listing offers a glimpse into exceptional homes and
@@ -254,19 +274,7 @@ function Home() {
               </div>
             </div>
 
-            <div
-              style={{
-                backgroundColor: "#EAEAEA",
-                display: "flex",
-                flexDirection: "column",
-                gap: "2rem",
-                height: "18rem",
-                paddingInline: "1rem",
-                paddingBlock: "1.5rem",
-                borderRadius: "10px",
-                // width: "20rem",
-              }}
-            >
+            <div className={styles.profileContainerdiv}>
               <div
                 style={{
                   backgroundColor: "white",
@@ -372,8 +380,8 @@ function Home() {
           >
             <div className={styles.FeaturedIntroContainer}>
               <div className={styles.introContainer}>
-                <div>
-                  <img src={stardesign} alt="img" />
+                <div style={{ width: "3rem" }}>
+                  <img src={stardesign} alt="img" style={{ width: "100%" }} />
                 </div>
                 <div className={styles.FeaturedSectionHeader}>
                   Featured Properties
@@ -388,7 +396,7 @@ function Home() {
                     alignItems: "center",
                   }}
                 >
-                  <div className={styles.FeaturedSectionDesc}>
+                  <div className={styles.desc}>
                     Explore our handpicked selection of featured properties.
                     Each listing offers a glimpse into exceptional homes and
                     investments available through Estatein. Click "View Details"
@@ -429,8 +437,8 @@ function Home() {
                   gap: "1em",
                 }}
               >
-                <div>
-                  <img src={stardesign} alt="img" />
+                <div style={{ width: "3rem" }}>
+                  <img src={stardesign} alt="img" style={{ width: "100%" }} />
                 </div>
                 <div style={{ fontWeight: "bolder", fontSize: "2rem" }}>
                   Popular Builders
@@ -445,14 +453,7 @@ function Home() {
                     alignItems: "center",
                   }}
                 >
-                  <div
-                    style={{
-                      fontWeight: "400",
-                      fontSize: "0.9rem",
-                      lineHeight: "1.2rem",
-                      width: "70%",
-                    }}
-                  >
+                  <div className={styles.desc}>
                     Explore our handpicked selection of featured properties.
                     Each listing offers a glimpse into exceptional homes and
                     investments available through Estatein. Click "View Details"
@@ -471,6 +472,7 @@ function Home() {
                           cursor: "pointer",
                           width: "10rem",
                           color: "#0F0B3E",
+                          fontSize: "1rem",
                         }}
                       >
                         View All Builders
@@ -489,8 +491,6 @@ function Home() {
           {/* <Aisection /> */}
         </div>
 
-
-        <Footer />
       </div>
     </>
   );

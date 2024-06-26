@@ -62,7 +62,7 @@ const index = () => {
           marginTop: "0.5rem",
         }}
       >
-        <p style={{ color: "grey", width: "80%" }}>
+        <p style={{ color: "grey" }} className={styles.desc}>
           Exit strategies are a crucial aspect of real estate syndication,
           providing investors with a roadmap for realizing their returns and
           capitalizing on their investments. Let's delve into the various exit

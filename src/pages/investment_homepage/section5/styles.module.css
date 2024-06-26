@@ -25,6 +25,7 @@
     color:#525252;
     font-size: 0.9rem;
     font-weight: 550;
+    text-align: center;
 }
 
 .heading{
@@ -36,16 +37,18 @@
 .griddiv{
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    gap:5rem;
+    column-gap:5rem;
+    row-gap: 3rem;
 }
 
-@media(max-width:650px) {
+@media(max-width:399px) {
     .griddiv{
         grid-template-columns: repeat(1,1fr);
+        
     }
 }
 
-@media(min-width:651px) and (max-width:870px) {
+@media(min-width:400px) and (max-width:870px) {
     .griddiv{
         grid-template-columns: repeat(2,1fr);
     }

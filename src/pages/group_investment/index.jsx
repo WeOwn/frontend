@@ -18,7 +18,6 @@ import ExitStartegy from "./exit_strategy";
 const PropertyDescription = () => {
   return (
     <>
-      <Navbar />
       <div className={styles.maindiv}>
         <div className={styles.section1}>
           <Section1 />
@@ -52,7 +51,6 @@ const PropertyDescription = () => {
           <Section9 />
         </div>
       </div>
-      <Footer />
     </>
   );
 };

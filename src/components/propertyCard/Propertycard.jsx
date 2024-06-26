@@ -93,6 +93,7 @@ export const Propertycard = ({
                 cursor: "pointer",
                 width: "8rem",
                 marginLeft: "1rem",
+                fontSize: "0.9rem",
               }}
             >
               View Property

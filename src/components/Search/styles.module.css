@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   gap:0.2rem;
-  overflow:auto;
+  
   
   align-items: center;
   /* overflow:auto; */
@@ -35,6 +35,7 @@
   margin-left: 0.5rem;
   /* background:black; */
   border-left:1px solid #999999;
+  font-size: 1rem;
 
 
   /* margin-left: 1rem; */
@@ -93,23 +94,7 @@
    
 }
 
-/* .optionBox{
-  
- width:19%;
- 
-  appearance: none;
-  min-width:fit-content;
- 
-  border:none;
-  outline:none;
-  background:#EEEEEE;   
-  border: 1px solid #E1E1E1; 
-  border-radius: 10px;
-  padding: 1rem;
-  color:#999999;
-  
-   
-} */
+
 
 .arrowimgdiv{
   width:0.9rem;

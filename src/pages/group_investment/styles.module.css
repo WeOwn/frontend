@@ -145,9 +145,16 @@
 } */
 
 .section2descriptionp{
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
+  /* display: grid;
+  grid-template-columns: repeat(2,1fr); */
+  display: flex;
+  justify-content:space-between;
+  
   gap:1rem;
+  width:100%;
+  margin-inline: auto;
+  /* background-color: red; */
+  /* overflow: auto; */
 }
 
 @media(max-width:700px){
@@ -158,7 +165,11 @@
 
 @media(max-width:1000px){
   .section2descriptionp{
-    grid-template-columns: repeat(1,1fr);
+    /* width:100%; */
+    margin-inline: auto;
+    /* grid-template-columns: repeat(1,1fr); */
+    flex-direction: column;
+    align-items: center;
   }
 
   
@@ -174,6 +185,8 @@
     gap: 1rem;
     padding:2rem 2rem 1rem;
     /* margin-top: 2rem;; */
+    overflow:auto;
+    /* background-color: yellow; */
 }
 
 .section2features{
@@ -198,6 +211,17 @@
     padding:2rem 2rem;
     overflow:auto;
 }
+.section2features1grid{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    row-gap: 3rem;
+}
+/* @media(max-width:500px) {
+  .section2features1grid{
+    grid-template-columns: repeat(1,1fr);
+    
+  }
+} */
 .section2features2{
     border:1px solid #E3E3E3;
     border-radius: 10px;
@@ -338,10 +362,43 @@ h4{
 .section2grid{
   display: grid;
   grid-template-columns: repeat(3,1fr);
+  width:100%;
+  overflow:auto;
   /* gap:1rem; */
   
 }
 
+.profilebuttondivp{
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  background-color: rgba(112, 101, 240, 0.12);
+  padding: 0.6rem 1rem 0.6rem 0.6rem;
+  border-radius: 10px;
+  flex-wrap: wrap;  
+}
+
+@media(max-width:506px) {
+  .profilebuttondivp{
+    gap:1rem;
+  }
+}
+
+
+.desc{
+  font-weight: 400;
+  font-size: 0.9em;
+  width: 70%;
+  line-height: 1.2rem;
+  
+  width: 80%;
+}
+
+@media(max-width:800px) {
+  .desc{
+    width:100%;
+  }
+}
 
 
 

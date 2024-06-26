@@ -17,7 +17,6 @@ import Section11 from "./Section11.jsx";
 const PropertyDescription = () => {
   return (
     <>
-      <Navbar />
       <div className={styles.maindiv}>
         <div className={styles.section1}>
           <Section1 />
@@ -53,7 +52,6 @@ const PropertyDescription = () => {
           <Section11 />
         </div>
       </div>
-      <Footer />
     </>
   );
 };

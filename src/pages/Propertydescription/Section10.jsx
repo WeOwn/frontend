@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./styles.module.css";
 import stardesign from "./stardesign.svg";
 
 const Section10 = () => {
@@ -49,7 +50,7 @@ const Section10 = () => {
           marginTop: "0.5rem",
         }}
       >
-        <p style={{ color: "#999999", width: "80%" }}>
+        <p style={{ color: "#999999" }} className={styles.desc}>
           Find answers to common questions about Estateins's services, property
           listing, and the real estate process. We're here to provide clarity
           and assist you every tep of the way

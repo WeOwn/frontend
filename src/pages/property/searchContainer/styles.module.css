@@ -2,6 +2,7 @@
     width: 100%;
     left:0;
     right:0;
+    bottom: 0;
     margin-inline:auto;
     /* margin-top: 5.5rem; */
     /* margin-top: -10rem; */
@@ -33,6 +34,26 @@
     border-top-left-radius: 10px;
     overflow:auto;
 }
+
+.maindiv{
+    /* width:70%; */
+    background-color: #EEEEEE;
+    border:1px solid #E1E1E1;
+    padding:1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position:absolute;
+    bottom:1rem;
+    left:15%;
+    right:15%;
+    min-width: fit-content;
+    z-index:1;
+    border-radius: 10px;
+    overflow:auto;
+    gap:0.5rem;
+}
+
 @media(max-width:1030px) {
     .searchContainer{
         width:95%;
@@ -43,6 +64,9 @@
 }
 @media(max-width:850px) {
 .section1{
+    width:95%;
+}
+.section2{
     width:95%;
 }
 }
@@ -60,10 +84,12 @@
     
     /* overflow-inline: auto; */
     padding: 1rem;   
-    overflow:auto;
+    /* overflow:auto; */
     /* flex-wrap: wrap; */
     /* z-index:10; */
 }
+
+
 
 
 
@@ -83,6 +109,18 @@
     position:relative;
     z-index:0;
     
+}
+@media(max-width:1080px) {
+    .section2{
+        /* flex-direction: column;
+        align-items: flex-start;
+        gap:1rem;
+        width:100%; */
+        display: none;
+    }
+    .selectBox{
+        width:100%;
+    }
 }
 .optionBox{
     position:absolute;
@@ -127,8 +165,67 @@
     
 }
 
-.rotate180 {
+.rotate180{
+    -webkit-transform: rotate(180deg); /* Safari and Chrome */
+    -moz-transform: rotate(180deg);    /* Firefox */
+    -ms-transform: rotate(180deg);     /* Internet Explorer 9 */
+    -o-transform: rotate(180deg);      /* Opera */
     transform: rotate(180deg);
-  }
+    /* Optional: add transition for smooth rotation */
+    transition: transform 0.5s ease-in-out;
+}
+
+
+
+
+
+@media(max-width:850px) {
+    .maindiv{
+        bottom:0rem;
+    }
+}
+
+@media(min-width:851px) and (max-width:1080px) {
+    .maindiv{
+        bottom:0rem;
+    }
+}
+
+@media(max-width:915px) {
+    .maindiv{
+        left:5%;
+        right:5%;
+    }
+}
+
+.inputBox{
+    min-width:70%;
+    /* background-color: yellow;; */
+}
+
+@media(max-width:660px) {
+    .inputBox{
+        min-width:30%;
+        /* background:black; */
+    }
+}
+
+@media(min-width:661px) and (max-width:1000px){
+    .inputBox{
+        min-width:50%;
+        /* background:black; */
+    }
+}
+
+@media(max-width:600px) {
+    .buttontext{
+        display:none;
+    }
+}
+
+
+
+
+
 
 
