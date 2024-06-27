@@ -9,6 +9,7 @@ import card1 from "./card1.png";
 import card2 from "./card2.png";
 import { Propertycard } from "../../components/propertyCard/Propertycard";
 import { Builderscard } from "../../components/builderscard/Builderscard";
+
 import searchlogo from "./searchlogo.png";
 
 import Aisection from "./Aisection";
@@ -19,11 +20,13 @@ import stardesign from "./stardesign.png";
 import { Link } from "react-router-dom";
 import Searchmob from "../../components/searchmob";
 
+
 import ProfileCard from "../../components/profilecard";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleNavbar } from "../../redux/appslice";
 // import { axios } from "axios";
 import api from "../../service/apiGateway";
+
 
 function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -364,6 +367,7 @@ function Home() {
               // marginInline: "auto",
             }}
           >
+
             <div className={styles.builderContainerp}>
               <div
                 style={{
@@ -425,6 +429,7 @@ function Home() {
           </div>
           {/* <Aisection /> */}
         </div>
+
       </div>
     </>
   );
