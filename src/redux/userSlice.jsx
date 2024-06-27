@@ -3,10 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    isLoggedIn: false,
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
+    isLoggedIn: true,
+    firstName: "Harsh",
+    lastName: "Raghav",
+    phoneNumber: "123456",
     termsAccepted: false,
   },
 

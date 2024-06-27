@@ -1,27 +1,29 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import Navbar from "../../components/navbar/Navbar";
-// import Navbar2 from "../../components/navbar/Navbar2";
+
 import styles from "./styles.module.css";
 import Search from "../../components/Search";
-import classNames from "classnames";
+
 import OptionToogle from "../../Atoms/OptionToogle";
 import card1 from "./card1.png";
 import card2 from "./card2.png";
 import { Propertycard } from "../../components/propertyCard/Propertycard";
 import { Builderscard } from "../../components/builderscard/Builderscard";
 import searchlogo from "./searchlogo.png";
-import user1 from "./user1.png";
+
 import Aisection from "./Aisection";
-import Footer from "../../components/Footer/Footer";
+
 import cloud from "./cloud.png";
 import stardesign from "./stardesign.png";
-import upright from "./upright.png";
-import wishlist_btn from "./wishlist_btn.png";
 
-import banner_img from "./banner_img.svg";
 import { Link } from "react-router-dom";
 import Searchmob from "../../components/searchmob";
+
+import ProfileCard from "../../components/profilecard";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleNavbar } from "../../redux/appslice";
+// import { axios } from "axios";
+import api from "../../service/apiGateway";
 
 function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -84,62 +86,88 @@ function Home() {
     { id: "3", heading: "Sara Johnson", subheading: "Delhi City Towner" },
     { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
   ];
-  const [changenav, setChangeNav] = useState(false);
+
+  const changeNavbar = useSelector((store) => store.app.changeNavbar);
+  // console.log(changeNavbar);
+  const dispatch = useDispatch();
   const handleScroll = () => {
     const heroSection = document.getElementById("hero-section");
-
+    // console.log("run");
     if (heroSection) {
       const heroSectionHeight = heroSection.offsetHeight;
       const navbarHeight = 76;
 
       if (window.scrollY >= heroSectionHeight - navbarHeight) {
-        setChangeNav(true);
+        if (!changeNavbar) {
+          dispatch(toggleNavbar(true));
+        }
       } else {
-        setChangeNav(false);
+        if (changeNavbar) {
+          dispatch(toggleNavbar(false));
+        }
       }
     }
   };
 
   useEffect(() => {
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  });
 
   const [mobsize, setMobSize] = useState(false);
 
   const handleresize = () => {
+    // console.log("resize fun");
     if (window.innerWidth <= 768) setMobSize(true);
     else setMobSize(false);
   };
 
   useEffect(() => {
+    // console.log("resize eefect");
     handleresize();
     window.addEventListener("resize", handleresize);
-    return () => window.removeEventListener("resize", handleresize);
-  });
+    return () => {
+      dispatch(toggleNavbar(false));
+      window.removeEventListener("resize", handleresize);
+    };
+  }, []);
+
+  const [allbuilders, setAllBuilders] = useState([]);
+  const [allproperties, setAllProperties] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      // const [buildersResponse, propertiesResponse] = await Promise.all([
+      //   api.get("/builder/all"),
+      //   api.get("property/list?min-price=0&page=page-2"),
+      // ]);
+
+      const buildersResponse = await api.get("/builder/all");
+
+      console.log("All builders:", buildersResponse.data.data);
+
+      setAllBuilders(buildersResponse.data.data);
+      const propertiesResponse = await api.get(
+        "property/list?min-price=0&page=page-2"
+      );
+      console.log("All properties:", propertiesResponse.data.data);
+      setAllProperties(propertiesResponse.data.data);
+    } catch (error) {
+      console.error("Error occurred while fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>
-      <Navbar changenav={changenav} />
       <div className={styles.maindiv}>
         <div className={styles.HelloSection} id="hero-section">
-          {/* <div className={styles.cloud1}>
-            <img src={cloud} alt="cloudimg" className={styles.cloud} />
-          </div>
-          <div className={styles.cloud2}>
-            <img src={cloud} alt="cloudimg" className={styles.cloud} />
-          </div>
-          <div className={styles.cloud3}>
-            <img src={cloud} alt="cloudimg" className={styles.cloud} />
-          </div>
-          <div className={styles.cloud4}>
-            <img src={cloud} alt="cloudimg" className={styles.cloud} />
-          </div>
-          <div className={styles.cloud5}>
-            <img src={cloud} alt="cloudimg" className={styles.cloud} />
-          </div> */}
           <div className={styles.helloContentContainer}>
             <div className={styles.mainheadingdiv}>
               <div className={`${styles.mainHeading}`}>
@@ -272,97 +300,7 @@ function Home() {
               </div>
             </div>
 
-            <div className={styles.profileContainerdiv}>
-              <div
-                style={{
-                  backgroundColor: "white",
-                  paddingBlock: "1rem",
-                  paddingRight: "4rem",
-                  paddingLeft: "1rem",
-                  borderRadius: "10px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "start",
-                  gap: "0.5rem",
-                  fontWeight: "bold",
-                  fontSize: "0.9rem",
-                }}
-              >
-                <div
-                  style={{
-                    backgroundColor: "white",
-                    boxShadow: " 0 0 10px lightgrey",
-                    padding: "0.6rem 0.8rem",
-                    // border: "1px solid black",
-                    borderRadius: "15px",
-                  }}
-                >
-                  <img src={user1} alt="userlogo" />
-                </div>
-                <span style={{ whiteSpace: "nowrap" }}>My Account</span>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem",
-                }}
-              >
-                <p style={{ fontSize: "0.8rem", color: "grey" }}>
-                  Your recent activity
-                </p>
-                <div
-                  style={{
-                    backgroundColor: "#CDC9FA",
-                    paddingInline: "1rem",
-                    paddingBlock: "0.5rem",
-                    borderRadius: "10px",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.3rem",
-                    color: "black",
-                    width: "70%",
-                    textAlign: "left",
-                    position: "relative",
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "0rem",
-                      right: "0.5rem",
-                    }}
-                  >
-                    <img src={upright} alt="img" />
-                  </div>
-                  <p
-                    style={{
-                      fontWeight: "bolder",
-                      fontSize: "1.02rem",
-                    }}
-                  >
-                    12
-                  </p>{" "}
-                  <p style={{ fontSize: "0.75rem", fontWeight: "bold" }}>
-                    {" "}
-                    viewed
-                  </p>
-                </div>
-                <div
-                  style={{
-                    backgroundColor: "#7065f0",
-                    paddingBlock: "0.5rem",
-                    paddingInline: "auto",
-                    borderRadius: "10px",
-                    textAlign: "center",
-                    fontSize: "0.8rem",
-                    color: "white",
-                  }}
-                >
-                  View all activity
-                </div>
-              </div>
-            </div>
+            <ProfileCard />
           </div>
 
           {/* featured properties */}
@@ -411,8 +349,8 @@ function Home() {
               </div>
             </div>
             <div className={styles.FeaturedPropertyContainer}>
-              {List1.map((obj) => (
-                <Propertycard key={obj.id} {...obj} />
+              {allproperties.map((property) => (
+                <Propertycard key={property.id} {...property} />
               ))}
             </div>
           </div>
@@ -480,8 +418,8 @@ function Home() {
               </div>
             </div>
             <div className={styles.builderContainer}>
-              {List2.map((obj) => (
-                <Builderscard key={obj.id} {...obj} />
+              {allbuilders.map((builder) => (
+                <Builderscard key={builder.id} {...builder} />
               ))}
             </div>
           </div>

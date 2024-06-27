@@ -130,7 +130,7 @@ const Navbar1 = () => {
             <span style={{ cursor: "pointer" }}>Search Builders</span>
           </li>
           <Link
-            to="/group_investment"
+            to="/investment_homepage"
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <li className={styles.navoption}>

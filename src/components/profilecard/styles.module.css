@@ -1,0 +1,16 @@
+.profileContainerdiv{
+    background-color: #EAEAEA;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 18rem;
+    padding-inline: 1rem;
+    padding-block: 1.5rem;
+    border-radius: 10px;
+  }
+  @media(max-width:270px) {
+    .profileContainerdiv{
+      width:80vw;
+      overflow:auto;
+    }
+  }

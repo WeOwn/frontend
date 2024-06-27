@@ -6,8 +6,7 @@
   /* height: 100vh; */
   color:#0F0B3E;
   margin-inline: auto;
-  /* color:red; */
-  /* position:relative; */
+
 }
 .seconddiv{
   width:85%;
@@ -80,40 +79,7 @@
     background-image: none;
   }
 }
-.cloud1{
-  position: absolute;
-  /* width:9rem; */
-  top:17rem;
-  left:-1rem;
-}
-.cloud2{
-  position: absolute;
-  /* width:9rem; */
-  top:10rem;
-  left:20%;
-}
-.cloud3{
-  position: absolute;
-  /* width:9rem; */
-  top:7rem;
-  right:40%;
-}
-.cloud4{
-  position: absolute;
-  /* width:9rem; */
-  top:12rem;
-  right:12%;
-}
-.cloud5{
-  position: absolute;
-  /* width:9rem; */
-  top:20rem;
-  right:0%;
-}
 
-.cloud{
-  width:5rem;
-}
 
 .helloContentContainer {
   width: 60%;
@@ -307,22 +273,7 @@
   z-index: 1;
 }
 
-.profileContainerdiv{
-  background-color: #EAEAEA;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  height: 18rem;
-  padding-inline: 1rem;
-  padding-block: 1.5rem;
-  border-radius: 10px;
-}
-@media(max-width:270px) {
-  .profileContainerdiv{
-    width:80vw;
-    overflow:auto;
-  }
-}
+
 
 /* featured Properties section */
 
@@ -453,7 +404,7 @@
 .desc{
   font-weight: 400;
   font-size: 0.9rem;
-  width: 70%;
+ 
   line-height: 1.2rem;
   
   width: 80%;

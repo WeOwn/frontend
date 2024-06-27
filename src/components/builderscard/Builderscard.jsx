@@ -6,7 +6,8 @@ import Chip from "../../Atoms/Chip";
 import send from "./send.png";
 import { Link } from "react-router-dom";
 
-export const Builderscard = ({ heading, subheading }) => {
+export const Builderscard = ({ name, email, _id }) => {
+  // console.log("builder-> ", builder);
   return (
     <div className={styles.maindiv}>
       <div className={styles.imagediv}>
@@ -20,9 +21,9 @@ export const Builderscard = ({ heading, subheading }) => {
         />
       </div>
       <div className={styles.description}>
-        <div className={styles.heading}>{heading}</div>
+        <div className={styles.heading}>{name}</div>
         <div className={styles.subheading} style={{ color: "#999999" }}>
-          {subheading}
+          {email}
         </div>
       </div>
 
@@ -51,16 +52,21 @@ export const Builderscard = ({ heading, subheading }) => {
       </div> */}
 
       <div className={styles.lastdiv}>
-        <div
-          style={{
-            fontSize: "0.9rem",
-            fontWeight: "550",
-            whiteSpace: "nowrap",
-          }}
+        <Link
+          to="/contact_builders"
+          style={{ textDecoration: "none", color: "inherit" }}
         >
-          Contact Us
-        </div>
-        <Link to={"/builder"} style={{ textDecoration: "none" }}>
+          <div
+            style={{
+              fontSize: "0.9rem",
+              fontWeight: "550",
+              whiteSpace: "nowrap",
+            }}
+          >
+            Contact Us
+          </div>
+        </Link>
+        <Link to={`/builder/${_id}`} style={{ textDecoration: "none" }}>
           <div
             style={{
               backgroundColor: "#703BF7",
