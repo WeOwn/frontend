@@ -334,6 +334,22 @@ h4{
   }
 }
 
+.formgrid{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  column-gap:2rem;
+  row-gap: 2rem;
+}
+
+
+
+
+@media(max-width:530px) {
+  .formgrid{
+      grid-template-columns: repeat(1,1fr);
+  }
+}
+
 
 
 

@@ -64,14 +64,16 @@ const Index = ({ dropdownname, logo, style, list }) => {
           borderRadius: "50%",
         }}
       >
-        <div className={styles.droplogo}>
-          <img
-            src={logo}
-            alt="img"
-            style={{ width: "100%", height: "100%" }}
-            className={isopen === 0 && styles.rotate180}
-          />
-        </div>
+        {logo && (
+          <div className={styles.droplogo}>
+            <img
+              src={logo}
+              alt="img"
+              style={{ width: "100%", height: "100%" }}
+              className={isopen === 0 && styles.rotate180}
+            />
+          </div>
+        )}{" "}
       </div>
 
       {isopen !== -1 && (

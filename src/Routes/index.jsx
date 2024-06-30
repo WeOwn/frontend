@@ -13,6 +13,7 @@ import Profile from "../pages/profile";
 import PropertiesFilter from "../pages/properties_filter";
 import Builder from "../pages/builder";
 import Builders from "../pages/builders";
+import BuildersContactUs from "../pages/buildersContactus";
 import ProtectedRoute from "./ProtectedRoute";
 import Layout from "./Layout";
 
@@ -44,6 +45,7 @@ export const Router = () => {
           <Route path={"/properties_filter"} element={<PropertiesFilter />} />
           <Route path={"/builder"} element={<Builder />} />
           <Route path={"/builders"} element={<Builders />} />
+          <Route path={"/contact_builders"} element={<BuildersContactUs />} />
         </Route>
 
         {/* <Route path={"/desktop"} element={<Desktop />} /> */}
