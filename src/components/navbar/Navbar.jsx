@@ -13,12 +13,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../redux/appslice";
 // import Sidebar from "../sidebar/Sidebar";
 
-function Navbar({ changenav }) {
+function Navbar() {
   const sidebar = useSelector((store) => store.app.issidebaropen);
   const dispatch = useDispatch();
   const handlesideopen = () => {
     dispatch(toggleSidebar());
   };
+
+  const changeNavbar = useSelector((store) => store.app.changeNavbar);
 
   const [mobsize, setMobSize] = useState(false);
 
@@ -44,7 +46,7 @@ function Navbar({ changenav }) {
         )}
         {sidebar && <Sidebar1 />}
       </div>
-      {mobsize ? <Navbarmob /> : !changenav ? <Navbar1 /> : <Navbar2 />}
+      {mobsize ? <Navbarmob /> : !changeNavbar ? <Navbar1 /> : <Navbar2 />}
     </div>
   );
 }

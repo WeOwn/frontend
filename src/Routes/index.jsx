@@ -43,7 +43,7 @@ export const Router = () => {
           <Route path={"/properties"} element={<Property />} />
 
           <Route path={"/properties_filter"} element={<PropertiesFilter />} />
-          <Route path={"/builder"} element={<Builder />} />
+          <Route path={"/builder/:id"} element={<Builder />} />
           <Route path={"/builders"} element={<Builders />} />
           <Route path={"/contact_builders"} element={<BuildersContactUs />} />
         </Route>

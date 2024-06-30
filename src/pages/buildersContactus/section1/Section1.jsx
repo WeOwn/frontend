@@ -22,7 +22,9 @@ const Section1 = () => {
           marginTop: "0.5rem",
         }}
       >
-        <p style={{ color: "grey" }} className={styles.desc}>
+
+        <p style={{ color: "#999999" }} className={styles.desc}>
+
           We're excited to connect with you and learn more about your real
           estate goals. Use the form below to get in touch with Estatein.
           Whether you're a prospective client, partner, or simply curious about

@@ -9,6 +9,7 @@
   height: 100vh;
   background-color: #E8E8E8;
   width: 25%;  
+  min-width: fit-content;
   box-shadow: -2px 0 5px rgba(0,0,0,0.5);
   overflow-y: auto;
   z-index:1000;

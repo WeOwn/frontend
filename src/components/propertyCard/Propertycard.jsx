@@ -9,15 +9,8 @@ import Chip from "../../Atoms/Chip";
 import wishlist_btn from "./wishlist_btn.png";
 import { Link } from "react-router-dom";
 
-export const Propertycard = ({
-  img,
-  heading,
-  description,
-  detail1,
-  detail2,
-  detail3,
-  price,
-}) => {
+export const Propertycard = ({ img, name, description, features, price }) => {
+  const [detail1, detail2, detail3] = features;
   return (
     <div className={styles.maindiv}>
       <div className={styles.imagediv}>
@@ -38,7 +31,7 @@ export const Propertycard = ({
         </div>
       </div>
       <div className={styles.description}>
-        <div className={styles.heading}>{heading}</div>
+        <div className={styles.heading}>{name}</div>
         <div className={styles.subheading}>{description}</div>
       </div>
 
