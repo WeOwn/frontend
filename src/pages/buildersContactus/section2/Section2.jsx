@@ -52,7 +52,9 @@ const Section2 = () => {
           marginTop: "0.5rem",
         }}
       >
+
         <p style={{ color: "#999999" }} className={styles.desc}>
+
           Estatein is here to serve you across multiple locations. Whether
           you're looking to meet our team, discuss real estate opportunities, or
           simply drop by for a chat, we have offices conveniently located to
