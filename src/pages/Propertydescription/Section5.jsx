@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css";
+import Button from "../../Atoms/Button";
 
 const Section5 = () => {
   return (
@@ -167,25 +168,7 @@ const Section5 = () => {
                 </p>
               </div>
 
-              <div
-                style={{
-                  backgroundColor: "#7065f0",
-                  display: "",
-                  padding: "0.8rem 1rem",
-                  borderRadius: "10px",
-                }}
-              >
-                <button
-                  style={{
-                    backgroundColor: "transparent",
-                    border: "none",
-                    color: "white",
-                    fontSize: "0.9rem",
-                  }}
-                >
-                  Send Your Message
-                </button>
-              </div>
+              <Button type="primary2">Send Your Message</Button>
             </div>
           </form>
         </div>

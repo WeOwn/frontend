@@ -14,7 +14,7 @@ const index = () => {
           gap: "0.5rem",
         }}
       >
-        <p style={{ fontSize: "0.8rem", color: "grey" }}>
+        <p style={{ fontSize: "0.75rem", color: "grey" }}>
           Your recent activity
         </p>
         <div
@@ -25,9 +25,9 @@ const index = () => {
             borderRadius: "10px",
             display: "flex",
             flexDirection: "column",
-            gap: "0.3rem",
+            gap: "0.5rem",
             color: "black",
-            width: "70%",
+            width: "60%",
             textAlign: "left",
             position: "relative",
           }}
@@ -58,7 +58,7 @@ const index = () => {
             paddingInline: "auto",
             borderRadius: "10px",
             textAlign: "center",
-            fontSize: "0.8rem",
+            fontSize: "0.75rem",
             color: "white",
           }}
         >

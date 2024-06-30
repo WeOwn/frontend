@@ -9,10 +9,21 @@ import Chip from "../../Atoms/Chip";
 import wishlist_btn from "./wishlist_btn.png";
 import { Link } from "react-router-dom";
 
-export const Propertycard = ({ img, name, description, features, price }) => {
-  const [detail1, detail2, detail3] = features;
+export const Propertycard = ({
+  heading,
+  img,
+  name,
+  description,
+  detail1,
+  detail2,
+  detail3,
+  price,
+  marginright,
+}) => {
+  // const [detail1, detail2, detail3] = features;
+
   return (
-    <div className={styles.maindiv}>
+    <div className={styles.maindiv} style={{ marginRight: marginright }}>
       <div className={styles.imagediv}>
         <img
           src={propertyimage}
@@ -31,7 +42,7 @@ export const Propertycard = ({ img, name, description, features, price }) => {
         </div>
       </div>
       <div className={styles.description}>
-        <div className={styles.heading}>{name}</div>
+        <div className={styles.heading}>{heading}</div>
         <div className={styles.subheading}>{description}</div>
       </div>
 
@@ -70,27 +81,14 @@ export const Propertycard = ({ img, name, description, features, price }) => {
 
       <div className={styles.pricediv}>
         <div className={styles.pricesection}>
-          <div>Price</div>
-          <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>{price}</div>
+          <div style={{ fontSize: "0.8rem" }}>Price</div>
+          <div style={{ fontWeight: "bold", fontSize: "1.1rem" }}>{price}</div>
         </div>
         <Link to={"/property_description"}>
           <div className={styles.propertyButton}>
-            <Button
-              style={{
-                backgroundColor: "rgba(112, 101, 240, 1)",
-                color: "white",
-                paddingBlock: "1em",
-                // paddingInline: "1em",
-                borderRadius: "8px",
-                border: "0px solid",
-                cursor: "pointer",
-                width: "8rem",
-                marginLeft: "1rem",
-                fontSize: "0.9rem",
-              }}
-            >
-              View Property
-            </Button>
+            <div>
+              <Button type="primary">View property</Button>
+            </div>
           </div>
         </Link>
       </div>

@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./styles.module.css";
 import EMI from "./EMI.svg";
 import stardesign2 from "./stardesign2.svg";
+import IntroContainer from "../../Atoms/introContainer/IntroContainer";
 
 const Section11 = () => {
   const faqs = [
@@ -21,45 +22,14 @@ const Section11 = () => {
 
   return (
     <div>
-      <div style={{ width: "3rem", marginLeft: "-1rem" }}>
-        <img
-          src={stardesign2}
-          alt="img"
-          style={{ width: "100%", height: "100%" }}
-        />
-      </div>
-      <h4 style={{ fontSize: "2rem", fontWeight: "650", whiteSpace: "wrap" }}>
-        Let's Get To Numbers
-      </h4>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "2rem",
-          flexWrap: "wrap",
-          marginTop: "0.5rem",
-        }}
-      >
-        <p style={{ color: "#525252" }} className={styles.desc}>
-          Explore Our handpicked selection of feautered properties. Each
-          lisiting offers a glimpse into exceptional homes and investments
-          available through Estatein. Click "View Details" for more information.
-        </p>
-        <div
-          style={{
-            backgroundColor: "#EAEAEA",
-            border: "1px solid #E1E1E1",
-            padding: "0.8rem 1rem",
-            // flexWrap: "nowrap",
-            borderRadius: "10px",
-            fontSize: "0.9rem",
-          }}
-        >
-          View Details
-        </div>
-      </div>
+      <IntroContainer
+        stardesign={stardesign2}
+        heading="Let's Get To Numbers"
+        desc={`Find answers to common questions about Estateins's services, property
+          listing, and the real estate process. We're here to provide clarity
+          and assist you every tep of the way `}
+        btntext="View Details"
+      />
       <div
         style={{
           display: "grid",

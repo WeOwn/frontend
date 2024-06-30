@@ -106,16 +106,21 @@ const Navbar1 = () => {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              alignItems: "center",
+              alignItems: "start",
               gap: "0.3rem",
+              cursor: "pointer",
             }}
             className={`${styles.view} ${styles.navoption}`}
+            onMouseOver={handleMouseOver}
           >
-            <span style={{ cursor: "pointer" }} onMouseOver={handleMouseOver}>
-              View & Buy
-            </span>
-            <div>
-              <img src={Vector} alt="arrow" />
+            <span>View & Buy</span>
+            <div style={{ width: "0.7rem" }}>
+              <img
+                src={Vector}
+                alt="arrow"
+                style={{ width: "100%", height: "100%" }}
+                className={isDropdownOpen ? styles.rotate180 : ""}
+              />
             </div>
           </li>
           {isDropdownOpen && (
@@ -152,24 +157,27 @@ const Navbar1 = () => {
           <img
             src={hamburger}
             alt="icon"
-            style={{ height: "60%", width: "60%", cursor: "pointer" }}
+            style={{ height: "70%", width: "70%", cursor: "pointer" }}
           />
         </div>
         <Link to="/login">
           <div
             style={{
-              backgroundColor: "White",
-              padding: "0.2rem",
-              borderRadius: "999px",
+              backgroundColor: "white",
+              // padding: "0.2rem",
+
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              width: "1.5rem",
+              height: "1.5rem",
+              borderRadius: "50%",
             }}
           >
             <img
               src={userimg}
               alt="icon"
-              style={{ height: "80%", width: "80%" }}
+              style={{ height: "50%", width: "50%" }}
             />
           </div>
         </Link>

@@ -12,13 +12,11 @@ const Index = () => {
       style={{
         backgroundColor: "white",
         // marginTop: "2rem",
-        paddingBlock: "1rem",
-        paddingRight: "5rem",
-        paddingLeft: "1rem",
+        padding: "1rem",
         borderRadius: "10px",
         display: "flex",
         alignItems: "center",
-        justifyContent: "start",
+        justifyContent: "flex-start",
         gap: "0.8rem",
         width: "100%",
         minWidth: "fit-content",
@@ -28,25 +26,29 @@ const Index = () => {
         style={{
           backgroundColor: "white",
           boxShadow: " 0 0 10px lightgrey",
-          padding: "0.6rem 0.8rem",
-          // border: "1px solid black",
-          borderRadius: "15px",
-          //   width: "3rem",
+
+          borderRadius: "10px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "2.5rem",
+          height: "2.5rem",
         }}
       >
-        <img src={user1} alt="userlogo" /*style={{ width: "100%" }}*/ />
+        <img src={user1} alt="userlogo" style={{ height: "60%" }} />
       </div>
       <div>
         <div
           style={{
             whiteSpace: "nowrap",
-            fontWeight: "bold",
-            fontSize: "1rem",
+            fontWeight: "650",
+            fontSize: "0.8rem",
           }}
         >
-          {userDetail.isLoggedIn
+          {/* {userDetail.isLoggedIn
             ? userDetail.firstName + " " + userDetail.lastName
-            : "My Account"}
+            : "My Account"} */}
+          My Account
         </div>
         <div
           style={{
@@ -56,7 +58,8 @@ const Index = () => {
             fontWeight: "550",
           }}
         >
-          {userDetail ? "Welcome" : "Login/Register"}
+          {/* {userDetail ? "Welcome" : "Login/Register"} */}
+          Login/Register
         </div>
       </div>
     </div>

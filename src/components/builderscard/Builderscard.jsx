@@ -6,10 +6,17 @@ import Chip from "../../Atoms/Chip";
 import send from "./send.png";
 import { Link } from "react-router-dom";
 
-export const Builderscard = ({ name, email, _id }) => {
+export const Builderscard = ({
+  name,
+  email,
+  _id,
+  heading,
+  subheading,
+  marginright,
+}) => {
   // console.log("builder-> ", builder);
   return (
-    <div className={styles.maindiv}>
+    <div className={styles.maindiv} style={{ marginRight: marginright }}>
       <div className={styles.imagediv}>
         <img
           src={builderimage}
@@ -21,9 +28,9 @@ export const Builderscard = ({ name, email, _id }) => {
         />
       </div>
       <div className={styles.description}>
-        <div className={styles.heading}>{name}</div>
+        <div className={styles.heading}>{heading}</div>
         <div className={styles.subheading} style={{ color: "#999999" }}>
-          {email}
+          {subheading}
         </div>
       </div>
 
