@@ -9,6 +9,7 @@ import card1 from "./card1.png";
 import card2 from "./card2.png";
 
 import { Builderscard } from "../../components/builderscard/Builderscard";
+
 import searchlogo from "./searchlogo.png";
 
 import Aisection from "./Aisection";
@@ -18,6 +19,7 @@ import stardesign from "./stardesign.png";
 
 import { Link } from "react-router-dom";
 import Searchmob from "../../components/searchmob";
+
 
 import ProfileCard from "../../components/profilecard";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,6 +32,7 @@ import PropertyCardSlider from "../../components/propertyCardSlider";
 import BuilderCardSlider from "../../components/builderCardSlider";
 import Button from "../../Atoms/Button";
 import IntroContainer from "../../Atoms/introContainer/IntroContainer";
+
 
 function Home() {
   const [isHovered, setIsHovered] = useState(false);
@@ -277,6 +280,7 @@ function Home() {
             <PropertyCardSlider />
           </div>
 
+
           <div style={{ marginTop: "4rem" }}>
             <IntroContainer
               stardesign={stardesign}
@@ -287,10 +291,12 @@ function Home() {
             />
 
             <BuilderCardSlider />
+
           </div>
 
           {/* <Aisection /> */}
         </div>
+
       </div>
     </>
   );
