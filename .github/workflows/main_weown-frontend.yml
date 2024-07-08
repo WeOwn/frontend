@@ -36,7 +36,7 @@ jobs:
       - name: Create .env file
         uses: SpicyPizza/create-envfile@v1
         with:
-          CI: false
+          CI:  ""
           file_name: .env
 
       - name: 'Deploy to Azure Web App'
