@@ -6,7 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - weown-frontend
 on:
   push:
     branches:
-      - main
+      - deploy_test
   workflow_dispatch:
 
 jobs:
