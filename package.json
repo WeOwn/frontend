@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "https://weown-backend.azurewebsites.net",
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@google/model-viewer": "^3.5.0",
     "@reduxjs/toolkit": "^2.2.1",
     "@testing-library/jest-dom": "^5.17.0",
