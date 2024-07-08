@@ -23,22 +23,32 @@ import Play from "./Play.svg";
 // import "@google/model-viewer";
 import "@google/model-viewer/dist/model-viewer";
 import { Link } from "react-router-dom";
+import Button from "../../Atoms/Button";
 // import houseinterior3 from "./Houseglb.glb";
 // import SocietyGlb from "./Society_compressed.glb";
 
-const Section2 = () => {
+const Section2 = ({
+  name,
+  description,
+  builder,
+  amenities,
+  type,
+  features,
+  images,
+}) => {
+  console.log("images-> ", images);
   const descriptionlist = [
     {
       id: 1,
       img: shape1,
       type: "Bedrooms",
-      about: "04",
+      about: amenities?.bedrooms,
     },
     {
       id: 2,
       img: shape2,
       type: "Bathrooms",
-      about: "03",
+      about: amenities?.bathrooms,
     },
     {
       id: 3,
@@ -62,7 +72,7 @@ const Section2 = () => {
       id: 6,
       img: shape6,
       type: "Type",
-      about: "Residential",
+      about: type,
     },
     {
       id: 7,
@@ -84,7 +94,7 @@ const Section2 = () => {
     },
   ];
 
-  const [launchimgid, setLaunchimgid] = useState(1);
+  const [launchimgid, setLaunchimgid] = useState(0);
   const list1 = [
     {
       id: 1,
@@ -158,7 +168,7 @@ const Section2 = () => {
           <h4
             style={{ fontSize: "1.5rem", fontWeight: "650", flexWrap: "wrap" }}
           >
-            Seaside Serenity Villa
+            {name}
           </h4>
           <div
             style={{
@@ -199,52 +209,14 @@ const Section2 = () => {
             <img src={heart} alt="img" style={{ width: "1rem" }} />
           </div>
           <Link to="/contact_builders" style={{}}>
-            <div
-              style={{
-                backgroundColor: "#7065f0",
-                padding: "0.8rem 2.5rem",
-                borderRadius: "10px",
-                width: "fit-content",
-              }}
-            >
-              <button
-                style={{
-                  backgroundColor: "transparent",
-                  border: "none",
-                  color: "white",
-                  whiteSpace: "noWrap",
-                  fontSize: "0.9rem",
-                }}
-              >
-                Contact Builder
-              </button>
-            </div>
+            <Button type="primary2">Contact Builder</Button>
           </Link>
         </div>
       </div>
 
       <div className={styles.section2imgdivp}>
         <div style={{}} className={styles.section2imgdivbuttondivp}>
-          <div
-            style={{
-              backgroundColor: "#7065f0",
-              display: "",
-              padding: "0.8rem 2.5rem",
-              borderRadius: "10px",
-            }}
-          >
-            <button
-              style={{
-                backgroundColor: "transparent",
-                border: "none",
-                color: "white",
-                whiteSpace: "noWrap",
-                fontSize: "0.9rem",
-              }}
-            >
-              Hi-Res Images
-            </button>
-          </div>
+          <Button type="primary2">Hi-Res Images</Button>
           <div>
             <button
               style={{
@@ -260,24 +232,27 @@ const Section2 = () => {
           </div>
         </div>
         <div className={styles.section2imgdiv1}>
-          {list1.map((obj, index) => {
+          {images?.map((image, index) => {
             return (
               <div
-                key={obj.id}
+                key={index}
                 style={{
                   // borderRadius: "10px",
                   // backgroundColor: "#FFFFFF",
                   minWidth: "5rem",
+                  maxWidth: "5rem",
+
+                  aspectRatio: "4/3",
                   cursor: "pointer",
                 }}
-                onClick={() => setLaunchimgid(obj.id)}
+                onClick={() => setLaunchimgid(index)}
               >
                 <img
-                  src={obj.smallimg}
+                  src={image}
                   alt="home_img"
                   style={{
                     width: "100%",
-
+                    height: "100%",
                     borderRadius: "5px",
                   }}
                 />
@@ -290,11 +265,11 @@ const Section2 = () => {
           onMouseOver={handleopenLaunchexp}
           onMouseLeave={handlecloseLaunchexp}
         >
-          <div style={{ width: "100%" }}>
+          <div style={{ width: "100%", aspectRatio: "4/2" }}>
             <img
-              src={list1[launchimgid - 1].largeimg}
+              src={images && images[launchimgid]}
               alt="home_img"
-              style={{ width: "100%", borderRadius: "5px" }}
+              style={{ width: "100%", height: "100%", borderRadius: "5px" }}
             />
           </div>
           {launchexpbtn && (
@@ -469,25 +444,29 @@ const Section2 = () => {
                   </p>
                 </div>
               </div>
-              <div
-                style={{
-                  backgroundColor: "#7065f0",
-                  padding: "0.5rem 1.5rem",
-                  borderRadius: "10px",
-                }}
-              >
-                <button
+              <Link to={`/builder/${builder}`}>
+                <div
                   style={{
-                    backgroundColor: "transparent",
-                    border: "none",
-                    color: "white",
-                    whiteSpace: "noWrap",
-                    fontSize: "0.9rem",
+                    backgroundColor: "#7065f0",
+                    padding: "0.5rem 1.5rem",
+                    borderRadius: "10px",
+                    cursor: "pointer",
                   }}
                 >
-                  Visit
-                </button>
-              </div>
+                  <button
+                    style={{
+                      backgroundColor: "transparent",
+                      border: "none",
+                      color: "white",
+                      whiteSpace: "noWrap",
+                      fontSize: "0.9rem",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Visit
+                  </button>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -511,10 +490,7 @@ const Section2 = () => {
               lineHeight: "1.2rem",
             }}
           >
-            Discover your own piece of paradise with the Seaside Serenity Villa.
-            T With an open floor plan, breathtaking ocean views from every room,
-            and direct access to a pristine sandy beach, this property is a
-            epotime of coastal living
+            {description}
           </p>
 
           <div className={styles.section2grid}>
@@ -592,7 +568,7 @@ const Section2 = () => {
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
           >
-            {list2.map((text, index) => {
+            {features?.map((text, index) => {
               return (
                 <div
                   style={{

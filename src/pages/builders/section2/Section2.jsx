@@ -1,21 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import stardesign from "./stardesign.svg";
-
 import { Builderscard } from "../../../components/builderscard/Builderscard";
+import api from "../../../service/apiGateway";
 
 const Section2 = () => {
-  const List = [
-    { id: "1", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "2", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "3", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "5", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "6", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "7", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "8", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "9", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-  ];
+  const [builders, setAllBuilders] = useState(null);
+  const fetchData = async () => {
+    try {
+      // const [buildersResponse, propertiesResponse] = await Promise.all([
+      //   api.get("/builder/all"),
+      //   api.get("property/list?min-price=0&page=page-2"),
+      // ]);
+
+      const buildersResponse = await api.get("/builder/all");
+
+      // console.log("All builders:", buildersResponse.data.data);
+
+      setAllBuilders(buildersResponse.data.data);
+    } catch (error) {
+      console.error("Error occurred while fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  // console.log("builder._id -> ", builders && builders[0]._id);
+  // const List = [
+  //   { id: "1", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+  //   { id: "2", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+  //   { id: "3", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+  //   { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+  //   { id: "5", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+  //   { id: "6", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+  //   { id: "7", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+  //   { id: "8", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+  //   { id: "9", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+  // ];
   return (
     <div className={styles.maindiv}>
       <div className={styles.intro}>
@@ -60,8 +82,12 @@ const Section2 = () => {
         </div>
       </div>
       <div className={styles.builderContainer}>
-        {List.map((obj) => (
-          <Builderscard key={obj.id} {...obj} style={{ background: "red" }} />
+        {builders?.map((builder, index) => (
+          <Builderscard
+            key={builder._id}
+            {...builder}
+            style={{ background: "red" }}
+          />
         ))}
       </div>
     </div>

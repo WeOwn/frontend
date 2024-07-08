@@ -37,7 +37,7 @@ export const Router = () => {
           />
           <Route path={"/group_investment"} element={<GroupInvestment />} />
           <Route
-            path={"/property_description"}
+            path={"/property_description/:id"}
             element={<PropertyDescription />}
           />
           <Route path={"/properties"} element={<Property />} />
