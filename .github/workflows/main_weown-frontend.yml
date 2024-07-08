@@ -26,14 +26,41 @@ jobs:
         run: |
           npm install
           npm run build --if-present
+      - name: Zip artifact for deployment
+        run: zip release.zip ./build/* -r
+
+      - name: Archive production artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write #This is required for requesting the JWT
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: node-app
 
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8488F439DF614B9DB7CB975B7A46B34D }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E7789BB64162452998B4E55C846B87D2 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_26BD5F5F4F81475CADC3430477F59622 }}
-      
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_D0AE51FC59AF481E97F5C7AC7DD0FCFC }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_83C9A806AF874BC080FE77EBE03EC2E2 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A2B6D377739146299DA32240C8FFEE1B }}
+
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: build
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
@@ -41,4 +68,5 @@ jobs:
         with:
           app-name: 'weown-frontend'
           slot-name: 'Production'
-          package: build 
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          
