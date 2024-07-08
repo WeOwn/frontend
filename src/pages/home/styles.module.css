@@ -8,8 +8,9 @@
 
   color:#0F0B3E;
   margin-inline: auto;
-  /* color:red; */
-  /* position:relative; */
+  /* background-color: black; */
+  padding-bottom: 2rem;
+
 }
 .seconddiv{
   width:85%;
@@ -18,7 +19,7 @@
 }
 @media(min-width:1800px) {
   .maindiv{
-      width:60%;
+      width:100%;
   }
 
 }
@@ -41,14 +42,15 @@
 
 .subHeading {
   font-family: Outfit;
-  font-size: 1em;
+  font-size: 1rem;
   font-weight: 400;
   /* line-height: 1.4em; */
   letter-spacing: 0em;
+  margin-inline: auto;
   text-align: center;
   color: #ffffff;
   width:70%;
-  margin-top: -4rem;
+  /* margin-top: -4rem; */
   
 }
 @media(max-width:500px) {
@@ -84,40 +86,7 @@
     background-image: none;
   }
 }
-.cloud1{
-  position: absolute;
-  /* width:9rem; */
-  top:17rem;
-  left:-1rem;
-}
-.cloud2{
-  position: absolute;
-  /* width:9rem; */
-  top:10rem;
-  left:20%;
-}
-.cloud3{
-  position: absolute;
-  /* width:9rem; */
-  top:7rem;
-  right:40%;
-}
-.cloud4{
-  position: absolute;
-  /* width:9rem; */
-  top:12rem;
-  right:12%;
-}
-.cloud5{
-  position: absolute;
-  /* width:9rem; */
-  top:20rem;
-  right:0%;
-}
 
-.cloud{
-  width:5rem;
-}
 
 .helloContentContainer {
   width: 60%;
@@ -197,7 +166,7 @@
 }
 
 .searchSectionHeader {
-  font-weight: bolder;
+  font-weight: 650;
   font-size: 2rem;
 }
 .searchSectionDesc {
@@ -212,11 +181,11 @@
   /* margin-top: 2rem; */
   
   position: relative;
-  width: 50%;
+  width: 40%;
   background-color: rgba(244, 244, 244, 1);
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  padding: 1em;
+  border-radius: 10px;
+  /* border: 1px solid #ccc; */
+  padding: 1rem;
   /* width: 20%; */
 }
 
@@ -232,29 +201,30 @@
 .searchResults {
   display: grid;
   grid-template-columns: repeat(2,1fr);
-  /* flex-direction: row; */
-  /* flex-wrap: wrap; */
-  /* justify-content:center; */
-  /* margin-left: 0rem; */
-  /* height:0rem; */
-  /* width:70%; */
-  /* padding-inline: 4rem; */
-  /* margin-top: -4rem; */
+  
   gap:1.5rem;
   margin-right: 1rem;
   overflow:auto;
-  /* background:red; */
+  width:80%;
+  
+  /* background-color: red; */
+  
   
   
   /* justify-content: start; */
 }
 @media(max-width:590px) {
+  
   .searchResults{
+
     margin-right: 0rem;
+    
     grid-template-columns: repeat(1,1fr);
   }
 }
+
 .Search_Properties {
+  
   position: relative;
   overflow: hidden;
   height:100%;
@@ -265,6 +235,13 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
 }
+
+@media(max-width:1150px) {
+  .Search_Properties {
+    height:100%;
+  }
+}
+
 .searchProperty {
   width: 100%;
   height: 100%;
@@ -288,6 +265,8 @@
   font-size: 0.75em;
   margin-bottom: 3em;
   line-height: 1.1rem;
+
+  
 }
 /* @media(max-width:300px) {
   .propertydesc{
@@ -311,22 +290,7 @@
   z-index: 1;
 }
 
-.profileContainerdiv{
-  background-color: #EAEAEA;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  height: 18rem;
-  padding-inline: 1rem;
-  padding-block: 1.5rem;
-  border-radius: 10px;
-}
-@media(max-width:270px) {
-  .profileContainerdiv{
-    width:80vw;
-    overflow:auto;
-  }
-}
+
 
 /* featured Properties section */
 
@@ -342,7 +306,7 @@
   flex-direction: column;
   /* margin: 3em; */
   
-  gap: 1rem;
+  gap: 0rem;
 }
 .FeaturedSectionHeader {
   font-weight: bolder;
@@ -373,37 +337,22 @@
   /* margin: 3em; */
 }
 .FeaturedButton {
-  width:10rem;
+  /* width:10rem; */
   text-align: center;
-  padding-block:1rem;
+  padding:0.8rem 1rem;
   border-radius: 10px;
   border: 1px solid #E1E1E1;
   color:#0F0B3E;
   background-color: #EAEAEA;
   cursor: pointer;
-  font-size: 1rem;
-}
-.FeaturedPropertyContainer {
-  /* padding-inline: 5.5rem; */
-  padding-top:3rem;
-  /* margin-left:3rem; */
-  /* padding-inline:4rem; */
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  overflow:auto;
-  width:100%;
-  
-  /* justify-content: space-between; */
-  gap:2rem;
-  /* margin-inline: 4rem; */
+  font-size: 0.9rem;
 }
 
-.builderContainerp{
- 
-  margin-top: 6rem;
 
-  
+
+
+.builderContainerp{ 
+  margin-top: 6rem;  
 }
 
 .builderContainer{
@@ -455,10 +404,10 @@
 }
 
 .desc{
-  font-weight: 400;
-  font-size: 0.9rem;
-  width: 70%;
+  font-weight: 500;
+  font-size: 0.9rem; 
   line-height: 1.2rem;
+  color:#525252;
   
   width: 80%;
 }
@@ -469,6 +418,40 @@
   }
 }
 
+
+.cardslidercontrolldiv{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrowcontainerdivp{
+  display: flex;
+  align-items: center;
+  gap:1rem;
+}
+
+.arrowdiv{
+  cursor:pointer;
+  border:1px solid black;
+  padding:0.5rem;
+  border-radius: 50%;
+}
+
+.rotate180{
+  -webkit-transform: rotate(180deg); /* Safari and Chrome */
+  -moz-transform: rotate(180deg);    /* Firefox */
+  -ms-transform: rotate(180deg);     /* Internet Explorer 9 */
+  -o-transform: rotate(180deg);      /* Opera */
+  transform: rotate(180deg);
+  /* Optional: add transition for smooth rotation */
+  transition: transform 0.5s ease-in-out;
+}
+
+.marginRight{
+  margin: 0 50px;
+}
 
 
 

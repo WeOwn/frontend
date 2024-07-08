@@ -60,12 +60,12 @@ function OtpModal({ onClose, onSubmit, userData, apiEndpoint, phone }) {
       console.log("API Response:", response.data);
       const data = response.data;
 
-      if (data.data.sucess === false) {
-        alert(data.data.msg);
-      } else if (data.data.sucess === undefined) {
+      if (data.data.sucess === true) {
         dispatch(setLoggedIn());
-        navigate("/home");
         onClose();
+        navigate("/home");
+      } else {
+        alert(data.data.msg);
       }
 
       // Close the modal

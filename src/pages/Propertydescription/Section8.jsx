@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Propertycard } from "../../components/propertyCard/Propertycard";
 import stardesign2 from "./stardesign2.svg";
+import IntroContainer from "../../Atoms/introContainer/IntroContainer";
+import PropertyCardSlider from "../../components/propertyCardSlider";
+import api from "../../service/apiGateway";
 
-const Section8 = () => {
+const Section8 = ({ builder }) => {
   const List1 = [
     {
       id: "1",
@@ -40,53 +43,43 @@ const Section8 = () => {
     },
   ];
 
+  const [data, setdata] = useState(null);
+  const [projects, setProjects] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      const response = await api.get(
+        `/builder/profile/66826c82668e512633db03cc`
+      );
+
+      setdata(response.data);
+      const projectRequests = response.data.projects.map((projectId) =>
+        api.get(`/property/${projectId}`)
+      );
+
+      const projectResponses = await Promise.all(projectRequests);
+      setProjects(projectResponses.map((res) => res.data));
+    } catch (error) {
+      console.log("Error while fetching data: ", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // console.log("projects section8-> ", projects);
   return (
     <div>
-      <div style={{ width: "3rem", marginLeft: "-1rem" }}>
-        <img
-          src={stardesign2}
-          alt="img"
-          style={{ width: "100%", height: "100%" }}
-        />
-      </div>
-      <h4 style={{ fontSize: "2rem", fontWeight: "650", whiteSpace: "wrap" }}>
-        Project By Shapoorji Pallonj
-      </h4>
-
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "2rem",
-          flexWrap: "wrap",
-          marginTop: "0.5rem",
-        }}
-      >
-        <p style={{ color: "#525252" }} className={styles.desc}>
-          Find answers to common questions about Estateins's services, property
+      <IntroContainer
+        stardesign={stardesign2}
+        heading={`Projects By ${data?.name}`}
+        desc={`Find answers to common questions about Estateins's services, property
           listing, and the real estate process. We're here to provide clarity
-          and assist you every tep of the way
-        </p>
-        <div
-          style={{
-            backgroundColor: "#EAEAEA",
-            border: "1px solid #E1E1E1",
-            padding: "0.8rem 1rem",
-
-            borderRadius: "10px",
-            fontSize: "0.9rem",
-          }}
-        >
-          View All Projects
-        </div>
-      </div>
-      <div className={styles.FeaturedPropertyContainer}>
-        {List1.map((obj) => (
-          <Propertycard key={obj.id} {...obj} />
-        ))}
-      </div>
+          and assist you every tep of the way `}
+        btntext="View All Projects"
+      />
+      {projects && <PropertyCardSlider projects={projects} />}
     </div>
   );
 };

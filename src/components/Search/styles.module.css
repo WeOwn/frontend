@@ -1,10 +1,10 @@
 .search {
   width: 100%;
   position: relative;
-  padding: 2rem 1.5rem;
+  padding: 2rem 1.5rem 2rem 1rem;
   box-sizing: border-box;
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: 15px;
   display: flex;
   justify-content: space-between;
   gap:0.2rem;
@@ -18,6 +18,7 @@
   border:none;
   outline:none;
   color:rgb(68, 67, 67);
+  background-color: yellow;
 
   font-size:1.05rem;
 }
@@ -31,7 +32,7 @@
  width: 100%;
  /* width:5rem; */
   height: 3rem;
-  padding-left:0.5rem;
+  padding-left:0.8rem;
   margin-left: 0.5rem;
   /* background:black; */
   border-left:1px solid #999999;
@@ -101,8 +102,14 @@
   
 }
 
-.rotate180 {
-  transform: rotate(180deg);
+.rotate180{
+    -webkit-transform: rotate(180deg); /* Safari and Chrome */
+    -moz-transform: rotate(180deg);    /* Firefox */
+    -ms-transform: rotate(180deg);     /* Internet Explorer 9 */
+    -o-transform: rotate(180deg);      /* Opera */
+    transform: rotate(180deg);
+    /* Optional: add transition for smooth rotation */
+    transition: transform 0.5s ease-in-out;
 }
 
 

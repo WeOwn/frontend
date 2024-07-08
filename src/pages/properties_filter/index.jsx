@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import styles from "./styles.module.css";
@@ -11,9 +11,11 @@ import Checkbox from "./checkbox";
 import AppliedFilters from "./appliedfilters";
 import { useDispatch, useSelector } from "react-redux";
 import { removeAll } from "../../redux/filterslice";
+import api from "../../service/apiGateway";
 
 const Index = () => {
   // console.log(appliedfilters);
+
   const rangeSlider = useSelector((store) => store.filters.rangeSlider);
   const filters = useSelector((store) => store.filters.appliedfilters);
   const dispatch = useDispatch();
@@ -235,6 +237,23 @@ const Index = () => {
       name: "Lift",
     },
   ];
+
+  const [allproperties, setAllProperties] = useState(null);
+  const fetchData = async () => {
+    try {
+      const propertiesResponse = await api.get(
+        "/property/list?min-price=0&page=page-1"
+      );
+      // console.log("All properties:", propertiesResponse.data.data);
+      setAllProperties(propertiesResponse.data.data);
+    } catch (error) {
+      console.error("Error occurred while fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -498,8 +517,8 @@ const Index = () => {
         </div>
 
         <div className={styles.section2cardsp}>
-          {List1.map((obj) => (
-            <Propertycard key={obj.id} {...obj} />
+          {allproperties?.map((property, index) => (
+            <Propertycard key={property._id} {...property} />
           ))}
         </div>
       </div>

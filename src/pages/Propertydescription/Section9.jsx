@@ -1,92 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Propertycard } from "../../components/propertyCard/Propertycard";
 import stardesign2 from "./stardesign2.svg";
+import Button from "../../Atoms/Button";
+import IntroContainer from "../../Atoms/introContainer/IntroContainer";
+import PropertyCardSlider from "../../components/propertyCardSlider";
+import api from "../../service/apiGateway";
 
 const Section8 = () => {
-  const List1 = [
-    {
-      id: "1",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "2",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-  ];
+  const [properties, setAllProperties] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      const propertiesResponse = await api.get(
+        "/property/list?min-price=0&page=page-1"
+      );
+      // console.log("All properties:", propertiesResponse.data.data);
+      setAllProperties(propertiesResponse.data.data);
+    } catch (error) {
+      console.error("Error occurred while fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // console.log("properties section9-> ", properties);
 
   return (
     <div>
-      <div style={{ width: "3rem", marginLeft: "-1rem" }}>
-        <img
-          src={stardesign2}
-          alt="img"
-          style={{ width: "100%", height: "100%" }}
-        />
-      </div>
-      <h4 style={{ fontSize: "2rem", fontWeight: "650", whiteSpace: "wrap" }}>
-        Similar Properties
-      </h4>
-
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "2rem",
-          flexWrap: "wrap",
-          marginTop: "0.5rem",
-        }}
-      >
-        <p style={{ color: "#525252" }} className={styles.desc}>
-          Find answers to common questions about Estateins's services, property
+      <IntroContainer
+        stardesign={stardesign2}
+        heading="Similar Properties"
+        desc={`Find answers to common questions about Estateins's services, property
           listing, and the real estate process. We're here to provide clarity
-          and assist you every tep of the way
-        </p>
-        <div
-          style={{
-            backgroundColor: "#EAEAEA",
-            border: "1px solid #E1E1E1",
-            padding: "0.8rem 1rem",
-
-            borderRadius: "10px",
-            fontSize: "0.9rem",
-          }}
-        >
-          View All Similar Projects
-        </div>
-      </div>
-      <div className={styles.FeaturedPropertyContainer}>
-        {List1.map((obj) => (
-          <Propertycard key={obj.id} {...obj} />
-        ))}
-      </div>
+          and assist you every tep of the way `}
+        btntext="View All Similar Projects"
+      />
+      <PropertyCardSlider projects={properties} />
     </div>
   );
 };

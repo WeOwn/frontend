@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./styles.module.css";
+import Button from "../../Atoms/Button";
 
-const Section5 = () => {
+const Section5 = ({ name }) => {
   return (
     <div>
       <h4 style={{ fontSize: "2rem", fontWeight: "650", whiteSpace: "wrap" }}>
-        Inquire About Seaside Serenity Villa
+        {`Inquire About ${name}`}
       </h4>
       <p
         style={{ marginTop: "0.9rem", fontWeight: "550" }}
@@ -25,65 +26,89 @@ const Section5 = () => {
           }}
         >
           <form>
-            <div
-              style={{
-                display: "flex",
-                width: "100%",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <div style={{ width: "49%" }}>
-                <span style={{ fontWeight: "550" }}>First Name</span>
+            <div className={styles.formgrid}>
+              <div style={{ width: "100%" }}>
+                <label htmlFor="firstName" style={{ fontWeight: "550" }}>
+                  First Name
+                </label>
                 <div className={styles.inputdiv} style={{ marginTop: "1rem" }}>
-                  <input type="text" placeholder="Enter First Name" />
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    placeholder="Enter First Name"
+                  />
                 </div>
               </div>
-              <div style={{ width: "49%" }}>
-                <span style={{ fontWeight: "550" }}>Last Name</span>
+              <div style={{ width: "100%" }}>
+                <label htmlFor="lastName" style={{ fontWeight: "550" }}>
+                  Last Name
+                </label>
                 <div className={styles.inputdiv} style={{ marginTop: "1rem" }}>
-                  <input type="text" placeholder="Enter Last Name" />
+                  <input
+                    type="text"
+                    name="lastName"
+                    id="lastName"
+                    placeholder="Enter Last Name"
+                  />
                 </div>
               </div>
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                width: "100%",
-                alignItems: "center",
-                justifyContent: "space-between",
-                marginTop: "2rem",
-              }}
-            >
-              <div style={{ width: "49%" }}>
-                <span style={{ fontWeight: "550" }}>Email</span>
+              <div style={{ width: "100%" }}>
+                <label htmlFor="email" style={{ fontWeight: "550" }}>
+                  Email
+                </label>
                 <div className={styles.inputdiv} style={{ marginTop: "1rem" }}>
-                  <input type="text" placeholder="Enter Email" />
+                  <input
+                    id="email"
+                    name="email"
+                    type="text"
+                    placeholder="Enter Email"
+                    required
+                  />
                 </div>
               </div>
-              <div style={{ width: "49%" }}>
-                <span style={{ fontWeight: "550" }}>Phone</span>
+              <div style={{ width: "100%" }}>
+                <label htmlFor="phoneNumber" style={{ fontWeight: "550" }}>
+                  Phone
+                </label>
                 <div className={styles.inputdiv} style={{ marginTop: "1rem" }}>
-                  <input type="text" placeholder="Enter Phone Number" />
+                  <input
+                    type="tel"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    placeholder="Enter Phone Number"
+                    // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    required
+                  />
                 </div>
               </div>
             </div>
 
             <div style={{ width: "100%", marginTop: "2rem" }}>
-              <span style={{ fontWeight: "550" }}>Selected Property</span>
+              <label htmlFor="selectedProperty" style={{ fontWeight: "550" }}>
+                Selected Property
+              </label>
               <div className={styles.inputdiv} style={{ marginTop: "1rem" }}>
-                <input type="text" placeholder="Enter Selected Property" />
+                <input
+                  id="selectedProperty"
+                  name="selectedProperty"
+                  type="text"
+                  placeholder="Enter Selected Property"
+                />
               </div>
             </div>
 
             <div style={{ width: "100%", marginTop: "2rem" }}>
-              <span style={{ fontWeight: "550" }}>Message</span>
+              <label htmlFor="message" style={{ fontWeight: "550" }}>
+                Message
+              </label>
               <div
                 className={styles.inputdiv}
                 style={{ marginTop: "1rem", height: "12rem" }}
               >
                 <textarea
+                  id="message"
+                  name="message"
                   type="text"
                   placeholder="Your Message"
                   style={{
@@ -143,25 +168,7 @@ const Section5 = () => {
                 </p>
               </div>
 
-              <div
-                style={{
-                  backgroundColor: "#7065f0",
-                  display: "",
-                  padding: "0.8rem 1rem",
-                  borderRadius: "10px",
-                }}
-              >
-                <button
-                  style={{
-                    backgroundColor: "transparent",
-                    border: "none",
-                    color: "white",
-                    fontSize: "0.9rem",
-                  }}
-                >
-                  Send Your Message
-                </button>
-              </div>
+              <Button type="primary2">Send Your Message</Button>
             </div>
           </form>
         </div>

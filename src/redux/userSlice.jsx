@@ -7,23 +7,19 @@ const userSlice = createSlice({
     firstName: "",
     lastName: "",
     phoneNumber: "",
-    termsAccepted: false,
+    termsAccepted: "",
   },
 
   reducers: {
     setLoggedIn: (state) => {
       state.isLoggedIn = true;
     },
-    // setLogOut: (state) => {
-    //   state.isLoggedIn = false;
-    //   state.userdetails.firstName = "";
-    //   state.userdetails.lastName = "";
-    //   state.userdetails.phoneNumber = "";
-    //   state.userdetails.termsAccepted = "";
-    // },
+    setLogOut: (state) => {
+      state.isLoggedIn = false;
+    },
   },
 });
 
-export const { setLoggedIn } = userSlice.actions;
+export const { setLoggedIn, setLogOut } = userSlice.actions;
 
 export default userSlice.reducer;

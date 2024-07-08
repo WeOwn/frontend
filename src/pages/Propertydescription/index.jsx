@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import Navbar from "../../components/navbar/Navbar.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
@@ -13,8 +13,57 @@ import Section8 from "./Section8.jsx";
 import Section9 from "./Section9.jsx";
 import Section10 from "./Section10.jsx";
 import Section11 from "./Section11.jsx";
+import api from "../../service/apiGateway";
+import { useParams } from "react-router-dom";
 
 const PropertyDescription = () => {
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const { id } = useParams();
+  const fetchdata = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await api.get(`/property/${id}`);
+      // const data=response.data.data;
+      // console.log("desc response-> ", response);
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      setError("Failed to fetch data");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const {
+    amenities,
+    pricing_details,
+    name,
+    description,
+    type,
+    location,
+    price,
+    size,
+    features,
+    images,
+    builder,
+    iframe,
+  } = data;
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <>
       <div className={styles.maindiv}>
@@ -22,26 +71,36 @@ const PropertyDescription = () => {
           <Section1 />
         </div>
         <div className={styles.section2}>
-          <Section2 />
+          <Section2
+            name={name}
+            description={description}
+            builder={builder}
+            amenities={amenities}
+            type={type}
+            features={features}
+            images={images}
+          />
         </div>
         <div className={styles.section3}>
-          <Section3 />
+          <Section3 pricingdetails={pricing_details} />
         </div>
         <div className={styles.section4}>
           <Section4 />
         </div>
         <div className={styles.section5}>
-          <Section5 />
+          <Section5 name={name} />
         </div>
         <div className={styles.section6}>
-          <Section6 />
+          <Section6 name={name} />
         </div>
         {/* <div className={styles.section7}>
           <Section7 />
         </div> */}
-        <div className={styles.section8}>
-          <Section8 />
-        </div>
+        {builder && (
+          <div className={styles.section8}>
+            <Section8 builder={builder} />
+          </div>
+        )}
         <div className={styles.section9}>
           <Section9 />
         </div>

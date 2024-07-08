@@ -7,26 +7,26 @@ import "@google/model-viewer/dist/model-viewer";
 import houseinterior3 from "./house_compressed.glb";
 import SocietyGlb from "./Society_compressed.glb";
 
-const Section3 = () => {
+const Section3 = ({ pricingdetails }) => {
   const list1 = [
     {
       heading: "Property Transfer Tax",
-      price: "$25,000",
+      price: pricingdetails?.additional_price?.property_transfer_tax,
       para: "Based on the sales price and local regulations",
     },
     {
       heading: "Legal Fees",
-      price: "$3,000",
+      price: pricingdetails?.additional_price?.legal_fees,
       para: "Approximate cost for legal services, including the transfer",
     },
     {
       heading: "Home Inspection",
-      price: "$500",
+      price: pricingdetails?.additional_price?.home_inspection,
       para: "Recommended for due dilligence",
     },
     {
       heading: "Property Insurance",
-      price: "$1,200",
+      price: pricingdetails?.additional_price?.property_insurance,
       para: "Annual cost for comprhensive property insurance",
     },
   ];
@@ -34,7 +34,7 @@ const Section3 = () => {
   const list13 = [
     {
       heading: "Mortgage Fees",
-      price: "Varies",
+      price: pricingdetails?.additional_price?.mortgage_fees,
       para: "if applicable, consult with your lender for specific details",
     },
   ];
@@ -101,7 +101,7 @@ const Section3 = () => {
               whiteSpace: "noWrap",
             }}
           >
-            $1,250,000
+            {pricingdetails?.listing_price}
           </p>
         </div>
 

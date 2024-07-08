@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import stardesign from "./stardesign.svg";
 import Toggle from "./toggleContainer";
 import { Propertycard } from "../../components/propertyCard/Propertycard";
+import api from "../../service/apiGateway";
 
 const Section2 = () => {
+  const [allproperties, setAllProperties] = useState(null);
+  const fetchData = async () => {
+    try {
+      const propertiesResponse = await api.get(
+        "/property/list?min-price=0&page=page-1"
+      );
+      // console.log("All properties:", propertiesResponse.data.data);
+      setAllProperties(propertiesResponse.data.data);
+    } catch (error) {
+      console.error("Error occurred while fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   const List1 = [
     {
       id: "1",
@@ -140,6 +157,8 @@ const Section2 = () => {
     },
   ];
 
+  console.log("properties-> ", allproperties);
+
   return (
     <div className={styles.section2Container}>
       <div style={{ width: "3rem", marginLeft: "-1rem" }}>
@@ -170,8 +189,8 @@ const Section2 = () => {
       </div>
 
       <div className={styles.section2cardsp}>
-        {List1.map((obj) => (
-          <Propertycard key={obj.id} {...obj} />
+        {allproperties?.map((property, index) => (
+          <Propertycard key={property._id} {...property} />
         ))}
       </div>
     </div>

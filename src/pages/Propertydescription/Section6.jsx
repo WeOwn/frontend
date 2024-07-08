@@ -2,8 +2,9 @@ import React from "react";
 import styles from "./styles.module.css";
 import user from "./user.svg";
 import stardesign from "./stardesign.svg";
+import IntroContainer from "../../Atoms/introContainer/IntroContainer";
 
-const Section6 = () => {
+const Section6 = ({ name }) => {
   const reviews = [
     {
       heading: "Exceptional Service!",
@@ -30,45 +31,14 @@ const Section6 = () => {
 
   return (
     <div>
-      <div style={{ width: "3rem", marginLeft: "-1rem" }}>
-        <img
-          src={stardesign}
-          alt="img"
-          style={{ width: "100%", height: "100%" }}
-        />
-      </div>
-      <h4 style={{ fontSize: "2rem", fontWeight: "650", whiteSpace: "wrap" }}>
-        Reviews About Seaside Serenity Villa
-      </h4>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "2rem",
-          flexWrap: "wrap",
-          marginTop: "0.5rem",
-        }}
-      >
-        <p style={{ color: "#999999" }} className={styles.desc}>
-          Find answers to common questions about Estateins's services, property
+      <IntroContainer
+        stardesign={stardesign}
+        heading={`Reviews About ${name}`}
+        desc={`Find answers to common questions about Estateins's services, property
           listing, and the real estate process. We're here to provide clarity
-          and assist you every tep of the way
-        </p>
-        <div
-          style={{
-            backgroundColor: "#EAEAEA",
-            border: "1px solid #E1E1E1",
-            padding: "0.8rem 1rem",
-
-            borderRadius: "10px",
-            fontSize: "0.9rem",
-          }}
-        >
-          View All Reviews
-        </div>
-      </div>
+          and assist you every tep of the way `}
+        btntext="View All Reviews"
+      />
       <div
         style={{
           display: "flex",

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css";
 import stardesign from "../stardesign.svg";
+import IntroContainer from "../../../Atoms/introContainer/IntroContainer";
 
 const Section3 = () => {
   const rows = 6;
@@ -59,22 +60,11 @@ const Section3 = () => {
   };
   return (
     <div className={styles.maindiv}>
-      <div style={{ width: "3rem", marginLeft: "-1rem" }}>
-        <img
-          src={stardesign}
-          alt="img"
-          style={{ width: "100%", height: "100%" }}
-        />
-      </div>
-      <h4
-        style={{
-          // fontSize: "1.1rem",
-          // fontWeight: "600",
-          whiteSpace: "noWrap",
-        }}
-      >
-        Financial Model
-      </h4>
+      <IntroContainer
+        stardesign={stardesign}
+        heading="Financial Model"
+        descStyle={{}}
+      />
 
       <div className={styles.grid}>{renderTable()}</div>
       <div

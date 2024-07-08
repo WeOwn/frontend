@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./styles.module.css";
-import user1 from "./user1.png";
+
 import down_arrow from "./down_arrow.svg";
 import right_arrow from "./right_arrow.svg";
 import SearchBardrop from "../../Atoms/dropdownlist";
@@ -19,6 +19,7 @@ import a11 from "./11.svg";
 import a12 from "./12.svg";
 import star from "./star.svg";
 import fraud from "./fraud.svg";
+import Profilebox from "../../Atoms/profilebox";
 
 const Sidebar1 = () => {
   const list1 = [
@@ -211,49 +212,7 @@ const Sidebar1 = () => {
 
   return (
     <div className={`${styles.sidebarContainer}  `}>
-      <div
-        style={{
-          backgroundColor: "white",
-          // marginTop: "2rem",
-          paddingBlock: "1rem",
-          paddingRight: "5rem",
-          paddingLeft: "1rem",
-          borderRadius: "10px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "start",
-          gap: "0.8rem",
-          width: "100%",
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: "white",
-            boxShadow: " 0 0 10px lightgrey",
-            padding: "0.6rem 0.8rem",
-            // border: "1px solid black",
-            borderRadius: "15px",
-          }}
-        >
-          <img src={user1} alt="userlogo" />
-        </div>
-        <div>
-          <div
-            style={{
-              whiteSpace: "nowrap",
-              fontWeight: "bold",
-              fontSize: "1rem",
-            }}
-          >
-            My Account
-          </div>
-          <div
-            style={{ fontSize: "0.75rem", color: "grey", marginTop: "0.2rem" }}
-          >
-            Login/Register
-          </div>
-        </div>
-      </div>
+      <Profilebox />
 
       <div className={styles.sections}>
         <div className={styles.section1}>

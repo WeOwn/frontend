@@ -15,11 +15,12 @@
     justify-content: space-around;
     align-items: center;
     background-color: #7065f0;
-    padding: 1em;
+    padding: 1rem;
     color:#0F0B3E;
     font-family: "Urbanist", sans-serif;
     z-index: 999;
     animation: fadeIn 1s forwards;
+    height: 76px;
 
 }
 
@@ -110,15 +111,28 @@
     
   }
   
-  .navRight {
+  /* .navRight {
     display: flex;
-    /* justify-content: space-between; */
+ 
     gap:0.3rem;
     align-items: center;
     background-color:rgb(245, 245, 254, 0.99);;
     padding:0.5rem 0.8rem;
     border-radius: 999px;
-    /* cursor:pointer */
+
+  } */
+
+
+
+  .navRight {
+    display: flex;
+    
+    align-items: center;
+    gap:0rem;
+    background-color:rgb(245, 245, 254, 0.99);;
+    padding:0.5rem 0.8rem;
+    border-radius: 999px;
+    
   }
   
   .navRight a {

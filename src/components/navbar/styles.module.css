@@ -17,7 +17,8 @@
     align-items: center;
     color:#0F0B3E;
     /* color:red; */
-    padding-inline: 1rem;
+    /* padding-inline: 1rem; */
+    padding:1rem;
     background-color: #FAFAFE;
     /* background-color: yellow; */
     font-family: "Urbanist", sans-serif;
@@ -82,7 +83,8 @@
     justify-content: center;
     align-items: center;
     
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 0.9rem;
     white-space: nowrap;
     /* cursor:pointer; */
   }
@@ -104,8 +106,9 @@
   .navRight {
     display: flex;
     /* justify-content: space-between; */
-    gap:0.3rem;
+    /* gap:0.3rem; */
     align-items: center;
+    justify-content: center;
     background-color:#7065f0;
     padding:0.5rem 0.8rem;
     border-radius: 999px;
@@ -133,4 +136,14 @@
   border-radius: 6px;
   width: 5em;
   text-align: center;
+}
+
+.rotate180{
+  -webkit-transform: rotate(180deg); /* Safari and Chrome */
+  -moz-transform: rotate(180deg);    /* Firefox */
+  -ms-transform: rotate(180deg);     /* Internet Explorer 9 */
+  -o-transform: rotate(180deg);      /* Opera */
+  transform: rotate(180deg);
+  /* Optional: add transition for smooth rotation */
+  transition: transform 0.5s ease-in-out;
 }

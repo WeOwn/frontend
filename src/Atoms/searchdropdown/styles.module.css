@@ -13,11 +13,14 @@
     background-color: var(--bgColor);
   
     padding:1rem;
+   
     border-radius: 10px;
     
     position:relative;
     z-index:0;
 }
+
+
 
 @media(max-width:390px) {
     .selectBox{
@@ -31,6 +34,12 @@
 
 .droplogo{
     width:1rem;
+}
+
+@media(min-width:769px) {
+    .droplogo{
+        width:0.7rem;
+    }
 }
 
 .optionBox{
@@ -50,6 +59,7 @@
     border-radius: 10px;
     padding: 1rem;
     color:#999999;
+    font-weight: 600;
     z-index:1;
      
 }
