@@ -21,11 +21,18 @@ jobs:
         with:
           node-version: '18.x'
 
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          CI:  ""
+          file_name: .env
+
       - name: npm install, build, and test
         run: |
           npm install
           npm run build --if-present
           npm run test --if-present
+
       - name: Login to Azure
         uses: azure/login@v1
         with:
@@ -33,11 +40,6 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A55E984A595D47EDBE26112AC7E815DB }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FA2F82C7F21A468383D758B58333E098 }}
       
-      - name: Create .env file
-        uses: SpicyPizza/create-envfile@v1
-        with:
-          CI:  ""
-          file_name: .env
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
