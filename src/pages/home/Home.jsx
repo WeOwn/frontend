@@ -22,8 +22,8 @@ import Searchmob from "../../components/searchmob";
 import ProfileCard from "../../components/profilecard";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleNavbar } from "../../redux/appslice";
-// import { axios } from "axios";
 import api from "../../service/apiGateway";
+// import { axios } from "axios";
 
 import Slider from "../../components/cardslider";
 import PropertyCardSlider from "../../components/propertyCardSlider";
@@ -32,6 +32,41 @@ import Button from "../../Atoms/Button";
 import IntroContainer from "../../Atoms/introContainer/IntroContainer";
 
 function Home() {
+  const [properties, setAllProperties] = useState(null);
+  const [builders, setAllBuilders] = useState(null);
+
+  const fetchproperties = async () => {
+    try {
+      const propertiesResponse = await api.get(
+        "/property/list?min-price=0&page=page-1"
+      );
+      // console.log("All properties:", propertiesResponse.data.data);
+      setAllProperties(propertiesResponse.data.data);
+    } catch (error) {
+      console.error("Error occurred while fetching data:", error);
+    }
+  };
+  const fetchbuilders = async () => {
+    try {
+      // const [buildersResponse, propertiesResponse] = await Promise.all([
+      //   api.get("/builder/all"),
+      //   api.get("property/list?min-price=0&page=page-2"),
+      // ]);
+
+      const buildersResponse = await api.get("/builder/all");
+
+      console.log("All builders:", buildersResponse.data.data);
+
+      setAllBuilders(buildersResponse.data.data);
+    } catch (error) {
+      console.error("Error occurred while fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchproperties();
+    fetchbuilders();
+  }, []);
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered1, setIsHovered1] = useState(false);
 
@@ -96,35 +131,6 @@ function Home() {
       dispatch(toggleNavbar(false));
       window.removeEventListener("resize", handleresize);
     };
-  }, []);
-
-  const [allbuilders, setAllBuilders] = useState([]);
-  const [allproperties, setAllProperties] = useState([]);
-
-  const fetchData = async () => {
-    try {
-      // const [buildersResponse, propertiesResponse] = await Promise.all([
-      //   api.get("/builder/all"),
-      //   api.get("property/list?min-price=0&page=page-2"),
-      // ]);
-
-      const buildersResponse = await api.get("/builder/all");
-
-      console.log("All builders:", buildersResponse.data.data);
-
-      setAllBuilders(buildersResponse.data.data);
-      const propertiesResponse = await api.get(
-        "property/list?min-price=0&page=page-2"
-      );
-      console.log("All properties:", propertiesResponse.data.data);
-      setAllProperties(propertiesResponse.data.data);
-    } catch (error) {
-      console.error("Error occurred while fetching data:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
   }, []);
 
   return (
@@ -274,7 +280,7 @@ function Home() {
               descStyle={{}}
             />
 
-            <PropertyCardSlider />
+            <PropertyCardSlider projects={properties} />
           </div>
 
           <div style={{ marginTop: "4rem" }}>
@@ -284,9 +290,10 @@ function Home() {
               btntext="View All Builders"
               desc={`Explore our handpicked selection of featured properties. Each listing offers a glimpse into exceptional homes and investments available through Estatein. Click "View Details" for more information.`}
               descStyle={{}}
+              path="/builders"
             />
 
-            <BuilderCardSlider />
+            <BuilderCardSlider builders={builders} />
           </div>
 
           {/* <Aisection /> */}

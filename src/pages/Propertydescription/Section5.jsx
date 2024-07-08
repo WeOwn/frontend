@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./styles.module.css";
 import Button from "../../Atoms/Button";
 
-const Section5 = () => {
+const Section5 = ({ name }) => {
   return (
     <div>
       <h4 style={{ fontSize: "2rem", fontWeight: "650", whiteSpace: "wrap" }}>
-        Inquire About Seaside Serenity Villa
+        {`Inquire About ${name}`}
       </h4>
       <p
         style={{ marginTop: "0.9rem", fontWeight: "550" }}

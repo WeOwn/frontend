@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Propertycard } from "../../components/propertyCard/Propertycard";
 import stardesign2 from "./stardesign2.svg";
 import IntroContainer from "../../Atoms/introContainer/IntroContainer";
 import PropertyCardSlider from "../../components/propertyCardSlider";
+import api from "../../service/apiGateway";
 
-const Section8 = () => {
+const Section8 = ({ builder }) => {
   const List1 = [
     {
       id: "1",
@@ -42,17 +43,43 @@ const Section8 = () => {
     },
   ];
 
+  const [data, setdata] = useState(null);
+  const [projects, setProjects] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      const response = await api.get(
+        `/builder/profile/66826c82668e512633db03cc`
+      );
+
+      setdata(response.data);
+      const projectRequests = response.data.projects.map((projectId) =>
+        api.get(`/property/${projectId}`)
+      );
+
+      const projectResponses = await Promise.all(projectRequests);
+      setProjects(projectResponses.map((res) => res.data));
+    } catch (error) {
+      console.log("Error while fetching data: ", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // console.log("projects section8-> ", projects);
   return (
     <div>
       <IntroContainer
         stardesign={stardesign2}
-        heading="Project By Shapoorji Pallonj"
+        heading={`Projects By ${data?.name}`}
         desc={`Find answers to common questions about Estateins's services, property
           listing, and the real estate process. We're here to provide clarity
           and assist you every tep of the way `}
         btntext="View All Projects"
       />
-      <PropertyCardSlider />
+      {projects && <PropertyCardSlider projects={projects} />}
     </div>
   );
 };

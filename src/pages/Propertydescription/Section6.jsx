@@ -4,7 +4,7 @@ import user from "./user.svg";
 import stardesign from "./stardesign.svg";
 import IntroContainer from "../../Atoms/introContainer/IntroContainer";
 
-const Section6 = () => {
+const Section6 = ({ name }) => {
   const reviews = [
     {
       heading: "Exceptional Service!",
@@ -33,7 +33,7 @@ const Section6 = () => {
     <div>
       <IntroContainer
         stardesign={stardesign}
-        heading="Reviews About Seaside Serenity Villa"
+        heading={`Reviews About ${name}`}
         desc={`Find answers to common questions about Estateins's services, property
           listing, and the real estate process. We're here to provide clarity
           and assist you every tep of the way `}

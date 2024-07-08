@@ -1,8 +1,16 @@
 import React from "react";
 import styles from "./styles.module.css";
 import Button from "../Button";
+import { Link } from "react-router-dom";
 
-const IntroContainer = ({ stardesign, heading, btntext, desc, descStyle }) => {
+const IntroContainer = ({
+  stardesign,
+  heading,
+  btntext,
+  desc,
+  descStyle,
+  path,
+}) => {
   return (
     <div>
       <div style={{ width: "3rem", marginLeft: "-1rem" }}>
@@ -34,7 +42,11 @@ const IntroContainer = ({ stardesign, heading, btntext, desc, descStyle }) => {
           listing, and the real estate process. We're here to provide clarity
           and assist you every tep of the way */}
           </p>
-          {btntext && <Button type="grey">{btntext}</Button>}
+          {btntext && (
+            <Link to="/builders">
+              <Button type="grey">{btntext}</Button>{" "}
+            </Link>
+          )}
         </div>
       }
     </div>

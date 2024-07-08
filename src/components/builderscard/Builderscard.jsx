@@ -5,6 +5,7 @@ import Button from "../../Atoms/Button";
 import Chip from "../../Atoms/Chip";
 import send from "./send.png";
 import { Link } from "react-router-dom";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 export const Builderscard = ({
   name,
@@ -13,24 +14,39 @@ export const Builderscard = ({
   heading,
   subheading,
   marginright,
+  location,
+  images,
 }) => {
   // console.log("builder-> ", builder);
   return (
     <div className={styles.maindiv} style={{ marginRight: marginright }}>
       <div className={styles.imagediv}>
-        <img
-          src={builderimage}
-          alt="builder Image"
-          style={{
-            width: "100%",
-            borderRadius: "10px",
-          }}
-        />
+        {images?.length > 0 ? (
+          <img
+            src={images[0]}
+            alt={"builder Image"}
+            style={{
+              width: "100%",
+              height: "100%",
+              borderRadius: "10px",
+            }}
+            // onLoad={handleImageLoaded}
+          />
+        ) : (
+          <Skeleton
+            width="100%"
+            height="100%"
+            borderRadius="10px"
+            // baseColor="#202020"
+            // highlightColor="#444"
+            // duration={4}
+          />
+        )}
       </div>
       <div className={styles.description}>
-        <div className={styles.heading}>{heading}</div>
+        <div className={styles.heading}>{name}</div>
         <div className={styles.subheading} style={{ color: "#999999" }}>
-          {subheading}
+          {location}
         </div>
       </div>
 

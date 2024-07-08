@@ -3,10 +3,14 @@ import styles from "./styles.module.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import slider_arrow from "./slider_arrow.svg";
-import { Propertycard } from "../../components/propertyCard/Propertycard";
 
-const Index = () => {
+import { Propertycard } from "../../components/propertyCard/Propertycard";
+import api from "../../service/apiGateway";
+import { IoArrowBackSharp } from "react-icons/io5";
+import { IoArrowForwardSharp } from "react-icons/io5";
+
+const Index = ({ projects }) => {
+  console.log("projects passed-> ", projects);
   const List1 = [
     {
       id: "1",
@@ -190,71 +194,40 @@ const Index = () => {
 
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
-
     return (
       <div
         // className={className}
-        style={{
-          ...style,
-          // display: "block",
-
-          border: "1px solid #E1E1E1",
-          borderRadius: "50%",
-          // padding: "0.8rem",
-          position: "absolute",
-          bottom: "-5.5rem",
-          right: "0rem",
-          cursor: "pointer",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "2.5rem",
-          height: "2.5rem",
-        }}
-        className={styles.rotate180}
+        // style={{
+        //   ...style,
+        // }}
+        style={{ right: "0rem" }}
         onClick={onClick}
-        // onMouseDown={() => setBgColor("green")}
-        // onMouseUp={() => setBgColor("")}
+        className={styles.circle}
       >
-        <img src={slider_arrow} alt="arrowImg" style={{ width: "40%" }} />
+        <IoArrowForwardSharp size="1.2rem" className={styles.arrow} />
       </div>
     );
   }
-
   function SamplePrevArrow(props) {
     const { className, style, onClick } = props;
     return (
       <div
         // className={className}
-        style={{
-          ...style,
-          // display: "block",
-          // background: "green",
-          border: "1px solid #E1E1E1",
-          borderRadius: "50%",
-          // padding: "0.6rem",
-          position: "absolute",
-          bottom: "-5.5rem",
-          right: "3rem",
-          cursor: "pointer",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "#808080",
-          // fontSize: "1.5rem",
-          width: "2.5rem",
-          height: "2.5rem",
-        }}
+        // style={{
+        //   ...style,
+        // }}
+        style={{ right: "3rem" }}
         onClick={onClick}
+        className={styles.circle}
       >
-        <img src={slider_arrow} alt="arrowImg" style={{ width: "40%" }} />
-        {/* &larr; */}
+        <IoArrowBackSharp size="1.2rem" className={styles.arrow} />
       </div>
     );
   }
 
   const [visibleSlideCount, setVisibleSlideCount] = useState(0);
   const [totalslideCount, setTotalSlideCount] = useState(0);
+  // const [allproperties, setAllProperties] = useState([]);
 
   useEffect(() => {
     if (sliderRef.current) {
@@ -269,8 +242,8 @@ const Index = () => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: Math.min(projects?.length, 3),
+    slidesToScroll: Math.min(projects?.length, 3),
     initialSlide: 0,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -280,25 +253,41 @@ const Index = () => {
       {
         breakpoint: 1280,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: Math.min(projects?.length, 2),
+          slidesToScroll: Math.min(projects?.length, 2),
         },
       },
       {
         breakpoint: 705,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: Math.min(projects?.length, 1),
+          slidesToScroll: Math.min(projects?.length, 1),
         },
       },
     ],
   };
+
+  // const fetchData = async () => {
+  //   try {
+  //     const propertiesResponse = await api.get(
+  //       "/property/list?min-price=0&page=page-1"
+  //     );
+  //     // console.log("All properties:", propertiesResponse.data.data);
+  //     setAllProperties(propertiesResponse.data.data);
+  //   } catch (error) {
+  //     console.error("Error occurred while fetching data:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
   return (
     <div>
       <div className={styles.sliderdivp} id="divtoslide">
         <Slider {...settings} ref={sliderRef}>
-          {List1.map((property, index) => (
-            <Propertycard key={property.id} {...property} marginright="1rem" />
+          {projects?.map((property) => (
+            <Propertycard key={property._id} {...property} marginright="1rem" />
           ))}
         </Slider>
       </div>

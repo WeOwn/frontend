@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import user1 from "./user1.png";
 import { useSelector } from "react-redux";
 import { isLoggedIn } from "./../../auth/index";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const userDetail = useSelector((store) => store.user);
@@ -22,21 +23,24 @@ const Index = () => {
         minWidth: "fit-content",
       }}
     >
-      <div
-        style={{
-          backgroundColor: "white",
-          boxShadow: " 0 0 10px lightgrey",
+      <Link to={userDetail.isLoggedIn ? "/user/profile" : "/login"}>
+        <div
+          style={{
+            backgroundColor: "white",
+            boxShadow: " 0 0 10px lightgrey",
 
-          borderRadius: "10px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "2.5rem",
-          height: "2.5rem",
-        }}
-      >
-        <img src={user1} alt="userlogo" style={{ height: "60%" }} />
-      </div>
+            borderRadius: "10px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "2.5rem",
+            height: "2.5rem",
+            cursor: "pointer",
+          }}
+        >
+          <img src={user1} alt="userlogo" style={{ height: "60%" }} />
+        </div>
+      </Link>
       <div>
         <div
           style={{

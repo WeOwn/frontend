@@ -3,12 +3,10 @@ import api from "../apiGateway";
 
 const otpService = {
   async getOtp(phone) {
-    return await api.get(`/user/otp?phoneNumber=${phone}`);
-    // return await api.get(`/user/otp`, {
-    //   params: {
-    //     phoneNumber: phone,
-    //   },
-    // });
+    console.log("phonenumber-> ", phone);
+    console.log("type of phone number ->", typeof phone);
+
+    return await api.get(`/user/otp?phoneNumber=${parseInt(phone)}`);
   },
 };
 

@@ -235,6 +235,8 @@ function Signup() {
             console.log("Data to send:", data);
           }}
           userData={{
+            fname: firstName,
+            lname: lastName,
             phoneNumber: phone,
           }}
           apiEndpoint="https://weown-backend.azurewebsites.net/user/signup"
