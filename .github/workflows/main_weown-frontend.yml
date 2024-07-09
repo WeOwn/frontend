@@ -33,13 +33,22 @@ jobs:
       - name: Start React application with PM2
         run: pm2 serve ./build --name "my-app" --spa
 
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_D0AE51FC59AF481E97F5C7AC7DD0FCFC }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_83C9A806AF874BC080FE77EBE03EC2E2 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A2B6D377739146299DA32240C8FFEE1B }}
+
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'weown-frontend'
           slot-name: 'Production'
           package: ./build
-          startup-command: 'pm2-runtime ./build/index.js'  # Update with your PM2 startup command
+          startup-command: 'pm2-runtime ./src/index.js'  # Update with your PM2 startup command
+
 
 
 # final
