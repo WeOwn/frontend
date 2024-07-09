@@ -107,7 +107,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: node-app
+          name: node-app  # Use the same name for the artifact as in the download step
           path: release.zip
 
   deploy:
@@ -130,8 +130,8 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: node-app
-
+          name: node-app  # Ensure this matches the name used in upload-artifact
+          
       - name: Unzip artifact for deployment
         run: unzip -o ./node-app/release.zip -d ./build
 
@@ -146,6 +146,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'weown-frontend'
-          slot-name: 'production'  # Replace with your deployment slot name if applicable
+          slot-name: 'production-frontend'  # Replace with your deployment slot name if applicable
           package: ./build
           # No startup-command needed as PM2 handles the server process
