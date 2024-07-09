@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy Node.js app to Azure Web App - weown-frontend
 env:
   CI: false
@@ -28,7 +25,7 @@ jobs:
           npm run build --if-present
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: zip -r release.zip ./build/*
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -46,7 +43,6 @@ jobs:
       id-token: write #This is required for requesting the JWT
 
     steps:
-
       - name: Login to Azure
         uses: azure/login@v1
         with:
@@ -61,14 +57,12 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip node-app/release.zip -d ./build
-      - name: List files in ./build
-        run: ls -R ./build
 
       - name: Install PM2
         run: npm install pm2 -g
 
       - name: Start React application with PM2
-        run: pm2 start ./build/index.html --name "my-app" 
+        run: pm2 serve ./build --name "my-app" --spa
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
@@ -77,4 +71,4 @@ jobs:
           app-name: 'weown-frontend'
           slot-name: 'Production'
           package: ./build
-          startup-command: 'pm2-runtime ./server.js'
+          startup-command: ''
