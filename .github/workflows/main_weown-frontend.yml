@@ -60,8 +60,15 @@ jobs:
           name: node-app
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip
-          
+        run: unzip node-app/release.zip -d ./build
+      - name: List files in ./build
+        run: ls -R ./build
+
+      - name: Install PM2
+        run: npm install pm2 -g
+
+      - name: Start React application with PM2
+        run: pm2 start ./build/index.html --name "my-app" 
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
