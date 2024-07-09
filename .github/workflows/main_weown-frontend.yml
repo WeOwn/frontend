@@ -53,7 +53,7 @@ jobs:
           app-name: 'weown-frontend'
           slot-name: 'Production'
           package: ./build
-          startup-command: 'pm2-runtime ./src/index.js'  # Update with your PM2 startup command
+          startup-command: 'pm2-runtime ./src/index.js'  
 
 
 
