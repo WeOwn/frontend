@@ -131,6 +131,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: node-app  # Ensure this matches the name used in upload-artifact
+        
+      - name: List files in node-app directory
+        run: ls -l ./node-app
+
           
       - name: Unzip artifact for deployment
         run: unzip -o ./node-app/release.zip -d ./build
