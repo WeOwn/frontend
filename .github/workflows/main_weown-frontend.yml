@@ -2,7 +2,7 @@ name: Build and deploy Node.js app to Azure Web App - weown-frontend
 
 env:
   CI: false
-  WEBAPP_URL: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+  WEBAPP_URL: "https://weown-frontend.azurewebsites.net"
 permissions:
   id-token: write  # Ensure proper permissions are configured
 
@@ -64,6 +64,11 @@ jobs:
           slot-name: 'Production'
           package: ./build
           startup-command: 'npx serve -s ./build' 
+
+
+      # Optionally, print out the deployment URL
+      - name: Print deployment URL
+        run: echo "Deployed to $WEBAPP_URL"
 
 
 
