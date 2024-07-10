@@ -54,14 +54,14 @@
     gap:0.5rem;
 }
 
-@media(max-width:1030px) {
+/* @media(max-width:1030px) {
     .searchContainer{
         width:95%;
         bottom:13rem;
     }
 
     
-}
+} */
 @media(max-width:850px) {
 .section1{
     width:95%;
@@ -111,11 +111,14 @@
     
 }
 @media(max-width:1080px) {
+    /* .searchContainer{
+        bottom:3.3rem;
+    } */
     .section2{
-        /* flex-direction: column;
+        flex-direction: column;
         align-items: flex-start;
         gap:1rem;
-        width:100%; */
+        width:100%;
         display: none;
     }
     .selectBox{

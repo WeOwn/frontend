@@ -17,11 +17,10 @@ const Section1 = () => {
             </h4>
           </div>
           <div>
-            <p className={styles.para}>WeOwn was born from poweful idea to</p>
             <p className={styles.para}>
-              democratize commercial real estate investing and
+              WeOwn was born from poweful idea to democratize commercial real
+              estate investing and Unlock value for investors, at scale.
             </p>
-            <p className={styles.para}>Unlock value for investors, at scale.</p>
           </div>
 
           <div
@@ -49,7 +48,7 @@ const Section1 = () => {
         <img
           src={investment_banner}
           alt="img"
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
       </div>
     </div>

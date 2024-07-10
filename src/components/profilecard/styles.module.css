@@ -9,6 +9,7 @@
     padding-block: 1.5rem;
     border-radius: 15px;
     width:50%;
+    
     min-width: fit-content;
   }
   @media(max-width:270px) {

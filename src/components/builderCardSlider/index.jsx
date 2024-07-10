@@ -16,24 +16,24 @@ const Index = ({ builders }) => {
     { id: "2", heading: "Sara Johnson", subheading: "Delhi City Towner" },
     { id: "3", heading: "Sara Johnson", subheading: "Delhi City Towner" },
     { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
-    { id: "4", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+    { id: "5", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+    { id: "6", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+    { id: "7", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+    { id: "8", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+    { id: "9", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+    { id: "10", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+    { id: "11", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+    { id: "12", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+    { id: "13", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+    { id: "14", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+    { id: "15", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+    { id: "16", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+    { id: "17", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+    { id: "18", heading: "Sara Johnson", subheading: "Delhi City Towner" },
+    { id: "19", heading: "Sara Johnson", subheading: "Delhi City Towner" },
   ];
   const sliderRef = useRef(null);
-  const [activeSlide, setActiveSlide] = useState(1);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -71,7 +71,7 @@ const Index = ({ builders }) => {
   }
 
   const [visibleSlideCount, setVisibleSlideCount] = useState(0);
-  const [totalslideCount, setTotalSlideCount] = useState(0);
+  const [totalSlideCount, setTotalSlideCount] = useState(0);
   const [allbuilders, setAllBuilders] = useState([]);
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const Index = ({ builders }) => {
       setTotalSlideCount(sliderRef.current.innerSlider.props.children.length);
       setVisibleSlideCount(slidesToShow);
     }
-  }, [window.innerWidth]);
+  }, [window.innerWidth, builders]);
 
   const settings = {
     lazyLoad: true,
@@ -119,26 +119,15 @@ const Index = ({ builders }) => {
     ],
   };
 
-  // const fetchData = async () => {
-  //   try {
-  //     // const [buildersResponse, propertiesResponse] = await Promise.all([
-  //     //   api.get("/builder/all"),
-  //     //   api.get("property/list?min-price=0&page=page-2"),
-  //     // ]);
+  const getSlideInfo = () => {
+    if (visibleSlideCount > 0 && totalSlideCount > 0) {
+      return `${Math.ceil(activeSlide / visibleSlideCount) + 1} of ${Math.ceil(
+        totalSlideCount / visibleSlideCount
+      )}`;
+    }
+    return null;
+  };
 
-  //     const buildersResponse = await api.get("/builder/all");
-
-  //     console.log("All builders:", buildersResponse.data.data);
-
-  //     setAllBuilders(buildersResponse.data.data);
-  //   } catch (error) {
-  //     console.error("Error occurred while fetching data:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
   return (
     <div>
       <div className={styles.sliderdivp} id="divtoslide">
@@ -156,8 +145,7 @@ const Index = ({ builders }) => {
           fontSize: "1rem",
         }}
       >
-        {parseInt(activeSlide / visibleSlideCount) + 1} of{" "}
-        {parseInt(totalslideCount / visibleSlideCount)}
+        {getSlideInfo() || ""}
       </div>
     </div>
   );

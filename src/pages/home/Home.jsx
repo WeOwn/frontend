@@ -64,6 +64,7 @@ function Home() {
   };
 
   useEffect(() => {
+    console.log("fetching start.........");
     fetchproperties();
     fetchbuilders();
   }, []);
@@ -278,6 +279,7 @@ function Home() {
               btntext="View All Properties"
               desc={`Explore our handpicked selection of featured properties. Each listing offers a glimpse into exceptional homes and investments available through Estatein. Click "View Details" for more information.`}
               descStyle={{}}
+              path="/properties"
             />
 
             <PropertyCardSlider projects={properties} />

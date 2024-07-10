@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import homelogo from "./homelogo.svg";
 import zoomlogo from "./zoomlogo.svg";
 import locationimg from "./locationimg.svg";
+import Map from "../../components/map/Map";
 
 const Section4 = () => {
   const list1 = [
@@ -13,6 +14,10 @@ const Section4 = () => {
     "Hospital",
     "Metro",
   ];
+
+  const apiKey = "YOUR_GOOGLE_MAPS_API_KEY";
+  const latitude = 37.7749;
+  const longitude = -122.4194;
 
   return (
     <div>
@@ -51,7 +56,8 @@ const Section4 = () => {
 
       {/* Map container <div></div> */}
       <div style={{ width: "100%", marginTop: "2rem" }}>
-        <img src={locationimg} alt="img" style={{ width: "100%" }} />
+        {/* <img src={locationimg} alt="img" style={{ width: "100%" }} /> */}
+        <Map apiKey={apiKey} latitude={latitude} longitude={longitude} />
       </div>
 
       <div
@@ -99,6 +105,8 @@ const Section4 = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    width: "2rem",
+                    height: "2rem",
                   }}
                 >
                   <img src={homelogo} alt="logo_img" style={{ width: "70%" }} />
@@ -117,6 +125,8 @@ const Section4 = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            width: "2.5rem",
+            height: "2.5rem",
           }}
         >
           <img src={zoomlogo} alt="logo_img" style={{ width: "70%" }} />

@@ -24,6 +24,7 @@ import Play from "./Play.svg";
 import "@google/model-viewer/dist/model-viewer";
 import { Link } from "react-router-dom";
 import Button from "../../Atoms/Button";
+import Skeleton from "react-loading-skeleton";
 // import houseinterior3 from "./Houseglb.glb";
 // import SocietyGlb from "./Society_compressed.glb";
 
@@ -35,6 +36,8 @@ const Section2 = ({
   type,
   features,
   images,
+  size,
+  iframe,
 }) => {
   console.log("images-> ", images);
   const descriptionlist = [
@@ -54,13 +57,13 @@ const Section2 = ({
       id: 3,
       img: shape3,
       type: "Area",
-      about: "2,500 Square Feet",
+      about: `${size} Square Feet`,
     },
     {
       id: 4,
       img: shape4,
       type: "Swimming pools",
-      about: "05",
+      about: `${amenities?.swimmingpool}`,
     },
     {
       id: 5,
@@ -72,89 +75,32 @@ const Section2 = ({
       id: 6,
       img: shape6,
       type: "Type",
-      about: type,
+      about: `${amenities?.property_type}`,
     },
     {
       id: 7,
       img: shape1,
       type: "Construction Stage",
-      about: "Pre-launch",
+      about: `${amenities?.construction_stage}`,
     },
     {
       id: 8,
       img: shape2,
-      type: "Accessibility",
-      about: "Elevators",
+      type: "Security",
+      about: `${amenities?.security}`,
     },
     {
       id: 9,
       img: shape3,
-      type: "Area",
-      about: "2,500 Square Feet",
+      type: "Parking",
+      about: `${amenities?.parking}`,
     },
   ];
 
   const [launchimgid, setLaunchimgid] = useState(0);
-  const list1 = [
-    {
-      id: 1,
-      smallimg: home1,
-      largeimg: home1,
-    },
-    {
-      id: 2,
-      smallimg: home2,
-      largeimg: home2,
-    },
-    {
-      id: 3,
-      smallimg: home3,
-      largeimg: housegrid1,
-    },
-    {
-      id: 4,
-      smallimg: home1,
-      largeimg: home1,
-    },
-    {
-      id: 5,
-      smallimg: home1,
-      largeimg: home1,
-    },
-    {
-      id: 6,
-      smallimg: home1,
-      largeimg: home1,
-    },
-    {
-      id: 7,
-      smallimg: home1,
-      largeimg: home1,
-    },
-    {
-      id: 1,
-      smallimg: home1,
-      largeimg: home1,
-    },
-    {
-      id: 8,
-      smallimg: home1,
-      largeimg: home1,
-    },
-    {
-      id: 9,
-      smallimg: home1,
-      largeimg: home1,
-    },
-  ];
-  const list2 = [
-    "Expansive oceanfront terrace for outdoor entertaining",
-    "Gourmnet kitchen with top-of-the-line appliances",
-    "Private beach access for morning strolls and sunset views",
-    "Master suite with a spa-inpspired bathroom and ocean-facing balcony",
-    "Private garage and apmle storage space",
-  ];
+
   const [launchexpbtn, setLaunchexpbtn] = useState(false);
+  const [launchexp, setLaunchexp] = useState(false);
   const handleopenLaunchexp = () => {
     setLaunchexpbtn(true);
   };
@@ -182,7 +128,10 @@ const Section2 = ({
               gap: "0.5rem",
             }}
           >
-            <img src={location} alt="img" style={{ width: "1rem" }} />
+            <div style={{ width: "1rem" }}>
+              <img src={location} alt="img" style={{ width: "100%" }} />
+            </div>
+
             <span style={{ whiteSpace: "noWrap" }}>Mailibu, California</span>
           </div>
         </div>
@@ -206,7 +155,9 @@ const Section2 = ({
             >
               Save
             </span>
-            <img src={heart} alt="img" style={{ width: "1rem" }} />
+            <div style={{ width: "1rem" }}>
+              <img src={heart} alt="img" style={{ width: "100%" }} />
+            </div>
           </div>
           <Link to="/contact_builders" style={{}}>
             <Button type="primary2">Contact Builder</Button>
@@ -232,33 +183,59 @@ const Section2 = ({
           </div>
         </div>
         <div className={styles.section2imgdiv1}>
-          {images?.map((image, index) => {
-            return (
-              <div
-                key={index}
-                style={{
-                  // borderRadius: "10px",
-                  // backgroundColor: "#FFFFFF",
-                  minWidth: "5rem",
-                  maxWidth: "5rem",
+          {images?.length > 0
+            ? images?.map((image, index) => {
+                return (
+                  <div
+                    key={index}
+                    style={{
+                      // borderRadius: "10px",
+                      // backgroundColor: "#FFFFFF",
+                      minWidth: "6rem",
+                      maxWidth: "6rem",
 
-                  aspectRatio: "4/3",
-                  cursor: "pointer",
-                }}
-                onClick={() => setLaunchimgid(index)}
-              >
-                <img
-                  src={image}
-                  alt="home_img"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "5px",
-                  }}
-                />
-              </div>
-            );
-          })}
+                      height: "5rem",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => setLaunchimgid(index)}
+                  >
+                    <img
+                      src={image}
+                      alt="home_img"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        borderRadius: "5px",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
+                );
+              })
+            : Array(9)
+                .fill(0)
+                .map((_, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      // borderRadius: "10px",
+                      // backgroundColor: "#FFFFFF",
+                      minWidth: "6rem",
+                      maxWidth: "6rem",
+
+                      height: "5rem",
+                    }}
+                  >
+                    <Skeleton
+                      width="100%"
+                      height="100%"
+                      borderRadius="5px"
+                      // baseColor="black"
+                      // highlightColor="#444"
+                      // duration={4}
+                    />
+                  </div>
+                ))}
         </div>
         <div
           className={styles.section2imgdiv2}
@@ -266,13 +243,23 @@ const Section2 = ({
           onMouseLeave={handlecloseLaunchexp}
         >
           <div style={{ width: "100%", aspectRatio: "4/2" }}>
-            <img
-              src={images && images[launchimgid]}
-              alt="home_img"
-              style={{ width: "100%", height: "100%", borderRadius: "5px" }}
-            />
+            {images?.length > 0 ? (
+              <img
+                src={images && images[launchimgid]}
+                alt="home_img"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "5px",
+                  objectFit: "cover",
+                }}
+              />
+            ) : (
+              <Skeleton width="100%" height="100%" borderRadius="5px" />
+            )}
           </div>
-          {launchexpbtn && (
+
+          {images?.length > 0 && launchexpbtn && (
             <div
               style={{
                 width: "100%",
@@ -299,6 +286,7 @@ const Section2 = ({
                   gap: "0.5rem",
                   cursor: "pointer",
                 }}
+                onClick={() => setLaunchexp(true)}
               >
                 <div style={{ width: "1rem" }}>
                   <img src={Play} alt="img" style={{ width: "100%" }} />
@@ -316,6 +304,19 @@ const Section2 = ({
                   LAUNCH EXPERIENCE
                 </button>
               </div>
+              {launchexp && (
+                <div className={styles.modal}>
+                  <div className={styles.modalContent}>
+                    <span
+                      className={styles.closeButton}
+                      onClick={() => setLaunchexp(false)}
+                    >
+                      &times;
+                    </span>
+                    <div dangerouslySetInnerHTML={{ __html: iframe }} />
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -331,27 +332,39 @@ const Section2 = ({
           >
             <div
               style={{
-                padding: "0.5rem 0.3rem",
-                backgroundColor: "rgba(112, 101, 240, 0.14)",
-                borderRadius: "10px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <img src={logo1} alt="logo_img" style={{ width: "70%" }} />
-            </div>
-            <div
-              style={{
-                padding: "0.5rem 0.3rem",
+                padding: "0.6rem",
                 backgroundColor: "rgba(112, 101, 240, 0.14)",
                 borderRadius: "5px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                width: "2.5rem",
+                height: "2.5rem",
               }}
             >
-              <img src={logo2} alt="logo_img" style={{ width: "70%" }} />
+              <img
+                src={logo1}
+                alt="logo_img"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
+            <div
+              style={{
+                padding: "0.6rem",
+                backgroundColor: "rgba(112, 101, 240, 0.14)",
+                borderRadius: "5px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "2.5rem",
+                height: "2.5rem",
+              }}
+            >
+              <img
+                src={logo2}
+                alt="logo_img"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
             </div>
             <div
               style={{
@@ -363,7 +376,9 @@ const Section2 = ({
                 gap: "0.8rem",
               }}
             >
-              <img src={share} alt="logo_img" style={{ width: "0.8rem" }} />
+              <div style={{ width: "0.8rem" }}>
+                <img src={share} alt="logo_img" style={{ width: "100%" }} />
+              </div>
               <span style={{ color: "white", fontSize: "0.9rem" }}>Share</span>
             </div>
             <div
@@ -385,7 +400,9 @@ const Section2 = ({
               >
                 Save
               </span>
-              <img src={heart} alt="img" style={{ width: "1rem" }} />
+              <div style={{ width: "1rem" }}>
+                <img src={heart} alt="img" style={{ width: "100%" }} />
+              </div>
             </div>
             <div
               style={{
@@ -406,7 +423,13 @@ const Section2 = ({
               >
                 Customize
               </span>
-              <img src={customize} alt="img" style={{ width: "1rem" }} />
+              <div style={{ width: "1rem" }}>
+                <img
+                  src={customize}
+                  alt="img"
+                  style={{ width: "100%", objectFit: "cover" }}
+                />
+              </div>
             </div>
           </div>
           <div>
@@ -419,8 +442,12 @@ const Section2 = ({
                   // flexWrap: "wrap",
                 }}
               >
-                <div style={{ width: "25%" }}>
-                  <img src={user} alt="user img" style={{ width: "100%" }} />
+                <div style={{ width: "3.5rem" }}>
+                  <img
+                    src={user}
+                    alt="user img"
+                    style={{ width: "100%", objectFit: "cover" }}
+                  />
                 </div>
                 <div>
                   <p
@@ -494,7 +521,7 @@ const Section2 = ({
           </p>
 
           <div className={styles.section2grid}>
-            {descriptionlist.map((obj, index) => {
+            {descriptionlist?.map((obj, index) => {
               return (
                 <div
                   style={{
@@ -503,7 +530,7 @@ const Section2 = ({
                   }}
                 >
                   <div
-                    key={obj.id}
+                    key={obj?.id}
                     style={{
                       display: "flex",
                       flexDirection: "column",
@@ -525,7 +552,7 @@ const Section2 = ({
                     >
                       <span style={{ width: "1rem" }}>
                         <img
-                          src={obj.img}
+                          src={obj?.img}
                           alt="img"
                           style={{ width: "100%" }}
                         />
@@ -537,7 +564,7 @@ const Section2 = ({
                           whiteSpace: "noWrap",
                         }}
                       >
-                        {obj.type}
+                        {amenities && obj?.type}
                       </span>
                     </div>
                     <p
@@ -547,7 +574,7 @@ const Section2 = ({
                         whiteSpace: "noWrap",
                       }}
                     >
-                      {obj.about}
+                      {amenities && obj?.about}
                     </p>
                   </div>
                 </div>
@@ -568,32 +595,72 @@ const Section2 = ({
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
           >
-            {features?.map((text, index) => {
-              return (
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    padding: " 1rem",
-                    borderLeft: "1px solid #7065f0",
-                    background: "linear-gradient(to right, #E3E3E3, #FFFFFF)",
-                  }}
-                >
-                  <img src={light} alt="img" style={{ width: "1rem" }} />
-                  <p
-                    style={{
-                      fontSize: "0.8rem",
-                      fontWeight: "600",
-                      lineHeight: "1.2rem",
-                      whiteSpace: "noWrap",
-                    }}
-                  >
-                    {text}
-                  </p>
-                </div>
-              );
-            })}
+            {features?.length > 0
+              ? features?.map((text, index) => {
+                  return (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: " 1rem",
+                        borderLeft: "1px solid #7065f0",
+                        background:
+                          "linear-gradient(to right, #E3E3E3, #FFFFFF)",
+                      }}
+                    >
+                      <div style={{ width: "1rem" }}>
+                        <img src={light} alt="img" style={{ width: "100%" }} />
+                      </div>
+                      <p
+                        style={{
+                          fontSize: "0.8rem",
+                          fontWeight: "600",
+                          lineHeight: "1.2rem",
+                          whiteSpace: "noWrap",
+                        }}
+                      >
+                        {text}
+                      </p>
+                    </div>
+                  );
+                })
+              : Array(5)
+                  .fill(0)
+                  .map((_, index) => {
+                    return (
+                      <div
+                        key={index}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "0.5rem",
+                          padding: " 1rem",
+                          borderLeft: "1px solid #7065f0",
+                          background:
+                            "linear-gradient(to right, #E3E3E3, #FFFFFF)",
+                        }}
+                      >
+                        <div style={{ width: "1rem" }}>
+                          <img
+                            src={light}
+                            alt="img"
+                            style={{ width: "100%" }}
+                          />
+                        </div>
+                        <p
+                          style={{
+                            fontSize: "0.8rem",
+                            fontWeight: "600",
+                            lineHeight: "1.2rem",
+                            whiteSpace: "noWrap",
+                          }}
+                        >
+                          features
+                        </p>
+                      </div>
+                    );
+                  })}
           </div>
         </div>
       </div>

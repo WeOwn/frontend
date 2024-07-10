@@ -223,7 +223,7 @@
   
   position: relative;
   overflow: hidden;
-  height:100%;
+  aspect-ratio: 1.2;
   width:100%;
   /* width: 20rem;
   height: 15rem; */

@@ -60,7 +60,7 @@ function OtpModal({ onClose, onSubmit, userData, apiEndpoint, phone }) {
       console.log("API Response:", response.data);
       const data = response.data;
 
-      if (data.data.sucess === true) {
+      if (data.data.success === true) {
         dispatch(setLoggedIn());
         onClose();
         navigate("/home");

@@ -5,10 +5,11 @@ import styles2 from "./navbar2.module.css";
 import hamburger2 from "./hamburger2.png";
 import userimg from "./userimg.png";
 import searchlogo from "./searchlogo.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../redux/appslice";
 
 const Navbar2 = () => {
+  const userDetail = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const handlesideopen = () => {
     dispatch(toggleSidebar());
@@ -80,7 +81,7 @@ const Navbar2 = () => {
             style={{ height: "70%", width: "70%", cursor: "pointer" }}
           />
         </div>
-        <Link to="/login">
+        <Link to={userDetail.isLoggedIn ? "/user/profile" : "/login"}>
           <div
             style={{
               backgroundColor: "White",
