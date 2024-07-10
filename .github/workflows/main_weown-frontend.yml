@@ -76,4 +76,4 @@ jobs:
         with:
           app-name: 'weown-frontend'
           slot-name: 'Production'
-          startup-command: 'serve -s build'
+          # startup-command: 'serve -s build'
