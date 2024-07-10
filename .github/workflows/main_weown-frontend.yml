@@ -27,6 +27,9 @@ jobs:
           npm install
           npm run build --if-present
 
+      - name: Install Serve
+        run: npm install -g serve
+
       - name: Zip artifact for deployment
         run: zip release.zip ./build/* -r
 
