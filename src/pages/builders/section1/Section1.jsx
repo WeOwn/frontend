@@ -21,16 +21,6 @@ const Section1 = () => {
               passion for helping clients achieve their goals, and an unwavering
               dedication to professionalism.
             </p>
-            {/* <p className={styles.para}>
-              guidance and personalized service. Our journey in the real estate
-            </p>
-            <p className={styles.para}>
-              industry has been marked by a deep commitment to excellence, a
-            </p>
-            <p className={styles.para}>
-              passion for helping clients achieve their goals, and an unwavering
-            </p>
-            <p className={styles.para}>dedication to professionalism.</p> */}
           </div>
         </div>
       </div>

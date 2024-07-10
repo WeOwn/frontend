@@ -1,13 +1,30 @@
 import React from "react";
 import styles from "./styles.module.css";
 import user1 from "./user1.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isLoggedIn } from "./../../auth/index";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { setLogOut } from "../../redux/userSlice";
+//import persistStore from "redux-persist/es/persistStore";
+//import store from "../../redux/store";
 
 const Index = () => {
   const userDetail = useSelector((store) => store.user);
   console.log("user", userDetail);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handlelogout = () => {
+    console.log("user logged out");
+    dispatch(setLogOut());
+    //const persistor = persistStore(store); // Create a persistor
+    //persistor.purge(); // Purge the persisted state
+  };
+  const handlelogin = () => {
+    console.log("user logged in");
+    navigate("/login");
+  };
+
   return (
     <div
       style={{
@@ -49,10 +66,7 @@ const Index = () => {
             fontSize: "0.8rem",
           }}
         >
-          {/* {userDetail.isLoggedIn
-            ? userDetail.firstName + " " + userDetail.lastName
-            : "My Account"} */}
-          My Account
+          {userDetail?.isLoggedIn ? "My Account" : "Guest"}
         </div>
         <div
           style={{
@@ -60,10 +74,11 @@ const Index = () => {
             color: "grey",
             marginTop: "0.2rem",
             fontWeight: "550",
+            cursor: "pointer",
           }}
+          onClick={userDetail?.isLoggedIn ? handlelogout : handlelogin}
         >
-          {/* {userDetail ? "Welcome" : "Login/Register"} */}
-          Login/Register
+          {userDetail?.isLoggedIn ? "Logout" : "Login/Register"}
         </div>
       </div>
     </div>

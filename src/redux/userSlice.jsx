@@ -4,10 +4,10 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     isLoggedIn: false,
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    termsAccepted: "",
+    // firstName: "",
+    // lastName: "",
+    // phoneNumber: "",
+    // termsAccepted: "",
   },
 
   reducers: {

@@ -58,6 +58,7 @@ export const Propertycard = ({
             style={{
               width: "100%",
               height: "100%",
+              objectFit: "cover",
               borderRadius: "10px",
             }}
             // onLoad={handleImageLoaded}

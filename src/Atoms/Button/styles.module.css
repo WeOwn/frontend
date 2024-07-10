@@ -11,6 +11,11 @@
   font-size: 0.9rem;
   cursor:pointer;
 }
+@media(max-width:700px) {
+  .primary {
+  padding:0.8rem 1.5rem;
+  }
+}
 .primary2 {
   background-color: #7065f0;
   color: white;
@@ -24,6 +29,8 @@
   font-size: 0.9rem;
   cursor:pointer;
 }
+
+
 
 .secondary {
   background: #7065f01a;

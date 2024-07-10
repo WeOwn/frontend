@@ -5,201 +5,20 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import { Propertycard } from "../../components/propertyCard/Propertycard";
+
 import api from "../../service/apiGateway";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { IoArrowForwardSharp } from "react-icons/io5";
+import PropertycardSkeleton from "../propertyCard/PropertycardSkeleton";
 
 const Index = ({ projects }) => {
-  console.log("projects passed-> ", projects);
-  const List1 = [
-    {
-      id: "1",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "1",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "2",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-  ];
   const sliderRef = useRef(null);
-  const [activeSlide, setActiveSlide] = useState(1);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
       <div
-        // className={className}
-        // style={{
-        //   ...style,
-        // }}
         style={{ right: "0rem" }}
         onClick={onClick}
         className={styles.circle}
@@ -208,14 +27,11 @@ const Index = ({ projects }) => {
       </div>
     );
   }
+
   function SamplePrevArrow(props) {
     const { className, style, onClick } = props;
     return (
       <div
-        // className={className}
-        // style={{
-        //   ...style,
-        // }}
         style={{ right: "3rem" }}
         onClick={onClick}
         className={styles.circle}
@@ -226,16 +42,28 @@ const Index = ({ projects }) => {
   }
 
   const [visibleSlideCount, setVisibleSlideCount] = useState(0);
-  const [totalslideCount, setTotalSlideCount] = useState(0);
-  // const [allproperties, setAllProperties] = useState([]);
+  const [totalSlideCount, setTotalSlideCount] = useState(0);
+
+  const handleResize = () => {
+    const width = window.innerWidth;
+    if (width > 1280) setVisibleSlideCount(Math.min(projects?.length, 3));
+    else if (width > 705) setVisibleSlideCount(Math.min(projects?.length, 2));
+    else setVisibleSlideCount(Math.min(projects?.length, 1));
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [projects]);
 
   useEffect(() => {
     if (sliderRef.current) {
-      const { slidesToShow } = sliderRef.current.innerSlider.props;
-      setTotalSlideCount(sliderRef.current.innerSlider.props.children.length);
-      setVisibleSlideCount(slidesToShow);
+      setTotalSlideCount(projects?.length);
     }
-  }, [window.innerWidth]);
+  }, [projects]);
 
   const settings = {
     lazyLoad: true,
@@ -258,7 +86,7 @@ const Index = ({ projects }) => {
         },
       },
       {
-        breakpoint: 705,
+        breakpoint: 640,
         settings: {
           slidesToShow: Math.min(projects?.length, 1),
           slidesToScroll: Math.min(projects?.length, 1),
@@ -267,40 +95,52 @@ const Index = ({ projects }) => {
     ],
   };
 
-  // const fetchData = async () => {
-  //   try {
-  //     const propertiesResponse = await api.get(
-  //       "/property/list?min-price=0&page=page-1"
-  //     );
-  //     // console.log("All properties:", propertiesResponse.data.data);
-  //     setAllProperties(propertiesResponse.data.data);
-  //   } catch (error) {
-  //     console.error("Error occurred while fetching data:", error);
-  //   }
-  // };
+  const getSlideInfo = () => {
+    if (visibleSlideCount > 0 && totalSlideCount > 0) {
+      return `${Math.ceil(activeSlide / visibleSlideCount) + 1} of ${Math.ceil(
+        totalSlideCount / visibleSlideCount
+      )}`;
+    }
+    return null;
+  };
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
   return (
     <div>
       <div className={styles.sliderdivp} id="divtoslide">
-        <Slider {...settings} ref={sliderRef}>
-          {projects?.map((property) => (
-            <Propertycard key={property._id} {...property} marginright="1rem" />
-          ))}
-        </Slider>
+        {!projects ? (
+          <>
+            {console.log("outside")}
+            <Slider {...settings} ref={sliderRef}>
+              {Array(3)
+                .fill(0)
+                .map((_, index) => (
+                  <PropertycardSkeleton key={index} marginright="1rem" />
+                ))}
+            </Slider>
+          </>
+        ) : (
+          <>
+            {console.log("inside")}
+            <Slider {...settings} ref={sliderRef}>
+              {projects.map((property) => (
+                <Propertycard
+                  key={property._id}
+                  {...property}
+                  marginright="1rem"
+                />
+              ))}
+            </Slider>
+          </>
+        )}
       </div>
       <div
-        // className={className}
         style={{
           marginTop: "1.5rem",
           fontWeight: "bold",
           fontSize: "1rem",
         }}
       >
-        {parseInt(activeSlide / visibleSlideCount) + 1} of{" "}
-        {parseInt(totalslideCount / visibleSlideCount)}
+        {getSlideInfo() || ""}
       </div>
     </div>
   );

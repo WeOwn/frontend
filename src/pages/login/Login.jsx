@@ -26,7 +26,10 @@ function Login() {
     try {
       const response = await otpService.getOtp(phone);
 
-      if (response.status === 200) {
+      if (response.status === 200 && !response.data.success) {
+        console.log("Unverified number:", response.data);
+        alert(response.data.msg);
+      } else if (response.status === 200 && response.data.success) {
         // Handle the response data as needed
 
         console.log("API Response:", response.data);

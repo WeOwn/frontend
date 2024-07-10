@@ -6,10 +6,11 @@ import styles from "./styles.module.css";
 import NavDropdown from "../../Atoms/navdropdown";
 import hamburger from "./hamburger.png";
 import userimg from "./userimg.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../redux/appslice";
 
 const Navbar1 = () => {
+  const userDetail = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const handlesideopen = () => {
     dispatch(toggleSidebar());
@@ -160,7 +161,7 @@ const Navbar1 = () => {
             style={{ height: "70%", width: "70%", cursor: "pointer" }}
           />
         </div>
-        <Link to="/login">
+        <Link to={userDetail.isLoggedIn ? "/user/profile" : "/login"}>
           <div
             style={{
               backgroundColor: "white",

@@ -18,12 +18,12 @@ import { useParams } from "react-router-dom";
 
 const PropertyDescription = () => {
   const [data, setData] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
   const { id } = useParams();
   const fetchdata = async () => {
-    setLoading(true);
-    setError(null);
+    // setLoading(true);
+    // setError(null);
     try {
       const response = await api.get(`/property/${id}`);
       // const data=response.data.data;
@@ -31,10 +31,11 @@ const PropertyDescription = () => {
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data: ", error);
-      setError("Failed to fetch data");
-    } finally {
-      setLoading(false);
+      // setError("Failed to fetch data");
     }
+    //  finally {
+    //   setLoading(false);
+    // }
   };
 
   useEffect(() => {
@@ -56,13 +57,13 @@ const PropertyDescription = () => {
     iframe,
   } = data;
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
 
   return (
     <>
@@ -79,6 +80,8 @@ const PropertyDescription = () => {
             type={type}
             features={features}
             images={images}
+            size={size}
+            iframe={iframe}
           />
         </div>
         <div className={styles.section3}>

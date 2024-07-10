@@ -43,7 +43,7 @@ const IntroContainer = ({
           and assist you every tep of the way */}
           </p>
           {btntext && (
-            <Link to="/builders">
+            <Link to={path}>
               <Button type="grey">{btntext}</Button>{" "}
             </Link>
           )}

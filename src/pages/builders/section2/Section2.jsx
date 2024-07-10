@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import stardesign from "./stardesign.svg";
 import { Builderscard } from "../../../components/builderscard/Builderscard";
 import api from "../../../service/apiGateway";
+import BuildercardSkeleton from "../../../components/builderscard/BuildercardSkeleton";
 
 const Section2 = () => {
   const [builders, setAllBuilders] = useState(null);
@@ -82,13 +83,17 @@ const Section2 = () => {
         </div>
       </div>
       <div className={styles.builderContainer}>
-        {builders?.map((builder, index) => (
-          <Builderscard
-            key={builder._id}
-            {...builder}
-            style={{ background: "red" }}
-          />
-        ))}
+        {builders?.length > 0
+          ? builders?.map((builder, index) => (
+              <Builderscard
+                key={builder._id}
+                {...builder}
+                style={{ background: "red" }}
+              />
+            ))
+          : Array(3)
+              .fill(0)
+              .map((_, index) => <BuildercardSkeleton />)}
       </div>
     </div>
   );
