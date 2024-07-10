@@ -26,10 +26,11 @@ jobs:
         run: |
           npm install
           npm run build --if-present
+
       - name: Zip artifact for deployment
         run: zip release.zip ./build/* -r
 
-      - name: Archive production artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: build
@@ -72,4 +73,4 @@ jobs:
         with:
           app-name: 'weown-frontend'
           slot-name: 'Production'
-          command: 'serve -s build -l ${{ env.PORT }}'
+          startup-command: 'serve -s build -l ${{ env.PORT }}'
