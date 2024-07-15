@@ -28,7 +28,7 @@ const PropertyDescription = () => {
       const response = await api.get(`/property/${id}`);
       // const data=response.data.data;
       // console.log("desc response-> ", response);
-      setData(response.data);
+      setData(response.data.data);
     } catch (error) {
       console.error("Error fetching data: ", error);
       // setError("Failed to fetch data");
@@ -69,7 +69,7 @@ const PropertyDescription = () => {
     <>
       <div className={styles.maindiv}>
         <div className={styles.section1}>
-          <Section1 />
+          <Section1 name={name} />
         </div>
         <div className={styles.section2}>
           <Section2
@@ -99,11 +99,10 @@ const PropertyDescription = () => {
         {/* <div className={styles.section7}>
           <Section7 />
         </div> */}
-        {builder && (
-          <div className={styles.section8}>
-            <Section8 builder={builder} />
-          </div>
-        )}
+        <div className={styles.section8}>
+          <Section8 builder={builder} />
+        </div>
+
         <div className={styles.section9}>
           <Section9 />
         </div>

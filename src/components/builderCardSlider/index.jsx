@@ -9,6 +9,7 @@ import { IoArrowForwardSharp } from "react-icons/io5";
 
 import { Builderscard } from "../builderscard/Builderscard";
 import api from "../../service/apiGateway";
+import BuildercardSkeleton from "../builderscard/BuildercardSkeleton";
 
 const Index = ({ builders }) => {
   const List1 = [
@@ -87,8 +88,8 @@ const Index = ({ builders }) => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: Math.min(builders?.length, 4),
-    slidesToScroll: Math.min(builders?.length, 4),
+    slidesToShow: builders ? Math.min(builders?.length, 4) : 4,
+    slidesToScroll: builders ? Math.min(builders?.length, 4) : 4,
     initialSlide: 0,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -98,22 +99,22 @@ const Index = ({ builders }) => {
       {
         breakpoint: 990,
         settings: {
-          slidesToShow: Math.min(builders?.length, 3),
-          slidesToScroll: Math.min(builders?.length, 3),
+          slidesToShow: builders ? Math.min(builders?.length, 3) : 3,
+          slidesToScroll: builders ? Math.min(builders?.length, 3) : 3,
         },
       },
       {
         breakpoint: 650,
         settings: {
-          slidesToShow: Math.min(builders?.length, 2),
-          slidesToScroll: Math.min(builders?.length, 2),
+          slidesToShow: builders ? Math.min(builders?.length, 2) : 2,
+          slidesToScroll: builders ? Math.min(builders?.length, 2) : 2,
         },
       },
       {
         breakpoint: 415,
         settings: {
-          slidesToShow: Math.min(builders?.length, 1),
-          slidesToScroll: Math.min(builders?.length, 1),
+          slidesToShow: builders ? Math.min(builders?.length, 1) : 1,
+          slidesToScroll: builders ? Math.min(builders?.length, 1) : 1,
         },
       },
     ],
@@ -132,9 +133,19 @@ const Index = ({ builders }) => {
     <div>
       <div className={styles.sliderdivp} id="divtoslide">
         <Slider {...settings} ref={sliderRef}>
-          {builders?.map((builder, index) => (
-            <Builderscard key={builder.id} {...builder} marginright="1rem" />
-          ))}
+          {builders
+            ? builders?.map((builder, index) => (
+                <Builderscard
+                  key={builder.id}
+                  {...builder}
+                  marginright="1rem"
+                />
+              ))
+            : Array(4)
+                .fill(0)
+                .map((_, index) => {
+                  return <BuildercardSkeleton key={index} marginright="1rem" />;
+                })}
         </Slider>
       </div>
       <div

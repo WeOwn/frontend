@@ -48,9 +48,7 @@ const Section8 = ({ builder }) => {
 
   const fetchData = async () => {
     try {
-      const response = await api.get(
-        `/builder/profile/66826c82668e512633db03cc`
-      );
+      const response = await api.get(`/builder/profile/${builder}`);
 
       setdata(response.data);
       const projectRequests = response.data.projects.map((projectId) =>
@@ -78,8 +76,9 @@ const Section8 = ({ builder }) => {
           listing, and the real estate process. We're here to provide clarity
           and assist you every tep of the way `}
         btntext="View All Projects"
+        path={`/builder/${builder}`}
       />
-      {projects && <PropertyCardSlider projects={projects} />}
+      <PropertyCardSlider projects={projects} />
     </div>
   );
 };

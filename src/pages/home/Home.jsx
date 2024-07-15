@@ -281,6 +281,7 @@ function Home() {
               descStyle={{}}
               path="/properties"
             />
+            {/* <PropertyCardSlider projects={properties} /> */}
 
             <PropertyCardSlider projects={properties} />
           </div>

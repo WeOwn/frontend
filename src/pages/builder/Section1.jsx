@@ -22,9 +22,10 @@ const Section1 = ({
               src={image}
               alt={"Property Image"}
               style={{
-                width: "100%",
-                height: "100%",
+                minWidth: "100%",
+                minHeight: "100%",
                 borderRadius: "10px",
+                backgroundColor: "#E1E1E1",
               }}
               // onLoad={handleImageLoaded}
             />
