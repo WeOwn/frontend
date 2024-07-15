@@ -19,6 +19,15 @@
   }
 } */
 
+.section1maindiv{
+  position: -webkit-sticky; /* Safari */
+  position:sticky !important;
+  top:0rem;
+  z-index:1000;
+  background:white;
+
+}
+
 .toggleContainer{
     display:flex;
     /* justify-content: space-between; */

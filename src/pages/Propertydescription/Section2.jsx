@@ -40,6 +40,7 @@ const Section2 = ({
   iframe,
 }) => {
   console.log("images-> ", images);
+  console.log("description name-> ", name);
   const descriptionlist = [
     {
       id: 1,
@@ -109,7 +110,7 @@ const Section2 = ({
   };
   return (
     <div className={styles.section2main}>
-      <div className={styles.section2intro}>
+      {/* <div className={styles.section2intro}>
         <div className={styles.section2heading}>
           <h4
             style={{ fontSize: "1.5rem", fontWeight: "650", flexWrap: "wrap" }}
@@ -163,7 +164,7 @@ const Section2 = ({
             <Button type="primary2">Contact Builder</Button>
           </Link>
         </div>
-      </div>
+      </div> */}
 
       <div className={styles.section2imgdivp}>
         <div style={{}} className={styles.section2imgdivbuttondivp}>
@@ -564,7 +565,7 @@ const Section2 = ({
                           whiteSpace: "noWrap",
                         }}
                       >
-                        {amenities && obj?.type}
+                        {obj?.type}
                       </span>
                     </div>
                     <p

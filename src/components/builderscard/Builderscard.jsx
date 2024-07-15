@@ -26,10 +26,11 @@ export const Builderscard = ({
             src={images[0]}
             alt={"builder Image"}
             style={{
-              width: "100%",
-              height: "100%",
+              minWidth: "100%",
+              minHeight: "100%",
               objectFit: "cover",
               borderRadius: "10px",
+              backgroundColor: "#E1E1E1",
             }}
             // onLoad={handleImageLoaded}
           />

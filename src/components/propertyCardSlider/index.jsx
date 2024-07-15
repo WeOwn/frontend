@@ -44,34 +44,21 @@ const Index = ({ projects }) => {
   const [visibleSlideCount, setVisibleSlideCount] = useState(0);
   const [totalSlideCount, setTotalSlideCount] = useState(0);
 
-  const handleResize = () => {
-    const width = window.innerWidth;
-    if (width > 1280) setVisibleSlideCount(Math.min(projects?.length, 3));
-    else if (width > 705) setVisibleSlideCount(Math.min(projects?.length, 2));
-    else setVisibleSlideCount(Math.min(projects?.length, 1));
-  };
-
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [projects]);
-
   useEffect(() => {
     if (sliderRef.current) {
-      setTotalSlideCount(projects?.length);
+      const { slidesToShow } = sliderRef.current.innerSlider.props;
+      setTotalSlideCount(sliderRef.current.innerSlider.props.children.length);
+      setVisibleSlideCount(slidesToShow);
     }
-  }, [projects]);
+  }, [window.innerWidth, projects]);
 
   const settings = {
     lazyLoad: true,
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: Math.min(projects?.length, 3),
-    slidesToScroll: Math.min(projects?.length, 3),
+    slidesToShow: projects ? Math.min(projects?.length, 3) : 3,
+    slidesToScroll: projects ? Math.min(projects?.length, 3) : 3,
     initialSlide: 0,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -81,15 +68,15 @@ const Index = ({ projects }) => {
       {
         breakpoint: 1280,
         settings: {
-          slidesToShow: Math.min(projects?.length, 2),
-          slidesToScroll: Math.min(projects?.length, 2),
+          slidesToShow: projects ? Math.min(projects?.length, 2) : 2,
+          slidesToScroll: projects ? Math.min(projects?.length, 2) : 2,
         },
       },
       {
         breakpoint: 640,
         settings: {
-          slidesToShow: Math.min(projects?.length, 1),
-          slidesToScroll: Math.min(projects?.length, 1),
+          slidesToShow: projects ? Math.min(projects?.length, 1) : 1,
+          slidesToScroll: projects ? Math.min(projects?.length, 1) : 1,
         },
       },
     ],
@@ -107,31 +94,23 @@ const Index = ({ projects }) => {
   return (
     <div>
       <div className={styles.sliderdivp} id="divtoslide">
-        {!projects ? (
-          <>
-            {console.log("outside")}
-            <Slider {...settings} ref={sliderRef}>
-              {Array(3)
-                .fill(0)
-                .map((_, index) => (
-                  <PropertycardSkeleton key={index} marginright="1rem" />
-                ))}
-            </Slider>
-          </>
-        ) : (
-          <>
-            {console.log("inside")}
-            <Slider {...settings} ref={sliderRef}>
-              {projects.map((property) => (
+        <Slider {...settings} ref={sliderRef}>
+          {projects
+            ? projects?.map((project, index) => (
                 <Propertycard
-                  key={property._id}
-                  {...property}
+                  key={project.id}
+                  {...project}
                   marginright="1rem"
                 />
-              ))}
-            </Slider>
-          </>
-        )}
+              ))
+            : Array(4)
+                .fill(0)
+                .map((_, index) => {
+                  return (
+                    <PropertycardSkeleton key={index} marginright="1rem" />
+                  );
+                })}
+        </Slider>
       </div>
       <div
         style={{

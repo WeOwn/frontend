@@ -56,10 +56,11 @@ export const Propertycard = ({
             src={images[0]}
             alt={"Property Image"}
             style={{
-              width: "100%",
-              height: "100%",
+              minWidth: "100%",
+              minHeight: "100%",
               objectFit: "cover",
               borderRadius: "10px",
+              backgroundColor: "#E1E1E1",
             }}
             // onLoad={handleImageLoaded}
           />
@@ -133,7 +134,7 @@ export const Propertycard = ({
           </div>
           <span
             style={{ whiteSpace: "nowrap" }}
-          >{`${amenities.bedrooms} Bedrooms`}</span>
+          >{`${amenities?.bedrooms} Bedrooms`}</span>
         </div>
         <div className={styles.capsule}>
           <div>
@@ -145,7 +146,7 @@ export const Propertycard = ({
           </div>
           <span
             style={{ whiteSpace: "nowrap" }}
-          >{`${amenities.bathrooms} Bathrooms`}</span>
+          >{`${amenities?.bathrooms} Bathrooms`}</span>
         </div>
         <div className={styles.capsule}>
           <div>
@@ -157,7 +158,7 @@ export const Propertycard = ({
           </div>
           <span
             style={{ whiteSpace: "nowrap" }}
-          >{`${amenities.parking} Parking`}</span>
+          >{`${amenities?.parking} Parking`}</span>
         </div>
         <div className={styles.capsule}>
           <div>
@@ -169,7 +170,7 @@ export const Propertycard = ({
           </div>
           <span
             style={{ whiteSpace: "nowrap" }}
-          >{`${amenities.security} Security`}</span>
+          >{`${amenities?.security}`}</span>
         </div>
       </div>
 

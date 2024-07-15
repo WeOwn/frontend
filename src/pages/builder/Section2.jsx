@@ -11,6 +11,7 @@ import Homecard from "../../components/homecard";
 import { useParams } from "react-router-dom";
 import api from "../../service/apiGateway";
 import { IoFemale } from "react-icons/io5";
+import Skeleton from "react-loading-skeleton";
 
 const Section2 = ({ projects }) => {
   const [builderprojects, setbuilderProjects] = useState(null);
@@ -100,24 +101,41 @@ const Section2 = ({ projects }) => {
           className={styles.section2fleximgdivp}
           // styles={{ backgroundColor: "red" }}
         >
-          {builderprojects?.map((project, index) => {
-            return (
-              <div
-                key={project?._id}
-                style={{
-                  width: "23%",
-                  aspectRatio: "0.8",
-                  borderRadius: "10px",
-                }}
-              >
-                <Homecard
-                  project={project}
-                  type={"small"}
-                  list={list[index % 6]}
-                />
-              </div>
-            );
-          })}
+          {builderprojects
+            ? builderprojects?.map((project, index) => {
+                return (
+                  <div
+                    key={project?._id}
+                    style={{
+                      width: "23%",
+                      aspectRatio: "0.8",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <Homecard
+                      project={project}
+                      type={"small"}
+                      list={list[index % 6]}
+                    />
+                  </div>
+                );
+              })
+            : Array(4)
+                .fill(0)
+                .map((_, index) => {
+                  return (
+                    <div
+                      key={index}
+                      style={{
+                        width: "23%",
+                        aspectRatio: "0.8",
+                        borderRadius: "10px",
+                      }}
+                    >
+                      <Skeleton width="100%" height="100%" />
+                    </div>
+                  );
+                })}
         </div>
       </div>
 
@@ -125,20 +143,33 @@ const Section2 = ({ projects }) => {
         <h4>All Projects</h4>
         <Toggle />
         <div className={styles.section2gridimgdivp}>
-          {builderprojects?.map((project, index) => {
-            return (
-              <div
-                key={project?._id}
-                style={{
-                  width: "100%",
-                  aspectRatio: "1",
-                  borderRadius: "10px",
-                }}
-              >
-                <Homecard project={project} type={"small"} list={list[index]} />
-              </div>
-            );
-          })}
+          {builderprojects
+            ? builderprojects.map((project, index) => (
+                <div
+                  key={project?._id || index} // Adding fallback to index if _id is not present
+                  style={{
+                    width: "100%",
+                    aspectRatio: "1",
+                    borderRadius: "10px",
+                  }}
+                >
+                  <Homecard project={project} type="small" list={list[index]} />
+                </div>
+              ))
+            : Array(6)
+                .fill(0)
+                .map((_, index) => (
+                  <div
+                    key={index} // Using index as key for skeleton elements
+                    style={{
+                      width: "100%",
+                      aspectRatio: "1",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <Skeleton width="100%" height="100%" />
+                  </div>
+                ))}
         </div>
       </div>
     </div>
