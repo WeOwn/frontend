@@ -111,7 +111,7 @@ const Index = ({ builders }) => {
         },
       },
       {
-        breakpoint: 415,
+        breakpoint: 490,
         settings: {
           slidesToShow: builders ? Math.min(builders?.length, 1) : 1,
           slidesToScroll: builders ? Math.min(builders?.length, 1) : 1,
@@ -120,11 +120,25 @@ const Index = ({ builders }) => {
     ],
   };
 
+  const formatNumber = (number) => {
+    // Convert the number to a string
+    let numberStr = number.toString();
+
+    // Check if the number is a single digit
+    if (numberStr.length === 1) {
+      // Add a leading zero
+      numberStr = "0" + numberStr;
+    }
+
+    return numberStr;
+  };
   const getSlideInfo = () => {
     if (visibleSlideCount > 0 && totalSlideCount > 0) {
-      return `${Math.ceil(activeSlide / visibleSlideCount) + 1} of ${Math.ceil(
-        totalSlideCount / visibleSlideCount
-      )}`;
+      const currentPage = Math.ceil(activeSlide / visibleSlideCount) + 1;
+      const totalPage = Math.ceil(totalSlideCount / visibleSlideCount);
+      const a = formatNumber(currentPage);
+      const b = formatNumber(totalPage);
+      return `${a} of ${b}`;
     }
     return null;
   };

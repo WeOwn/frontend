@@ -17,24 +17,16 @@ const Section2 = ({ projects }) => {
   const [builderprojects, setbuilderProjects] = useState(null);
   const [error, setError] = useState(null);
   const { id } = useParams();
-  console.log("projects-> ", projects);
 
   const fetchdata = async () => {
-    console.log("Fetching data...");
     try {
       const projectRequests = projects?.map((projectId) => {
-        console.log(`Requesting project with ID: ${projectId}`);
         return api.get(`/property/${projectId}`);
       });
 
       const projectResponses = await Promise.all(projectRequests);
-      console.log("Project responses received:", projectResponses);
 
       setbuilderProjects(projectResponses?.map((res) => res.data));
-      console.log(
-        "Builder projects set:",
-        projectResponses?.map((res) => res.data)
-      );
     } catch (error) {
       console.error("Error fetching data:", error);
       setError("Failed to fetch data");
@@ -44,8 +36,6 @@ const Section2 = ({ projects }) => {
   useEffect(() => {
     if (projects?.length) fetchdata();
   }, [projects?.length]); // Ensure this dependency array is empty
-
-  console.log("builder project-> ", builderprojects);
 
   const list = [
     {

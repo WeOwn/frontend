@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./styles.module.css";
 import bedroom_logo from "./bedroom_logo.png";
 import propertyimage from "./property.png";
@@ -7,10 +7,13 @@ import villa_logo from "./Villa_logo.png";
 import Button from "../../Atoms/Button";
 import Chip from "../../Atoms/Chip";
 import wishlist_btn from "./wishlist_btn.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { IoFolder } from "react-icons/io5";
+import api from "../../service/apiGateway";
+import { useSelector } from "react-redux";
+import { isLoggedIn } from "./../../auth/index";
 
 export const Propertycard = ({
   _id,
@@ -18,6 +21,7 @@ export const Propertycard = ({
   images,
   amenities,
   price,
+  type,
   description,
   detail1,
   detail2,
@@ -29,9 +33,9 @@ export const Propertycard = ({
   const [isLoading, setIsLoading] = useState(false);
   const [isDescExpanded, setIsDescExpanded] = useState(false);
   const [isheadingExpanded, setIsheadingExpanded] = useState(false);
+  const [isdetailExpanded, setIsdetailExpanded] = useState(false);
 
   const handleImageLoaded = () => {
-    console.log("hogyi load");
     setIsLoading(false);
   };
 
@@ -48,6 +52,36 @@ export const Propertycard = ({
     display: "-webkit-box",
   };
 
+  const detailStyles = {
+    WebkitLineClamp: 1,
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden",
+    display: "-webkit-box",
+  };
+
+  const userDetails = useSelector((store) => store.user);
+  const navigate = useNavigate();
+
+  const handleAddToWishlist = async (productId) => {
+    if (userDetails?.isLoggedIn) {
+      try {
+        const response = await api.post(
+          `https://weown-backend.azurewebsites.net/shortlist/`,
+          {
+            user_id: userDetails?.user_id,
+            properties: [productId],
+          }
+        );
+        console.log("success add to wishlist", response.data);
+      } catch (error) {
+        console.log("error while add to wishlist: ", error);
+      }
+    } else {
+      alert("Sorry!!! You are not logged in");
+      navigate("/login");
+    }
+  };
+
   return (
     <div className={styles.maindiv} style={{ marginRight: marginright }}>
       <div className={styles.imagediv}>
@@ -56,8 +90,8 @@ export const Propertycard = ({
             src={images[0]}
             alt={"Property Image"}
             style={{
-              minWidth: "100%",
-              minHeight: "100%",
+              width: "100%",
+              height: "100%",
               objectFit: "cover",
               borderRadius: "10px",
               backgroundColor: "#E1E1E1",
@@ -75,7 +109,10 @@ export const Propertycard = ({
           />
         )}
 
-        <div className={styles.wishlist_btn}>
+        <div
+          className={styles.wishlist_btn}
+          onClick={() => handleAddToWishlist(_id)}
+        >
           <img
             src={wishlist_btn}
             alt="wishlist_btn"
@@ -84,9 +121,7 @@ export const Propertycard = ({
         </div>
       </div>
       <div className={styles.description}>
-        <div
-          style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}
-        >
+        <div style={{ display: "flex", flexDirection: "row", gap: "0.2rem" }}>
           <div
             className={styles.heading}
             style={!isheadingExpanded ? headingStyles : null}
@@ -102,11 +137,15 @@ export const Propertycard = ({
             }}
             onClick={() => setIsheadingExpanded(!isheadingExpanded)}
           >
-            {isheadingExpanded ? "less" : "more"}
+            {isheadingExpanded ? "less" : "..."}
           </span>
         </div>
         <div
-          style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}
+          style={{
+            display: "flex",
+            flexDirection: isDescExpanded ? "column" : "row",
+            gap: "0.2rem",
+          }}
         >
           <div
             className={styles.subheading}
@@ -115,15 +154,22 @@ export const Propertycard = ({
             {description}
           </div>
           <span
-            style={{ cursor: "pointer", fontSize: "0.8rem" }}
+            style={{
+              cursor: "pointer",
+              fontSize: isDescExpanded ? "0.75rem" : "1rem",
+              fontWeight: "600",
+            }}
             onClick={() => setIsDescExpanded(!isDescExpanded)}
           >
-            {isDescExpanded ? "Read less" : "Read more"}
+            {isDescExpanded ? "Read less" : "..."}
           </span>
         </div>
       </div>
 
-      <div className={styles.details}>
+      <div
+        className={styles.details}
+        // style={!isdetailExpanded ? detailStyles : null}
+      >
         <div className={styles.capsule}>
           <div>
             <img
@@ -156,22 +202,14 @@ export const Propertycard = ({
               alt="logo"
             />
           </div>
-          <span
-            style={{ whiteSpace: "nowrap" }}
-          >{`${amenities?.parking} Parking`}</span>
+          <span style={{ whiteSpace: "nowrap" }}>{`${type}`}</span>
         </div>
-        <div className={styles.capsule}>
-          <div>
-            <img
-              src={villa_logo}
-              style={{ height: "1rem", width: "1rem" }}
-              alt="logo"
-            />
-          </div>
-          <span
-            style={{ whiteSpace: "nowrap" }}
-          >{`${amenities?.security}`}</span>
-        </div>
+        {/* <span
+          style={{ cursor: "pointer", fontSize: "0.8rem" }}
+          onClick={() => setIsDescExpanded(!isDescExpanded)}
+        >
+          {isDescExpanded ? "close" : "..."}
+        </span> */}
       </div>
 
       <div className={styles.pricediv}>

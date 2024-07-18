@@ -107,12 +107,14 @@ const Navbar1 = () => {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              alignItems: "start",
+              alignItems: "center",
               gap: "0.3rem",
               cursor: "pointer",
+              // backgroundColor: "red",
+              height: "70px",
             }}
             className={`${styles.view} ${styles.navoption}`}
-            onMouseOver={handleMouseOver}
+            // onMouseOver={handleMouseOver}
           >
             <span>View & Buy</span>
             <div style={{ width: "0.7rem" }}>
@@ -120,16 +122,19 @@ const Navbar1 = () => {
                 src={Vector}
                 alt="arrow"
                 style={{ width: "100%", height: "100%" }}
-                className={isDropdownOpen ? styles.rotate180 : ""}
+                className={`${styles.rotate180} ${
+                  isDropdownOpen ? styles.rotate1802 : null
+                }`}
               />
             </div>
           </li>
-          {isDropdownOpen && (
+          <div className={styles.dropdown} onMouseOver={handleMouseOver}>
             <NavDropdown
               navdropdownlist={navdropdownlist}
               closeDropdown={handleMouseOut}
             />
-          )}
+          </div>
+
           {/* </li> */}
 
           <li className={styles.navoption}>
@@ -161,7 +166,7 @@ const Navbar1 = () => {
             style={{ height: "70%", width: "70%", cursor: "pointer" }}
           />
         </div>
-        <Link to={userDetail.isLoggedIn ? "/user/profile" : "/login"}>
+        <Link to={"/user/profile"}>
           <div
             style={{
               backgroundColor: "white",

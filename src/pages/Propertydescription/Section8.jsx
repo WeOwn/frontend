@@ -51,12 +51,16 @@ const Section8 = ({ builder }) => {
       const response = await api.get(`/builder/profile/${builder}`);
 
       setdata(response.data);
-      const projectRequests = response.data.projects.map((projectId) =>
-        api.get(`/property/${projectId}`)
-      );
+
+      const projectRequests = response?.data?.projects?.map((projectId) => {
+        return api.get(`/property/${projectId}`);
+      });
 
       const projectResponses = await Promise.all(projectRequests);
-      setProjects(projectResponses.map((res) => res.data));
+      const filteredProjects = projectResponses.filter(
+        (project) => project.data !== null
+      );
+      setProjects([...filteredProjects]);
     } catch (error) {
       console.log("Error while fetching data: ", error);
     }
@@ -64,9 +68,9 @@ const Section8 = ({ builder }) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [builder]);
 
-  // console.log("projects section8-> ", projects);
+  console.log("projects section8-> ", projects);
   return (
     <div>
       <IntroContainer

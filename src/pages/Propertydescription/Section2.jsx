@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import home1 from "./home1.svg";
 import home2 from "./home2.svg";
@@ -25,6 +25,8 @@ import "@google/model-viewer/dist/model-viewer";
 import { Link } from "react-router-dom";
 import Button from "../../Atoms/Button";
 import Skeleton from "react-loading-skeleton";
+import api from "../../service/apiGateway";
+import { useSelector } from "react-redux";
 // import houseinterior3 from "./Houseglb.glb";
 // import SocietyGlb from "./Society_compressed.glb";
 
@@ -38,9 +40,8 @@ const Section2 = ({
   images,
   size,
   iframe,
+  floor_images,
 }) => {
-  console.log("images-> ", images);
-  console.log("description name-> ", name);
   const descriptionlist = [
     {
       id: 1,
@@ -108,9 +109,47 @@ const Section2 = ({
   const handlecloseLaunchexp = () => {
     setLaunchexpbtn(false);
   };
+
+  const [builderdata, setBuilderData] = useState(null);
+
+  const fetchdata = async () => {
+    try {
+      const response = await api.get(`/builder/profile/${builder}`);
+
+      setBuilderData(response.data);
+    } catch (error) {
+      console.log("error while fetching data", error);
+    }
+  };
+  useEffect(() => {
+    fetchdata();
+  }, [builder]);
+
+  const [currbtn, setCurrBtn] = useState(1);
+
+  const btnlist = [
+    {
+      id: 1,
+      name: "Hi-Res Images",
+    },
+    {
+      id: 2,
+      name: "Floor Plan",
+    },
+  ];
+
+  const user_id = useSelector((store) => store.user.user_id);
+
+  const handleWishlist = () => {
+    const response = api.post(
+      `https://weown-backend.azurewebsites.net/shortlist/`,
+      { user_id }
+    );
+  };
+
   return (
     <div className={styles.section2main}>
-      {/* <div className={styles.section2intro}>
+      <div className={styles.section2intro}>
         <div className={styles.section2heading}>
           <h4
             style={{ fontSize: "1.5rem", fontWeight: "650", flexWrap: "wrap" }}
@@ -145,6 +184,7 @@ const Section2 = ({
               display: "flex",
               gap: "0.5rem",
               alignItems: "center",
+              cursor: "pointer",
             }}
           >
             <span
@@ -164,95 +204,111 @@ const Section2 = ({
             <Button type="primary2">Contact Builder</Button>
           </Link>
         </div>
-      </div> */}
+      </div>
 
       <div className={styles.section2imgdivp}>
         <div style={{}} className={styles.section2imgdivbuttondivp}>
-          <Button type="primary2">Hi-Res Images</Button>
-          <div>
-            <button
-              style={{
-                backgroundColor: "transparent",
-                border: "none",
-                color: "#7065f0",
-                whiteSpace: "noWrap",
-                fontSize: "0.9rem",
-              }}
-            >
-              Floor Plan
-            </button>
-          </div>
+          {btnlist?.map((btn, index) => {
+            return (
+              <button
+                key={btn?.id}
+                onClick={() => setCurrBtn(btn?.id)}
+                className={`${
+                  btn?.id === currbtn ? styles.btnclicked : styles.btn
+                }`}
+              >
+                {btn?.name}
+              </button>
+            );
+          })}
         </div>
-        <div className={styles.section2imgdiv1}>
-          {images?.length > 0
-            ? images?.map((image, index) => {
-                return (
-                  <div
-                    key={index}
-                    style={{
-                      // borderRadius: "10px",
-                      // backgroundColor: "#FFFFFF",
-                      minWidth: "6rem",
-                      maxWidth: "6rem",
-
-                      height: "5rem",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => setLaunchimgid(index)}
-                  >
-                    <img
-                      src={image}
-                      alt="home_img"
+        {currbtn === 1 && (
+          <div className={styles.section2imgdiv1}>
+            {images?.length > 0
+              ? images?.map((image, index) => {
+                  return (
+                    <div
+                      key={index}
                       style={{
-                        width: "100%",
-                        height: "100%",
-                        borderRadius: "5px",
-                        objectFit: "cover",
-                      }}
-                    />
-                  </div>
-                );
-              })
-            : Array(9)
-                .fill(0)
-                .map((_, index) => (
-                  <div
-                    key={index}
-                    style={{
-                      // borderRadius: "10px",
-                      // backgroundColor: "#FFFFFF",
-                      minWidth: "6rem",
-                      maxWidth: "6rem",
+                        // borderRadius: "10px",
+                        // backgroundColor: "#FFFFFF",
+                        minWidth: "6rem",
+                        // maxWidth: "6rem",
 
-                      height: "5rem",
-                    }}
-                  >
-                    <Skeleton
-                      width="100%"
-                      height="100%"
-                      borderRadius="5px"
-                      // baseColor="black"
-                      // highlightColor="#444"
-                      // duration={4}
-                    />
-                  </div>
-                ))}
-        </div>
+                        maxHeight: "5rem",
+                        cursor: "pointer",
+                      }}
+                      className={styles.imgtransformdiv}
+                      onClick={() => setLaunchimgid(index)}
+                    >
+                      <img
+                        src={image}
+                        alt="home_img"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: "5px",
+                          objectFit: "cover",
+                          background: "white",
+                        }}
+                      />
+                    </div>
+                  );
+                })
+              : Array(9)
+                  .fill(0)
+                  .map((_, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        // borderRadius: "10px",
+                        // backgroundColor: "#FFFFFF",
+                        minWidth: "6rem",
+                        maxWidth: "6rem",
+
+                        height: "5rem",
+                      }}
+                    >
+                      <Skeleton
+                        width="100%"
+                        height="100%"
+                        borderRadius="5px"
+                        // baseColor="black"
+                        // highlightColor="#444"
+                        // duration={4}
+                      />
+                    </div>
+                  ))}
+          </div>
+        )}
         <div
           className={styles.section2imgdiv2}
           onMouseOver={handleopenLaunchexp}
           onMouseLeave={handlecloseLaunchexp}
         >
           <div style={{ width: "100%", aspectRatio: "4/2" }}>
-            {images?.length > 0 ? (
+            {currbtn === 1 && images?.length > 0 ? (
               <img
-                src={images && images[launchimgid]}
+                src={images[launchimgid]}
                 alt="home_img"
                 style={{
                   width: "100%",
                   height: "100%",
                   borderRadius: "5px",
                   objectFit: "cover",
+                  background: "white",
+                }}
+              />
+            ) : currbtn === 2 && floor_images?.length > 0 ? (
+              <img
+                src={floor_images[0]}
+                alt="home_img"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "5px",
+                  objectFit: "cover",
+                  background: "white",
                 }}
               />
             ) : (
@@ -260,66 +316,58 @@ const Section2 = ({
             )}
           </div>
 
-          {images?.length > 0 && launchexpbtn && (
-            <div
-              style={{
-                width: "100%",
-                height: "100%",
-                position: "absolute",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <div className={styles.launchexpbtndivp}></div>
+          <div
+            className={
+              images?.length > 0 && launchexpbtn
+                ? styles.launchexpdivhover
+                : styles.launchexpdivhovernot
+            }
+          >
+            <div className={styles.launchexpbtndivp}></div>
+            {
               <div
-                style={{
-                  position: "absolute",
-                  zIndex: "2",
-                  backgroundColor: "#7065f0",
-                  padding: "0.8rem 2.5rem",
-                  borderRadius: "10px",
-                  width: "fit-content",
-                  display: "flex",
-                  alignItems: "center",
-                  opacity: "1",
-
-                  gap: "0.5rem",
-                  cursor: "pointer",
-                }}
+                className={
+                  images?.length > 0 && launchexpbtn
+                    ? styles.launchexpbtn
+                    : styles.launchexpbtnnot
+                }
                 onClick={() => setLaunchexp(true)}
               >
-                <div style={{ width: "1rem" }}>
-                  <img src={Play} alt="img" style={{ width: "100%" }} />
-                </div>
-                <button
-                  style={{
-                    backgroundColor: "transparent",
-                    border: "none",
-                    color: "white",
-                    whiteSpace: "noWrap",
-                    cursor: "pointer",
-                  }}
-                  className={styles.buttontext}
-                >
-                  LAUNCH EXPERIENCE
-                </button>
-              </div>
-              {launchexp && (
-                <div className={styles.modal}>
-                  <div className={styles.modalContent}>
-                    <span
-                      className={styles.closeButton}
-                      onClick={() => setLaunchexp(false)}
+                {images?.length > 0 && launchexpbtn && (
+                  <>
+                    <div style={{ width: "1rem" }}>
+                      <img src={Play} alt="img" style={{ width: "100%" }} />
+                    </div>
+                    <button
+                      style={{
+                        backgroundColor: "transparent",
+                        border: "none",
+                        color: "white",
+                        whiteSpace: "noWrap",
+                        cursor: "pointer",
+                      }}
+                      className={styles.buttontext}
                     >
-                      &times;
-                    </span>
-                    <div dangerouslySetInnerHTML={{ __html: iframe }} />
-                  </div>
+                      LAUNCH EXPERIENCE
+                    </button>
+                  </>
+                )}
+              </div>
+            }
+            {launchexp && (
+              <div className={styles.modal}>
+                <div className={styles.modalContent}>
+                  <span
+                    className={styles.closeButton}
+                    onClick={() => setLaunchexp(false)}
+                  >
+                    &times;
+                  </span>
+                  <div dangerouslySetInnerHTML={{ __html: iframe }} />
                 </div>
-              )}
-            </div>
-          )}
+              </div>
+            )}
+          </div>
         </div>
 
         <div className={styles.section2imgdiv3}>
@@ -443,12 +491,16 @@ const Section2 = ({
                   // flexWrap: "wrap",
                 }}
               >
-                <div style={{ width: "3.5rem" }}>
-                  <img
-                    src={user}
-                    alt="user img"
-                    style={{ width: "100%", objectFit: "cover" }}
-                  />
+                <div style={{ width: "3.5rem", aspectRatio: "1" }}>
+                  {builderdata?.images?.length > 0 ? (
+                    <img
+                      src={builderdata?.images[0]}
+                      alt="user img"
+                      style={{ width: "100%", objectFit: "cover" }}
+                    />
+                  ) : (
+                    <Skeleton width="100%" height="100%" />
+                  )}
                 </div>
                 <div>
                   <p
@@ -458,7 +510,7 @@ const Section2 = ({
                       whiteSpace: "noWrap",
                     }}
                   >
-                    Shapoorji Pallonj
+                    {builderdata?.name}
                   </p>
                   <p
                     style={{

@@ -10,18 +10,17 @@ import { setLogOut } from "../../redux/userSlice";
 
 const Index = () => {
   const userDetail = useSelector((store) => store.user);
-  console.log("user", userDetail);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handlelogout = () => {
-    console.log("user logged out");
+    localStorage.setItem("propertiesViewed", []);
     dispatch(setLogOut());
     //const persistor = persistStore(store); // Create a persistor
     //persistor.purge(); // Purge the persisted state
   };
   const handlelogin = () => {
-    console.log("user logged in");
     navigate("/login");
   };
 
@@ -40,7 +39,7 @@ const Index = () => {
         minWidth: "fit-content",
       }}
     >
-      <Link to={userDetail.isLoggedIn ? "/user/profile" : "/login"}>
+      <Link to={"/user/profile"}>
         <div
           style={{
             backgroundColor: "white",
@@ -66,7 +65,9 @@ const Index = () => {
             fontSize: "0.8rem",
           }}
         >
-          {userDetail?.isLoggedIn ? "My Account" : "Guest"}
+          {userDetail?.isLoggedIn
+            ? `${userDetail?.firstName} ${userDetail?.lastName}`
+            : "Guest"}
         </div>
         <div
           style={{

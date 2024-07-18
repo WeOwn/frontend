@@ -8,6 +8,8 @@
     color:#0F0B3E;
     display:flex;
     justify-content: center;
+    align-items: flex-start;
+    
     gap:3rem;
     /* justify-content: space-between; */
 
@@ -38,7 +40,8 @@
     /* position: relative; */
     
     height:fit-content;
-    
+    /* position: sticky; */
+    top:0;
     /* left:0; */
     overflow:auto;
     /* width:60rem; */
@@ -175,6 +178,10 @@
 
 .toggleOff {
     transform: translateX(0);
+}
+
+.section2cardsp{
+    max-height: fit-content;    
 }
 
 
