@@ -27,36 +27,34 @@ function Signup() {
     try {
       // Make API call to request OTP using axios
       const response = await otpService.getOtp(phone);
+      // console.log("otp response", response);
 
-      // Check if the response is successful (status code 200)
-      if (response.status === 200) {
+      if (response.status === 200 && !response.data.success) {
+        console.log("Unverified number:", response.data);
+        alert(response.data.msg);
+      } else if (response.status === 200 && response.data.success) {
         // Handle the response data as needed
 
         console.log("API Response:", response.data);
 
         // Display OTP modal
         setShowOtp(true);
-      }
-      //else if (response.status === 502) {
-      //   <OtpModal />;
-      // }
-      else {
+      } else {
         // Handle error responses
         console.error("API Error:", response.status, response.statusText);
         alert("Failed to request OTP. Please try again.");
       }
     } catch (error) {
-      // return <OtpModal />;
       console.error("API Request Error:", error);
       alert("Failed to request OTP. Please try again.");
     }
 
-    console.log("Form submitted:", {
-      firstName,
-      lastName,
-      phone,
-      termsAccepted,
-    });
+    // console.log("Form submitted:", {
+    //   firstName,
+    //   lastName,
+    //   phone,
+    //   termsAccepted,
+    // });
   };
 
   const closeOtpModal = () => {

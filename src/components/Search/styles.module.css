@@ -29,11 +29,11 @@
 
 
 .inputBox {
- width: 100%;
+ min-width: 70%;
  /* width:5rem; */
   height: 3rem;
   padding-left:0.8rem;
-  margin-left: 0.5rem;
+  /* margin-left: 0.5rem; */
   /* background:black; */
   border-left:1px solid #999999;
   font-size: 1rem;

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import Searchdropdown from "../../Atoms/searchdropdown";
 
 const Search = () => {
-  const location = ["Banglore", "Delhi", "Ahemdabad"];
+  const location = ["Banglore", "Manali", "Ooty", "Gurugram"];
 
   return (
     <div>
@@ -31,10 +31,36 @@ const Search = () => {
               droplogobg: "none",
               namecolor: "#0F0B3E",
               flexgap: "0.5rem",
-              selectBoxwidth: "19%",
+              selectBoxwidth: "10%",
             }}
             list={location}
           />
+          {/* <select
+            style={{
+              border: "none",
+              color: "#0F0B3E",
+              fontSize: "1rem",
+              fontWeight: "600",
+              outline: "none",
+              width: "20%",
+              // gap: "2rem",
+            }}
+          >
+            {location.map((obj, index) => {
+              return (
+                <option
+                  value={obj}
+                  style={{
+                    fontSize: "1rem",
+                    fontWeight: "500",
+                    padding: "2rem 0",
+                  }}
+                >
+                  {obj}
+                </option>
+              );
+            })}
+          </select> */}
 
           <div className={styles.inputBox}>
             <input
@@ -49,7 +75,7 @@ const Search = () => {
                 width: "100%",
                 height: "100%",
                 background: "transparent",
-                color: "white",
+                // color: "white",
 
                 outline: "none",
                 border: "none",

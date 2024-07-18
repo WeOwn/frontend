@@ -58,14 +58,15 @@ function OtpModal({ onClose, onSubmit, userData, apiEndpoint, phone }) {
 
       // Handle the API response as needed
       console.log("API Response:", response.data);
-      const data = response.data;
+      const data = response?.data;
 
-      if (data.data.sucess === true) {
-        dispatch(setLoggedIn());
+      if (data?.data?.success === true) {
+        dispatch(setLoggedIn(data?.data));
         onClose();
+        alert(data?.data?.message);
         navigate("/home");
       } else {
-        alert(data.data.msg);
+        alert(data?.data?.msg);
       }
 
       // Close the modal

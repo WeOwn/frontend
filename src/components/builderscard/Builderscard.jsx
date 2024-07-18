@@ -17,7 +17,6 @@ export const Builderscard = ({
   location,
   images,
 }) => {
-  // console.log("builder-> ", builder);
   return (
     <div className={styles.maindiv} style={{ marginRight: marginright }}>
       <div className={styles.imagediv}>
@@ -28,7 +27,9 @@ export const Builderscard = ({
             style={{
               width: "100%",
               height: "100%",
+              objectFit: "cover",
               borderRadius: "10px",
+              backgroundColor: "#E1E1E1",
             }}
             // onLoad={handleImageLoaded}
           />

@@ -58,8 +58,6 @@ function Home() {
 
       const buildersResponse = await api.get("/builder/all");
 
-      console.log("All builders:", buildersResponse.data.data);
-
       setAllBuilders(buildersResponse.data.data);
     } catch (error) {
       console.error("Error occurred while fetching data:", error);
@@ -96,7 +94,7 @@ function Home() {
     // console.log("run");
     if (heroSection) {
       const heroSectionHeight = heroSection.offsetHeight;
-      const navbarHeight = 76;
+      const navbarHeight = 60;
 
       if (window.scrollY >= heroSectionHeight - navbarHeight) {
         if (!changeNavbar) {
@@ -281,7 +279,9 @@ function Home() {
               btntext="View All Properties"
               desc={`Explore our handpicked selection of featured properties. Each listing offers a glimpse into exceptional homes and investments available through Estatein. Click "View Details" for more information.`}
               descStyle={{}}
+              path="/properties"
             />
+            {/* <PropertyCardSlider projects={properties} /> */}
 
             <PropertyCardSlider projects={properties} />
           </div>

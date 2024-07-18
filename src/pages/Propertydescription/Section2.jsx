@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import home1 from "./home1.svg";
 import home2 from "./home2.svg";
@@ -24,6 +24,9 @@ import Play from "./Play.svg";
 import "@google/model-viewer/dist/model-viewer";
 import { Link } from "react-router-dom";
 import Button from "../../Atoms/Button";
+import Skeleton from "react-loading-skeleton";
+import api from "../../service/apiGateway";
+import { useSelector } from "react-redux";
 // import houseinterior3 from "./Houseglb.glb";
 // import SocietyGlb from "./Society_compressed.glb";
 
@@ -35,8 +38,10 @@ const Section2 = ({
   type,
   features,
   images,
+  size,
+  iframe,
+  floor_images,
 }) => {
-  console.log("images-> ", images);
   const descriptionlist = [
     {
       id: 1,
@@ -54,13 +59,13 @@ const Section2 = ({
       id: 3,
       img: shape3,
       type: "Area",
-      about: "2,500 Square Feet",
+      about: `${size} Square Feet`,
     },
     {
       id: 4,
       img: shape4,
       type: "Swimming pools",
-      about: "05",
+      about: `${amenities?.swimmingpool}`,
     },
     {
       id: 5,
@@ -72,95 +77,76 @@ const Section2 = ({
       id: 6,
       img: shape6,
       type: "Type",
-      about: type,
+      about: `${amenities?.property_type}`,
     },
     {
       id: 7,
       img: shape1,
       type: "Construction Stage",
-      about: "Pre-launch",
+      about: `${amenities?.construction_stage}`,
     },
     {
       id: 8,
       img: shape2,
-      type: "Accessibility",
-      about: "Elevators",
+      type: "Security",
+      about: `${amenities?.security}`,
     },
     {
       id: 9,
       img: shape3,
-      type: "Area",
-      about: "2,500 Square Feet",
+      type: "Parking",
+      about: `${amenities?.parking}`,
     },
   ];
 
   const [launchimgid, setLaunchimgid] = useState(0);
-  const list1 = [
-    {
-      id: 1,
-      smallimg: home1,
-      largeimg: home1,
-    },
-    {
-      id: 2,
-      smallimg: home2,
-      largeimg: home2,
-    },
-    {
-      id: 3,
-      smallimg: home3,
-      largeimg: housegrid1,
-    },
-    {
-      id: 4,
-      smallimg: home1,
-      largeimg: home1,
-    },
-    {
-      id: 5,
-      smallimg: home1,
-      largeimg: home1,
-    },
-    {
-      id: 6,
-      smallimg: home1,
-      largeimg: home1,
-    },
-    {
-      id: 7,
-      smallimg: home1,
-      largeimg: home1,
-    },
-    {
-      id: 1,
-      smallimg: home1,
-      largeimg: home1,
-    },
-    {
-      id: 8,
-      smallimg: home1,
-      largeimg: home1,
-    },
-    {
-      id: 9,
-      smallimg: home1,
-      largeimg: home1,
-    },
-  ];
-  const list2 = [
-    "Expansive oceanfront terrace for outdoor entertaining",
-    "Gourmnet kitchen with top-of-the-line appliances",
-    "Private beach access for morning strolls and sunset views",
-    "Master suite with a spa-inpspired bathroom and ocean-facing balcony",
-    "Private garage and apmle storage space",
-  ];
+
   const [launchexpbtn, setLaunchexpbtn] = useState(false);
+  const [launchexp, setLaunchexp] = useState(false);
   const handleopenLaunchexp = () => {
     setLaunchexpbtn(true);
   };
   const handlecloseLaunchexp = () => {
     setLaunchexpbtn(false);
   };
+
+  const [builderdata, setBuilderData] = useState(null);
+
+  const fetchdata = async () => {
+    try {
+      const response = await api.get(`/builder/profile/${builder}`);
+
+      setBuilderData(response.data);
+    } catch (error) {
+      console.log("error while fetching data", error);
+    }
+  };
+  useEffect(() => {
+    fetchdata();
+  }, [builder]);
+
+  const [currbtn, setCurrBtn] = useState(1);
+
+  const btnlist = [
+    {
+      id: 1,
+      name: "Hi-Res Images",
+    },
+    {
+      id: 2,
+      name: "Floor Plan",
+    },
+  ];
+
+  const user_id = useSelector((store) => store.user.user_id);
+
+  const handleWishlist = () => {
+    const response = api.post(
+      `https://weown-backend.azurewebsites.net/shortlist/`,
+      { user_id }
+    );
+  };
+
   return (
     <div className={styles.section2main}>
       <div className={styles.section2intro}>
@@ -182,7 +168,10 @@ const Section2 = ({
               gap: "0.5rem",
             }}
           >
-            <img src={location} alt="img" style={{ width: "1rem" }} />
+            <div style={{ width: "1rem" }}>
+              <img src={location} alt="img" style={{ width: "100%" }} />
+            </div>
+
             <span style={{ whiteSpace: "noWrap" }}>Mailibu, California</span>
           </div>
         </div>
@@ -195,6 +184,7 @@ const Section2 = ({
               display: "flex",
               gap: "0.5rem",
               alignItems: "center",
+              cursor: "pointer",
             }}
           >
             <span
@@ -206,7 +196,9 @@ const Section2 = ({
             >
               Save
             </span>
-            <img src={heart} alt="img" style={{ width: "1rem" }} />
+            <div style={{ width: "1rem" }}>
+              <img src={heart} alt="img" style={{ width: "100%" }} />
+            </div>
           </div>
           <Link to="/contact_builders" style={{}}>
             <Button type="primary2">Contact Builder</Button>
@@ -216,108 +208,166 @@ const Section2 = ({
 
       <div className={styles.section2imgdivp}>
         <div style={{}} className={styles.section2imgdivbuttondivp}>
-          <Button type="primary2">Hi-Res Images</Button>
-          <div>
-            <button
-              style={{
-                backgroundColor: "transparent",
-                border: "none",
-                color: "#7065f0",
-                whiteSpace: "noWrap",
-                fontSize: "0.9rem",
-              }}
-            >
-              Floor Plan
-            </button>
-          </div>
-        </div>
-        <div className={styles.section2imgdiv1}>
-          {images?.map((image, index) => {
+          {btnlist?.map((btn, index) => {
             return (
-              <div
-                key={index}
-                style={{
-                  // borderRadius: "10px",
-                  // backgroundColor: "#FFFFFF",
-                  minWidth: "5rem",
-                  maxWidth: "5rem",
-
-                  aspectRatio: "4/3",
-                  cursor: "pointer",
-                }}
-                onClick={() => setLaunchimgid(index)}
+              <button
+                key={btn?.id}
+                onClick={() => setCurrBtn(btn?.id)}
+                className={`${
+                  btn?.id === currbtn ? styles.btnclicked : styles.btn
+                }`}
               >
-                <img
-                  src={image}
-                  alt="home_img"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "5px",
-                  }}
-                />
-              </div>
+                {btn?.name}
+              </button>
             );
           })}
         </div>
+        {currbtn === 1 && (
+          <div className={styles.section2imgdiv1}>
+            {images?.length > 0
+              ? images?.map((image, index) => {
+                  return (
+                    <div
+                      key={index}
+                      style={{
+                        // borderRadius: "10px",
+                        // backgroundColor: "#FFFFFF",
+                        minWidth: "6rem",
+                        // maxWidth: "6rem",
+
+                        maxHeight: "5rem",
+                        cursor: "pointer",
+                      }}
+                      className={styles.imgtransformdiv}
+                      onClick={() => setLaunchimgid(index)}
+                    >
+                      <img
+                        src={image}
+                        alt="home_img"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: "5px",
+                          objectFit: "cover",
+                          background: "white",
+                        }}
+                      />
+                    </div>
+                  );
+                })
+              : Array(9)
+                  .fill(0)
+                  .map((_, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        // borderRadius: "10px",
+                        // backgroundColor: "#FFFFFF",
+                        minWidth: "6rem",
+                        maxWidth: "6rem",
+
+                        height: "5rem",
+                      }}
+                    >
+                      <Skeleton
+                        width="100%"
+                        height="100%"
+                        borderRadius="5px"
+                        // baseColor="black"
+                        // highlightColor="#444"
+                        // duration={4}
+                      />
+                    </div>
+                  ))}
+          </div>
+        )}
         <div
           className={styles.section2imgdiv2}
           onMouseOver={handleopenLaunchexp}
           onMouseLeave={handlecloseLaunchexp}
         >
           <div style={{ width: "100%", aspectRatio: "4/2" }}>
-            <img
-              src={images && images[launchimgid]}
-              alt="home_img"
-              style={{ width: "100%", height: "100%", borderRadius: "5px" }}
-            />
-          </div>
-          {launchexpbtn && (
-            <div
-              style={{
-                width: "100%",
-                height: "100%",
-                position: "absolute",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <div className={styles.launchexpbtndivp}></div>
-              <div
+            {currbtn === 1 && images?.length > 0 ? (
+              <img
+                src={images[launchimgid]}
+                alt="home_img"
                 style={{
-                  position: "absolute",
-                  zIndex: "2",
-                  backgroundColor: "#7065f0",
-                  padding: "0.8rem 2.5rem",
-                  borderRadius: "10px",
-                  width: "fit-content",
-                  display: "flex",
-                  alignItems: "center",
-                  opacity: "1",
-
-                  gap: "0.5rem",
-                  cursor: "pointer",
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "5px",
+                  objectFit: "cover",
+                  background: "white",
                 }}
+              />
+            ) : currbtn === 2 && floor_images?.length > 0 ? (
+              <img
+                src={floor_images[0]}
+                alt="home_img"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "5px",
+                  objectFit: "cover",
+                  background: "white",
+                }}
+              />
+            ) : (
+              <Skeleton width="100%" height="100%" borderRadius="5px" />
+            )}
+          </div>
+
+          <div
+            className={
+              images?.length > 0 && launchexpbtn
+                ? styles.launchexpdivhover
+                : styles.launchexpdivhovernot
+            }
+          >
+            <div className={styles.launchexpbtndivp}></div>
+            {
+              <div
+                className={
+                  images?.length > 0 && launchexpbtn
+                    ? styles.launchexpbtn
+                    : styles.launchexpbtnnot
+                }
+                onClick={() => setLaunchexp(true)}
               >
-                <div style={{ width: "1rem" }}>
-                  <img src={Play} alt="img" style={{ width: "100%" }} />
-                </div>
-                <button
-                  style={{
-                    backgroundColor: "transparent",
-                    border: "none",
-                    color: "white",
-                    whiteSpace: "noWrap",
-                    cursor: "pointer",
-                  }}
-                  className={styles.buttontext}
-                >
-                  LAUNCH EXPERIENCE
-                </button>
+                {images?.length > 0 && launchexpbtn && (
+                  <>
+                    <div style={{ width: "1rem" }}>
+                      <img src={Play} alt="img" style={{ width: "100%" }} />
+                    </div>
+                    <button
+                      style={{
+                        backgroundColor: "transparent",
+                        border: "none",
+                        color: "white",
+                        whiteSpace: "noWrap",
+                        cursor: "pointer",
+                      }}
+                      className={styles.buttontext}
+                    >
+                      LAUNCH EXPERIENCE
+                    </button>
+                  </>
+                )}
               </div>
-            </div>
-          )}
+            }
+            {launchexp && (
+              <div className={styles.modal}>
+                <div className={styles.modalContent}>
+                  <span
+                    className={styles.closeButton}
+                    onClick={() => setLaunchexp(false)}
+                  >
+                    &times;
+                  </span>
+                  <div dangerouslySetInnerHTML={{ __html: iframe }} />
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className={styles.section2imgdiv3}>
@@ -331,27 +381,39 @@ const Section2 = ({
           >
             <div
               style={{
-                padding: "0.5rem 0.3rem",
-                backgroundColor: "rgba(112, 101, 240, 0.14)",
-                borderRadius: "10px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <img src={logo1} alt="logo_img" style={{ width: "70%" }} />
-            </div>
-            <div
-              style={{
-                padding: "0.5rem 0.3rem",
+                padding: "0.6rem",
                 backgroundColor: "rgba(112, 101, 240, 0.14)",
                 borderRadius: "5px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                width: "2.5rem",
+                height: "2.5rem",
               }}
             >
-              <img src={logo2} alt="logo_img" style={{ width: "70%" }} />
+              <img
+                src={logo1}
+                alt="logo_img"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
+            <div
+              style={{
+                padding: "0.6rem",
+                backgroundColor: "rgba(112, 101, 240, 0.14)",
+                borderRadius: "5px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "2.5rem",
+                height: "2.5rem",
+              }}
+            >
+              <img
+                src={logo2}
+                alt="logo_img"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
             </div>
             <div
               style={{
@@ -363,7 +425,9 @@ const Section2 = ({
                 gap: "0.8rem",
               }}
             >
-              <img src={share} alt="logo_img" style={{ width: "0.8rem" }} />
+              <div style={{ width: "0.8rem" }}>
+                <img src={share} alt="logo_img" style={{ width: "100%" }} />
+              </div>
               <span style={{ color: "white", fontSize: "0.9rem" }}>Share</span>
             </div>
             <div
@@ -385,7 +449,9 @@ const Section2 = ({
               >
                 Save
               </span>
-              <img src={heart} alt="img" style={{ width: "1rem" }} />
+              <div style={{ width: "1rem" }}>
+                <img src={heart} alt="img" style={{ width: "100%" }} />
+              </div>
             </div>
             <div
               style={{
@@ -406,7 +472,13 @@ const Section2 = ({
               >
                 Customize
               </span>
-              <img src={customize} alt="img" style={{ width: "1rem" }} />
+              <div style={{ width: "1rem" }}>
+                <img
+                  src={customize}
+                  alt="img"
+                  style={{ width: "100%", objectFit: "cover" }}
+                />
+              </div>
             </div>
           </div>
           <div>
@@ -419,8 +491,16 @@ const Section2 = ({
                   // flexWrap: "wrap",
                 }}
               >
-                <div style={{ width: "25%" }}>
-                  <img src={user} alt="user img" style={{ width: "100%" }} />
+                <div style={{ width: "3.5rem", aspectRatio: "1" }}>
+                  {builderdata?.images?.length > 0 ? (
+                    <img
+                      src={builderdata?.images[0]}
+                      alt="user img"
+                      style={{ width: "100%", objectFit: "cover" }}
+                    />
+                  ) : (
+                    <Skeleton width="100%" height="100%" />
+                  )}
                 </div>
                 <div>
                   <p
@@ -430,7 +510,7 @@ const Section2 = ({
                       whiteSpace: "noWrap",
                     }}
                   >
-                    Shapoorji Pallonj
+                    {builderdata?.name}
                   </p>
                   <p
                     style={{
@@ -494,7 +574,7 @@ const Section2 = ({
           </p>
 
           <div className={styles.section2grid}>
-            {descriptionlist.map((obj, index) => {
+            {descriptionlist?.map((obj, index) => {
               return (
                 <div
                   style={{
@@ -503,7 +583,7 @@ const Section2 = ({
                   }}
                 >
                   <div
-                    key={obj.id}
+                    key={obj?.id}
                     style={{
                       display: "flex",
                       flexDirection: "column",
@@ -525,7 +605,7 @@ const Section2 = ({
                     >
                       <span style={{ width: "1rem" }}>
                         <img
-                          src={obj.img}
+                          src={obj?.img}
                           alt="img"
                           style={{ width: "100%" }}
                         />
@@ -537,7 +617,7 @@ const Section2 = ({
                           whiteSpace: "noWrap",
                         }}
                       >
-                        {obj.type}
+                        {obj?.type}
                       </span>
                     </div>
                     <p
@@ -547,7 +627,7 @@ const Section2 = ({
                         whiteSpace: "noWrap",
                       }}
                     >
-                      {obj.about}
+                      {amenities && obj?.about}
                     </p>
                   </div>
                 </div>
@@ -568,32 +648,72 @@ const Section2 = ({
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
           >
-            {features?.map((text, index) => {
-              return (
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    padding: " 1rem",
-                    borderLeft: "1px solid #7065f0",
-                    background: "linear-gradient(to right, #E3E3E3, #FFFFFF)",
-                  }}
-                >
-                  <img src={light} alt="img" style={{ width: "1rem" }} />
-                  <p
-                    style={{
-                      fontSize: "0.8rem",
-                      fontWeight: "600",
-                      lineHeight: "1.2rem",
-                      whiteSpace: "noWrap",
-                    }}
-                  >
-                    {text}
-                  </p>
-                </div>
-              );
-            })}
+            {features?.length > 0
+              ? features?.map((text, index) => {
+                  return (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: " 1rem",
+                        borderLeft: "1px solid #7065f0",
+                        background:
+                          "linear-gradient(to right, #E3E3E3, #FFFFFF)",
+                      }}
+                    >
+                      <div style={{ width: "1rem" }}>
+                        <img src={light} alt="img" style={{ width: "100%" }} />
+                      </div>
+                      <p
+                        style={{
+                          fontSize: "0.8rem",
+                          fontWeight: "600",
+                          lineHeight: "1.2rem",
+                          whiteSpace: "noWrap",
+                        }}
+                      >
+                        {text}
+                      </p>
+                    </div>
+                  );
+                })
+              : Array(5)
+                  .fill(0)
+                  .map((_, index) => {
+                    return (
+                      <div
+                        key={index}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "0.5rem",
+                          padding: " 1rem",
+                          borderLeft: "1px solid #7065f0",
+                          background:
+                            "linear-gradient(to right, #E3E3E3, #FFFFFF)",
+                        }}
+                      >
+                        <div style={{ width: "1rem" }}>
+                          <img
+                            src={light}
+                            alt="img"
+                            style={{ width: "100%" }}
+                          />
+                        </div>
+                        <p
+                          style={{
+                            fontSize: "0.8rem",
+                            fontWeight: "600",
+                            lineHeight: "1.2rem",
+                            whiteSpace: "noWrap",
+                          }}
+                        >
+                          features
+                        </p>
+                      </div>
+                    );
+                  })}
           </div>
         </div>
       </div>

@@ -1,13 +1,14 @@
 .maindiv{
     width:85%;
-    padding-top: 5rem;
+    padding-top: 3rem;
     /* background-color: yellow; */
     margin-inline: auto;
     color:#0F0B3E;
     /* color:red; */
 }
 .section1imgdiv{
-    width:50vw;
+    width:50%;
+    height:100%;
 }
 
 @media(min-width:1800px) {
@@ -44,6 +45,9 @@ h4{
     
     display:flex;
     align-items: center;
+    width:100%;
+    aspect-ratio:2;
+    /* background-color: red; */
     
     justify-content: space-between;
    gap:5rem;
@@ -59,9 +63,9 @@ h4{
        
         /* padding-top:1rem; */
     }
-    .section1Container{
+    /* .section1Container{
         align-items: start;
-    }
+    } */
 }
 @media(min-width:1191px) and (max-width:1250px) {
     .section1textdiv{
@@ -87,30 +91,32 @@ h4{
         margin-inline:auto;
         position:relative;        
     }
-    .section1relativediv{
+    /* .section1relativediv{
         position:static;
-    }
+    } */
 }
 
-@media(max-width:900px) {
-    .section1{
-        padding:8rem 0 0 0;
-    }
+@media(max-width:800px) {
+    
+    /* .section1para{
+        display:none;
+    } */
     .section1textdiv{
         width:85%;
         margin-inline:auto;
         padding-top:0rem;
         
-    }
-    .section1Container{
-        flex-direction: column-reverse;
-        justify-content: start;
-        margin-inline:auto;
-        /* gap:10rem; */
-    }
+    } 
+    
     /* .section1imgdiv{
-        width:100%;
+        width:100%;        
     } */
+    /* .section1{
+        padding:8rem 0 0 0;
+    }
+     
+   
+   
     .maindiv{
         padding-top:0rem;
         width:100%;
@@ -119,14 +125,9 @@ h4{
         width:85%;
         margin-inline:auto;
     }
-    .section1imgdiv{
-        margin-inline:auto;
-        position:relative;        
-    }
+     */
 
-    /* .section1relativediv{
-        position:static;
-    } */
+    
 }
 /* @media(min-width:801px) {
     .section1Container{
@@ -137,7 +138,21 @@ h4{
 .section2Container{
 }
 
-
+@media(max-width:640px){
+    
+    .section1Container{
+        flex-direction: column;
+        /* flex-direction: column-reverse; */
+        aspect-ratio: 1.5;
+        justify-content: center;
+        align-items: center;
+        margin-inline:auto;
+        
+    }
+    .section1imgdiv{
+        width:100%;
+    }
+}
 
 
 
