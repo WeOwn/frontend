@@ -23,9 +23,6 @@ const Section2 = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  const z = [1, 2, 3, 4, 5];
-
-  console.log("properties-> ", allproperties);
 
   return (
     <div className={styles.section2Container}>

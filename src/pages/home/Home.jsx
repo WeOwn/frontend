@@ -58,8 +58,6 @@ function Home() {
 
       const buildersResponse = await api.get("/builder/all");
 
-      console.log("All builders:", buildersResponse.data.data);
-
       setAllBuilders(buildersResponse.data.data);
     } catch (error) {
       console.error("Error occurred while fetching data:", error);
@@ -67,7 +65,6 @@ function Home() {
   };
 
   useEffect(() => {
-    console.log("fetching start.........");
     fetchproperties();
     fetchbuilders();
   }, []);
@@ -97,7 +94,7 @@ function Home() {
     // console.log("run");
     if (heroSection) {
       const heroSectionHeight = heroSection.offsetHeight;
-      const navbarHeight = 76;
+      const navbarHeight = 60;
 
       if (window.scrollY >= heroSectionHeight - navbarHeight) {
         if (!changeNavbar) {

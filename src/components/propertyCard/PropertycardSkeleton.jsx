@@ -9,7 +9,6 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const PropertycardSkeleton = ({ marginright }) => {
-  console.log("property card SKELETON SKELETON");
   return (
     <div className={styles.maindiv} style={{ marginRight: marginright }}>
       <div className={styles.imagediv}>
@@ -56,7 +55,7 @@ const PropertycardSkeleton = ({ marginright }) => {
               borderRadius="10px"
               count={1}
               // baseColor="#202020"
-              highlightColor="#444"
+              // highlightColor="#444"
               // duration={4}
             />
           </div>
@@ -171,7 +170,7 @@ const PropertycardSkeleton = ({ marginright }) => {
               borderRadius="10px"
               count={1}
               // baseColor="#202020"
-              highlightColor="#444"
+              // highlightColor="#444"
               // duration={4}
             />
           </div>
@@ -184,7 +183,7 @@ const PropertycardSkeleton = ({ marginright }) => {
               borderRadius="10px"
               count={1}
               // baseColor="#202020"
-              highlightColor="#444"
+              // highlightColor="#444"
               // duration={4}
             />
           </div>
@@ -201,7 +200,7 @@ const PropertycardSkeleton = ({ marginright }) => {
               borderRadius="10px"
               count={1}
               // baseColor="#202020"
-              highlightColor="#444"
+              // highlightColor="#444"
               // duration={4}
             />
           </div>

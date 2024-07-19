@@ -16,7 +16,7 @@ const Navbar2 = () => {
   };
   return (
     <nav className={styles2.navbar}>
-      <Link to="/">
+      <Link to="/home">
         <div className={styles2.logo}>
           <img
             src={logowhite}
@@ -81,7 +81,7 @@ const Navbar2 = () => {
             style={{ height: "70%", width: "70%", cursor: "pointer" }}
           />
         </div>
-        <Link to={userDetail.isLoggedIn ? "/user/profile" : "/login"}>
+        <Link to={"/user/profile"}>
           <div
             style={{
               backgroundColor: "White",

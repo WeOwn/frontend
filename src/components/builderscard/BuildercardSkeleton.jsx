@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const BuildercardSkeleton = ({ marginright }) => {
-  console.log("BUILDER card SKELETON SKELETON");
   return (
     <div className={styles.maindiv} style={{ marginRight: marginright }}>
       <div className={styles.imagediv}>

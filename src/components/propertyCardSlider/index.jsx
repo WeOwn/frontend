@@ -6,7 +6,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 import { Propertycard } from "../../components/propertyCard/Propertycard";
 
-import api from "../../service/apiGateway";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { IoArrowForwardSharp } from "react-icons/io5";
 import PropertycardSkeleton from "../propertyCard/PropertycardSkeleton";
@@ -66,6 +65,20 @@ const Index = ({ projects }) => {
 
     responsive: [
       {
+        breakpoint: 2200,
+        settings: {
+          slidesToShow: projects ? Math.min(projects?.length, 2) : 2,
+          slidesToScroll: projects ? Math.min(projects?.length, 2) : 2,
+        },
+      },
+      {
+        breakpoint: 1799,
+        settings: {
+          slidesToShow: projects ? Math.min(projects?.length, 3) : 3,
+          slidesToScroll: projects ? Math.min(projects?.length, 3) : 3,
+        },
+      },
+      {
         breakpoint: 1280,
         settings: {
           slidesToShow: projects ? Math.min(projects?.length, 2) : 2,
@@ -81,12 +94,25 @@ const Index = ({ projects }) => {
       },
     ],
   };
+  const formatNumber = (number) => {
+    // Convert the number to a string
+    let numberStr = number.toString();
 
+    // Check if the number is a single digit
+    if (numberStr.length === 1) {
+      // Add a leading zero
+      numberStr = "0" + numberStr;
+    }
+
+    return numberStr;
+  };
   const getSlideInfo = () => {
     if (visibleSlideCount > 0 && totalSlideCount > 0) {
-      return `${Math.ceil(activeSlide / visibleSlideCount) + 1} of ${Math.ceil(
-        totalSlideCount / visibleSlideCount
-      )}`;
+      const currentPage = Math.ceil(activeSlide / visibleSlideCount) + 1;
+      const totalPage = Math.ceil(totalSlideCount / visibleSlideCount);
+      const a = formatNumber(currentPage);
+      const b = formatNumber(totalPage);
+      return `${a} of ${b}`;
     }
     return null;
   };
@@ -95,10 +121,10 @@ const Index = ({ projects }) => {
     <div>
       <div className={styles.sliderdivp} id="divtoslide">
         <Slider {...settings} ref={sliderRef}>
-          {projects
+          {projects?.length > 0
             ? projects?.map((project, index) => (
                 <Propertycard
-                  key={project.id}
+                  key={project?.id}
                   {...project}
                   marginright="1rem"
                 />

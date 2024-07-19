@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Profilebox from "../../Atoms/profilebox";
 import styles from "./styles.module.css";
 import upright from "./upright.png";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-const index = () => {
+const Index = () => {
+  const [totalPropertiesViewed, setTotalPropertiesViewed] = useState(0);
+  const userDetail = useSelector((store) => store.user);
+  const getPropertiesViewed = () => {
+    const propertiesViewed = localStorage.getItem("propertiesViewed");
+    if (propertiesViewed) {
+      const propertiesList = JSON.parse(propertiesViewed);
+
+      setTotalPropertiesViewed(propertiesList.length);
+    }
+  };
+
+  useEffect(() => {
+    getPropertiesViewed();
+  }, []);
   return (
     <div className={styles.profileContainerdiv}>
       <Profilebox />
@@ -47,26 +63,28 @@ const index = () => {
               fontSize: "1.02rem",
             }}
           >
-            12
+            {totalPropertiesViewed || 0}
           </p>{" "}
           <p style={{ fontSize: "0.75rem", fontWeight: "bold" }}> viewed</p>
         </div>
-        <div
-          style={{
-            backgroundColor: "#7065f0",
-            paddingBlock: "0.5rem",
-            paddingInline: "auto",
-            borderRadius: "10px",
-            textAlign: "center",
-            fontSize: "0.75rem",
-            color: "white",
-          }}
-        >
-          View all activity
-        </div>
+        <Link to={"/user/profile"} style={{ textDecoration: "none" }}>
+          <div
+            style={{
+              backgroundColor: "#7065f0",
+              paddingBlock: "0.5rem",
+              paddingInline: "auto",
+              borderRadius: "10px",
+              textAlign: "center",
+              fontSize: "0.75rem",
+              color: "white",
+            }}
+          >
+            View all activity
+          </div>
+        </Link>
       </div>
     </div>
   );
 };
 
-export default index;
+export default Index;

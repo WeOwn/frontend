@@ -245,7 +245,23 @@ const Index = () => {
         "/property/list?min-price=0&page=page-1"
       );
       // console.log("All properties:", propertiesResponse.data.data);
-      setAllProperties(propertiesResponse.data.data);
+      let filter_by_city = [];
+
+      filters?.forEach((city) => {
+        propertiesResponse?.data?.data.forEach((property) => {
+          if (property?.location?.city.toUpperCase() === city.toUpperCase()) {
+            filter_by_city.push(property);
+          }
+        });
+      });
+
+      console.log("filter by city->", filter_by_city);
+
+      if (filter_by_city.length > 0) {
+        setAllProperties(filter_by_city);
+      } else {
+        setAllProperties(propertiesResponse.data.data);
+      }
     } catch (error) {
       console.error("Error occurred while fetching data:", error);
     }
@@ -253,7 +269,7 @@ const Index = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [filters]);
 
   return (
     <div>

@@ -1,7 +1,5 @@
 .megaDropdown {
-  position: fixed;
-  top: 70px;
-  left:0;
+ 
  margin-inline: auto;
   width: 100%;
   /* opacity: 1; */
@@ -10,7 +8,7 @@
   background: rgb(245, 245, 254, 0.99);
   padding: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  
   transition: top 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   /* height: 50%; */
   border-radius: 0px 0px 50px 50px;
