@@ -12,6 +12,7 @@ const Section8 = ({ builder }) => {
 
   const fetchData = async () => {
     try {
+
       console.log("call");
       const response = await api.get(
         `/property/list?min-price=0&page=page-1&builder=${builder}`
@@ -19,15 +20,18 @@ const Section8 = ({ builder }) => {
       console.log("projects->", response);
 
       setProjects(response?.data?.data);
+
     } catch (error) {
       console.log("Error while fetching data: ", error);
     }
   };
 
   useEffect(() => {
+
     if (builder) {
       fetchData();
     }
+
   }, [builder]);
 
   console.log("projects section8-> ", projects);

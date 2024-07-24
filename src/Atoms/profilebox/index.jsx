@@ -15,11 +15,13 @@ const Index = () => {
   const navigate = useNavigate();
 
   const handlelogout = () => {
+
     dispatch(setLogOut());
   };
   // const handlelogin = () => {
   //   navigate("/login");
   // };
+
 
   return (
     <div
@@ -36,7 +38,9 @@ const Index = () => {
         minWidth: "fit-content",
       }}
     >
+
       <Link to={"/activity"}>
+
         <div
           style={{
             backgroundColor: "white",
@@ -59,12 +63,17 @@ const Index = () => {
           style={{
             whiteSpace: "nowrap",
             fontWeight: "650",
+
             fontSize: "0.9rem",
+
           }}
+         
         >
+
           {userDetail?.isLoggedIn
             ? `${userDetail?.firstName} ${userDetail?.lastName}`
             : "Guest user"}
+
         </div>
         {userDetail?.isLoggedIn && (
           <div

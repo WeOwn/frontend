@@ -135,6 +135,7 @@ const PropertycardSkeleton = ({ marginright }) => {
             />
           </span>
         </div>
+
       </div>
 
       <div className={styles.pricediv} style={{ width: "100%" }}>

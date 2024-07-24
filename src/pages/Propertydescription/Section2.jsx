@@ -41,8 +41,10 @@ const Section2 = ({
   size,
   iframe,
   floor_images,
+
   id,
   city,
+
 }) => {
   const descriptionlist = [
     {
@@ -79,7 +81,9 @@ const Section2 = ({
       id: 6,
       img: shape6,
       type: "Type",
+
       about: `${type}`,
+
     },
     {
       id: 7,
@@ -102,7 +106,9 @@ const Section2 = ({
   ];
 
   const [launchimgid, setLaunchimgid] = useState(0);
+
   const [floorimgid, setfloorimgid] = useState(0);
+
 
   const [launchexpbtn, setLaunchexpbtn] = useState(false);
   const [launchexp, setLaunchexp] = useState(false);
@@ -125,9 +131,11 @@ const Section2 = ({
     }
   };
   useEffect(() => {
+
     if (builder) {
       fetchdata();
     }
+
   }, [builder]);
 
   const [currbtn, setCurrBtn] = useState(1);
@@ -142,6 +150,7 @@ const Section2 = ({
       name: "Floor Plan",
     },
   ];
+
 
   const [shortlisted, setShortlisted] = useState(false);
   const userDetails = useSelector((store) => store.user);
@@ -183,6 +192,7 @@ const Section2 = ({
       checkIfShortlisted();
     }
   }, [userDetails?.isLoggedIn]);
+
 
   return (
     <div className={styles.section2main}>
@@ -260,6 +270,7 @@ const Section2 = ({
             );
           })}
         </div>
+
 
         <div className={styles.section2imgdiv1}>
           {currbtn === 1 && images?.length > 0
@@ -356,6 +367,7 @@ const Section2 = ({
                 ))}
         </div>
 
+
         <div
           className={styles.section2imgdiv2}
           onMouseOver={handleopenLaunchexp}
@@ -372,6 +384,7 @@ const Section2 = ({
                   borderRadius: "5px",
                   objectFit: "cover",
                   background: "white",
+
                 }}
               />
             ) : currbtn === 2 && floor_images?.length > 0 ? (
@@ -386,6 +399,7 @@ const Section2 = ({
                   background: "white",
                 }}
               />
+
             ) : (
               <Skeleton width="100%" height="100%" borderRadius="5px" />
             )}

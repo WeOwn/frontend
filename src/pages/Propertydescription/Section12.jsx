@@ -1,9 +1,13 @@
+
 import React, { useState } from "react";
+
+
 import styles from "./styles.module.css";
 import EMI from "./EMI.svg";
 import stardesign2 from "./stardesign2.svg";
 import IntroContainer from "../../Atoms/introContainer/IntroContainer";
 import Button from "../../Atoms/Button";
+
 import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa6";
 import { useSelector } from "react-redux";
@@ -41,6 +45,7 @@ const Section12 = ({ id }) => {
     postData(data);
   };
 
+
   return (
     <div>
       <IntroContainer
@@ -54,7 +59,9 @@ const Section12 = ({ id }) => {
 
       <div
         style={{
+
           border: "1px solid #2F2D48",
+
           padding: "2rem",
           marginTop: "3rem",
           borderRadius: "10px",
@@ -63,10 +70,12 @@ const Section12 = ({ id }) => {
         <form className={styles.section12form}>
           <div className={styles.section12form_grid}>
             <div style={{ width: "100%", marginTop: "0rem" }}>
+
               <label
                 htmlFor="positiveReview"
                 style={{ fontWeight: "600", color: "#0F0B3E" }}
               >
+
                 Good things here
               </label>
               <div
@@ -77,6 +86,7 @@ const Section12 = ({ id }) => {
                   id="positiveReview"
                   name="positiveReview"
                   type="text"
+
                   placeholder="Type here"
                   value={review.positiveFeedback}
                   onChange={(e) =>
@@ -89,6 +99,7 @@ const Section12 = ({ id }) => {
                     width: "100%",
                     height: "100%",
                     color: "#2F2D48",
+
                     resize: "none",
                     border: "none",
                     outline: "none",
@@ -99,10 +110,12 @@ const Section12 = ({ id }) => {
               </div>
             </div>
             <div style={{ width: "100%", marginTop: "0rem" }}>
+
               <label
                 htmlFor="negativeReview"
                 style={{ fontWeight: "600", color: "#0F0B3E" }}
               >
+
                 Things need to improvement
               </label>
               <div
@@ -113,6 +126,7 @@ const Section12 = ({ id }) => {
                   id="negativeReview"
                   name="negativeReview"
                   type="text"
+
                   placeholder="Type here"
                   value={review.improvements}
                   onChange={(e) =>
@@ -125,6 +139,7 @@ const Section12 = ({ id }) => {
                     width: "100%",
                     height: "100%",
                     color: "#2F2D48",
+
                     resize: "none",
                     border: "none",
                     outline: "none",
@@ -137,6 +152,7 @@ const Section12 = ({ id }) => {
           </div>
           <div>
             <div style={{ width: "100%", marginTop: "2rem" }}>
+
               <label
                 htmlFor="rating"
                 style={{ fontWeight: "600", color: "#0F0B3E" }}
@@ -170,6 +186,7 @@ const Section12 = ({ id }) => {
             </div>
           </div>
           <div style={{ marginTop: "2rem" }} onClick={HandleSubmit}>
+
             <Button type="primary2">Submit</Button>
           </div>
         </form>
@@ -178,4 +195,6 @@ const Section12 = ({ id }) => {
   );
 };
 
+
 export default Section12;
+

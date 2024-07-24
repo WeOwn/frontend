@@ -304,6 +304,7 @@ function Home() {
 
       </div>
     </>
+
   );
 }
 

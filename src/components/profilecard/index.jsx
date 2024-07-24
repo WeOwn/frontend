@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 import upright from "./upright.png";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 import { isLoggedIn } from "./../../auth/index";
 
 const Index = () => {
@@ -12,6 +13,7 @@ const Index = () => {
   const getPropertiesViewed = () => {
     return userDetails?.propertiesViewed?.length;
   };
+
 
   return (
     <div className={styles.profileContainerdiv}>
@@ -64,14 +66,18 @@ const Index = () => {
               // lineHeight: "1.5",
             }}
           >
+
             {getPropertiesViewed() || 0}
+
           </p>{" "}
           <p style={{ fontSize: "0.75rem", fontWeight: "600" }}> viewed</p>
         </div>
+
         <Link
           to={userDetails?.isLoggedIn ? "/activity" : "/login"}
           style={{ textDecoration: "none" }}
         >
+
           <div
             style={{
               backgroundColor: "#7065f0",
@@ -80,11 +86,13 @@ const Index = () => {
               borderRadius: "10px",
               textAlign: "center",
               fontSize: "0.75rem",
+
               fontWeight: "400",
               color: "white",
             }}
           >
             {userDetails?.isLoggedIn ? "View all activity" : "Login/Register"}
+
           </div>
         </Link>
       </div>

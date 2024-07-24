@@ -14,8 +14,10 @@ import { IoFolder } from "react-icons/io5";
 import api from "../../service/apiGateway";
 import { useSelector } from "react-redux";
 import { isLoggedIn } from "./../../auth/index";
+
 import { FaRegHeart } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa6";
+
 
 export const Propertycard = ({
   _id,
@@ -65,7 +67,9 @@ export const Propertycard = ({
   const userDetails = useSelector((store) => store.user);
   const navigate = useNavigate();
 
+
   const [shortlisted, setShortlisted] = useState(false);
+
 
   const handleAddToWishlist = async (productId) => {
     if (userDetails?.isLoggedIn) {
@@ -78,7 +82,9 @@ export const Propertycard = ({
           }
         );
         console.log("success add to wishlist", response.data);
+
         setShortlisted(true);
+
       } catch (error) {
         console.log("error while add to wishlist: ", error);
       }
@@ -87,6 +93,7 @@ export const Propertycard = ({
       navigate("/login");
     }
   };
+
   const checkIfShortlisted = async () => {
     try {
       console.log("dekh rha huun");
@@ -104,6 +111,7 @@ export const Propertycard = ({
       checkIfShortlisted();
     }
   }, [userDetails?.isLoggedIn]);
+
 
   return (
     <div
@@ -140,11 +148,7 @@ export const Propertycard = ({
           className={styles.wishlist_btn}
           onClick={() => handleAddToWishlist(_id)}
         >
-          {/* <img
-            src={wishlist_btn}
-            alt="wishlist_btn"
-            style={{ width: "100%" }}
-          /> */}
+
           {shortlisted ? (
             <FaHeart color="red" size="20" />
           ) : (
@@ -153,6 +157,7 @@ export const Propertycard = ({
         </div>
       </div>
       <div className={styles.description}>
+
         <div
           style={{
             display: "flex",
@@ -162,6 +167,7 @@ export const Propertycard = ({
             gap: "0.2rem",
           }}
         >
+
           <div
             className={styles.heading}
             style={!isheadingExpanded ? headingStyles : null}
@@ -184,7 +190,9 @@ export const Propertycard = ({
           style={{
             display: "flex",
             flexDirection: isDescExpanded ? "column" : "row",
+
             alignItems: "baseline",
+
             gap: "0.2rem",
           }}
         >

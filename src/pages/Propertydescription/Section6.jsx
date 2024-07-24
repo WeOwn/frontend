@@ -3,9 +3,16 @@ import styles from "./styles.module.css";
 import user from "./user.svg";
 import stardesign from "./stardesign.svg";
 import IntroContainer from "../../Atoms/introContainer/IntroContainer";
+import like from "./like.svg";
+import dislike from "./dislike.svg";
+import good_review from "./good_review.svg";
+import bad_review from "./bad_review.svg";
+import { IoMdStar } from "react-icons/io";
+
 
 import useGetReviewbyPropertyid from "../../hooks/useGetReviewbyPropertyid";
 import ReviewCard from "../../components/reviewCard/ReviewCard";
+
 
 import { MdArrowBackIosNew } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
@@ -63,6 +70,7 @@ const Section6 = ({ name, id }) => {
           desc={`Find answers to common questions about Estateins's services, property
           listing, and the real estate process. We're here to provide clarity
           and assist you every tep of the way `}
+
           btntext="View All Reviews"
         />
 
@@ -97,6 +105,7 @@ const Section6 = ({ name, id }) => {
           // highlightColor="#444"
           // duration={4}
         />
+
       </div>
     );
   }
