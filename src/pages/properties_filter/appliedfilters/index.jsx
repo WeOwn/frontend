@@ -2,32 +2,32 @@ import React from "react";
 import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import close from "./close.svg";
-import { removeFilter, removerangeSlider } from "../../../redux/filterslice";
+import { removeFilters, removepriceRange } from "../../../redux/filterslice";
 
 const Index = () => {
   const dispatch = useDispatch();
-  const rangeSlider = useSelector((store) => store.filters.rangeSlider);
+  const priceRange = useSelector((store) => store.filters.priceRange);
   const handleremovefilter = (name) => {
-    dispatch(removeFilter(name));
+    dispatch(removeFilters({ type: "city", value: name }));
   };
-  const handleremoverangeSlider = () => {
-    dispatch(removerangeSlider());
+  const handleremovepriceRange = () => {
+    dispatch(removeFilters({ type: "priceRange" }));
   };
-  const appliedfilters = useSelector((store) => store.filters.appliedfilters);
+  const city = useSelector((store) => store.filters.city);
   return (
     <div className={styles.filtersdiv}>
-      {rangeSlider?.length > 0 &&
-        (rangeSlider[0] !== 0 || rangeSlider[1] !== 100) && (
+      {priceRange?.length > 0 &&
+        (priceRange[0] !== 0 || priceRange[1] !== 60000000) && (
           <div
             className={styles.filter}
-            onClick={() => handleremoverangeSlider()}
+            onClick={() => handleremovepriceRange()}
           >
-            {rangeSlider[0] === 0 ? (
-              <span>{`Upto ${rangeSlider[1]}`} </span>
-            ) : rangeSlider[1] === 100 ? (
-              <span>{`Starting from ${rangeSlider[0]}`} </span>
+            {priceRange[0] === 0 ? (
+              <span>{`Upto ${priceRange[1]}`} </span>
+            ) : priceRange[1] === 60000000 ? (
+              <span>{`Starting from ${priceRange[0]}`} </span>
             ) : (
-              <span>{rangeSlider[0] + " - " + rangeSlider[1]}</span>
+              <span>{priceRange[0] + " - " + priceRange[1]}</span>
             )}
 
             <div className={styles.imgdiv}>
@@ -35,7 +35,7 @@ const Index = () => {
             </div>
           </div>
         )}
-      {appliedfilters &&
+      {/* {appliedfilters &&
         appliedfilters?.map((filter, index) => {
           return (
             <div
@@ -49,7 +49,16 @@ const Index = () => {
               </div>
             </div>
           );
-        })}
+        })} */}
+      {city && (
+        <div className={styles.filter} onClick={() => handleremovefilter(city)}>
+          <span>{city}</span>
+
+          <div className={styles.imgdiv}>
+            <img src={close} alt="img" style={{ width: "100%" }} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

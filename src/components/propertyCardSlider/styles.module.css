@@ -26,11 +26,12 @@
   }
 
   .circle:hover{
-    border-color: black;
+    background-color: #EAEAEA;
+    border: 1px solid #E1E1E1
   }
 
   .circle:hover .arrow {
-    color: black; /* Change this to your desired color */
+    color: #0F0B3E; /* Change this to your desired color */
   }
 
   

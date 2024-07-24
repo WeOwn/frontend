@@ -24,7 +24,7 @@ const OptionToogle = ({ onChange = () => {} }) => {
       {options.map((option, index) => (
         <div
           key={index}
-          style={{ height: "3rem" }}
+          style={{ height: "2.5rem" }}
           onClick={() => {
             changeHandler(option);
           }}

@@ -38,7 +38,7 @@
 }
   
   .logo{
-    width:8rem;
+    width:7rem;
   }
 
   .center{
@@ -81,7 +81,7 @@
 
   .searchtext{
     padding: 0.2rem 1rem;
-    border-left: 1px solid grey;
+    border-left: 1px solid #3F3D565E;
     width: 100%; 
     
   }

@@ -17,7 +17,13 @@
     }
 }
 
-h4{
+@media(max-width:768px) {
+    .maindiv{
+        width:95%;
+    }
+}
+
+.heading{
     font-size: 2rem;
     /* white-space: nowrap; */
 }

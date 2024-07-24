@@ -47,7 +47,7 @@
     /* width:60rem; */
     width: 30%;
     border:1px solid #CED4DD;
-    border-radius: 10px;
+    border-radius:8px;
     padding:2rem 1rem;
     display:flex;
     flex-direction: column;
@@ -124,7 +124,8 @@
 
 .paraheading{
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 650;
+    color:#091E42
 }
 
 .rotate180 {
@@ -141,7 +142,7 @@
 }
 
 .switch {
-    width: 40px;
+    width: 35px;
     height: 15px;
     background-color: #D6EFFF;
     border-radius: 30px;
@@ -173,7 +174,7 @@
 }
 
 .toggleOn {
-    transform: translateX(20px);
+    transform: translateX(15px);
 }
 
 .toggleOff {

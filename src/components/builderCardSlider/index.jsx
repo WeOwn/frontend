@@ -153,6 +153,7 @@ const Index = ({ builders }) => {
                   key={builder.id}
                   {...builder}
                   marginright="1rem"
+                  marginBottom="0.5rem"
                 />
               ))
             : Array(4)
