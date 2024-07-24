@@ -78,13 +78,13 @@ const Navbar2 = () => {
           <img
             src={hamburger2}
             alt="icon"
-            style={{ height: "70%", width: "70%", cursor: "pointer" }}
+            style={{ height: "60%", width: "60%", cursor: "pointer" }}
           />
         </div>
-        <Link to={"/user/profile"}>
+        <Link to={"/activity"}>
           <div
             style={{
-              backgroundColor: "White",
+              backgroundColor: "white",
               // boxShadow: "2px 2px 3px 0 black",
               // padding: "0.2rem",
               borderRadius: "999px",
@@ -94,6 +94,8 @@ const Navbar2 = () => {
               width: "1.5rem",
               height: "1.5rem",
               cursor: "pointer",
+              boxShadow: "0px 0px 10px 1px #00000033",
+              marginLeft: "-0.5rem",
             }}
           >
             <img

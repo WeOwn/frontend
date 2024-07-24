@@ -242,12 +242,10 @@ function Home() {
                     <div className={styles.searchProperty}>
                       <div className={styles.propertyTitle}>Builders</div>
                       <div className={styles.propertydesc}>
-                        <p>
-                          Explore our handpicked selection of featured
-                          properties. Each listing offers a glimpse into
-                          exceptional homes and investments available through
-                          Weown. Click "View Details" for more information.
-                        </p>
+                        Explore our handpicked selection of featured properties.
+                        Each listing offers a glimpse into exceptional homes and
+                        investments available through Weown. Click "View
+                        Details" for more information.
                       </div>
                     </div>
                     <img

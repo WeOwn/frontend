@@ -22,7 +22,7 @@ import customize from "./customize.svg";
 import Play from "./Play.svg";
 // import "@google/model-viewer";
 import "@google/model-viewer/dist/model-viewer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../Atoms/Button";
 import Skeleton from "react-loading-skeleton";
 import api from "../../service/apiGateway";
@@ -41,13 +41,15 @@ const Section2 = ({
   size,
   iframe,
   floor_images,
+  id,
+  city,
 }) => {
   const descriptionlist = [
     {
       id: 1,
       img: shape1,
       type: "Bedrooms",
-      about: amenities?.bedrooms,
+      about: amenities?.bedrooms || null,
     },
     {
       id: 2,
@@ -71,13 +73,13 @@ const Section2 = ({
       id: 5,
       img: shape5,
       type: "Location",
-      about: "Delhi",
+      about: `${city}`,
     },
     {
       id: 6,
       img: shape6,
       type: "Type",
-      about: `${amenities?.property_type}`,
+      about: `${type}`,
     },
     {
       id: 7,
@@ -100,6 +102,7 @@ const Section2 = ({
   ];
 
   const [launchimgid, setLaunchimgid] = useState(0);
+  const [floorimgid, setfloorimgid] = useState(0);
 
   const [launchexpbtn, setLaunchexpbtn] = useState(false);
   const [launchexp, setLaunchexp] = useState(false);
@@ -122,7 +125,9 @@ const Section2 = ({
     }
   };
   useEffect(() => {
-    fetchdata();
+    if (builder) {
+      fetchdata();
+    }
   }, [builder]);
 
   const [currbtn, setCurrBtn] = useState(1);
@@ -138,14 +143,46 @@ const Section2 = ({
     },
   ];
 
-  const user_id = useSelector((store) => store.user.user_id);
-
-  const handleWishlist = () => {
-    const response = api.post(
-      `https://weown-backend.azurewebsites.net/shortlist/`,
-      { user_id }
-    );
+  const [shortlisted, setShortlisted] = useState(false);
+  const userDetails = useSelector((store) => store.user);
+  const navigate = useNavigate();
+  const handleAddToWishlist = async () => {
+    if (userDetails?.isLoggedIn) {
+      try {
+        const response = await api.post(
+          `https://weown-backend.azurewebsites.net/shortlist/`,
+          {
+            user_id: userDetails?.user_id,
+            properties: [id],
+          }
+        );
+        console.log("success add to wishlist", response.data);
+        setShortlisted(true);
+      } catch (error) {
+        console.log("error while add to wishlist: ", error);
+      }
+    } else {
+      alert("Sorry!!! You are not logged in");
+      navigate("/login");
+    }
   };
+  const checkIfShortlisted = async () => {
+    try {
+      console.log("dekh rha huun");
+      const response = await api.get(`/shortlist/?id=${userDetails?.user_id}`);
+      if (response?.data?.properties?.length > 0) {
+        console.log("h bhai");
+        if (response?.data?.properties?.includes(id)) setShortlisted(true);
+      }
+    } catch (error) {
+      console.log("error while checking shorlisted property", error);
+    }
+  };
+  useEffect(() => {
+    if (userDetails?.isLoggedIn) {
+      checkIfShortlisted();
+    }
+  }, [userDetails?.isLoggedIn]);
 
   return (
     <div className={styles.section2main}>
@@ -186,6 +223,7 @@ const Section2 = ({
               alignItems: "center",
               cursor: "pointer",
             }}
+            onClick={handleAddToWishlist}
           >
             <span
               style={{
@@ -200,9 +238,9 @@ const Section2 = ({
               <img src={heart} alt="img" style={{ width: "100%" }} />
             </div>
           </div>
-          <Link to="/contact_builders" style={{}}>
+          {/* <Link to="/contact_builders" style={{}}>
             <Button type="primary2">Contact Builder</Button>
-          </Link>
+          </Link> */}
         </div>
       </div>
 
@@ -222,65 +260,102 @@ const Section2 = ({
             );
           })}
         </div>
-        {currbtn === 1 && (
-          <div className={styles.section2imgdiv1}>
-            {images?.length > 0
-              ? images?.map((image, index) => {
-                  return (
-                    <div
-                      key={index}
-                      style={{
-                        // borderRadius: "10px",
-                        // backgroundColor: "#FFFFFF",
-                        minWidth: "6rem",
-                        // maxWidth: "6rem",
 
-                        maxHeight: "5rem",
-                        cursor: "pointer",
-                      }}
-                      className={styles.imgtransformdiv}
-                      onClick={() => setLaunchimgid(index)}
-                    >
-                      <img
-                        src={image}
-                        alt="home_img"
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          borderRadius: "5px",
-                          objectFit: "cover",
-                          background: "white",
-                        }}
-                      />
-                    </div>
-                  );
-                })
-              : Array(9)
-                  .fill(0)
-                  .map((_, index) => (
-                    <div
-                      key={index}
-                      style={{
-                        // borderRadius: "10px",
-                        // backgroundColor: "#FFFFFF",
-                        minWidth: "6rem",
-                        maxWidth: "6rem",
+        <div className={styles.section2imgdiv1}>
+          {currbtn === 1 && images?.length > 0
+            ? images?.map((image, index) => {
+                return (
+                  <div
+                    key={index}
+                    style={{
+                      // borderRadius: "10px",
+                      // backgroundColor: "#FFFFFF",
+                      // minWidth: "6rem",
+                      // maxWidth: "6rem",
 
-                        height: "5rem",
+                      // aspectRatio: "1.5",
+
+                      // maxHeight: "5rem",
+                      cursor: "pointer",
+                    }}
+                    className={styles.imgtransformdiv}
+                    onClick={() => setLaunchimgid(index)}
+                  >
+                    <img
+                      src={image}
+                      alt="home_img"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        borderRadius: "5px",
+                        objectFit: "cover",
+                        background: "white",
                       }}
-                    >
-                      <Skeleton
-                        width="100%"
-                        height="100%"
-                        borderRadius="5px"
-                        // baseColor="black"
-                        // highlightColor="#444"
-                        // duration={4}
-                      />
-                    </div>
-                  ))}
-          </div>
-        )}
+                      className={styles.ogimg}
+                    />
+                  </div>
+                );
+              })
+            : currbtn === 2 && floor_images?.length > 0
+            ? floor_images?.map((image, index) => {
+                return (
+                  <div
+                    key={index}
+                    style={{
+                      // borderRadius: "10px",
+                      // backgroundColor: "#FFFFFF",
+                      // maxWidth: "6rem",
+                      // maxWidth: "6rem",
+                      width: "10%",
+                      aspectRatio: "1.5",
+
+                      // maxHeight: "5rem",
+                      cursor: "pointer",
+                    }}
+                    className={styles.imgtransformdiv}
+                    onClick={() => setfloorimgid(index)}
+                  >
+                    <img
+                      src={image}
+                      alt="home_img"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        borderRadius: "5px",
+                        objectFit: "cover",
+                        background: "white",
+                      }}
+                      className={styles.ogimg}
+                    />
+                  </div>
+                );
+              })
+            : Array(9)
+                .fill(0)
+                .map((_, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      // borderRadius: "10px",
+                      // backgroundColor: "#FFFFFF",
+                      minWidth: "6rem",
+                      maxWidth: "6rem",
+
+                      height: "5rem",
+                    }}
+                  >
+                    <Skeleton
+                      width="100%"
+                      height="100%"
+                      borderRadius="5px"
+                      // baseColor="black"
+                      // highlightColor="#444"
+                      // duration={4}
+                    />
+                  </div>
+                ))}
+        </div>
+
         <div
           className={styles.section2imgdiv2}
           onMouseOver={handleopenLaunchexp}
@@ -301,7 +376,7 @@ const Section2 = ({
               />
             ) : currbtn === 2 && floor_images?.length > 0 ? (
               <img
-                src={floor_images[0]}
+                src={floor_images[floorimgid]}
                 alt="home_img"
                 style={{
                   width: "100%",
@@ -369,7 +444,6 @@ const Section2 = ({
             )}
           </div>
         </div>
-
         <div className={styles.section2imgdiv3}>
           <div
             style={{

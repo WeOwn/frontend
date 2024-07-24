@@ -16,9 +16,13 @@ export const Builderscard = ({
   marginright,
   location,
   images,
+  marginBottom,
 }) => {
   return (
-    <div className={styles.maindiv} style={{ marginRight: marginright }}>
+    <div
+      className={styles.maindiv}
+      style={{ marginRight: marginright, marginBottom: marginBottom }}
+    >
       <div className={styles.imagediv}>
         {images?.length > 0 ? (
           <img
@@ -31,6 +35,7 @@ export const Builderscard = ({
               borderRadius: "10px",
               backgroundColor: "#E1E1E1",
             }}
+            className={styles.ogimg}
             // onLoad={handleImageLoaded}
           />
         ) : (

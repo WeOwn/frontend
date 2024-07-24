@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import styles from "./styles.module.css";
+import { useSelector } from "react-redux";
 
 const Section1 = ({ onChange = () => {} }) => {
-  const [value, setValue] = useState(0);
+  const userDetails = useSelector((store) => store.user);
+  // const [value, setValue] = useState(0);
   const options = [
-    { id: 1, label: "Recent Searches" },
-    { id: 2, label: "Viewed" },
-    { id: 3, label: "Shortlisted" },
-    { id: 4, label: "Contacted" },
+    { id: 1, label: "Recent Searches", value:0 },
+    { id: 2, label: "Viewed", value: userDetails?.propertiesViewed?.length },
+    { id: 3, label: "Shortlisted",value:0 },
+    { id: 4, label: "Contacted",value:0 },
   ];
   const [active, setActive] = useState(options[0].label);
 
@@ -30,7 +32,7 @@ const Section1 = ({ onChange = () => {} }) => {
             [styles.active]: active === option.label,
           })}
         >
-          {value + " " + option.label}
+          {option.value + " " + option.label}
         </div>
       ))}
     </div>

@@ -7,67 +7,27 @@ import PropertyCardSlider from "../../components/propertyCardSlider";
 import api from "../../service/apiGateway";
 
 const Section8 = ({ builder }) => {
-  const List1 = [
-    {
-      id: "1",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "2",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-  ];
-
   const [data, setdata] = useState(null);
   const [projects, setProjects] = useState(null);
 
   const fetchData = async () => {
     try {
-      const response = await api.get(`/builder/profile/${builder}`);
-
-      setdata(response.data);
-
-      const projectRequests = response?.data?.projects?.map((projectId) => {
-        return api.get(`/property/${projectId}`);
-      });
-
-      const projectResponses = await Promise.all(projectRequests);
-      const filteredProjects = projectResponses.filter(
-        (project) => project.data !== null
+      console.log("call");
+      const response = await api.get(
+        `/property/list?min-price=0&page=page-1&builder=${builder}`
       );
-      setProjects([...filteredProjects]);
+      console.log("projects->", response);
+
+      setProjects(response?.data?.data);
     } catch (error) {
       console.log("Error while fetching data: ", error);
     }
   };
 
   useEffect(() => {
-    fetchData();
+    if (builder) {
+      fetchData();
+    }
   }, [builder]);
 
   console.log("projects section8-> ", projects);
@@ -75,7 +35,7 @@ const Section8 = ({ builder }) => {
     <div>
       <IntroContainer
         stardesign={stardesign2}
-        heading={`Projects By ${data?.name}`}
+        heading={`Projects By ${data?.name || "Builder"}`}
         desc={`Find answers to common questions about Estateins's services, property
           listing, and the real estate process. We're here to provide clarity
           and assist you every tep of the way `}

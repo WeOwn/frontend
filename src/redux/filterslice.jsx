@@ -4,38 +4,36 @@ const filterslice = createSlice({
   name: "filters",
   initialState: {
     appliedfilters: [],
-    rangeSlider: [0, 100],
+    priceRange: [0, 60000000],
+    city: "",
   },
   reducers: {
     setFilters: (state, action) => {
-      if (!state.appliedfilters.includes(action.payload)) {
-        state.appliedfilters.push(action.payload);
-      }
+      if (action.payload.type === "appliedFilters") {
+        if (!state.appliedfilters.includes(action.payload.value)) {
+          state.appliedfilters.push(action.payload.value);
+        }
+      } else state[action.payload.type] = action.payload.value;
+      console.log("redux ok");
     },
-    setrangeSlider: (state, action) => {
-      state.rangeSlider = action.payload;
+
+    removeFilters: (state, action) => {
+      if (action.payload.type === "appliedFilters")
+        state.appliedfilters = state.appliedfilters.filter(
+          (filter) => filter !== action.payload
+        );
+      else if (action.payload.type === "city") state[action.payload.type] = "";
+      else state.priceRange = [0, 60000000];
     },
-    removerangeSlider: (state, action) => {
-      state.rangeSlider = [0, 100];
-    },
-    removeFilter: (state, action) => {
-      state.appliedfilters = state.appliedfilters.filter(
-        (filter) => filter !== action.payload
-      );
-    },
-    removeAll: (state) => {
+
+    clearFilters: (state) => {
       state.appliedfilters = [];
-      state.rangeSlider = [0, 100];
+      state.city = "";
+      state.priceRange = [0, 60000000];
     },
   },
 });
 
-export const {
-  setFilters,
-  removeFilter,
-  removeAll,
-  setrangeSlider,
-  removerangeSlider,
-} = filterslice.actions;
+export const { setFilters, removeFilters, clearFilters } = filterslice.actions;
 
 export default filterslice.reducer;
