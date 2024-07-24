@@ -1,19 +1,23 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
+
 import { setFilters } from "../../redux/filterslice";
 
 const Index = ({ dropdownname, logo, style, list }) => {
   const dispatch = useDispatch();
   const handleAppliedfilter = (name) => {
-    dispatch(setFilters(name));
+
+    dispatch(setFilters({ type: "city", value: name }));
+
   };
   const { bgcolor, border, droplogobg, namecolor, flexgap, selectBoxwidth } =
     style;
   const [isopen, setIsopen] = useState(-1);
   const dropdownRef1 = useRef(null);
-  const dropdownRef2 = useRef(null);
-  const [name, setname] = useState(dropdownname);
+
+  const city = useSelector((store) => store.filters.city);
   const handleIsopen = (id) => {
     if (isopen === id) setIsopen(-1);
     else setIsopen(id);
@@ -34,7 +38,7 @@ const Index = ({ dropdownname, logo, style, list }) => {
 
   const handlevar = (name) => {
     handleAppliedfilter(name);
-    setname(name);
+
     setIsopen(-1);
   };
   return (
@@ -60,7 +64,7 @@ const Index = ({ dropdownname, logo, style, list }) => {
           color: namecolor,
         }}
       >
-        {name}
+        {city || "Banglore"}
       </span>
       <div
         style={{

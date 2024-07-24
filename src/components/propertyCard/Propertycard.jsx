@@ -15,6 +15,10 @@ import api from "../../service/apiGateway";
 import { useSelector } from "react-redux";
 import { isLoggedIn } from "./../../auth/index";
 
+import { FaRegHeart } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa6";
+
+
 export const Propertycard = ({
   _id,
   name,
@@ -28,6 +32,7 @@ export const Propertycard = ({
   detail3,
 
   marginright,
+  marginBottom,
 }) => {
   // const [detail1, detail2, detail3] = features;
   const [isLoading, setIsLoading] = useState(false);
@@ -62,6 +67,10 @@ export const Propertycard = ({
   const userDetails = useSelector((store) => store.user);
   const navigate = useNavigate();
 
+
+  const [shortlisted, setShortlisted] = useState(false);
+
+
   const handleAddToWishlist = async (productId) => {
     if (userDetails?.isLoggedIn) {
       try {
@@ -73,6 +82,9 @@ export const Propertycard = ({
           }
         );
         console.log("success add to wishlist", response.data);
+
+        setShortlisted(true);
+
       } catch (error) {
         console.log("error while add to wishlist: ", error);
       }
@@ -82,8 +94,30 @@ export const Propertycard = ({
     }
   };
 
+  const checkIfShortlisted = async () => {
+    try {
+      console.log("dekh rha huun");
+      const response = await api.get(`/shortlist/?id=${userDetails?.user_id}`);
+      if (response?.data?.properties?.length > 0) {
+        console.log("h bhai");
+        if (response?.data?.properties?.includes(_id)) setShortlisted(true);
+      }
+    } catch (error) {
+      console.log("error while checking shorlisted property", error);
+    }
+  };
+  useEffect(() => {
+    if (userDetails?.isLoggedIn) {
+      checkIfShortlisted();
+    }
+  }, [userDetails?.isLoggedIn]);
+
+
   return (
-    <div className={styles.maindiv} style={{ marginRight: marginright }}>
+    <div
+      className={styles.maindiv}
+      style={{ marginRight: marginright, marginBottom: marginBottom }}
+    >
       <div className={styles.imagediv}>
         {images?.length > 0 ? (
           <img
@@ -96,6 +130,7 @@ export const Propertycard = ({
               borderRadius: "10px",
               backgroundColor: "#E1E1E1",
             }}
+            className={styles.ogimg}
             // onLoad={handleImageLoaded}
           />
         ) : (
@@ -113,15 +148,26 @@ export const Propertycard = ({
           className={styles.wishlist_btn}
           onClick={() => handleAddToWishlist(_id)}
         >
-          <img
-            src={wishlist_btn}
-            alt="wishlist_btn"
-            style={{ width: "100%" }}
-          />
+
+          {shortlisted ? (
+            <FaHeart color="red" size="20" />
+          ) : (
+            <FaRegHeart color="white" size="15" />
+          )}
         </div>
       </div>
       <div className={styles.description}>
-        <div style={{ display: "flex", flexDirection: "row", gap: "0.2rem" }}>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: isheadingExpanded ? "column" : "row",
+            alignItems: "baseline",
+
+            gap: "0.2rem",
+          }}
+        >
+
           <div
             className={styles.heading}
             style={!isheadingExpanded ? headingStyles : null}
@@ -132,8 +178,8 @@ export const Propertycard = ({
           <span
             style={{
               cursor: "pointer",
-              fontSize: "0.8rem",
-              marginTop: "-0.3rem",
+              fontSize: isheadingExpanded ? "0.75rem" : "1rem",
+              fontWeight: "600",
             }}
             onClick={() => setIsheadingExpanded(!isheadingExpanded)}
           >
@@ -144,6 +190,9 @@ export const Propertycard = ({
           style={{
             display: "flex",
             flexDirection: isDescExpanded ? "column" : "row",
+
+            alignItems: "baseline",
+
             gap: "0.2rem",
           }}
         >

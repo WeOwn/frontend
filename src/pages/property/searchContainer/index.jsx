@@ -129,13 +129,13 @@ const Search = () => {
         <div
           style={{
             backgroundColor: "#7065f0",
-            padding: "0.8rem 2.5rem",
+            padding: "0.8rem 1rem",
             borderRadius: "10px",
             width: "fit-content",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            gap: "1rem",
+            gap: "0.5rem",
           }}
         >
           <div style={{ width: "1rem" }}>
@@ -165,7 +165,7 @@ const Search = () => {
               onClick={() => handleIsopen(idx)}
             >
               <div
-                style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+                style={{ display: "flex", alignItems: "center", gap: "0.2rem" }}
               >
                 <div style={{ width: "0.9rem" }}>
                   <img src={obj.img} alt="logo" style={{ width: "100%" }} />
@@ -177,6 +177,9 @@ const Search = () => {
                     color: "#999999",
                     paddingLeft: "0.5rem",
                     borderLeft: "1px solid #E1E1E1",
+                    // background: "red",
+                    width: "7rem",
+                    overflow: "hidden",
                   }}
                 >
                   {dropdownname[idx]}

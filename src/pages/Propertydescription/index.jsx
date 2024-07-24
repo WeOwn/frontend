@@ -18,6 +18,11 @@ import api from "../../service/apiGateway";
 import { useParams } from "react-router-dom";
 import Navbar2 from "../../components/navbar/Navbar2.jsx";
 
+import { useDispatch, useSelector } from "react-redux";
+import { isLoggedIn } from "./../../auth/index";
+import { setPropertiesViewed } from "../../redux/userSlice.jsx";
+
+
 const PropertyDescription = () => {
   const section1 = useRef(null);
   const section2 = useRef(null);
@@ -81,30 +86,21 @@ const PropertyDescription = () => {
   // if (error) {
   //   return <div>{error}</div>;
   // }
-  const setPropertiesViewed = () => {
-    const propertiesViewed = localStorage.getItem("propertiesViewed");
 
-    // Parse the retrieved data if it exists, otherwise use an empty array
-    const updatedProperties = propertiesViewed
-      ? JSON.parse(propertiesViewed)
-      : [];
-    const uniqueProperties = new Set(updatedProperties);
-    // Add the current id to the updatedProperties array
-    uniqueProperties.add(id);
-    localStorage.setItem(
-      "propertiesViewed",
-      JSON.stringify([...uniqueProperties])
-    );
+  const dispatch = useDispatch();
+  const handlePropertiesViewed = () => {
+    dispatch(setPropertiesViewed(id));
   };
-
+  const userDetails = useSelector((store) => store.user);
   useEffect(() => {
-    setPropertiesViewed();
+    handlePropertiesViewed();
   }, []);
 
   const [stick, setStick] = useState(false);
 
   const [section, setSection] = useState(1);
-  const reducescroll = 60 + 70;
+  const reducescroll = 0;
+
 
   const handlescroll = () => {
     if (window.scrollY >= 76) setStick(true);
@@ -211,7 +207,9 @@ const PropertyDescription = () => {
     handlescroll();
     window.addEventListener("scroll", handlescroll);
     return () => window.removeEventListener("scroll", handlescroll);
-  });
+
+  }, []);
+
 
   const handlesectionScroll = (sectionRef) => {
     console.log("sectionref-> ", sectionRef);
@@ -255,7 +253,9 @@ const PropertyDescription = () => {
             section={section}
           />
         </div>
-        <div style={{ width: "85%", marginInline: "auto" }}>
+
+        <div className={styles.seconddiv}>
+
           <div className={styles.section2} ref={section2}>
             <Section2
               name={name}
@@ -268,6 +268,10 @@ const PropertyDescription = () => {
               size={size}
               iframe={iframe}
               floor_images={floor_images}
+
+              id={id}
+              city={location?.city}
+
             />
           </div>
           <div className={styles.section3} ref={section3}>
@@ -280,7 +284,9 @@ const PropertyDescription = () => {
             <Section5 name={name} />
           </div>
           <div className={styles.section6} ref={section6}>
-            <Section6 name={name} />
+
+            <Section6 name={name} id={id} />
+
           </div>
           <div className={styles.section7} ref={section7}>
             <Section7 />
@@ -290,16 +296,20 @@ const PropertyDescription = () => {
           </div>
 
           <div className={styles.section9} ref={section9}>
-            <Section9 />
+
+            <Section9 id={id} />
           </div>
           <div className={styles.section10} ref={section10}>
-            <Section10 />
+            <Section10 id={id} />
+
           </div>
           <div className={styles.section11} ref={section11}>
             <Section11 />
           </div>
           <div className={styles.section12} ref={section12}>
-            <Section12 />
+
+            <Section12 id={id} />
+
           </div>
         </div>
       </div>

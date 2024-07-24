@@ -29,7 +29,7 @@ const store = configureStore({
   reducer: {
     // user: userSlice,
     user: persistedUserReducer,
-    // user: userSlice,
+
     filters: filterslice,
     app: appslice,
   },

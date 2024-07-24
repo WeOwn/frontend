@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/navbar/Navbar";
-import Footer from "../../components/Footer/Footer";
+
 import styles from "./styles.module.css";
 import { Propertycard } from "../../components/propertyCard/Propertycard";
 // import RangeFilter from "../../Atoms/rangeFilter";
@@ -10,14 +9,17 @@ import Dropdown from "./dropdown";
 import Checkbox from "./checkbox";
 import AppliedFilters from "./appliedfilters";
 import { useDispatch, useSelector } from "react-redux";
-import { removeAll } from "../../redux/filterslice";
+import { clearFilters } from "../../redux/filterslice";
 import api from "../../service/apiGateway";
+import PropertycardSkeleton from "../../components/propertyCard/PropertycardSkeleton";
+import MultiRangeSlider from "../../components/mutliRangeSlider/MultiRangeSlider";
 
 const Index = () => {
   // console.log(appliedfilters);
 
-  const rangeSlider = useSelector((store) => store.filters.rangeSlider);
-  const filters = useSelector((store) => store.filters.appliedfilters);
+  const priceRange = useSelector((store) => store.filters.priceRange);
+  const city = useSelector((store) => store.filters.city);
+  console.log("city", city);
   const dispatch = useDispatch();
 
   const [isopen, setisopen] = useState([false, false, false, false, false]);
@@ -38,99 +40,8 @@ const Index = () => {
   };
 
   const handleremoveAll = () => {
-    dispatch(removeAll());
+    dispatch(clearFilters());
   };
-
-  const List1 = [
-    {
-      id: "1",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "2",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "3",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "4",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "5",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "6",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "7",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-    {
-      id: "8",
-      img: "imglink",
-      heading: "Seaside Serenity Villa",
-      description:
-        "A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood.",
-      detail1: "4-Bedrooms",
-      detail2: "3-Bathrooms",
-      detail3: "Villa",
-      price: "$550,000",
-    },
-  ];
 
   const list1 = [
     {
@@ -238,46 +149,45 @@ const Index = () => {
     },
   ];
 
-  const [allproperties, setAllProperties] = useState(null);
+  const [allproperties, setAllProperties] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   const fetchData = async () => {
+    console.log("call");
     try {
+      setLoading(true);
       const propertiesResponse = await api.get(
-        "/property/list?min-price=0&page=page-1"
+        `/property/list?min-price=${priceRange[0]}&max-price=${priceRange[1]}&city=${city}&page=page-1`
       );
-      // console.log("All properties:", propertiesResponse.data.data);
-      let filter_by_city = [];
 
-      filters?.forEach((city) => {
-        propertiesResponse?.data?.data.forEach((property) => {
-          if (property?.location?.city.toUpperCase() === city.toUpperCase()) {
-            filter_by_city.push(property);
-          }
-        });
-      });
 
-      console.log("filter by city->", filter_by_city);
+      console.log("propertyResponse->", propertiesResponse.data.data);
 
-      if (filter_by_city.length > 0) {
-        setAllProperties(filter_by_city);
-      } else {
-        setAllProperties(propertiesResponse.data.data);
-      }
+      setAllProperties(propertiesResponse?.data?.data);
+
     } catch (error) {
+      // setError(error);
       console.error("Error occurred while fetching data:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
+    console.log("effect");
     fetchData();
-  }, [filters]);
+
+  }, [city, priceRange]);
+
 
   return (
     <div>
+      {console.log("Ui")}
       <div className={styles.filterpageContainer}>
         <div className={styles.filterdivContainer}>
-          {((rangeSlider?.length > 0 &&
-            (rangeSlider[0] !== 0 || rangeSlider[1] !== 100)) ||
-            filters?.length > 0) && (
+          {((priceRange?.length > 0 &&
+            (priceRange[0] !== 0 || priceRange[1] !== 60000000)) ||
+            city) && (
             <div className={styles.filteritemsdivp}>
               <div
                 className={styles.filteritemssection1}
@@ -349,7 +259,7 @@ const Index = () => {
                     display: "inline-block",
                     fontSize: "0.7rem",
                     color: "white",
-                    fontWeight: "550",
+                    fontWeight: "600",
                     borderRadius: "2px",
                   }}
                 >
@@ -533,11 +443,25 @@ const Index = () => {
         </div>
 
         <div className={styles.section2cardsp}>
-          {allproperties?.map((property, index) => (
-            <Propertycard key={property._id} {...property} />
-          ))}
+          {!error &&
+            !loading &&
+            (allproperties?.length > 0 ? (
+              allproperties?.map((property, index) => (
+                <Propertycard key={property._id} {...property} />
+              ))
+            ) : (
+              <h4>0 properties found based on applied filters</h4>
+            ))}
+          {loading &&
+            Array(9)
+              .fill(0)
+              .map((_, index) => {
+                return <PropertycardSkeleton />;
+              })}
+          {error && <h4>{error?.message}</h4>}
         </div>
       </div>
+      {console.log("ui end")}
     </div>
   );
 };

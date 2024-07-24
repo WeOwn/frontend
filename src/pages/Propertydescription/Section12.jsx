@@ -1,25 +1,50 @@
-import React from "react";
+
+import React, { useState } from "react";
+
+
 import styles from "./styles.module.css";
 import EMI from "./EMI.svg";
 import stardesign2 from "./stardesign2.svg";
 import IntroContainer from "../../Atoms/introContainer/IntroContainer";
 import Button from "../../Atoms/Button";
 
-const Section11 = () => {
-  const faqs = [
-    {
-      heading: "EMI Calculator",
-      para: "Learn how to use our user-friendly search tools to find properties that match your criteria.",
-    },
-    {
-      heading: "EMI Calculator",
-      para: "Learn how to use our user-friendly search tools to find properties that match your criteria.",
-    },
-    {
-      heading: "EMI Calculator",
-      para: "Learn how to use our user-friendly search tools to find properties that match your criteria.",
-    },
-  ];
+import { CiStar } from "react-icons/ci";
+import { FaStar } from "react-icons/fa6";
+import { useSelector } from "react-redux";
+import useAddReview from "../../hooks/useAddReview";
+import api from "../../service/apiGateway";
+
+const Section12 = ({ id }) => {
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const userDetails = useSelector((store) => store.user);
+  const [review, setReview] = useState({
+    positiveFeedback: "",
+    improvements: "",
+  });
+
+  const postData = async (data) => {
+    try {
+      const response = await api.post(`/review`, data);
+      console.log("response", response);
+    } catch (error) {
+      console.log("error while adding review", error);
+    }
+  };
+  const HandleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      ...review,
+      user_id: userDetails?.user_id,
+      property_id: id,
+      rating,
+    };
+
+    console.log("review data", data);
+
+    postData(data);
+  };
+
 
   return (
     <div>
@@ -34,7 +59,9 @@ const Section11 = () => {
 
       <div
         style={{
-          border: "1px solid grey",
+
+          border: "1px solid #2F2D48",
+
           padding: "2rem",
           marginTop: "3rem",
           borderRadius: "10px",
@@ -43,7 +70,12 @@ const Section11 = () => {
         <form className={styles.section12form}>
           <div className={styles.section12form_grid}>
             <div style={{ width: "100%", marginTop: "0rem" }}>
-              <label htmlFor="positiveReview" style={{ fontWeight: "550" }}>
+
+              <label
+                htmlFor="positiveReview"
+                style={{ fontWeight: "600", color: "#0F0B3E" }}
+              >
+
                 Good things here
               </label>
               <div
@@ -54,10 +86,20 @@ const Section11 = () => {
                   id="positiveReview"
                   name="positiveReview"
                   type="text"
-                  placeholder="type here"
+
+                  placeholder="Type here"
+                  value={review.positiveFeedback}
+                  onChange={(e) =>
+                    setReview((prevReview) => ({
+                      ...prevReview,
+                      positiveFeedback: e.target.value,
+                    }))
+                  }
                   style={{
                     width: "100%",
                     height: "100%",
+                    color: "#2F2D48",
+
                     resize: "none",
                     border: "none",
                     outline: "none",
@@ -68,7 +110,12 @@ const Section11 = () => {
               </div>
             </div>
             <div style={{ width: "100%", marginTop: "0rem" }}>
-              <label htmlFor="negativeReview" style={{ fontWeight: "550" }}>
+
+              <label
+                htmlFor="negativeReview"
+                style={{ fontWeight: "600", color: "#0F0B3E" }}
+              >
+
                 Things need to improvement
               </label>
               <div
@@ -79,10 +126,20 @@ const Section11 = () => {
                   id="negativeReview"
                   name="negativeReview"
                   type="text"
-                  placeholder="type here"
+
+                  placeholder="Type here"
+                  value={review.improvements}
+                  onChange={(e) =>
+                    setReview((prevReview) => ({
+                      ...prevReview,
+                      improvements: e.target.value,
+                    }))
+                  }
                   style={{
                     width: "100%",
                     height: "100%",
+                    color: "#2F2D48",
+
                     resize: "none",
                     border: "none",
                     outline: "none",
@@ -95,13 +152,41 @@ const Section11 = () => {
           </div>
           <div>
             <div style={{ width: "100%", marginTop: "2rem" }}>
-              <label htmlFor="rating" style={{ fontWeight: "550" }}>
+
+              <label
+                htmlFor="rating"
+                style={{ fontWeight: "600", color: "#0F0B3E" }}
+              >
                 Rating
               </label>
-              <div id="rating">* * * *</div>
+              <div id="rating" className={styles.section12stardivp}>
+                {[1, 2, 3, 4, 5].map((num, index) => {
+                  return (
+                    <div
+                      className={styles.section12stardiv}
+                      onClick={() => {
+                        if (rating === num) setRating(0);
+                        else setRating(num);
+                      }}
+                      // onMouseOver={() => {
+                      //   if (rating === 0) setHoverRating(num);
+                      //   // else setHoverRating(0);
+                      // }}
+                      onMouseLeave={() => setHoverRating(0)}
+                    >
+                      {num <= rating ? (
+                        <FaStar color="#55D6A7" size="25" />
+                      ) : (
+                        <CiStar color="#55D6A7" size="28" />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
-          <div style={{ marginTop: "1rem" }}>
+          <div style={{ marginTop: "2rem" }} onClick={HandleSubmit}>
+
             <Button type="primary2">Submit</Button>
           </div>
         </form>
@@ -110,4 +195,6 @@ const Section11 = () => {
   );
 };
 
-export default Section11;
+
+export default Section12;
+

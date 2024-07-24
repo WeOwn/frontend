@@ -15,14 +15,13 @@ const Index = () => {
   const navigate = useNavigate();
 
   const handlelogout = () => {
-    localStorage.setItem("propertiesViewed", []);
+
     dispatch(setLogOut());
-    //const persistor = persistStore(store); // Create a persistor
-    //persistor.purge(); // Purge the persisted state
   };
-  const handlelogin = () => {
-    navigate("/login");
-  };
+  // const handlelogin = () => {
+  //   navigate("/login");
+  // };
+
 
   return (
     <div
@@ -30,7 +29,7 @@ const Index = () => {
         backgroundColor: "white",
         // marginTop: "2rem",
         padding: "1rem",
-        borderRadius: "10px",
+        borderRadius: "14px",
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
@@ -39,7 +38,9 @@ const Index = () => {
         minWidth: "fit-content",
       }}
     >
-      <Link to={"/user/profile"}>
+
+      <Link to={"/activity"}>
+
         <div
           style={{
             backgroundColor: "white",
@@ -62,25 +63,32 @@ const Index = () => {
           style={{
             whiteSpace: "nowrap",
             fontWeight: "650",
-            fontSize: "0.8rem",
+
+            fontSize: "0.9rem",
+
           }}
+         
         >
+
           {userDetail?.isLoggedIn
             ? `${userDetail?.firstName} ${userDetail?.lastName}`
-            : "Guest"}
+            : "Guest user"}
+
         </div>
-        <div
-          style={{
-            fontSize: "0.75rem",
-            color: "grey",
-            marginTop: "0.2rem",
-            fontWeight: "550",
-            cursor: "pointer",
-          }}
-          onClick={userDetail?.isLoggedIn ? handlelogout : handlelogin}
-        >
-          {userDetail?.isLoggedIn ? "Logout" : "Login/Register"}
-        </div>
+        {userDetail?.isLoggedIn && (
+          <div
+            style={{
+              fontSize: "0.75rem",
+              color: "grey",
+              marginTop: "0.2rem",
+              fontWeight: "550",
+              cursor: "pointer",
+            }}
+            onClick={handlelogout}
+          >
+            Logout
+          </div>
+        )}
       </div>
     </div>
   );

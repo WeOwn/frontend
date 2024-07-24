@@ -135,30 +135,7 @@ const PropertycardSkeleton = ({ marginright }) => {
             />
           </span>
         </div>
-        <div className={styles.capsule}>
-          <div>
-            <Skeleton
-              width="3rem"
-              height="1rem"
-              borderRadius="10px"
-              count={1}
-              // baseColor="#202020"
-              // highlightColor="#444"
-              // duration={4}
-            />
-          </div>
-          <span style={{ whiteSpace: "nowrap" }}>
-            <Skeleton
-              width="100%"
-              height="100%"
-              borderRadius="10px"
-              count={1}
-              // baseColor="#202020"
-              // highlightColor="#444"
-              // duration={4}
-            />
-          </span>
-        </div>
+
       </div>
 
       <div className={styles.pricediv} style={{ width: "100%" }}>

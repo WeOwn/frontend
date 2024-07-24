@@ -5,21 +5,16 @@ import upright from "./upright.png";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Index = () => {
-  const [totalPropertiesViewed, setTotalPropertiesViewed] = useState(0);
-  const userDetail = useSelector((store) => store.user);
-  const getPropertiesViewed = () => {
-    const propertiesViewed = localStorage.getItem("propertiesViewed");
-    if (propertiesViewed) {
-      const propertiesList = JSON.parse(propertiesViewed);
+import { isLoggedIn } from "./../../auth/index";
 
-      setTotalPropertiesViewed(propertiesList.length);
-    }
+const Index = () => {
+  // const [totalPropertiesViewed, setTotalPropertiesViewed] = useState(0);
+  const userDetails = useSelector((store) => store.user);
+  const getPropertiesViewed = () => {
+    return userDetails?.propertiesViewed?.length;
   };
 
-  useEffect(() => {
-    getPropertiesViewed();
-  }, []);
+
   return (
     <div className={styles.profileContainerdiv}>
       <Profilebox />
@@ -30,9 +25,16 @@ const Index = () => {
           gap: "0.5rem",
         }}
       >
-        <p style={{ fontSize: "0.75rem", color: "grey" }}>
+        <p
+          style={{
+            fontSize: "0.75rem",
+            color: "#3F3D5663",
+            fontWeight: "500",
+          }}
+        >
           Your recent activity
         </p>
+
         <div
           style={{
             backgroundColor: "#CDC9FA",
@@ -60,14 +62,22 @@ const Index = () => {
           <p
             style={{
               fontWeight: "bolder",
-              fontSize: "1.02rem",
+              fontSize: "1.2rem",
+              // lineHeight: "1.5",
             }}
           >
-            {totalPropertiesViewed || 0}
+
+            {getPropertiesViewed() || 0}
+
           </p>{" "}
-          <p style={{ fontSize: "0.75rem", fontWeight: "bold" }}> viewed</p>
+          <p style={{ fontSize: "0.75rem", fontWeight: "600" }}> viewed</p>
         </div>
-        <Link to={"/user/profile"} style={{ textDecoration: "none" }}>
+
+        <Link
+          to={userDetails?.isLoggedIn ? "/activity" : "/login"}
+          style={{ textDecoration: "none" }}
+        >
+
           <div
             style={{
               backgroundColor: "#7065f0",
@@ -76,10 +86,13 @@ const Index = () => {
               borderRadius: "10px",
               textAlign: "center",
               fontSize: "0.75rem",
+
+              fontWeight: "400",
               color: "white",
             }}
           >
-            View all activity
+            {userDetails?.isLoggedIn ? "View all activity" : "Login/Register"}
+
           </div>
         </Link>
       </div>

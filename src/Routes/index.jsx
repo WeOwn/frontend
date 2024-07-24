@@ -27,9 +27,11 @@ export const Router = () => {
         <Route path={"/otp"} element={<OtpModal />} />
 
         <Route element={<Layout />}>
-          <Route path={"/user"} element={<ProtectedRoute />}>
-            <Route path={"profile"} element={<Profile />} />
-          </Route>
+          {/* <Route path={"/user"} element={<ProtectedRoute />}>
+          <Route path={"profile"} element={<Profile />} />
+          </Route> */}
+          <Route path={"/activity"} element={<Profile />} />
+
           <Route path={"/home"} element={<Home />} />
           <Route
             path={"/investment_homepage"}

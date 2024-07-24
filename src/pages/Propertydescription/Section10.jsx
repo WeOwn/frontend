@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import stardesign from "./stardesign.svg";
 import IntroContainer from "../../Atoms/introContainer/IntroContainer";
+import useGetFaqbyPropertyid from "../../hooks/useGetFaqbyPropertyid.js";
+import Skeleton from "react-loading-skeleton";
+import api from "../../service/apiGateway";
 
-const Section10 = () => {
+const Section10 = ({ id }) => {
   const faqs = [
     {
       heading: "How do I search for properties on Estatien?",
@@ -28,6 +31,32 @@ const Section10 = () => {
     },
   ];
 
+  // const { fetched, loading, error, data } = useGetFaqbyPropertyid(id);
+  const [data, setData] = useState([]);
+  const [fetched, setFetched] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const fetchdata = async (id) => {
+    try {
+      console.log("chlo bhai");
+      setLoading(true);
+      const response = await api.get(`/faq/${id}`);
+      console.log("reviews", response?.data);
+      setData(response?.data);
+      setFetched(true);
+      console.log("response", response);
+    } catch (error) {
+      console.log("error while fetching FAQs", error);
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (id) fetchdata(id);
+  }, [id]);
+
   return (
     <div>
       <IntroContainer
@@ -49,42 +78,57 @@ const Section10 = () => {
           marginTop: "4rem",
         }}
       >
-        {faqs.map((faq, index) => {
-          return (
-            <div
-              style={{
-                padding: "2rem",
-                // width: "45%",
-                // height: "rem",
-                borderRadius: "10px",
-                backgroundColor: "#7065f0",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                gap: "2rem",
-                color: "white",
-              }}
-            >
-              <div style={{ fontWeight: "600" }}>{faq.heading}</div>
-              <p style={{ fontSize: "0.9rem" }}>{faq.para}</p>
-
+        {fetched ? (
+          data?.map((faq, index) => {
+            return (
               <div
                 style={{
-                  backgroundColor: "white",
-                  //   border: "1px solid #E1E1E1",
-                  padding: "0.8rem 1rem",
-
+                  padding: "2rem",
+                  // width: "45%",
+                  // height: "rem",
                   borderRadius: "10px",
-                  fontSize: "0.9rem",
-                  color: "#7065f0",
-                  whiteSpace: "nowrap",
+                  backgroundColor: "#7065f0",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  gap: "2rem",
+                  color: "white",
                 }}
               >
-                Read More
+                <div style={{ fontWeight: "600" }}>{faq.heading}</div>
+                <p style={{ fontSize: "0.9rem" }}>{faq.para}</p>
+
+                <div
+                  style={{
+                    backgroundColor: "white",
+                    //   border: "1px solid #E1E1E1",
+                    padding: "0.8rem 1rem",
+
+                    borderRadius: "10px",
+                    fontSize: "0.9rem",
+                    color: "#7065f0",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Read More
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        ) : loading ? (
+          Array(3)
+            .fill(0)
+            .map((_, index) => {
+              return (
+                <div style={{ width: "100%", aspectRatio: "3/2" }}>
+                  {" "}
+                  <Skeleton key={index} width="100%" height="100%" />
+                </div>
+              );
+            })
+        ) : (
+          <h4>{error?.message}</h4>
+        )}
       </div>
     </div>
   );

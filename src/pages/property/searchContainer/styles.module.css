@@ -83,7 +83,7 @@
     /* overflow-x:auto; */
     
     /* overflow-inline: auto; */
-    padding: 1rem;   
+    padding: 0.5rem;   
     /* overflow:auto; */
     /* flex-wrap: wrap; */
     /* z-index:10; */
@@ -128,7 +128,7 @@
 .optionBox{
     position:absolute;
    width:100%;
-    top:5rem;
+    top:100%;
     left:0;
     right:0;
     appearance: none;
@@ -175,7 +175,7 @@
     -o-transform: rotate(180deg);      /* Opera */
     transform: rotate(180deg);
     /* Optional: add transition for smooth rotation */
-    transition: transform 0.5s ease-in-out;
+    /* transition: transform 0.5s ease-in-out; */
 }
 
 
