@@ -13,6 +13,7 @@ const Section1 = () => {
           </h4>
           <p
             className={styles.section1para}
+
             style={{
               color: "#999999",
               width: "100%",
@@ -20,6 +21,7 @@ const Section1 = () => {
               fontWeight: "500",
               lineHeight: "1.5rem",
             }}
+
           >
             Welcome to weown, where your dream property awaits in every comer of
             our beautiful world. Explore our curated selection of properties,

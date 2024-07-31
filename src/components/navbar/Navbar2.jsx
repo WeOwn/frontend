@@ -81,7 +81,9 @@ const Navbar2 = () => {
             style={{ height: "60%", width: "60%", cursor: "pointer" }}
           />
         </div>
+
         <Link to={"/activity"}>
+
           <div
             style={{
               backgroundColor: "white",

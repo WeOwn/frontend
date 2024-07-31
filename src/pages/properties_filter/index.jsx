@@ -160,9 +160,11 @@ const Index = () => {
         `/property/list?min-price=${priceRange[0]}&max-price=${priceRange[1]}&city=${city}&page=page-1`
       );
 
+
       console.log("propertyResponse->", propertiesResponse.data.data);
 
       setAllProperties(propertiesResponse?.data?.data);
+
     } catch (error) {
       // setError(error);
       console.error("Error occurred while fetching data:", error);
@@ -174,7 +176,9 @@ const Index = () => {
   useEffect(() => {
     console.log("effect");
     fetchData();
+
   }, [city, priceRange]);
+
 
   return (
     <div>

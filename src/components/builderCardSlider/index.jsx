@@ -153,7 +153,9 @@ const Index = ({ builders,loading,fetched,error }) => {
                   key={builder.id}
                   {...builder}
                   marginright="1rem"
+
                   marginBottom="0.5rem"
+
                 />
               ))
             : loading?Array(4)

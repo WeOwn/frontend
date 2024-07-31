@@ -57,14 +57,18 @@ const Section1 = ({
   };
 
   return (
+
     <div className={styles.section1maindiv} >
       {/* <div onClick={scrollprev} className={styles.leftarr}>
+
         <MdArrowBackIosNew size={12} />
       </div>
       <div onClick={scrollnext} className={styles.rightarr}>
         <MdArrowForwardIos size={12} />
+
       </div> */}
      
+
       <div className={classNames(styles.toggleContainer)} id="overflowbox">
         {options.map((option, index) => (
           <div

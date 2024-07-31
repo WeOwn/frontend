@@ -128,7 +128,9 @@ const Index = ({ projects,fetched,loading,error }) => {
                   key={project._id}
                   {...project}
                   marginright="1rem"
+
                   marginBottom="0.5rem"
+
                 />
               ))
             : loading?Array(4)

@@ -17,10 +17,12 @@ import Section12 from "./Section12.jsx";
 import api from "../../service/apiGateway";
 import { useParams } from "react-router-dom";
 import Navbar2 from "../../components/navbar/Navbar2.jsx";
+
 import { useDispatch, useSelector } from "react-redux";
 import { isLoggedIn } from "./../../auth/index";
 import { setPropertiesViewed } from "../../redux/userSlice.jsx";
 import useGetPropertyDetails from "../../hooks/useGetPropertyDetails.js";
+
 
 const PropertyDescription = () => {
   const section1 = useRef(null);
@@ -57,6 +59,7 @@ const PropertyDescription = () => {
   } = data || {};
 
 
+
   const dispatch = useDispatch();
   const handlePropertiesViewed = () => {
     dispatch(setPropertiesViewed(id));
@@ -77,6 +80,7 @@ const PropertyDescription = () => {
   }
 
   
+
 
   const handlescroll = () => {
    
@@ -147,10 +151,13 @@ const PropertyDescription = () => {
     handlescroll();
     window.addEventListener("scroll", handlescroll);
     return () => window.removeEventListener("scroll", handlescroll);
+
   }, []);
+
 
   const handlesectionScroll = (id) => {
     const sectionRef=id===2?section2:id===3?section3:id===4?section4:id===5?section5:id===6?section6:null  
+
     if (!sectionRef)
       window.scrollTo({
         top: 0,
@@ -184,8 +191,11 @@ const PropertyDescription = () => {
             section={section}
           />
         </div>
+
         <div className={styles.seconddiv}>
+
           <div className={styles.section2} id="section2" ref={section2}>
+
             <Section2
               name={name}
               description={description}
@@ -197,8 +207,10 @@ const PropertyDescription = () => {
               size={size}
               iframe={iframe}
               floor_images={floor_images}
+
               id={id}
               city={location?.city}
+
             />
           </div>
           <div className={styles.section3} id="section3 " ref={section3}>
@@ -210,8 +222,10 @@ const PropertyDescription = () => {
           <div className={styles.section5} id="section5" ref={section5}>
             <Section5 name={name} id={id} />
           </div>
+
           <div className={styles.section6} id="section6" ref={section6}>
             <Section6 name={name} id={id} reviewAdded={reviewAdded}  />
+
           </div>
           <div className={styles.section7} id="section7">
             <Section7 />
@@ -220,17 +234,22 @@ const PropertyDescription = () => {
             <Section8 builder={builder} />
           </div>
 
+
           <div className={styles.section9}>
+
             <Section9 id={id} />
           </div>
           <div className={styles.section10}>
             <Section10 id={id} />
+
           </div>
           <div className={styles.section11}>
             <Section11 />
           </div>
+
           <div className={styles.section12}>
             <Section12 id={id} handleReviewAdded={handleReviewAdded} />
+
           </div>
         </div>
       </div>

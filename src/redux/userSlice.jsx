@@ -10,7 +10,9 @@ const userSlice = createSlice({
     firstName: null,
     lastName: null,
     phoneNumber: null,
+
     propertiesViewed: [],
+
   },
   reducers: {
     setLoggedIn: (state, action) => {
@@ -30,11 +32,13 @@ const userSlice = createSlice({
       state.firstName = null;
       state.lastName = null;
       state.phoneNumber = null;
+
     },
     setPropertiesViewed: (state, action) => {
       if (!state.propertiesViewed.includes(action.payload)) {
         state.propertiesViewed.push(action.payload);
       }
+
     },
   },
 });

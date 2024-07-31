@@ -9,6 +9,7 @@ import card1 from "./card1.png";
 import card2 from "./card2.png";
 
 import { Builderscard } from "../../components/builderscard/Builderscard";
+
 import searchlogo from "./searchlogo.png";
 
 import Aisection from "./Aisection";
@@ -18,6 +19,7 @@ import stardesign from "./stardesign.png";
 
 import { Link } from "react-router-dom";
 import Searchmob from "../../components/searchmob";
+
 
 import ProfileCard from "../../components/profilecard";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,6 +34,7 @@ import Button from "../../Atoms/Button";
 import IntroContainer from "../../Atoms/introContainer/IntroContainer";
 import useGetProperties from "../../hooks/useGetProperties";
 import useGetAllBuilders from "../../hooks/useGetAllBuilders";
+
 
 function Home() {
   const [properties, setAllProperties] = useState(null);
@@ -255,6 +258,7 @@ function Home() {
             <PropertyCardSlider projects={data} loading={loading} fetched={fetched} error={error} />
           </div>
 
+
           <div style={{ marginTop: "4rem" }}>
             <IntroContainer
               stardesign={stardesign}
@@ -265,13 +269,17 @@ function Home() {
               path="/builders"
             />
 
+
             <BuilderCardSlider builders={data1} loading={loading1} fetched={fetched1} error={error1} />
+
           </div>
 
           {/* <Aisection /> */}
         </div>
+
       </div>
     </>
+
   );
 }
 
