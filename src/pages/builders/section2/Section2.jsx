@@ -91,7 +91,7 @@ const Section2 = () => {
                 style={{ background: "red" }}
               />
             ))
-          : Array(3)
+          : Array(6)
               .fill(0)
               .map((_, index) => <BuildercardSkeleton />)}
       </div>

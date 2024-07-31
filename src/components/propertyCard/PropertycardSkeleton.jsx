@@ -8,9 +8,9 @@ import villa_logo from "./Villa_logo.png";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const PropertycardSkeleton = ({ marginright }) => {
+const PropertycardSkeleton = ({ marginright,marginBottom }) => {
   return (
-    <div className={styles.maindiv} style={{ marginRight: marginright }}>
+    <div className={styles.maindiv}  style={{ marginRight: marginright, marginBottom: marginBottom }}>
       <div className={styles.imagediv}>
         <Skeleton
           width="100%"

@@ -111,7 +111,7 @@ const Navbar1 = () => {
               gap: "0.3rem",
               cursor: "pointer",
               // backgroundColor: "red",
-              height: "70px",
+              height: "85px",
             }}
             className={`${styles.view} ${styles.navoption}`}
             // onMouseOver={handleMouseOver}

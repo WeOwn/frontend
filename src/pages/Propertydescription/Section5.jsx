@@ -1,12 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./styles.module.css";
 import Button from "../../Atoms/Button";
+import api from "../../service/apiGateway"
+import { useSelector } from "react-redux";
 
-const Section5 = ({ name }) => {
+const Section5 = ({ name,id }) => {
+
+  const Token=useSelector((store)=>store.user.token);
+  const user_id=useSelector((store)=>store.user.user_id)
+  console.log("Token",Token)
+  const [posted,setPosted]=useState(false);
+  const [loading,setLoading]=useState(false);  
+  const [error,setError]=useState(false);
+
+  const [inquiry,setInquiry]=useState({
+    fname:"",
+    lname:"",
+    email:"",
+    phone:"",
+    property:"",
+    message:""
+  })
+
+  const postInquiry=async (e)=>{
+    e.preventDefault();
+    try{
+      setLoading(true);
+      const response=await api.post(`/user/inquire/${user_id}`,{
+        headers:{
+          "Content-Type":"application/json",
+          "Authorization":`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZU51bWJlciI6Ijk4NzMwNDc3MDciLCJfaWQiOiI2NmEwZDhiZTQ2ZTYyYjc3YWFmNmYyMDgiLCJmbmFtZSI6IlJhaHVsIiwibG5hbWUiOiJ4eXoiLCJyb2xlIjoidXNlciIsImlhdCI6MTcyMjIzMTA3MywiZXhwIjoxNzIyMzE3NDczfQ.TShT2yF5pSv03_bjYyp7uFsmHJglU64Fh6smXkWlAjE`
+        },
+       data:{inquiry},
+       
+      }) 
+      setPosted(true);
+      
+    } catch(error) {
+      
+setError(true);
+console.log("error while posting inquiry about property",error)
+    } finally{
+      setLoading(false)
+    }
+  }
+
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInquiry((prevState) => ({
+      ...prevState,
+      [name === "firstName" ? "fname" : name==="lastName"?"lname":name==="email"?"email":name==="phoneNumber"?"phone":name==="selectedProperty"?"property":"message"]: value,
+    }));
+  };
   return (
     <div>
       <h4 style={{ fontSize: "2rem", fontWeight: "650", whiteSpace: "wrap" }}>
-        {`Inquire About ${name}`}
+        {`Inquire About ${name||"Property"}`}
       </h4>
       <p
         style={{ marginTop: "0.9rem", fontWeight: "550" }}
@@ -37,6 +88,9 @@ const Section5 = ({ name }) => {
                     id="firstName"
                     name="firstName"
                     placeholder="Enter First Name"
+                    value={inquiry.fname}
+                    onChange={(e)=>handleChange(e)}
+                    required
                   />
                 </div>
               </div>
@@ -50,6 +104,8 @@ const Section5 = ({ name }) => {
                     name="lastName"
                     id="lastName"
                     placeholder="Enter Last Name"
+                    onChange={(e)=>handleChange(e)}
+                    required
                   />
                 </div>
               </div>
@@ -63,6 +119,7 @@ const Section5 = ({ name }) => {
                     name="email"
                     type="text"
                     placeholder="Enter Email"
+                    onChange={(e)=>handleChange(e)}
                     required
                   />
                 </div>
@@ -77,6 +134,7 @@ const Section5 = ({ name }) => {
                     id="phoneNumber"
                     name="phoneNumber"
                     placeholder="Enter Phone Number"
+                    onChange={(e)=>handleChange(e)}
                     // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     required
                   />
@@ -94,6 +152,8 @@ const Section5 = ({ name }) => {
                   name="selectedProperty"
                   type="text"
                   placeholder="Enter Selected Property"
+                  onChange={(e)=>handleChange(e)}
+                  required
                 />
               </div>
             </div>
@@ -120,6 +180,8 @@ const Section5 = ({ name }) => {
                     // borderColor: "black",
                     // row: "50",
                   }}
+                  onChange={(e)=>handleChange(e)}
+                  required
                 />
               </div>
             </div>
@@ -150,6 +212,7 @@ const Section5 = ({ name }) => {
                     id="agree"
                     name="agree"
                     style={{ cursor: "pointer" }}
+                    required
                   />
                 </div>
                 <p style={{ fontSize: "0.8rem" }}>
@@ -168,7 +231,7 @@ const Section5 = ({ name }) => {
                 </p>
               </div>
 
-              <Button type="primary2">Send Your Message</Button>
+              <Button type="primary2" onClick={postInquiry}>Send Your Message</Button>
             </div>
           </form>
         </div>

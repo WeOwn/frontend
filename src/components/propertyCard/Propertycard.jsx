@@ -34,6 +34,7 @@ export const Propertycard = ({
   marginright,
   marginBottom,
 }) => {
+  console.log("property card->",name)
   // const [detail1, detail2, detail3] = features;
   const [isLoading, setIsLoading] = useState(false);
   const [isDescExpanded, setIsDescExpanded] = useState(false);

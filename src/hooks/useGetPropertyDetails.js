@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from "react";
 import api from "../service/apiGateway";
 
-const useGetSimilarProperties = ( id ) => {
+const useGetPropertyDetails = ( id ) => {
   const [data, setData] = useState([]);
   const [fetched, setFetched] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const fetchdata = async () => {
     try {
+      
       setLoading(true);
-      const response = await api.get(`/property/similar/${id}`);
+      const response = await api.get(`/property/${id}`);
       console.log("reviews", response?.data);
-      setData(response?.data?.data);
-      console.log("similar properties->",data)
+      setData(response?.data);
       setFetched(true);
-    } catch (error) {
-      console.log("error while fetching similar properties", error);
-      setError(error);
-    } finally {
       setLoading(false);
+      console.log("response", response);
+    } catch (error) {
+      console.log("error while property details", error);
+      setError(error);
+      setLoading(false);
+    } finally {
+     
     }
   };
 
@@ -29,4 +32,4 @@ const useGetSimilarProperties = ( id ) => {
   return { fetched, loading, error, data };
 };
 
-export default useGetSimilarProperties;
+export default useGetPropertyDetails;

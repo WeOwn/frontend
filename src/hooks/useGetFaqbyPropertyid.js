@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import api from "../service/apiGateway";
 
-const useGetFaqbyPropertyid = ({ id }) => {
+const useGetFaqbyPropertyid = ( id ) => {
   const [data, setData] = useState([]);
   const [fetched, setFetched] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const fetchdata = async () => {
     try {
-      console.log("chlo bhai");
+      
       setLoading(true);
       const response = await api.get(`/faq/${id}`);
       console.log("reviews", response?.data);

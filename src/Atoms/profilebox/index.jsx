@@ -8,19 +8,20 @@ import { setLogOut } from "../../redux/userSlice";
 //import persistStore from "redux-persist/es/persistStore";
 //import store from "../../redux/store";
 
-const Index = () => {
+const Index = ({sidebar}) => {
   const userDetail = useSelector((store) => store.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handlelogout = () => {
 
-    dispatch(setLogOut());
-  };
-  // const handlelogin = () => {
-  //   navigate("/login");
+  // const handlelogout = () => {
+  //   dispatch(setLogOut());
+
   // };
+  const handlelogin = () => {
+    navigate("/login");
+  };
 
 
   return (
@@ -75,7 +76,7 @@ const Index = () => {
             : "Guest user"}
 
         </div>
-        {userDetail?.isLoggedIn && (
+        {sidebar && !userDetail?.isLoggedIn && (
           <div
             style={{
               fontSize: "0.75rem",
@@ -84,9 +85,9 @@ const Index = () => {
               fontWeight: "550",
               cursor: "pointer",
             }}
-            onClick={handlelogout}
+            onClick={handlelogin}
           >
-            Logout
+            Login/Register
           </div>
         )}
       </div>

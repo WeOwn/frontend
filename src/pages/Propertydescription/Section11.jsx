@@ -35,7 +35,7 @@ const Section11 = () => {
           display: "grid",
           gridTemplateColumns: "repeat(3,1fr)",
           //   alignItems: "center",
-          gap: "2rem",
+          gap: "1rem",
           width: "100%",
           overflow: "auto",
           marginTop: "4rem",

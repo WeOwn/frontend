@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import api from "../service/apiGateway";
 
-const useGetReviewbyPropertyid = ({ id }) => {
+const useGetReviewbyPropertyid = ( id,reviewAdded ) => {
   const [data, setData] = useState([]);
   const [fetched, setFetched] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const fetchdata = async () => {
     try {
+     
       setLoading(true);
       const response = await api.get(`/review/${id}`);
       console.log("reviews", response?.data);
@@ -23,7 +24,7 @@ const useGetReviewbyPropertyid = ({ id }) => {
 
   useEffect(() => {
     if (id) fetchdata();
-  }, [id]);
+  }, [id,reviewAdded]);
 
   return { fetched, loading, error, data };
 };
