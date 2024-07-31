@@ -191,7 +191,7 @@ const Section2 = ({
           <h4
             style={{ fontSize: "1.5rem", fontWeight: "650", flexWrap: "wrap" }}
           >
-            {name}
+            {name||"Property"}
           </h4>
           <div
             style={{
@@ -209,7 +209,7 @@ const Section2 = ({
               <img src={location} alt="img" style={{ width: "100%" }} />
             </div>
 
-            <span style={{ whiteSpace: "noWrap" }}>Mailibu, California</span>
+            <span style={{ whiteSpace: "noWrap" }}>{`${city||"city"}, India`}</span>
           </div>
         </div>
         <div className={styles.section2buttondiv}>
@@ -267,17 +267,7 @@ const Section2 = ({
                 return (
                   <div
                     key={index}
-                    style={{
-                      // borderRadius: "10px",
-                      // backgroundColor: "#FFFFFF",
-                      // minWidth: "6rem",
-                      // maxWidth: "6rem",
-
-                      // aspectRatio: "1.5",
-
-                      // maxHeight: "5rem",
-                      cursor: "pointer",
-                    }}
+                   
                     className={styles.imgtransformdiv}
                     onClick={() => setLaunchimgid(index)}
                   >
@@ -286,10 +276,10 @@ const Section2 = ({
                       alt="home_img"
                       style={{
                         width: "100%",
-                        height: "100%",
+                        minHeight: "100%",
                         borderRadius: "5px",
                         objectFit: "cover",
-                        background: "white",
+                       
                       }}
                       className={styles.ogimg}
                     />
@@ -297,33 +287,23 @@ const Section2 = ({
                 );
               })
             : currbtn === 2 && floor_images?.length > 0
-            ? floor_images?.map((image, index) => {
+            ? floor_images?.map((floor_image, index) => {
                 return (
                   <div
                     key={index}
-                    style={{
-                      // borderRadius: "10px",
-                      // backgroundColor: "#FFFFFF",
-                      // maxWidth: "6rem",
-                      // maxWidth: "6rem",
-                      width: "10%",
-                      aspectRatio: "1.5",
-
-                      // maxHeight: "5rem",
-                      cursor: "pointer",
-                    }}
+                   
                     className={styles.imgtransformdiv}
                     onClick={() => setfloorimgid(index)}
                   >
                     <img
-                      src={image}
-                      alt="home_img"
+                      src={floor_image}
+                      alt="floor_img"
                       style={{
                         width: "100%",
                         height: "100%",
                         borderRadius: "5px",
                         objectFit: "cover",
-                        background: "white",
+                       
                       }}
                       className={styles.ogimg}
                     />
@@ -361,7 +341,7 @@ const Section2 = ({
           onMouseOver={handleopenLaunchexp}
           onMouseLeave={handlecloseLaunchexp}
         >
-          <div style={{ width: "100%", aspectRatio: "4/2" }}>
+          <div style={{ width: "100%", aspectRatio: "2.5",background:"white",borderRadius:"12px" }}>
             {currbtn === 1 && images?.length > 0 ? (
               <img
                 src={images[launchimgid]}
@@ -369,8 +349,9 @@ const Section2 = ({
                 style={{
                   width: "100%",
                   height: "100%",
-                  borderRadius: "5px",
-                  objectFit: "cover",
+                  borderRadius: "12px",
+              
+                  objectFit:"cover",
                   background: "white",
                 }}
               />
@@ -381,7 +362,7 @@ const Section2 = ({
                 style={{
                   width: "100%",
                   height: "100%",
-                  borderRadius: "5px",
+                  borderRadius: "12px",
                   objectFit: "cover",
                   background: "white",
                 }}

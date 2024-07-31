@@ -20,6 +20,7 @@ import Navbar2 from "../../components/navbar/Navbar2.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoggedIn } from "./../../auth/index";
 import { setPropertiesViewed } from "../../redux/userSlice.jsx";
+import useGetPropertyDetails from "../../hooks/useGetPropertyDetails.js";
 
 const PropertyDescription = () => {
   const section1 = useRef(null);
@@ -28,38 +29,16 @@ const PropertyDescription = () => {
   const section4 = useRef(null);
   const section5 = useRef(null);
   const section6 = useRef(null);
-  const section7 = useRef(null);
-  const section8 = useRef(null);
-  const section9 = useRef(null);
-  const section10 = useRef(null);
-  const section11 = useRef(null);
-  const section12 = useRef(null);
+  // const section7 = useRef(null);
+  // const section8 = useRef(null);
 
-  const [data, setData] = useState({});
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(null);
+
+ 
+
+ 
   const { id } = useParams();
-  console.log("id-> ", id);
-  const fetchdata = async () => {
-    // setLoading(true);
-    // setError(null);
-    try {
-      const response = await api.get(`/property/${id}`);
-      // const data=response.data.data;
-      // console.log("desc response-> ", response);
-      setData(response.data);
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-      // setError("Failed to fetch data");
-    }
-    //  finally {
-    //   setLoading(false);
-    // }
-  };
-
-  useEffect(() => {
-    fetchdata();
-  }, []);
+  
+  const {loading,fetched,error,data}=useGetPropertyDetails(id);
 
   const {
     amenities,
@@ -75,15 +54,9 @@ const PropertyDescription = () => {
     builder,
     iframe,
     floor_images,
-  } = data;
+  } = data || {};
 
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
 
-  // if (error) {
-  //   return <div>{error}</div>;
-  // }
   const dispatch = useDispatch();
   const handlePropertiesViewed = () => {
     dispatch(setPropertiesViewed(id));
@@ -96,107 +69,78 @@ const PropertyDescription = () => {
   const [stick, setStick] = useState(false);
 
   const [section, setSection] = useState(1);
-  const reducescroll = 0;
+  console.log("section->",section)
+  const reducescroll = 76;
+  const [reviewAdded,setReviewAdded]=useState(0);
+  const handleReviewAdded=()=>{
+    setReviewAdded(reviewAdded+1);
+  }
+
+  
 
   const handlescroll = () => {
+   
     if (window.scrollY >= 76) setStick(true);
     else setStick(false);
 
-    if (
-      section !== 1 &&
-      section1?.current &&
-      section2?.current &&
-      window.scrollY >= 0 &&
-      window.scrollY < section2.current.offsetTop - reducescroll
-    ) {
-      setSection(1);
-    } else if (
+  if (
       section !== 2 &&
       section2?.current &&
-      section3?.current &&
-      window.scrollY >= section2.current.offsetTop - reducescroll &&
-      window.scrollY < section3.current.offsetTop - reducescroll
+      
+      window.scrollY >= section2.current.offsetTop-reducescroll &&
+      window.scrollY <= section2.current.offsetTop+section2.current.offsetHeight-reducescroll
     ) {
       setSection(2);
     } else if (
       section !== 3 &&
       section3?.current &&
-      section4?.current &&
-      window.scrollY >= section3.current.offsetTop - reducescroll &&
-      window.scrollY < section4.current.offsetTop - reducescroll
+      
+      window.scrollY >= section3.current.offsetTop-reducescroll &&
+      window.scrollY <= section3.current.offsetTop+section3.current.offsetHeight-reducescroll
     ) {
-      setSection(3);
-    } else if (
+      setSection(3);      
+    }else if (
       section !== 4 &&
       section4?.current &&
-      section5?.current &&
-      window.scrollY >= section4.current.offsetTop - reducescroll &&
-      window.scrollY < section5.current.offsetTop - reducescroll
+      
+      window.scrollY >= section4.current.offsetTop-reducescroll &&
+      window.scrollY <= section4.current.offsetTop+section4.current.offsetHeight-reducescroll
     ) {
-      setSection(4);
-    } else if (
+      setSection(4);} else if (
       section !== 5 &&
       section5?.current &&
-      section6?.current &&
-      window.scrollY >= section5.current.offsetTop - reducescroll &&
-      window.scrollY < section6.current.offsetTop - reducescroll
+      
+      window.scrollY >= section5.current.offsetTop-reducescroll &&
+      window.scrollY <= section5.current.offsetTop+section5.current.offsetHeight-reducescroll
     ) {
       setSection(5);
-    } else if (
+    }  else if (
       section !== 6 &&
       section6?.current &&
-      section7?.current &&
-      window.scrollY >= section6.current.offsetTop - reducescroll &&
-      window.scrollY < section7.current.offsetTop - reducescroll
+      
+      window.scrollY >= section6.current.offsetTop-reducescroll&&
+      window.scrollY <=section6.current.offsetTop+section6.current.offsetHeight-reducescroll
     ) {
-      setSection(6);
-    } else if (
-      section !== 7 &&
-      section7?.current &&
-      section8?.current &&
-      window.scrollY >= section7.current.offsetTop - reducescroll &&
-      window.scrollY < section8.current.offsetTop - reducescroll
-    ) {
-      setSection(7);
-    } else if (
-      section !== 8 &&
-      section8?.current &&
-      section9?.current &&
-      window.scrollY >= section8.current.offsetTop - reducescroll &&
-      window.scrollY < section9.current.offsetTop - reducescroll
-    ) {
-      setSection(8);
-    } else if (
-      section !== 9 &&
-      section9?.current &&
-      section10?.current &&
-      window.scrollY >= section9.current.offsetTop - reducescroll &&
-      window.scrollY < section10.current.offsetTop - reducescroll
-    ) {
-      setSection(9);
-    } else if (
-      section !== 10 &&
-      section10?.current &&
-      section11?.current &&
-      window.scrollY >= section10.current.offsetTop - reducescroll &&
-      window.scrollY < section11.current.offsetTop - reducescroll
-    ) {
-      setSection(10);
-    } else if (
-      section !== 11 &&
-      section11?.current &&
-      section12?.current &&
-      window.scrollY >= section11.current.offsetTop - reducescroll &&
-      window.scrollY < section12.current.offsetTop - reducescroll
-    ) {
-      setSection(11);
-    } else if (
-      section !== 12 &&
-      section12?.current &&
-      window.scrollY >= section12.current.offsetTop - reducescroll
-    ) {
-      setSection(12);
-    }
+      setSection(6);} 
+      else setSection(1);
+    // } else if (
+    //   section !== 7 &&
+    //   section7?.current &&
+      
+    //   window.scrollY >= section7.current.offsetTop - reducescroll &&
+    //   window.scrollY <= section7.current.offsetTop+section7.current.offsetHeight-reducescroll
+    // ) {
+    //   setSection(7);
+    // } 
+    //  else if (
+    //   section !== 8 &&
+    //   section8?.current &&
+      
+    //   window.scrollY >= section8.current.offsetTop - reducescroll &&
+    //   window.scrollY <= section8.current.offsetTop+section8.current.offsetHeight-reducescroll
+    // ) {
+    //   setSection(8);
+    
   };
 
   useEffect(() => {
@@ -205,8 +149,8 @@ const PropertyDescription = () => {
     return () => window.removeEventListener("scroll", handlescroll);
   }, []);
 
-  const handlesectionScroll = (sectionRef) => {
-    console.log("sectionref-> ", sectionRef);
+  const handlesectionScroll = (id) => {
+    const sectionRef=id===2?section2:id===3?section3:id===4?section4:id===5?section5:id===6?section6:null  
     if (!sectionRef)
       window.scrollTo({
         top: 0,
@@ -214,7 +158,7 @@ const PropertyDescription = () => {
       });
     else if (sectionRef.current)
       window.scrollTo({
-        top: sectionRef.current.offsetTop - reducescroll,
+        top: sectionRef.current.offsetTop-reducescroll,
         behavior: "smooth",
       });
   };
@@ -225,30 +169,23 @@ const PropertyDescription = () => {
       <div className={styles.maindiv}>
         <div
           ref={section1}
-          className={`${styles.section1} ${stick ? styles.section1stick : ""}`}
-          // className={styles.section1stick}
+          id="section1"
+          className={` ${stick ? styles.section1stick : styles.section1}`}
+         
+        
         >
           <Section1
             name={name}
             stick={stick}
             handlesectionScroll={(section) => handlesectionScroll(section)}
-            section1={section1}
-            section2={section2}
-            section3={section3}
-            section4={section4}
-            section5={section5}
-            section6={section6}
-            section7={section7}
-            section8={section8}
-            section9={section9}
-            section10={section10}
-            section11={section11}
-            section12={section12}
+           
+           
+        
             section={section}
           />
         </div>
         <div className={styles.seconddiv}>
-          <div className={styles.section2} ref={section2}>
+          <div className={styles.section2} id="section2" ref={section2}>
             <Section2
               name={name}
               description={description}
@@ -264,36 +201,36 @@ const PropertyDescription = () => {
               city={location?.city}
             />
           </div>
-          <div className={styles.section3} ref={section3}>
+          <div className={styles.section3} id="section3 " ref={section3}>
             <Section3 pricingdetails={pricing_details} />
           </div>
-          <div className={styles.section4} ref={section4}>
+          <div className={styles.section4} id="section4" ref={section4}>
             <Section4 />
           </div>
-          <div className={styles.section5} ref={section5}>
-            <Section5 name={name} />
+          <div className={styles.section5} id="section5" ref={section5}>
+            <Section5 name={name} id={id} />
           </div>
-          <div className={styles.section6} ref={section6}>
-            <Section6 name={name} id={id} />
+          <div className={styles.section6} id="section6" ref={section6}>
+            <Section6 name={name} id={id} reviewAdded={reviewAdded}  />
           </div>
-          <div className={styles.section7} ref={section7}>
+          <div className={styles.section7} id="section7">
             <Section7 />
           </div>
-          <div className={styles.section8} ref={section8}>
+          <div className={styles.section8} id="section8">
             <Section8 builder={builder} />
           </div>
 
-          <div className={styles.section9} ref={section9}>
+          <div className={styles.section9}>
             <Section9 id={id} />
           </div>
-          <div className={styles.section10} ref={section10}>
+          <div className={styles.section10}>
             <Section10 id={id} />
           </div>
-          <div className={styles.section11} ref={section11}>
+          <div className={styles.section11}>
             <Section11 />
           </div>
-          <div className={styles.section12} ref={section12}>
-            <Section12 id={id} />
+          <div className={styles.section12}>
+            <Section12 id={id} handleReviewAdded={handleReviewAdded} />
           </div>
         </div>
       </div>

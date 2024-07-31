@@ -4,14 +4,15 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { Propertycard } from "../../components/propertyCard/Propertycard";
+import ReviewCard from "../reviewCard/ReviewCard";
 
 import { IoArrowBackSharp } from "react-icons/io5";
 import { IoArrowForwardSharp } from "react-icons/io5";
 import PropertycardSkeleton from "../propertyCard/PropertycardSkeleton";
+import ReviewCardSkeleton from "../reviewCard/ReviewCardSkeleton";
 
-const Index = ({ projects,fetched,loading,error }) => {
-  console.log("property card slider->",projects,"fetched->",fetched);
+const ReviewCardSlider = ({ reviews,fetched,loading,error }) => {
+  console.log("reviews card slider->",reviews,"fetched->",fetched);
   const sliderRef = useRef(null);
   const [activeSlide, setActiveSlide] = useState(0);
 
@@ -46,51 +47,52 @@ const Index = ({ projects,fetched,loading,error }) => {
 
   useEffect(() => {
     if (sliderRef.current) {
+      console.log("slider red->",sliderRef)
       const { slidesToShow } = sliderRef.current.innerSlider.props;
       setTotalSlideCount(sliderRef.current.innerSlider.props.children.length);
       setVisibleSlideCount(slidesToShow);
     }
-  }, [window.innerWidth, projects]);
+  }, [window.innerWidth, reviews]);
 
   const settings = {
     lazyLoad: true,
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: projects ? Math.min(projects?.length, 3) : 3,
-    slidesToScroll: projects ? Math.min(projects?.length, 3) : 3,
+    slidesToShow: reviews ? Math.min(reviews?.length, 3/2) : 3/2,
+    slidesToScroll: reviews ? Math.min(reviews?.length, 1) : 1,
     initialSlide: 0,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     beforeChange: (current, next) => setActiveSlide(next),
 
     responsive: [
-      {
-        breakpoint: 2200,
-        settings: {
-          slidesToShow: projects ? Math.min(projects?.length, 2) : 2,
-          slidesToScroll: projects ? Math.min(projects?.length, 2) : 2,
-        },
-      },
-      {
-        breakpoint: 1799,
-        settings: {
-          slidesToShow: projects ? Math.min(projects?.length, 3) : 3,
-          slidesToScroll: projects ? Math.min(projects?.length, 3) : 3,
-        },
-      },
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: projects ? Math.min(projects?.length, 2) : 2,
-          slidesToScroll: projects ? Math.min(projects?.length, 2) : 2,
-        },
-      },
+    //   {
+    //     breakpoint: 2200,
+    //     settings: {
+    //       slidesToShow: reviews ? Math.min(reviews?.length, 2) : 2,
+    //       slidesToScroll: reviews ? Math.min(reviews?.length, 2) : 2,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 1799,
+    //     settings: {
+    //       slidesToShow: reviews ? Math.min(reviews?.length, 3) : 3,
+    //       slidesToScroll: reviews ? Math.min(reviews?.length, 3) : 3,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 1280,
+    //     settings: {
+    //       slidesToShow: reviews ? Math.min(reviews?.length, 2) : 2,
+    //       slidesToScroll: reviews ? Math.min(reviews?.length, 2) : 2,
+    //     },
+    //   },
       {
         breakpoint: 640,
         settings: {
-          slidesToShow: projects ? Math.min(projects?.length, 1) : 1,
-          slidesToScroll: projects ? Math.min(projects?.length, 1) : 1,
+          slidesToShow: reviews ? Math.min(reviews?.length, 1) : 1,
+          slidesToScroll: reviews ? Math.min(reviews?.length, 1) : 1,
         },
       },
     ],
@@ -123,18 +125,19 @@ const Index = ({ projects,fetched,loading,error }) => {
       <div className={styles.sliderdivp} id="divtoslide">
       <Slider {...settings} ref={sliderRef}>
           {fetched
-            ? projects?.map((project, index) => (
-                <Propertycard
-                  key={project._id}
-                  {...project}
+            ? reviews?.map((review, index) => {
+                console.log("review in slider", review)
+              return  <ReviewCard
+                  key={review._id}
+                  review={review}
                   marginright="1rem"
-                  marginBottom="0.5rem"
+                //   marginBottom="0.5rem"
                 />
-              ))
+})
             : loading?Array(4)
                 .fill(0)
                 .map((_, index) => {
-                  return <PropertycardSkeleton key={index} marginright="1rem" />;
+                  return <ReviewCardSkeleton key={index} marginright="1rem" />;
                 }):null}
         </Slider>
       </div>
@@ -151,4 +154,4 @@ const Index = ({ projects,fetched,loading,error }) => {
   );
 };
 
-export default Index;
+export default ReviewCardSlider;

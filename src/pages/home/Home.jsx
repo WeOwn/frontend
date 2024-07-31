@@ -30,41 +30,15 @@ import PropertyCardSlider from "../../components/propertyCardSlider";
 import BuilderCardSlider from "../../components/builderCardSlider";
 import Button from "../../Atoms/Button";
 import IntroContainer from "../../Atoms/introContainer/IntroContainer";
+import useGetProperties from "../../hooks/useGetProperties";
+import useGetAllBuilders from "../../hooks/useGetAllBuilders";
 
 function Home() {
   const [properties, setAllProperties] = useState(null);
   const [builders, setAllBuilders] = useState(null);
 
-  const fetchproperties = async () => {
-    try {
-      const propertiesResponse = await api.get(
-        "/property/list?min-price=0&page=page-1"
-      );
-      // console.log("All properties:", propertiesResponse.data.data);
-      setAllProperties(propertiesResponse.data.data);
-    } catch (error) {
-      console.error("Error occurred while fetching data:", error);
-    }
-  };
-  const fetchbuilders = async () => {
-    try {
-      // const [buildersResponse, propertiesResponse] = await Promise.all([
-      //   api.get("/builder/all"),
-      //   api.get("property/list?min-price=0&page=page-2"),
-      // ]);
-
-      const buildersResponse = await api.get("/builder/all");
-
-      setAllBuilders(buildersResponse.data.data);
-    } catch (error) {
-      console.error("Error occurred while fetching data:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchproperties();
-    fetchbuilders();
-  }, []);
+  const {loading,fetched,error,data}=useGetProperties();
+  const {loading1,fetched1,error1,data1}=useGetAllBuilders();
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered1, setIsHovered1] = useState(false);
 
@@ -91,7 +65,7 @@ function Home() {
     // console.log("run");
     if (heroSection) {
       const heroSectionHeight = heroSection.offsetHeight;
-      const navbarHeight = 60;
+      const navbarHeight = 76;
 
       if (window.scrollY >= heroSectionHeight - navbarHeight) {
         if (!changeNavbar) {
@@ -278,7 +252,7 @@ function Home() {
             />
             {/* <PropertyCardSlider projects={properties} /> */}
 
-            <PropertyCardSlider projects={properties} />
+            <PropertyCardSlider projects={data} loading={loading} fetched={fetched} error={error} />
           </div>
 
           <div style={{ marginTop: "4rem" }}>
@@ -291,7 +265,7 @@ function Home() {
               path="/builders"
             />
 
-            <BuilderCardSlider builders={builders} />
+            <BuilderCardSlider builders={data1} loading={loading1} fetched={fetched1} error={error1} />
           </div>
 
           {/* <Aisection /> */}

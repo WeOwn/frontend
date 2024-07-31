@@ -7,11 +7,10 @@ import bad_review from "./bad_review.svg";
 import { IoMdStar } from "react-icons/io";
 import Skeleton from "react-loading-skeleton";
 
-const ReviewCard = ({ review,marginright }) => {
-  console.log("review->",review)
+const ReviewCardSkeleton = ({ review }) => {
   return (
-    <div >
-      <div className={styles.reviewcard} style={{marginRight:marginright}}>
+    <div>
+      <div className={styles.reviewcard}>
         <div className={styles.reviewcardsection1}>
           <div
             style={{
@@ -29,7 +28,7 @@ const ReviewCard = ({ review,marginright }) => {
                 gap: "0.5rem",
               }}
             >
-               
+              {review?.img && (
                 <div
                   style={{
                     borderRadius: "999px",
@@ -37,23 +36,13 @@ const ReviewCard = ({ review,marginright }) => {
                     width: "3rem",
                   }}
                 >
-                  {review?.img ?
-                  <img
-                    src={review?.img}
-                    alt="userimg"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      borderRadius: "999px",
-                      objectFit: "cover",
-                    }}
-                  />:<Skeleton circle={true} width="100%" height="100%"/>}
+                  <Skeleton width="100%" height="100%" circle={true}/>
                 </div>
-              
+              )}
 
               <div>
                 <p style={{ fontWeight: "550", whiteSpace: "nowrap" }}>
-                  {review?.name ||<Skeleton count={1}/>}
+                  <Skeleton/>
                 </p>
                 <p
                   style={{
@@ -63,7 +52,7 @@ const ReviewCard = ({ review,marginright }) => {
                     whiteSpace: "nowrap",
                   }}
                 >
-                  {review?.createdat && `Broker | ${review?.createdat}`||<Skeleton width="5rem"/>}
+                  <Skeleton/>
                 </p>
               </div>
             </div>
@@ -86,7 +75,7 @@ const ReviewCard = ({ review,marginright }) => {
                   color: "#55D6A7",
                 }}
               >
-                {review?.rating||0}
+                0
               </span>
               <div>
                 <IoMdStar color={"#55D6A7"} size={13} />
@@ -125,7 +114,7 @@ const ReviewCard = ({ review,marginright }) => {
                 </div>
               </div>
               <p style={{ fontSize: "0.8rem", fontWeight: "500" }}>
-                {review?.positiveFeedback||null}
+                <Skeleton count={3}/>
               </p>
             </div>
             <div
@@ -159,7 +148,7 @@ const ReviewCard = ({ review,marginright }) => {
                 </div>
               </div>
               <p style={{ fontSize: "0.8rem", fontWeight: "500" }}>
-                {review?.improvements||null}
+              <Skeleton count={3}/>
               </p>
             </div>
           </div>
@@ -195,4 +184,4 @@ const ReviewCard = ({ review,marginright }) => {
   );
 };
 
-export default ReviewCard;
+export default ReviewCardSkeleton;

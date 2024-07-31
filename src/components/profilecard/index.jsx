@@ -25,9 +25,9 @@ const Index = () => {
       >
         <p
           style={{
-            fontSize: "0.75rem",
+            fontSize: "0.8rem",
             color: "#3F3D5663",
-            fontWeight: "500",
+            fontWeight: "650",
           }}
         >
           Your recent activity
@@ -68,7 +68,9 @@ const Index = () => {
           </p>{" "}
           <p style={{ fontSize: "0.75rem", fontWeight: "600" }}> viewed</p>
         </div>
-        <Link
+      
+      </div>
+      <Link
           to={userDetails?.isLoggedIn ? "/activity" : "/login"}
           style={{ textDecoration: "none" }}
         >
@@ -77,9 +79,9 @@ const Index = () => {
               backgroundColor: "#7065f0",
               paddingBlock: "0.5rem",
               paddingInline: "auto",
-              borderRadius: "10px",
+              borderRadius: "999px",
               textAlign: "center",
-              fontSize: "0.75rem",
+              fontSize: "0.8rem",
               fontWeight: "400",
               color: "white",
             }}
@@ -87,7 +89,6 @@ const Index = () => {
             {userDetails?.isLoggedIn ? "View all activity" : "Login/Register"}
           </div>
         </Link>
-      </div>
     </div>
   );
 };

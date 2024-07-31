@@ -20,8 +20,12 @@ import a12 from "./12.svg";
 import star from "./star.svg";
 import fraud from "./fraud.svg";
 import Profilebox from "../../Atoms/profilebox";
+import { useDispatch, useSelector } from "react-redux";
+import { isLoggedIn } from './../../auth/index';
+import { setLogOut } from "../../redux/userSlice";
 
 const Sidebar1 = () => {
+  const userDetails=useSelector((store)=>store.user);
   const list1 = [
     {
       id: 1,
@@ -207,12 +211,15 @@ const Sidebar1 = () => {
   const toggleDropdown = (index) => {
     setOpenDropdown(openDropdown === index ? 0 : index);
   };
-
+ const dispatch=useDispatch();
+    const handlelogout = () => {
+    dispatch(setLogOut());
+  };
   const list = ["Contacted Property", "Seen Property", "Saved Search List"];
 
   return (
     <div className={`${styles.sidebarContainer}  `}>
-      <Profilebox />
+      <Profilebox sidebar={true} />
 
       <div className={styles.sections}>
         <div className={styles.section1}>
@@ -406,6 +413,31 @@ const Sidebar1 = () => {
             <img src={right_arrow} alt="down_arrow" />
           </span>
         </div>
+
+
+
+
+
+
+
+
+        {userDetails?.isLoggedIn&&<div
+          style={{
+            backgroundColor: "#7065f0",
+            padding: "1rem",
+
+            borderRadius: "10px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color:"white",
+            fontWeight: "650",
+            fontSize: "1rem",
+          }}
+          onClick={handlelogout}
+        >
+          Logout
+        </div>}
       </div>
     </div>
   );

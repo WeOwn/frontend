@@ -11,31 +11,13 @@ import { MdArrowBackIosNew } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
 import Skeleton from "react-loading-skeleton";
 import api from "../../service/apiGateway";
+import ReviewCardSkeleton from "../../components/reviewCard/ReviewCardSkeleton"
+import ReviewCardSlider from "../../components/reviewCardSlider/ReviewCardSlider";
 
-const Section6 = ({ name, id }) => {
-  // const { fetched, loading, error, data } = useGetReviewbyPropertyid(id);
-  const [data, setData] = useState([]);
-  const [fetched, setFetched] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const fetchdata = async () => {
-    try {
-      setLoading(true);
-      const response = await api.get(`/review/${id}`);
-      console.log("reviews", response?.data);
-      setData(response?.data);
-      setFetched(true);
-    } catch (error) {
-      console.log("error while fetching property reviews", error);
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (id) fetchdata();
-  }, [id]);
+const Section6 = ({ name, id,reviewAdded }) => {
+  const { fetched, loading, error, data } = useGetReviewbyPropertyid(id);
+  
+  
 
   const box = document.querySelector("#reviewoverflowbox");
   const scrollprev = () => {
@@ -54,52 +36,33 @@ const Section6 = ({ name, id }) => {
   };
   console.log("section6");
 
-  if (fetched && data?.length > 0) {
+  
     return (
       <div>
         <IntroContainer
           stardesign={stardesign}
-          heading={`Reviews About ${name}`}
+          heading={`Reviews About ${name||"Property"}`}
           desc={`Find answers to common questions about Estateins's services, property
           listing, and the real estate process. We're here to provide clarity
           and assist you every tep of the way `}
           btntext="View All Reviews"
         />
 
-        <div
+        {/* <div
           className={styles.reviewcardcontainer}
           id="reviewoverflowbox"
           style={{
             position: "relative",
           }}
-        >
-          {data?.map((review, index) => {
-            return <ReviewCard review={review} key={review?._id} />;
-          })}
-          {/* <div onClick={scrollprev} className={styles.leftarr2}>
-            <MdArrowBackIosNew size={12} />
-          </div>
-          <div onClick={scrollnext} className={styles.rightarr2}>
-            <MdArrowForwardIos size={12} />
-          </div> */}
-        </div>
+        > */}
+          <ReviewCardSlider reviews={data} fetched={fetched} loading={loading} error={error}/>
+          
+        {/* </div> */}
       </div>
     );
-  } else if (!fetched) {
-    return (
-      <div>
-        <Skeleton
-          width="100%"
-          height="100%"
-          borderRadius="10px"
-          count={4}
-          // baseColor="black"
-          // highlightColor="#444"
-          // duration={4}
-        />
-      </div>
-    );
-  }
+  
+   
+  
 };
 
 export default Section6;

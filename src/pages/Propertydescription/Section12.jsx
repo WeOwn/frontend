@@ -10,9 +10,12 @@ import { useSelector } from "react-redux";
 import useAddReview from "../../hooks/useAddReview";
 import api from "../../service/apiGateway";
 
-const Section12 = ({ id }) => {
+const Section12 = ({ id,handleReviewAdded }) => {
   const [rating, setRating] = useState(0);
+  const [submitted,setsubmitted]=useState(false);
   const [hoverRating, setHoverRating] = useState(0);
+  const [loading,setLoading]=useState(false);
+  const [error,seterror]=useState(false);
   const userDetails = useSelector((store) => store.user);
   const [review, setReview] = useState({
     positiveFeedback: "",
@@ -21,14 +24,22 @@ const Section12 = ({ id }) => {
 
   const postData = async (data) => {
     try {
+      setLoading(true);
       const response = await api.post(`/review`, data);
       console.log("response", response);
+      setsubmitted(true);
+      handleReviewAdded();
     } catch (error) {
+      seterror(true);
       console.log("error while adding review", error);
+    } finally{
+      setLoading(false);
     }
   };
   const HandleSubmit = (e) => {
+
     e.preventDefault();
+    if(loading||submitted) return;
     const data = {
       ...review,
       user_id: userDetails?.user_id,
@@ -36,7 +47,7 @@ const Section12 = ({ id }) => {
       rating,
     };
 
-    console.log("review data", data);
+   
 
     postData(data);
   };
@@ -78,6 +89,7 @@ const Section12 = ({ id }) => {
                   name="positiveReview"
                   type="text"
                   placeholder="Type here"
+                  
                   value={review.positiveFeedback}
                   onChange={(e) =>
                     setReview((prevReview) => ({
@@ -95,6 +107,7 @@ const Section12 = ({ id }) => {
                     // borderColor: "black",
                     // row: "50",
                   }}
+                  required
                 />
               </div>
             </div>
@@ -114,6 +127,7 @@ const Section12 = ({ id }) => {
                   name="negativeReview"
                   type="text"
                   placeholder="Type here"
+                 
                   value={review.improvements}
                   onChange={(e) =>
                     setReview((prevReview) => ({
@@ -131,6 +145,7 @@ const Section12 = ({ id }) => {
                     // borderColor: "black",
                     // row: "50",
                   }}
+                  required
                 />
               </div>
             </div>
@@ -152,13 +167,13 @@ const Section12 = ({ id }) => {
                         if (rating === num) setRating(0);
                         else setRating(num);
                       }}
-                      // onMouseOver={() => {
-                      //   if (rating === 0) setHoverRating(num);
-                      //   // else setHoverRating(0);
-                      // }}
+                      onMouseOver={() => {
+                         setHoverRating(num);
+                      
+                      }}
                       onMouseLeave={() => setHoverRating(0)}
                     >
-                      {num <= rating ? (
+                      {hoverRating>0 && num<=hoverRating?<FaStar color="#55D6A7" size="25" />:hoverRating===0&&num <= rating ? (
                         <FaStar color="#55D6A7" size="25" />
                       ) : (
                         <CiStar color="#55D6A7" size="28" />
@@ -170,7 +185,8 @@ const Section12 = ({ id }) => {
             </div>
           </div>
           <div style={{ marginTop: "2rem" }} onClick={HandleSubmit}>
-            <Button type="primary2">Submit</Button>
+            <Button type="primary2">{loading?"Submitting...":submitted?"Submitted":error?"Failed to Submit":"Submit"}</Button>
+            
           </div>
         </form>
       </div>

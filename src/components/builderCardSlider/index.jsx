@@ -11,7 +11,7 @@ import { Builderscard } from "../builderscard/Builderscard";
 import api from "../../service/apiGateway";
 import BuildercardSkeleton from "../builderscard/BuildercardSkeleton";
 
-const Index = ({ builders }) => {
+const Index = ({ builders,loading,fetched,error }) => {
   const List1 = [
     { id: "1", heading: "Sara Johnson", subheading: "Delhi City Towner" },
     { id: "2", heading: "Sara Johnson", subheading: "Delhi City Towner" },
@@ -147,7 +147,7 @@ const Index = ({ builders }) => {
     <div>
       <div className={styles.sliderdivp} id="divtoslide">
         <Slider {...settings} ref={sliderRef}>
-          {builders
+          {fetched
             ? builders?.map((builder, index) => (
                 <Builderscard
                   key={builder.id}
@@ -156,11 +156,11 @@ const Index = ({ builders }) => {
                   marginBottom="0.5rem"
                 />
               ))
-            : Array(4)
+            : loading?Array(4)
                 .fill(0)
                 .map((_, index) => {
                   return <BuildercardSkeleton key={index} marginright="1rem" />;
-                })}
+                }):null}
         </Slider>
       </div>
       <div

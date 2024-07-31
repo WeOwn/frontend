@@ -21,7 +21,7 @@ const Sidebar = ({ heading, list, handlesideclose }) => {
 
   return (
     <div className={styles.sidebarContainer}>
-      <Profilebox />
+      <Profilebox sidebar={true} />
       <div
         style={{
           display: "flex",

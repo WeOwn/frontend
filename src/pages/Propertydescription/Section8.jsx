@@ -5,32 +5,14 @@ import stardesign2 from "./stardesign2.svg";
 import IntroContainer from "../../Atoms/introContainer/IntroContainer";
 import PropertyCardSlider from "../../components/propertyCardSlider";
 import api from "../../service/apiGateway";
+import useGetProjectsByBuilderId from "../../hooks/useGetProjectsByBuilderId";
 
 const Section8 = ({ builder }) => {
-  const [data, setdata] = useState(null);
-  const [projects, setProjects] = useState(null);
+  const {loading,fetched,error,data}=useGetProjectsByBuilderId(builder);
 
-  const fetchData = async () => {
-    try {
-      console.log("call");
-      const response = await api.get(
-        `/property/list?min-price=0&page=page-1&builder=${builder}`
-      );
-      console.log("projects->", response);
+ 
 
-      setProjects(response?.data?.data);
-    } catch (error) {
-      console.log("Error while fetching data: ", error);
-    }
-  };
 
-  useEffect(() => {
-    if (builder) {
-      fetchData();
-    }
-  }, [builder]);
-
-  console.log("projects section8-> ", projects);
   return (
     <div>
       <IntroContainer
@@ -42,7 +24,7 @@ const Section8 = ({ builder }) => {
         btntext="View All Projects"
         path={`/builder/${builder}`}
       />
-      <PropertyCardSlider projects={projects} />
+      <PropertyCardSlider projects={data} fetched={fetched} loading={loading} error={error} />
     </div>
   );
 };
