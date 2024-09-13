@@ -1,12 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
+
 import { useDispatch, useSelector } from "react-redux";
+
 import { setFilters } from "../../redux/filterslice";
 
 const Index = ({ dropdownname, logo, style, list }) => {
   const dispatch = useDispatch();
   const handleAppliedfilter = (name) => {
+
     dispatch(setFilters({ type: "city", value: name }));
+
   };
   const { bgcolor, border, droplogobg, namecolor, flexgap, selectBoxwidth } =
     style;
