@@ -1,0 +1,363 @@
+@font-face {
+    font-family: 'DigitalFont';
+    src: url('./fonts/digital-7.ttf');
+  }
+
+ 
+
+
+.maindiv{
+    background-color: #7065f0;
+    height:100vh;
+    width:100vw;
+    /* overflow-x:hidden;     */
+    font-family: Urbanist;
+    
+    padding-block:1rem;  
+    padding-inline: 0.5rem;
+}
+
+/* @media (min-height:853px) {
+    .illustration{
+        position: static;
+    }
+    .maindiv{
+        height:auto;
+        width:auto;
+    }
+} */
+
+.illustration{   
+  
+    width:99vw; 
+    position: fixed;
+    /* top:0.3rem; */
+    bottom: 0px;
+    margin-left: 0px;    
+    z-index: 0;
+}
+
+.instagram_div{
+    display:flex;
+    flex-direction: row; 
+    
+    /* margin-left: 9%; */
+    
+    align-items: center;
+    justify-content: center;
+    /* gap:1rem;  */
+    /* height:2%; */
+    /* background-color: yellow; */
+    cursor:pointer;
+    
+}
+.cloudp{
+    /* position:relative; */
+    margin-left:-5.5rem;  
+   
+}
+.cloud{
+    position:absolute;
+    width:3rem ;
+    
+    
+} 
+.cloud2{
+    margin-top: -1rem;
+                right: -6rem;
+}
+.cloud3{
+    margin-top: 18rem;
+                right: -4rem;
+}
+
+
+.seconddiv{
+    
+    /* margin-top: -2rem; */
+    position:relative;
+    /* background-color: green; */
+    
+    z-index: 1;
+    
+}
+.ellipse{
+    
+    height: 21rem;
+    width: 21rem;
+    position: absolute;
+    z-index: 0;
+    margin-left: -6rem;
+    margin-top: -1rem;
+      
+}
+.phonediv{
+    
+    height: 19rem;
+    width: 10rem;
+    background-color: white;
+    box-shadow: 0 25px 50px -12px; 
+    border-radius: 1rem;
+    /* margin-top: 2rem; */
+    padding-block: 0.5rem;
+    padding-inline: 0.5rem;
+     
+}
+
+.contact1div{
+    margin-top: 1rem;
+  margin-left: -1.5rem;
+  height: 60%;
+  width: auto;
+}
+
+.contact2div{
+    height: 6rem;
+    position: absolute;
+    border-radius: 1.5rem;
+    top: 11rem;
+    left: -4rem;
+    width: 6rem;
+    box-shadow: 0 25px 50px -12px ;
+    background-color: white;
+}
+
+.contact3div{
+    height: 6rem;
+    position: absolute;
+    border-radius: 1.5rem;
+    top: 2rem;
+    left: 7.8rem;
+    width: 6rem;
+    box-shadow: 0 25px 50px -12px;
+    background-color: white;
+}
+.joinus_div{
+    display: flex;
+align-items: center;
+
+gap: 0.5rem;
+margin-left: 0rem;
+}
+.phone_logo{
+    height: 1.5rem;
+    width: 1.5rem;
+    border: 1px solid gray;
+    border-radius: 0.5rem;
+    /* cursor: pointer; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.griddiv{
+    display: flex;
+    flex-direction: column;
+   
+    align-items: center;
+    justify-content: center;
+    gap:4rem;
+    /* padding-top:2%; */
+    /* margin-left:10%; */
+    /* background-color: black; */
+    
+
+    /* urbanest */
+}
+.firstdiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: 1rem; */
+    justify-content: center;
+}
+
+.timerdiv{
+   
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    padding-top: 1rem;
+    /* margin-right: 10%; */
+}
+
+.monthtextdiv{
+    
+    display: flex;
+    gap: 4.6rem;
+    margin-left: 0rem;
+    align-items: center;
+    font-size: 1rem;
+    margin-top: 1rem;
+    color: white;
+    /* font-family: monospace; */
+     
+}
+
+
+.rectangle{
+    background-image: linear-gradient(to bottom,#b6b0fb,#7c71fb);
+   
+    height: 4rem;
+    width: 2.8rem;
+    border-radius: 10%;
+   
+    box-shadow: 0 1px 2px 0px white;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: normal;
+    color:white;
+   
+    font-family: DigitalFont;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+    
+}
+
+.searchp_div{
+    position:relative;
+    width:18rem;
+    border-radius: 9999px;
+    height: 3rem;
+    border: none;
+    background:white;
+    z-index: 1;
+}
+
+.searchText{  
+   
+    position: absolute;
+    top: 30%;
+    left:10%;
+    width: 70%; 
+font-size: medium;
+
+border: none;
+outline:none;
+}
+.third2div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1rem;
+    
+}
+@media (max-height:640px){
+    .illustration{
+        position: static;
+    }
+    .maindiv{
+        height: auto;
+        width: auto;
+    }
+}
+
+@media (max-height:711px) {
+    .griddiv{
+        gap: 2rem;
+    }
+}
+@media ( (max-height:840px)) {
+    .rectangle{
+        height: 3rem;
+        width: 2rem;
+        font-size: 1.5rem;        
+    } 
+    .maindiv{
+        padding-block:0rem;
+    }   
+    .timerdiv{
+        gap:1rem;
+    }
+
+    .monthtextdiv{
+        gap: 3.5rem;
+        margin-left: 0rem;
+        margin-top: 0.3rem;       
+        font-size: 0.7rem;
+        
+         
+    }
+    .phonediv{
+    
+        height: 16rem;
+        width: 8rem;
+       
+      
+        /* border-radius: 1rem;
+         margin-top: 2rem; 
+        padding-block: 0.1rem;
+        padding-inline: 0.2rem; */
+         
+    }
+    .ellipse{
+        height:16.5rem;
+        width: 16.5rem;
+        margin-left: -4rem;
+        margin-top: -0.5rem;
+    }
+    .contact1div{
+        height: 60%;
+        width:10rem;
+        margin-left: -1.5rem;
+        margin-top: 1rem;
+    }
+    .contact2div{
+        height: 5rem;
+        width: 5rem;
+        margin-left: 1rem;
+        margin-top: -1rem;
+    }
+    .contact3div{
+        height: 5rem;
+        width: 5rem;
+        margin-top: 0rem;
+        margin-left:-1.5rem;
+    }
+    .joinus_div{        
+      gap: 0rem;
+      margin-left: 0rem;
+      margin-top: 0rem;
+    }
+    .phone_logo{
+        height: 0.8rem;
+        width: 0.8rem;    
+        border-radius: 0.3rem;
+        /* cursor: pointer; */
+     
+    }
+    .cloud{
+        width:2.5rem;
+        margin-left: 2rem;
+    }
+    .cloud2{
+        margin-top: 0rem;
+        right:-4.5rem
+    }
+    .cloud3{
+        margin-top: 14rem;
+        right:-3rem
+    }
+   
+    .searchp_div{
+        height:3rem;
+    }
+   
+    /* .timerdiv{
+        margin-top: -0.5rem;
+    } */
+    .third2div{            
+        
+        
+        gap:0.5rem;
+        
+    }
+
+  }
+
+
+
+

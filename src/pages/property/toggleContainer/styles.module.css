@@ -1,0 +1,25 @@
+.toggleContainer{
+    display:flex;
+    justify-content: space-between;
+    gap:3rem;
+    /* flex-wrap: wrap; */
+/* background-color: aqua; */
+/* margin-left: 20%; */
+    /* gap:4rem; */
+    overflow:auto;
+    width: 100%;
+}
+
+.option{
+    color:#3F3D56;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 550;
+   
+}
+
+.option.active {
+    color: #7065f0;
+    border-bottom: 3px solid #7065f0;
+  }

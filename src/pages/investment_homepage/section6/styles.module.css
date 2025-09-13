@@ -1,0 +1,16 @@
+.maindiv{
+    width:85%;
+    margin-inline:auto;
+}
+
+.desc{
+   
+    
+    width: 80%;
+  }
+  
+  @media(max-width:800px) {
+    .desc{
+      width:100%;
+    }
+  }

@@ -1,0 +1,288 @@
+.container {
+    width: 100%;
+    padding: 2rem 0;
+    color: #0F0B3E;
+    border-bottom: 1px solid #E3E3E3;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 650;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #7065f0;
+    border-radius: 2px;
+  }
+  
+  .overviewGrid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (max-width: 1000px) {
+    .overviewGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .fundingStatus {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background-color: #F6F6F6;
+    border: 1px solid #E3E3E3;
+    border-radius: 12px;
+    gap: 1.5rem;
+  }
+  
+  .progressWrapper {
+    width: 120px;
+    height: 120px;
+  }
+  
+  /* Custom circular progress */
+  .customProgressContainer {
+    width: 120px;
+    height: 120px;
+    position: relative;
+  }
+  
+  .customProgressInner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .customProgressCenter {
+    width: 90px;
+    height: 90px;
+    background-color: #F6F6F6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .progressPercent {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #0F0B3E;
+  }
+  
+  .fundingDetails {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .fundingTitle {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .fundingValue {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .fundingMeta, .timeLeft {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .timeLeft {
+    color: #f57c00;
+    font-weight: 500;
+  }
+  
+  .keyMetrics {
+    padding: 1.5rem;
+    background-color: #F6F6F6;
+    border: 1px solid #E3E3E3;
+    border-radius: 12px;
+  }
+  
+  .keyMetrics h4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #0F0B3E;
+  }
+  
+  .metricsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .metricsGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .metricsGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .metricLabel {
+    font-size: 0.85rem;
+    color: #666;
+  }
+  
+  .metricValue {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0F0B3E;
+  }
+  
+  .investmentDetails {
+    margin-top: 2rem;
+  }
+  
+  .investmentDetails h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: #0F0B3E;
+  }
+  
+  .investmentDetails p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  .revenueProjection {
+    margin-bottom: 2rem;
+  }
+  
+  .projectionTable {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #E3E3E3;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .tableRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #E3E3E3;
+  }
+  
+  .tableRow:last-child {
+    border-bottom: none;
+  }
+  
+  .tableRow:nth-child(even) {
+    background-color: #F6F6F6;
+  }
+  
+  .tableHeader {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .tableValue {
+    font-weight: 600;
+    color: #0F0B3E;
+  }
+  
+  .calculatorPreview {
+    background-color: #F6F6F6;
+    border: 1px solid #E3E3E3;
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  
+  .previewBox {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem 0;
+  }
+  
+  @media (max-width: 768px) {
+    .previewBox {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+  
+  .previewItem {
+    text-align: center;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    flex: 1;
+  }
+  
+  .previewLabel {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  
+  .previewValue {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #7065f0;
+  }
+  
+  .investButtonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    .investButtonContainer {
+      flex-direction: column;
+    }
+  }
+  
+  .calculatorButton {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #7065f0;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #7065f0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .calculatorButton:hover {
+    background-color: rgba(112, 101, 240, 0.1);
+  }

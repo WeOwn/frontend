@@ -1,0 +1,29 @@
+.maindiv{
+    width:100%;
+    /* padding-top: 40px; */
+    /* background-color: yellow; */
+    margin-inline: auto;
+    color:#0F0B3E;
+    /* color:red; */
+    
+}
+
+@media(min-width:1800px) {
+    .maindiv{
+        width:60%;
+    }
+}
+
+.section1{
+    padding:76px 0 0rem 0;
+    /* margin-top: 10rem;; */
+}
+
+@media(max-width:900px) {
+    .section1{
+        padding:49.81px 0 0 0;
+    }
+}
+.section2{
+    padding:2rem 0;
+}

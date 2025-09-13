@@ -1,0 +1,465 @@
+@font-face {
+    font-family: 'DigitalFont';
+    src: url('./fonts/digital-7.ttf');
+}
+
+.maindiv {
+    background-color: #7065f0;
+    height: 100vh;
+    width: 100vw;
+    font-family: Urbanist;
+}
+
+.illustration {   
+    width: 99%; 
+    position: absolute;
+    bottom: 0px;
+    margin-left: 0px;    
+    z-index: 0;
+    display: none;
+}
+
+.instagram_div {
+    display: flex;
+    flex-direction: row; 
+    margin-left: 19%;
+    align-items: center;
+    gap: 1rem; 
+    cursor: pointer;
+}
+
+.cloudp {
+    margin-left: 20%; 
+    background-color: black;
+}
+
+.cloud {
+    position: absolute;
+    width: 5rem;
+}
+
+.seconddiv {
+    position: relative;
+    z-index: 1;
+}
+
+.firstdiv {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.ellipse {
+    height: 26.5rem;
+    width: 26.5rem;
+    position: absolute;
+    z-index: 0;
+    margin-left: -7rem;
+    margin-top: 1rem;
+}
+
+.phonediv {
+    height: 25rem;
+    width: 12rem;
+    background-color: white;
+    box-shadow: 0 25px 50px -12px; 
+    border-radius: 1rem;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.contact1div {
+    margin-top: 2.5rem;
+    margin-left: -2.5rem;
+    height: 50%;
+    width: 16rem;
+}
+
+.contact2div {
+    height: 8rem;
+    position: absolute;
+    border-radius: 1.5rem;
+    top: 15rem;
+    left: -5rem;
+    width: 8rem;
+    box-shadow: 0 25px 50px -12px;
+    background-color: white;
+}
+
+.contact3div {
+    height: 8rem;
+    position: absolute;
+    border-radius: 1.5rem;
+    top: 3rem;
+    left: 10rem;
+    width: 8rem;
+    box-shadow: 0 25px 50px -12px;
+    background-color: white;
+}
+
+.griddiv {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14rem;
+    margin-top: 2%;
+}
+
+.timerdiv {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    margin-top: 1rem;
+}
+
+.monthtextdiv {
+    display: flex;
+    gap: 6.5rem;
+    margin-left: 1rem;
+    align-items: center;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    color: white;
+}
+
+.rectangle {
+    background-image: linear-gradient(to bottom, #b6b0fb, #7c71fb);
+    height: 4.5rem;
+    width: 2.7rem;
+    border-radius: 5%;
+    box-shadow: 0 1px 2px 0px white;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: normal;
+    color: white;
+    font-family: DigitalFont;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchp_div {
+    position: relative;
+    width: 90%;
+    height: 3rem;
+    background: white;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.searchText {
+    width: 70%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding-left: 1rem;
+    font-size: 0.875rem;
+    color: #7065f0;
+}
+
+.searchText::placeholder {
+    color: #7065f0;
+    opacity: 0.7;
+}
+
+.thirddiv {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+/* Button Styles */
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Contact Modal Button */
+.contact_button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    background-color: white;
+    color: #7065f0;
+    font-size: 0.875rem;
+    margin-right: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Social Media Icons */
+.social_icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: transform 0.2s;
+}
+
+.social_icon:hover {
+    transform: scale(1.1);
+}
+
+/* Timer Labels */
+.timer_label {
+    color: white;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Cloud Animation */
+@keyframes floatCloud {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(400%);
+    }
+}
+
+.cloud {
+    animation: floatCloud 20s linear infinite;
+}
+
+/* Responsive Design */
+@media (max-height: 590px) {
+    .illustration {
+        position: static;
+    }
+    .maindiv {
+        height: auto;
+        width: auto;
+    }
+}
+
+@media (max-width: 1185px) {
+    .griddiv {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+        margin-top: 10%;
+        margin-left: 0%;
+    }
+    
+    .maindiv {
+        height: auto;
+        width: auto;
+    }
+
+    .illustration {
+        position: sticky;
+    }
+    
+    .instagram_div {
+        margin-top: 3rem;
+        margin-left: 45%;
+    }
+
+    .contact_button {
+        margin-right: 1rem;
+    }
+
+    .timerdiv {
+        gap: 2rem;
+    }
+
+    .monthtextdiv {
+        gap: 5rem;
+        margin-left: 0.5rem;
+    }
+
+    .searchp_div {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1185px) and (max-width: 1749px) {
+    .griddiv {
+        gap: 10rem;
+    }
+
+    .contact_button {
+        margin-right: 3rem;
+    }
+
+    .phonediv {
+        transform: scale(0.9);
+    }
+}
+
+@media (min-width: 1750px) and (min-height: 870px) {
+    .cloud {       
+        width: 7rem;        
+    }          
+    
+    .griddiv {      
+        margin-top: 10%;    
+        gap: 20rem;
+    }
+    
+    .cloudp {        
+        margin-left: 21%;  
+    }
+    
+    .rectangle {
+        height: 7rem;
+        width: 4.5rem;      
+        text-align: center;
+        font-size: 5rem;    
+    }
+    
+    .ellipse {
+        height: 38rem;
+        width: 38rem;
+        position: absolute;
+        z-index: 0;
+        margin-left: -10rem;
+        margin-top: 0rem;
+    }
+    
+    .phonediv {    
+        height: 35rem;
+        width: 17rem;
+        background-color: white;
+        box-shadow: 0 25px 50px -12px;
+        border-radius: 1rem;
+        padding: 1rem;         
+    }
+    
+    .monthtextdiv {         
+        gap: 9rem;
+        margin-left: 2.5rem;
+        align-items: center;
+        font-size: 1.5rem;         
+    }
+
+    .contact1div {
+        margin-top: 1rem;
+        margin-left: -3rem;
+        height: 60%;
+        width: 23rem;
+    }
+
+    .contact2div {
+        height: 9rem;        
+        top: 23rem;
+        left: -7rem;
+        width: 10rem;
+    }
+
+    .contact3div {
+        height: 9rem; 
+        top: 5rem;
+        left: 14.5rem;
+        width: 10rem;  
+    }
+
+    .instagram_div { 
+        left: 5%;      
+        margin-left: 20%;
+        align-items: center;
+        gap: 1rem; 
+        height: 2rem;
+        cursor: pointer;
+    }
+
+    .contact_button {
+        transform: scale(1.2);
+        margin-right: 5rem;
+    }
+
+    .searchp_div {
+        width: 100%;
+        height: 4rem;
+    }
+
+    .searchText {
+        font-size: 1.25rem;
+    }
+
+    .timer_label {
+        font-size: 1rem;
+    }
+}
+
+/* Contact Modal Styles */
+.modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal_content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 500px;
+}
+
+/* Thank You Modal Styles */
+.thankyou_modal {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+/* Additional Utility Classes */
+.text_gradient {
+    background: linear-gradient(to right, #7065f0, #b6b0fb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.shadow_hover {
+    transition: all 0.3s ease;
+}
+
+.shadow_hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation Classes */
+.fade_in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.slide_up {
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

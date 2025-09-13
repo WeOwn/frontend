@@ -1,0 +1,353 @@
+.container {
+    width: 100%;
+    padding: 2rem 0;
+    color: #0F0B3E;
+    border-bottom: 1px solid #E3E3E3;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 650;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #7065f0;
+    border-radius: 2px;
+  }
+  
+  .controlsContainer {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .controlsContainer {
+      flex-direction: column;
+    }
+  }
+  
+  .searchContainer {
+    position: relative;
+    flex: 1;
+  }
+  
+  .searchIcon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+  }
+  
+  .searchInput {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid #E3E3E3;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: border-color 0.2s ease;
+  }
+  
+  .searchInput:focus {
+    outline: none;
+    border-color: #7065f0;
+  }
+  
+  .filterContainer {
+    position: relative;
+    width: 220px;
+  }
+  
+  @media (max-width: 768px) {
+    .filterContainer {
+      width: 100%;
+    }
+  }
+  
+  .filterIcon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+  }
+  
+  .filterSelect {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid #E3E3E3;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    appearance: none;
+    background-color: white;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4' viewBox='0 0 8 4'%3E%3Cpath fill='%23666' d='M0 0h8L4 4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 8px 4px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+  
+  .filterSelect:focus {
+    outline: none;
+    border-color: #7065f0;
+  }
+  
+  .documentsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .loadingState, .emptyState {
+    padding: 3rem;
+    text-align: center;
+    color: #666;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #E3E3E3;
+  }
+  
+  .loadingSpinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(112, 101, 240, 0.3);
+    border-radius: 50%;
+    border-top-color: #7065f0;
+    animation: spin 1s ease-in-out infinite;
+    margin: 0 auto 1rem;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .documentCard {
+    display: flex;
+    align-items: flex-start;
+    padding: 1.25rem;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #E3E3E3;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  
+  .documentCard:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+  }
+  
+  .documentIcon {
+    padding: 1rem;
+    background-color: rgba(112, 101, 240, 0.1);
+    border-radius: 8px;
+    margin-right: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pdfIcon {
+    color: #e94235;
+  }
+  
+  .excelIcon {
+    color: #34a853;
+  }
+  
+  .wordIcon {
+    color: #4285f4;
+  }
+  
+  .imageIcon {
+    color: #fbbc05;
+  }
+  
+  .fileIcon {
+    color: #7065f0;
+  }
+  
+  .documentInfo {
+    flex: 1;
+    margin-right: 1.25rem;
+  }
+  
+  .documentTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0F0B3E;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .restrictedBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.2rem 0.5rem;
+    background-color: #f8d7da;
+    color: #721c24;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 4px;
+  }
+  
+  .documentDescription {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+  
+  .documentMeta {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: #999;
+    gap: 1rem;
+  }
+  
+  .documentCategory {
+    text-transform: capitalize;
+  }
+  
+  .documentCategory::first-letter {
+    text-transform: uppercase;
+  }
+  
+  .downloadCount {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  .documentActions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 120px;
+  }
+  
+  @media (max-width: 768px) {
+    .documentCard {
+      flex-direction: column;
+    }
+    
+    .documentIcon {
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+    
+    .documentInfo {
+      margin-right: 0;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+    
+    .documentActions {
+      width: 100%;
+      flex-direction: row;
+    }
+  }
+  
+  .actionButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+  }
+  
+  .previewButton {
+    background-color: #f8f9fa;
+    color: #333;
+  }
+  
+  .previewButton:hover {
+    background-color: #f1f3f5;
+  }
+  
+  .downloadButton {
+    background-color: #7065f0;
+    color: white;
+  }
+  
+  .downloadButton:hover {
+    background-color: #5a52c4;
+  }
+  
+  .downloadButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .restrictedMessage {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background-color: #f8d7da;
+    color: #721c24;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .loginPrompt {
+    margin-top: 1.5rem;
+    text-align: center;
+    padding: 0.75rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    color: #666;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .loginPrompt p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .loginPrompt a {
+    color: #7065f0;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  
+  .loginPrompt a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 480px) {
+    .documentMeta {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    
+    .actionButton {
+      flex: 1;
+    }
+  }

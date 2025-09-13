@@ -1,0 +1,266 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modalContainer {
+    background-color: white;
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 42rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease-out;
+}
+
+.modalHeader {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modalTitle {
+    color: #7065f0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: Urbanist;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.2s;
+}
+
+.closeButton:hover {
+    color: #374151;
+}
+
+.modalBody {
+    padding: 1.5rem;
+}
+
+.formGroup {
+    margin-bottom: 1rem;
+}
+
+.label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+    font-family: Urbanist;
+}
+
+.input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    font-family: Urbanist;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #7065f0;
+    box-shadow: 0 0 0 2px rgba(112, 101, 240, 0.1);
+}
+
+.textarea {
+    composes: input;
+    min-height: 6rem;
+    resize: vertical;
+}
+
+.select {
+    composes: input;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+}
+
+.rangeContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.range {
+    flex-grow: 1;
+    height: 2px;
+    appearance: none;
+    background-color: #e5e7eb;
+    border-radius: 9999px;
+}
+
+.range::-webkit-slider-thumb {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    background-color: #7065f0;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.range::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.checkbox {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #d1d5db;
+    cursor: pointer;
+    appearance: none;
+    background-color: white;
+    display: grid;
+    place-content: center;
+}
+
+.checkbox:checked {
+    background-color: #7065f0;
+    border-color: #7065f0;
+}
+
+.checkbox:checked::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    transform: scale(1);
+    background-color: white;
+    transform-origin: center;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.cancelButton {
+    padding: 0.75rem 1.5rem;
+    background-color: #f3f4f6;
+    color: #374151;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    font-family: Urbanist;
+}
+
+.cancelButton:hover {
+    background-color: #e5e7eb;
+}
+
+.submitButton {
+    padding: 0.75rem 1.5rem;
+    background-color: #7065f0;
+    color: white;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    font-family: Urbanist;
+}
+
+.submitButton:hover {
+    background-color: #5c54c9;
+}
+
+.errorText {
+    color: #ef4444;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.required::after {
+    content: " *";
+    color: #ef4444;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 640px) {
+    .modalContainer {
+        margin: 1rem;
+        max-height: calc(100vh - 2rem);
+    }
+
+    .buttonContainer {
+        flex-direction: column;
+    }
+
+    .cancelButton, 
+    .submitButton {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (min-width: 1750px) and (min-height: 870px) {
+    .modalContainer {
+        max-width: 50rem;
+    }
+
+    .modalTitle {
+        font-size: 2rem;
+    }
+
+    .input,
+    .select,
+    .textarea {
+        padding: 1rem 1.25rem;
+        font-size: 1rem;
+    }
+
+    .label {
+        font-size: 1rem;
+    }
+
+    .cancelButton,
+    .submitButton {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+}
