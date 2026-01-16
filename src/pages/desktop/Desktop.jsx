@@ -28,33 +28,40 @@ const Desktop = () => {
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [time, setTime] = useState(new Date());
-  const [leftmonths, setLeftmonths] = useState("12");
+  const [leftmonths, setLeftmonths] = useState("00");
   const [leftdays, setLeftdays] = useState("00");
   const [lefthours, setLefthours] = useState("00");
 
-  const month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
+    const calculateTimeLeft = () => {
+      const now = new Date();
+      const launchDate = new Date('2026-03-01T00:00:00');
+      
+      const diff = launchDate - now;
+      
+      if (diff > 0) {
+        const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const months = Math.floor(totalDays / 30);
+        const days = totalDays % 30;
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        
+        setLeftmonths(months.toString().padStart(2, "0"));
+        setLeftdays(days.toString().padStart(2, "0"));
+        setLefthours(hours.toString().padStart(2, "0"));
+      } else {
+        setLeftmonths("00");
+        setLeftdays("00");
+        setLefthours("00");
+      }
+      
+      setTime(now);
+    };
 
-    setLefthours(
-      Math.floor(24 - time.getHours())
-        .toString()
-        .padStart(2, "0")
-    );
-
-    setLeftdays(
-      (month_days[time.getMonth()] - time.getDate())
-        .toString()
-        .padStart(2, "0")
-    );
-
-    setLeftmonths("12");
+    calculateTimeLeft();
+    const interval = setInterval(calculateTimeLeft, 1000);
 
     return () => clearInterval(interval);
-  }, [time]);
+  }, []);
 
   const handleEmailSubmit = (e) => {
     e.preventDefault();
@@ -218,57 +225,57 @@ const Desktop = () => {
             >
               Be The First To Know
             </h1>
-<form onSubmit={handleEmailSubmit}>
-  <div className={styles.searchp_div}>
-    <input
-      type="email"
-      id="email"
-      required
-      placeholder="Enter your email address"
-      className={styles.searchText}
-      value={email}
-      onChange={(e) => {
-        setEmail(e.target.value);
-      }}
-      style={{ // Add these styles
-        border: 'none',
-        outline: 'none',
-        background: 'transparent',
-        width: '70%',
-        position: 'absolute',
-        top: '50%',
-        transform: 'translateY(-50%)',
-        left: '1rem'
-      }}
-    />
-    <button
-      type="submit"
-      style={{
-        border: "none",
-        borderRadius: "50%",
-        height: "2.8rem",
-        width: "2.8rem",
-        backgroundColor: "#7065F0",
-        position: "absolute",
-        top: "2px",
-        right: "2px",
-        cursor: "pointer",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-      }}
-    >
-      <img
-        src={arrow}
-        alt="search_logo"
-        style={{
-          height: "1rem",
-          width: "1rem"
-        }}
-      />
-    </button>
-  </div>
-</form>
+            <form onSubmit={handleEmailSubmit}>
+              <div className={styles.searchp_div}>
+                <input
+                  type="email"
+                  id="email"
+                  required
+                  placeholder="Enter your email address"
+                  className={styles.searchText}
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                  style={{
+                    border: 'none',
+                    outline: 'none',
+                    background: 'transparent',
+                    width: '70%',
+                    position: 'absolute',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    left: '1rem'
+                  }}
+                />
+                <button
+                  type="submit"
+                  style={{
+                    border: "none",
+                    borderRadius: "50%",
+                    height: "2.8rem",
+                    width: "2.8rem",
+                    backgroundColor: "#7065F0",
+                    position: "absolute",
+                    top: "2px",
+                    right: "2px",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}
+                >
+                  <img
+                    src={arrow}
+                    alt="search_logo"
+                    style={{
+                      height: "1rem",
+                      width: "1rem"
+                    }}
+                  />
+                </button>
+              </div>
+            </form>
           </div>
         </div>
         <div className={styles.seconddiv}>
@@ -433,7 +440,7 @@ const Desktop = () => {
       </div>
       
       {/* AI Assistant Chatbot */}
-      <Chatbot />
+    
     </div>
   );
 };
