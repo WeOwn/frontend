@@ -1,4 +1,4 @@
-const GEMINI_API_KEY = 'AIzaSyBr2wtky3658hBhnQYO4E9_mSZgI2WSqzQ';
+const GEMINI_API_KEY = 'test';
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
 // Dummy property data for AI processing
