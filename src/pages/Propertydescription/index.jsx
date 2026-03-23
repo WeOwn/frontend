@@ -35,12 +35,12 @@ const PropertyDescription = () => {
   // const section8 = useRef(null);
 
 
- 
 
- 
+
+
   const { id } = useParams();
-  
-  const {loading,fetched,error,data}=useGetPropertyDetails(id);
+
+  const { loading, fetched, error, data } = useGetPropertyDetails(id);
 
   const {
     amenities,
@@ -72,65 +72,67 @@ const PropertyDescription = () => {
   const [stick, setStick] = useState(false);
 
   const [section, setSection] = useState(1);
-  console.log("section->",section)
+  console.log("section->", section)
   const reducescroll = 76;
-  const [reviewAdded,setReviewAdded]=useState(0);
-  const handleReviewAdded=()=>{
-    setReviewAdded(reviewAdded+1);
+  const [reviewAdded, setReviewAdded] = useState(0);
+  const handleReviewAdded = () => {
+    setReviewAdded(reviewAdded + 1);
   }
 
-  
+
 
 
   const handlescroll = () => {
-   
+
     if (window.scrollY >= 76) setStick(true);
     else setStick(false);
 
-  if (
+    if (
       section !== 2 &&
       section2?.current &&
-      
-      window.scrollY >= section2.current.offsetTop-reducescroll &&
-      window.scrollY <= section2.current.offsetTop+section2.current.offsetHeight-reducescroll
+
+      window.scrollY >= section2.current.offsetTop - reducescroll &&
+      window.scrollY <= section2.current.offsetTop + section2.current.offsetHeight - reducescroll
     ) {
       setSection(2);
     } else if (
       section !== 3 &&
       section3?.current &&
-      
-      window.scrollY >= section3.current.offsetTop-reducescroll &&
-      window.scrollY <= section3.current.offsetTop+section3.current.offsetHeight-reducescroll
+
+      window.scrollY >= section3.current.offsetTop - reducescroll &&
+      window.scrollY <= section3.current.offsetTop + section3.current.offsetHeight - reducescroll
     ) {
-      setSection(3);      
-    }else if (
+      setSection(3);
+    } else if (
       section !== 4 &&
       section4?.current &&
-      
-      window.scrollY >= section4.current.offsetTop-reducescroll &&
-      window.scrollY <= section4.current.offsetTop+section4.current.offsetHeight-reducescroll
+
+      window.scrollY >= section4.current.offsetTop - reducescroll &&
+      window.scrollY <= section4.current.offsetTop + section4.current.offsetHeight - reducescroll
     ) {
-      setSection(4);} else if (
+      setSection(4);
+    } else if (
       section !== 5 &&
       section5?.current &&
-      
-      window.scrollY >= section5.current.offsetTop-reducescroll &&
-      window.scrollY <= section5.current.offsetTop+section5.current.offsetHeight-reducescroll
+
+      window.scrollY >= section5.current.offsetTop - reducescroll &&
+      window.scrollY <= section5.current.offsetTop + section5.current.offsetHeight - reducescroll
     ) {
       setSection(5);
-    }  else if (
+    } else if (
       section !== 6 &&
       section6?.current &&
-      
-      window.scrollY >= section6.current.offsetTop-reducescroll&&
-      window.scrollY <=section6.current.offsetTop+section6.current.offsetHeight-reducescroll
+
+      window.scrollY >= section6.current.offsetTop - reducescroll &&
+      window.scrollY <= section6.current.offsetTop + section6.current.offsetHeight - reducescroll
     ) {
-      setSection(6);} 
-      else setSection(1);
+      setSection(6);
+    }
+    else setSection(1);
     // } else if (
     //   section !== 7 &&
     //   section7?.current &&
-      
+
     //   window.scrollY >= section7.current.offsetTop - reducescroll &&
     //   window.scrollY <= section7.current.offsetTop+section7.current.offsetHeight-reducescroll
     // ) {
@@ -139,12 +141,12 @@ const PropertyDescription = () => {
     //  else if (
     //   section !== 8 &&
     //   section8?.current &&
-      
+
     //   window.scrollY >= section8.current.offsetTop - reducescroll &&
     //   window.scrollY <= section8.current.offsetTop+section8.current.offsetHeight-reducescroll
     // ) {
     //   setSection(8);
-    
+
   };
 
   useEffect(() => {
@@ -156,7 +158,7 @@ const PropertyDescription = () => {
 
 
   const handlesectionScroll = (id) => {
-    const sectionRef=id===2?section2:id===3?section3:id===4?section4:id===5?section5:id===6?section6:null  
+    const sectionRef = id === 2 ? section2 : id === 3 ? section3 : id === 4 ? section4 : id === 5 ? section5 : id === 6 ? section6 : null
 
     if (!sectionRef)
       window.scrollTo({
@@ -165,7 +167,7 @@ const PropertyDescription = () => {
       });
     else if (sectionRef.current)
       window.scrollTo({
-        top: sectionRef.current.offsetTop-reducescroll,
+        top: sectionRef.current.offsetTop - reducescroll,
         behavior: "smooth",
       });
   };
@@ -178,16 +180,16 @@ const PropertyDescription = () => {
           ref={section1}
           id="section1"
           className={` ${stick ? styles.section1stick : styles.section1}`}
-         
-        
+
+
         >
           <Section1
             name={name}
             stick={stick}
             handlesectionScroll={(section) => handlesectionScroll(section)}
-           
-           
-        
+
+
+
             section={section}
           />
         </div>
@@ -217,14 +219,14 @@ const PropertyDescription = () => {
             <Section3 pricingdetails={pricing_details} />
           </div>
           <div className={styles.section4} id="section4" ref={section4}>
-            <Section4 />
+            <Section4 location={location} />
           </div>
           <div className={styles.section5} id="section5" ref={section5}>
             <Section5 name={name} id={id} />
           </div>
 
           <div className={styles.section6} id="section6" ref={section6}>
-            <Section6 name={name} id={id} reviewAdded={reviewAdded}  />
+            <Section6 name={name} id={id} reviewAdded={reviewAdded} />
 
           </div>
           <div className={styles.section7} id="section7">

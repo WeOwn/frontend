@@ -34,9 +34,9 @@ const GroupPropertyDescription = () => {
   const financialSection = useRef(null);
   const documentsSection = useRef(null);
   const chatSection = useRef(null);
-  
+
   const { id } = useParams();
-  
+
   const { loading, fetched, error, data } = useGetPropertyDetails(id);
 
   const {
@@ -68,7 +68,7 @@ const GroupPropertyDescription = () => {
   const [section, setSection] = useState(1);
   const reducescroll = 76;
   const [reviewAdded, setReviewAdded] = useState(0);
-  
+
   const handleReviewAdded = () => {
     setReviewAdded(reviewAdded + 1);
   };
@@ -152,7 +152,7 @@ const GroupPropertyDescription = () => {
       window.scrollY <= section6.current.offsetTop + section6.current.offsetHeight - reducescroll
     ) {
       setSection(6);
-    } 
+    }
     // Investment sections
     else if (
       section !== 7 &&
@@ -193,7 +193,7 @@ const GroupPropertyDescription = () => {
 
   const handlesectionScroll = (id) => {
     let sectionRef;
-    
+
     switch (id) {
       case 2:
         sectionRef = section2;
@@ -274,7 +274,7 @@ const GroupPropertyDescription = () => {
               city={location?.city}
             />
           </div>
-          
+
           {/* Insert group investment overview section after property details */}
           <div className={styles.investmentSection} id="investment-section">
             <GroupPropertySections
@@ -288,11 +288,11 @@ const GroupPropertyDescription = () => {
           <div className={styles.section3} id="section3" ref={section3}>
             <Section3 pricingdetails={pricing_details} />
           </div>
-          
+
           <div className={styles.section4} id="section4" ref={section4}>
-            <Section4 />
+            <Section4 location={location} />
           </div>
-          
+
           <div className={styles.section5} id="section5" ref={section5}>
             <Section5 name={name} id={id} />
           </div>
@@ -300,11 +300,11 @@ const GroupPropertyDescription = () => {
           <div className={styles.section6} id="section6" ref={section6}>
             <Section6 name={name} id={id} reviewAdded={reviewAdded} />
           </div>
-          
+
           <div className={styles.section7} id="section7">
             <Section7 />
           </div>
-          
+
           <div className={styles.section8} id="section8">
             <Section8 builder={builder} />
           </div>
@@ -312,11 +312,11 @@ const GroupPropertyDescription = () => {
           <div className={styles.section9}>
             <Section9 id={id} />
           </div>
-          
+
           <div className={styles.section10}>
             <Section10 id={id} />
           </div>
-          
+
           <div className={styles.section11}>
             <Section11 />
           </div>

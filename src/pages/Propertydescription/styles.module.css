@@ -775,3 +775,155 @@ h4{
  
 
 }
+
+/* Section 4 Neighborhood Styles */
+.section4Container {
+  padding: 3rem 0;
+  border-bottom: 1px solid #E3E3E3;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2.5rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.titleSection {
+  flex: 1;
+  min-width: 300px;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #0F0B3E;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 800px;
+}
+
+.fullMapViewBtn {
+  background-color: #F6F6F6;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid #E3E3E3;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #0F0B3E;
+}
+
+.fullMapViewBtn:hover {
+  background-color: #7065f0;
+  color: white;
+  border-color: #7065f0;
+}
+
+.mapWrapper {
+  width: 100%;
+  height: 500px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E3E3E3;
+}
+
+.categoriesSection {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.categoriesList {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.categoryBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.5rem 1rem 0.5rem 0.6rem;
+  border: 1px solid #E3E3E3;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.categoryBtn:hover {
+  border-color: #7065f0;
+  transform: translateY(-2px);
+}
+
+.activeCategory {
+  background-color: #7065f0;
+  border-color: #7065f0;
+  color: white;
+}
+
+.iconBox {
+  width: 36px;
+  height: 36px;
+  background: #F6F6F6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.activeCategory .iconBox {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.activeIcon {
+  filter: brightness(0) invert(1);
+}
+
+.zoomControl {
+  width: 44px;
+  height: 44px;
+  background: rgba(112, 101, 240, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.zoomControl:hover {
+  background: rgba(112, 101, 240, 0.2);
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+  .mapWrapper {
+    height: 350px;
+  }
+  .fullMapViewBtn {
+    width: 100%;
+    text-align: center;
+  }
+}
+

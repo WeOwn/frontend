@@ -5,7 +5,9 @@ import zoomlogo from "./zoomlogo.svg";
 import locationimg from "./locationimg.svg";
 import Map from "../../components/map/Map";
 
-const Section4 = () => {
+const Section4 = ({ location }) => {
+  const [activeCategory, setActiveCategory] = React.useState("Restaurants");
+
   const list1 = [
     "Restaurants",
     "Pools",
@@ -15,125 +17,59 @@ const Section4 = () => {
     "Metro",
   ];
 
-  const apiKey = "YOUR_GOOGLE_MAPS_API_KEY";
-  const latitude = 37.7749;
-  const longitude = -122.4194;
+  // Use location data from props if available
+  const latitude = location?.latitude || 25.2048; // Default to Dubai if not provided
+  const longitude = location?.longitude || 55.2708;
+  const apiKey = ""; // Should be in .env but keeping it empty for robustness
 
   return (
-    <div>
-      <h4 style={{ fontSize: "2rem", fontWeight: "650" }}>
-        Explore Neighbourhood - Map View
-      </h4>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginTop: "0.5rem",
-          gap: "2rem",
-          flexWrap: "wrap",
-        }}
-      >
-        <p style={{ color: "grey" }} className={styles.desc}>
-          Find answers to common questions about Estateins's services, property
-          listing, and the real estate process. We're here to provide clarity
-          and assist you every tep of the way
-        </p>
-        <div
-          style={{
-            backgroundColor: "#F6F6F6",
-            padding: "0.8rem 1rem",
-            border: "1px solid #E3E3E3",
-            borderRadius: "5px",
-            fontSize: "0.9rem",
-            fontWeight: "550",
-          }}
-        >
-          Full Map View
+    <div className={styles.section4Container}>
+      <div className={styles.headerRow}>
+        <div className={styles.titleSection}>
+          <h4 className={styles.title}>Explore Neighbourhood</h4>
+          <p className={styles.subtitle}>
+            Find clarity and convenience in the area surrounding this property.
+            Discover essential amenities just steps away.
+          </p>
         </div>
+        <button className={styles.fullMapViewBtn}>
+          View Dynamic Map
+        </button>
       </div>
 
-      {/* Map container <div></div> */}
-      <div style={{ width: "100%", marginTop: "2rem" }}>
-        {/* <img src={locationimg} alt="img" style={{ width: "100%" }} /> */}
+      <div className={styles.mapWrapper}>
         <Map apiKey={apiKey} latitude={latitude} longitude={longitude} />
       </div>
 
-      <div
-        style={{
-          marginTop: "2rem",
-          display: "flex",
-          width: "98%",
-          marginInline: "auto",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "1rem",
-          flexWrap: "wrap",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            // justifyContent: "space-between",
-            gap: "1rem",
-            flexWrap: "wrap",
-          }}
-        >
+      <div className={styles.categoriesSection}>
+        <div className={styles.categoriesList}>
           {list1.map((btnname, index) => {
+            const isActive = activeCategory === btnname;
             return (
               <div
-                style={{
-                  padding: "0.3rem 0.5rem",
-                  border: "1px solid #E3E3E3",
-                  borderRadius: "15px",
-                  fontSize: "0.75rem",
-                  fontWeight: "550",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: "0.5rem",
-                }}
+                key={btnname}
+                onClick={() => setActiveCategory(btnname)}
+                className={`${styles.categoryBtn} ${isActive ? styles.activeCategory : ""}`}
               >
-                <div
-                  style={{
-                    padding: "0.5rem 0.3rem",
-                    // backgroundColor: "rgba(112, 101, 240, 0.14)",
-                    border: "1px solid #E3E3E3",
-                    borderRadius: "10px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "2rem",
-                    height: "2rem",
-                  }}
-                >
-                  <img src={homelogo} alt="logo_img" style={{ width: "70%" }} />
+                <div className={styles.iconBox}>
+                  <img
+                    src={homelogo}
+                    alt={btnname}
+                    className={isActive ? styles.activeIcon : ""}
+                  />
                 </div>
-                <span> {btnname}</span>
+                <span>{btnname}</span>
               </div>
             );
           })}
         </div>
-        <div
-          style={{
-            padding: "0.5rem 0.3rem",
-            backgroundColor: "rgba(112, 101, 240, 0.14)",
-
-            borderRadius: "10px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "2.5rem",
-            height: "2.5rem",
-          }}
-        >
-          <img src={zoomlogo} alt="logo_img" style={{ width: "70%" }} />
+        <div className={styles.zoomControl}>
+          <img src={zoomlogo} alt="zoom" />
         </div>
       </div>
     </div>
   );
 };
+
 
 export default Section4;
