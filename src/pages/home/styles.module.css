@@ -8,7 +8,7 @@
 
   color:#0F0B3E;
   margin-inline: auto;
-  /* background-color: black; */
+  /* background-color: transparent; */
   padding-bottom: 2rem;
 
 }
@@ -104,7 +104,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* background:black; */
+  /* background: transparent; */
   gap: 5rem;
   padding: 12rem 1rem 1rem;
 }
@@ -118,7 +118,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* background: black; */
+  /* background: transparent; */
   align-items: center;
   
 }
@@ -154,7 +154,7 @@
   /* flex-wrap: wrap; */
   /* margin-top: 6rem; */
   margin-left:0rem;
-  /* background-color: black; */
+  /* background-color: transparent; */
   /* width:50%; */
   /* margin-inline: auto; */
   

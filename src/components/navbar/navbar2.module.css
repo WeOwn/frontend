@@ -32,7 +32,7 @@
   /* width: 256px; */
   height: 100vh;
   background: transparent;
-  /* background-color: black; */
+  /* background-color: transparent; */
   width: 75%;
   z-index:1000;
 }
@@ -65,7 +65,7 @@
     padding:0.2rem 0.5rem;
     align-items: center;
     border-radius: 5px;
-    /* background-color: black; */
+    /* background-color: transparent; */
     
   }
 

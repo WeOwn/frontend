@@ -46,7 +46,7 @@
 @media(max-width:660px) {
     .inputBox{
         min-width:30%;
-        /* background:black; */
+        /* background: transparent; */
     }
 }
 
