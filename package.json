@@ -2,7 +2,7 @@
   "name": "weown",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://weown-backend.azurewebsites.net",
+  "proxy": "https://api.weown.ai/",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@google/model-viewer": "^3.5.0",

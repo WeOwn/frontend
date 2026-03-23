@@ -34,7 +34,7 @@ export const Propertycard = ({
   marginright,
   marginBottom,
 }) => {
-  console.log("property card->",name)
+  console.log("property card->", name)
   // const [detail1, detail2, detail3] = features;
   const [isLoading, setIsLoading] = useState(false);
   const [isDescExpanded, setIsDescExpanded] = useState(false);
@@ -76,7 +76,7 @@ export const Propertycard = ({
     if (userDetails?.isLoggedIn) {
       try {
         const response = await api.post(
-          `https://weown-backend.azurewebsites.net/shortlist/`,
+          `https://api.weown.ai/shortlist/`,
           {
             user_id: userDetails?.user_id,
             properties: [productId],
@@ -132,16 +132,16 @@ export const Propertycard = ({
               backgroundColor: "#E1E1E1",
             }}
             className={styles.ogimg}
-            // onLoad={handleImageLoaded}
+          // onLoad={handleImageLoaded}
           />
         ) : (
           <Skeleton
             width="100%"
             height="100%"
             borderRadius="10px"
-            // baseColor="#202020"
-            // highlightColor="#444"
-            // duration={4}
+          // baseColor="#202020"
+          // highlightColor="#444"
+          // duration={4}
           />
         )}
 
@@ -218,7 +218,7 @@ export const Propertycard = ({
 
       <div
         className={styles.details}
-        // style={!isdetailExpanded ? detailStyles : null}
+      // style={!isdetailExpanded ? detailStyles : null}
       >
         <div className={styles.capsule}>
           <div>

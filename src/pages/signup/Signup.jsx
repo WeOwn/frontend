@@ -96,9 +96,8 @@ function Signup() {
       </div>
 
       <div
-        className={`${styles["signup-page"]} ${
-          showOtp ? styles["blur-background"] : ""
-        }`}
+        className={`${styles["signup-page"]} ${showOtp ? styles["blur-background"] : ""
+          }`}
       >
         <div className={styles.headingRow}>
           <header className={styles.header}>
@@ -237,7 +236,7 @@ function Signup() {
             lname: lastName,
             phoneNumber: phone,
           }}
-          apiEndpoint="https://weown-backend.azurewebsites.net/user/signup"
+          apiEndpoint="https://api.weown.ai/user/signup"
         />
       )}
     </div>

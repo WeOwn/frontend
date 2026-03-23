@@ -64,7 +64,7 @@ export const GroupPropertycard = ({
     if (userDetails?.isLoggedIn) {
       try {
         const response = await api.post(
-          `https://weown-backend.azurewebsites.net/shortlist/`,
+          `https://api.weown.ai/shortlist/`,
           {
             user_id: userDetails?.user_id,
             properties: [productId],

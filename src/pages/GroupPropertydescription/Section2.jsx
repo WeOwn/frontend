@@ -106,7 +106,7 @@ const Section2 = ({
   const handleopenLaunchexp = () => {
     setLaunchexpbtn(true);
   };
-  
+
   const handlecloseLaunchexp = () => {
     setLaunchexpbtn(false);
   };
@@ -149,7 +149,7 @@ const Section2 = ({
     if (userDetails?.isLoggedIn) {
       try {
         const response = await api.post(
-          `https://weown-backend.azurewebsites.net/shortlist/`,
+          `https://api.weown.ai/shortlist/`,
           {
             user_id: userDetails?.user_id,
             properties: [id],
@@ -190,7 +190,7 @@ const Section2 = ({
       <div className={styles.section2intro}>
         <div className={styles.section2heading}>
           <h4 style={{ fontSize: "1.5rem", fontWeight: "650", flexWrap: "wrap" }}>
-            {name||"Property"}
+            {name || "Property"}
           </h4>
           <div style={{
             border: "1px solid #E3E3E3",
@@ -205,7 +205,7 @@ const Section2 = ({
             <div style={{ width: "1rem" }}>
               <img src={location} alt="img" style={{ width: "100%" }} />
             </div>
-            <span style={{ whiteSpace: "noWrap" }}>{`${city||"city"}, India`}</span>
+            <span style={{ whiteSpace: "noWrap" }}>{`${city || "city"}, India`}</span>
           </div>
         </div>
         <div className={styles.section2buttondiv}>
@@ -242,9 +242,8 @@ const Section2 = ({
               <button
                 key={btn?.id}
                 onClick={() => setCurrBtn(btn?.id)}
-                className={`${
-                  btn?.id === currbtn ? styles.btnclicked : styles.btn
-                }`}
+                className={`${btn?.id === currbtn ? styles.btnclicked : styles.btn
+                  }`}
               >
                 {btn?.name}
               </button>
@@ -255,28 +254,28 @@ const Section2 = ({
         <div className={styles.section2imgdiv1}>
           {currbtn === 1 && images?.length > 0
             ? images?.map((image, index) => {
-                return (
-                  <div
-                    key={index}
-                    className={styles.imgtransformdiv}
-                    onClick={() => setLaunchimgid(index)}
-                  >
-                    <img
-                      src={image}
-                      alt="home_img"
-                      style={{
-                        width: "100%",
-                        minHeight: "100%",
-                        borderRadius: "5px",
-                        objectFit: "cover",
-                      }}
-                      className={styles.ogimg}
-                    />
-                  </div>
-                );
-              })
+              return (
+                <div
+                  key={index}
+                  className={styles.imgtransformdiv}
+                  onClick={() => setLaunchimgid(index)}
+                >
+                  <img
+                    src={image}
+                    alt="home_img"
+                    style={{
+                      width: "100%",
+                      minHeight: "100%",
+                      borderRadius: "5px",
+                      objectFit: "cover",
+                    }}
+                    className={styles.ogimg}
+                  />
+                </div>
+              );
+            })
             : currbtn === 2 && floor_images?.length > 0
-            ? floor_images?.map((floor_image, index) => {
+              ? floor_images?.map((floor_image, index) => {
                 return (
                   <div
                     key={index}
@@ -297,7 +296,7 @@ const Section2 = ({
                   </div>
                 );
               })
-            : Array(9)
+              : Array(9)
                 .fill(0)
                 .map((_, index) => (
                   <div
@@ -322,7 +321,7 @@ const Section2 = ({
           onMouseOver={handleopenLaunchexp}
           onMouseLeave={handlecloseLaunchexp}
         >
-          <div style={{ width: "100%", aspectRatio: "2.5", background:"white", borderRadius:"12px" }}>
+          <div style={{ width: "100%", aspectRatio: "2.5", background: "white", borderRadius: "12px" }}>
             {currbtn === 1 && images?.length > 0 ? (
               <img
                 src={images[launchimgid]}
@@ -331,7 +330,7 @@ const Section2 = ({
                   width: "100%",
                   height: "100%",
                   borderRadius: "12px",
-                  objectFit:"cover",
+                  objectFit: "cover",
                   background: "white",
                 }}
               />
@@ -395,7 +394,7 @@ const Section2 = ({
                   >
                     &times;
                   </span>
-                  <iframe 
+                  <iframe
                     src="https://www.youtube.com/embed/5VOTfkBfgCI?autoplay=1&rel=0"
                     style={{
                       width: "100%",
@@ -473,7 +472,7 @@ const Section2 = ({
               alignItems: "center",
             }}>
               <span style={{
-               color: "grey",
+                color: "grey",
                 fontSize: "0.9rem",
                 whiteSpace: "noWrap",
               }}>
@@ -650,15 +649,44 @@ const Section2 = ({
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             {features?.length > 0
               ? features?.map((text, index) => {
-                  return (
-                    <div style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      padding: " 1rem",
-                      borderLeft: "1px solid #7065f0",
-                      background: "linear-gradient(to right, #E3E3E3, #FFFFFF)",
+                return (
+                  <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    padding: " 1rem",
+                    borderLeft: "1px solid #7065f0",
+                    background: "linear-gradient(to right, #E3E3E3, #FFFFFF)",
+                  }}>
+                    <div style={{ width: "1rem" }}>
+                      <img src={light} alt="img" style={{ width: "100%" }} />
+                    </div>
+                    <p style={{
+                      fontSize: "0.8rem",
+                      fontWeight: "600",
+                      lineHeight: "1.2rem",
+                      whiteSpace: "noWrap",
                     }}>
+                      {text}
+                    </p>
+                  </div>
+                );
+              })
+              : Array(5)
+                .fill(0)
+                .map((_, index) => {
+                  return (
+                    <div
+                      key={index}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: " 1rem",
+                        borderLeft: "1px solid #7065f0",
+                        background: "linear-gradient(to right, #E3E3E3, #FFFFFF)",
+                      }}
+                    >
                       <div style={{ width: "1rem" }}>
                         <img src={light} alt="img" style={{ width: "100%" }} />
                       </div>
@@ -668,40 +696,11 @@ const Section2 = ({
                         lineHeight: "1.2rem",
                         whiteSpace: "noWrap",
                       }}>
-                        {text}
+                        features
                       </p>
                     </div>
                   );
-                })
-              : Array(5)
-                  .fill(0)
-                  .map((_, index) => {
-                    return (
-                      <div
-                        key={index}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "0.5rem",
-                          padding: " 1rem",
-                          borderLeft: "1px solid #7065f0",
-                          background: "linear-gradient(to right, #E3E3E3, #FFFFFF)",
-                        }}
-                      >
-                        <div style={{ width: "1rem" }}>
-                          <img src={light} alt="img" style={{ width: "100%" }} />
-                        </div>
-                        <p style={{
-                          fontSize: "0.8rem",
-                          fontWeight: "600",
-                          lineHeight: "1.2rem",
-                          whiteSpace: "noWrap",
-                        }}>
-                          features
-                        </p>
-                      </div>
-                    );
-                  })}
+                })}
           </div>
         </div>
       </div>
