@@ -105,6 +105,7 @@ const Section2 = ({
   const [launchexpbtn, setLaunchexpbtn] = useState(false);
   const [launchexp, setLaunchexp] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const iframeRef = React.useRef(null);
 
   const handleopenLaunchexp = () => {
     setLaunchexpbtn(true);
@@ -115,7 +116,15 @@ const Section2 = ({
   };
 
   const toggleFullscreen = () => {
-    window.open(view3durl || "https://www.youtube.com/watch?v=5VOTfkBfgCI");
+    if (iframeRef.current) {
+      if (iframeRef.current.requestFullscreen) {
+        iframeRef.current.requestFullscreen();
+      } else if (iframeRef.current.webkitRequestFullscreen) {
+        iframeRef.current.webkitRequestFullscreen();
+      } else if (iframeRef.current.msRequestFullscreen) {
+        iframeRef.current.msRequestFullscreen();
+      }
+    }
   };
 
   const [builderdata, setBuilderData] = useState(null);
@@ -348,14 +357,15 @@ const Section2 = ({
                     </span>
                   </div>
                   <iframe
+                    ref={iframeRef}
                     src={view3durl || "https://www.youtube.com/embed/5VOTfkBfgCI?autoplay=1&rel=0"}
                     style={{
                       width: "100%",
-                      height: "80vh",
+                      height: "85vh",
                       border: "none"
                     }}
                     title="Launch Experience"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                     allowFullScreen
                   />
                 </div>

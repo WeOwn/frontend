@@ -559,24 +559,26 @@ h4 {
 }
 
 .modalContent {
-  background-color: #fefefe;
+  background-color: #000;
   margin: auto;
   padding: 0;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 1200px;
+  border: none;
+  width: 95%;
+  height: 95vh;
+  max-width: 1600px;
   border-radius: 12px;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .modalHeader {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  background-color: #f8f8f8;
-  border-bottom: 1px solid #eaeaea;
+  padding: 10px 20px;
+  background-color: #1a1a1a;
+  border-bottom: 1px solid #333;
 }
 
 .fullscreenButton {
@@ -596,17 +598,17 @@ h4 {
 }
 
 .closeButton {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
+  color: #ffffff;
+  font-size: 32px;
   font-weight: bold;
   cursor: pointer;
+  line-height: 1;
+  transition: all 0.3s ease;
 }
 
-.closeButton:hover,
-.closeButton:focus {
-  color: black;
-  text-decoration: none;
+.closeButton:hover {
+  color: #ff4d4d;
+  transform: scale(1.1);
 }
 
 /* Fullscreen styles */
