@@ -56,6 +56,7 @@ const PropertyDescription = () => {
     builder,
     iframe,
     floor_images,
+    view3durl,
   } = data || {};
 
 
@@ -209,7 +210,7 @@ const PropertyDescription = () => {
               size={size}
               iframe={iframe}
               floor_images={floor_images}
-
+              view3durl={view3durl}
               id={id}
               city={location?.city}
 

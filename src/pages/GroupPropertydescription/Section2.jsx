@@ -40,7 +40,10 @@ const Section2 = ({
   floor_images,
   id,
   city,
+  view3durl,
 }) => {
+  const allImages = [...(images || []), ...(floor_images || [])];
+
   const descriptionlist = [
     {
       id: 1,
@@ -99,7 +102,6 @@ const Section2 = ({
   ];
 
   const [launchimgid, setLaunchimgid] = useState(0);
-  const [floorimgid, setfloorimgid] = useState(0);
   const [launchexpbtn, setLaunchexpbtn] = useState(false);
   const [launchexp, setLaunchexp] = useState(false);
 
@@ -109,6 +111,10 @@ const Section2 = ({
 
   const handlecloseLaunchexp = () => {
     setLaunchexpbtn(false);
+  };
+
+  const toggleFullscreen = () => {
+    window.open(view3durl || "https://www.youtube.com/watch?v=5VOTfkBfgCI");
   };
 
   const [builderdata, setBuilderData] = useState(null);
@@ -127,19 +133,6 @@ const Section2 = ({
       fetchdata();
     }
   }, [builder]);
-
-  const [currbtn, setCurrBtn] = useState(1);
-
-  const btnlist = [
-    {
-      id: 1,
-      name: "Hi-Res Images",
-    },
-    {
-      id: 2,
-      name: "Floor Plan",
-    },
-  ];
 
   const [shortlisted, setShortlisted] = useState(false);
   const userDetails = useSelector((store) => store.user);
@@ -168,10 +161,8 @@ const Section2 = ({
 
   const checkIfShortlisted = async () => {
     try {
-      console.log("dekh rha huun");
       const response = await api.get(`/shortlist/?id=${userDetails?.user_id}`);
       if (response?.data?.properties?.length > 0) {
-        console.log("h bhai");
         if (response?.data?.properties?.includes(id)) setShortlisted(true);
       }
     } catch (error) {
@@ -236,24 +227,9 @@ const Section2 = ({
       </div>
 
       <div className={styles.section2imgdivp}>
-        <div style={{}} className={styles.section2imgdivbuttondivp}>
-          {btnlist?.map((btn, index) => {
-            return (
-              <button
-                key={btn?.id}
-                onClick={() => setCurrBtn(btn?.id)}
-                className={`${btn?.id === currbtn ? styles.btnclicked : styles.btn
-                  }`}
-              >
-                {btn?.name}
-              </button>
-            );
-          })}
-        </div>
-
         <div className={styles.section2imgdiv1}>
-          {currbtn === 1 && images?.length > 0
-            ? images?.map((image, index) => {
+          {allImages?.length > 0
+            ? allImages?.map((image, index) => {
               return (
                 <div
                   key={index}
@@ -274,46 +250,24 @@ const Section2 = ({
                 </div>
               );
             })
-            : currbtn === 2 && floor_images?.length > 0
-              ? floor_images?.map((floor_image, index) => {
-                return (
-                  <div
-                    key={index}
-                    className={styles.imgtransformdiv}
-                    onClick={() => setfloorimgid(index)}
-                  >
-                    <img
-                      src={floor_image}
-                      alt="floor_img"
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        borderRadius: "5px",
-                        objectFit: "cover",
-                      }}
-                      className={styles.ogimg}
-                    />
-                  </div>
-                );
-              })
-              : Array(9)
-                .fill(0)
-                .map((_, index) => (
-                  <div
-                    key={index}
-                    style={{
-                      minWidth: "6rem",
-                      maxWidth: "6rem",
-                      height: "5rem",
-                    }}
-                  >
-                    <Skeleton
-                      width="100%"
-                      height="100%"
-                      borderRadius="5px"
-                    />
-                  </div>
-                ))}
+            : Array(9)
+              .fill(0)
+              .map((_, index) => (
+                <div
+                  key={index}
+                  style={{
+                    minWidth: "6rem",
+                    maxWidth: "6rem",
+                    height: "5rem",
+                  }}
+                >
+                  <Skeleton
+                    width="100%"
+                    height="100%"
+                    borderRadius="5px"
+                  />
+                </div>
+              ))}
         </div>
 
         <div
@@ -322,21 +276,9 @@ const Section2 = ({
           onMouseLeave={handlecloseLaunchexp}
         >
           <div style={{ width: "100%", aspectRatio: "2.5", background: "white", borderRadius: "12px" }}>
-            {currbtn === 1 && images?.length > 0 ? (
+            {allImages?.length > 0 ? (
               <img
-                src={images[launchimgid]}
-                alt="home_img"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  borderRadius: "12px",
-                  objectFit: "cover",
-                  background: "white",
-                }}
-              />
-            ) : currbtn === 2 && floor_images?.length > 0 ? (
-              <img
-                src={floor_images[floorimgid]}
+                src={allImages[launchimgid]}
                 alt="home_img"
                 style={{
                   width: "100%",
@@ -352,20 +294,20 @@ const Section2 = ({
           </div>
 
           <div className={
-            images?.length > 0 && launchexpbtn
+            allImages?.length > 0 && launchexpbtn
               ? styles.launchexpdivhover
               : styles.launchexpdivhovernot
           }>
             <div className={styles.launchexpbtndivp}></div>
             {<div
               className={
-                images?.length > 0 && launchexpbtn
+                allImages?.length > 0 && launchexpbtn
                   ? styles.launchexpbtn
                   : styles.launchexpbtnnot
               }
               onClick={() => setLaunchexp(true)}
             >
-              {images?.length > 0 && launchexpbtn && (
+              {allImages?.length > 0 && launchexpbtn && (
                 <>
                   <div style={{ width: "1rem" }}>
                     <img src={Play} alt="img" style={{ width: "100%" }} />
@@ -388,14 +330,31 @@ const Section2 = ({
             {launchexp && (
               <div className={styles.modal}>
                 <div className={styles.modalContent}>
-                  <span
-                    className={styles.closeButton}
-                    onClick={() => setLaunchexp(false)}
-                  >
-                    &times;
-                  </span>
+                  <div className={styles.modalHeader} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+                    <button
+                      className={styles.fullscreenButton}
+                      onClick={toggleFullscreen}
+                      style={{
+                        backgroundColor: "#7065f0",
+                        color: "white",
+                        border: "none",
+                        padding: "5px 15px",
+                        borderRadius: "5px",
+                        cursor: "pointer"
+                      }}
+                    >
+                      Fullscreen
+                    </button>
+                    <span
+                      className={styles.closeButton}
+                      onClick={() => setLaunchexp(false)}
+                      style={{ cursor: 'pointer', fontSize: '24px' }}
+                    >
+                      &times;
+                    </span>
+                  </div>
                   <iframe
-                    src="https://www.youtube.com/embed/5VOTfkBfgCI?autoplay=1&rel=0"
+                    src={view3durl || "https://www.youtube.com/embed/5VOTfkBfgCI?autoplay=1&rel=0"}
                     style={{
                       width: "100%",
                       height: "80vh",
