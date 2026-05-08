@@ -26,6 +26,7 @@ import Button from "../../Atoms/Button";
 import Skeleton from "react-loading-skeleton";
 import api from "../../service/apiGateway";
 import { useSelector } from "react-redux";
+import LaunchExperienceModal from "../../components/launchExperience/LaunchExperienceModal";
 
 const Section2 = ({
   name,
@@ -104,8 +105,6 @@ const Section2 = ({
   const [launchimgid, setLaunchimgid] = useState(0);
   const [launchexpbtn, setLaunchexpbtn] = useState(false);
   const [launchexp, setLaunchexp] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const iframeRef = React.useRef(null);
 
   const handleopenLaunchexp = () => {
     setLaunchexpbtn(true);
@@ -113,18 +112,6 @@ const Section2 = ({
 
   const handlecloseLaunchexp = () => {
     setLaunchexpbtn(false);
-  };
-
-  const toggleFullscreen = () => {
-    if (iframeRef.current) {
-      if (iframeRef.current.requestFullscreen) {
-        iframeRef.current.requestFullscreen();
-      } else if (iframeRef.current.webkitRequestFullscreen) {
-        iframeRef.current.webkitRequestFullscreen();
-      } else if (iframeRef.current.msRequestFullscreen) {
-        iframeRef.current.msRequestFullscreen();
-      }
-    }
   };
 
   const [builderdata, setBuilderData] = useState(null);
@@ -338,38 +325,11 @@ const Section2 = ({
               )}
             </div>}
             {launchexp && (
-              <div className={styles.modal}>
-                <div className={styles.modalContent}>
-                  <div className={styles.modalHeader}>
-                    <button
-                      className={styles.fullscreenButton}
-                      onClick={toggleFullscreen}
-                    >
-                      Fullscreen
-                    </button>
-                    <span
-                      className={styles.closeButton}
-                      onClick={() => {
-                        setLaunchexp(false);
-                      }}
-                    >
-                      &times;
-                    </span>
-                  </div>
-                  <iframe
-                    ref={iframeRef}
-                    src={view3durl || "https://www.youtube.com/embed/5VOTfkBfgCI?autoplay=1&rel=0"}
-                    style={{
-                      width: "100%",
-                      height: "85vh",
-                      border: "none"
-                    }}
-                    title="Launch Experience"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                    allowFullScreen
-                  />
-                </div>
-              </div>
+              <LaunchExperienceModal
+                onClose={() => setLaunchexp(false)}
+                view3durl={view3durl}
+                pageStyles={styles}
+              />
             )}
           </div>
         </div>

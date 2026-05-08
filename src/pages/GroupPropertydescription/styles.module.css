@@ -573,6 +573,32 @@ h4 {
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #1a1a1a;
+  border-bottom: 1px solid #333;
+  flex-shrink: 0;
+}
+
+.fullscreenButton {
+  background-color: #7065f0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 15px;
+  transition: background-color 0.3s;
+}
+
+.fullscreenButton:hover {
+  background-color: #5a52c4;
+}
+
 .closeButton {
   color: #ffffff;
   font-size: 32px;
