@@ -22,9 +22,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { isLoggedIn } from "./../../auth/index";
 import { setPropertiesViewed } from "../../redux/userSlice.jsx";
 import useGetPropertyDetails from "../../hooks/useGetPropertyDetails.js";
+import { startAnalytics, stopAnalytics } from "../../utils/analyticsTracker";
+import LeadModal from "./LeadModal";
 
 
 const PropertyDescription = () => {
+  const [showLeadModal, setShowLeadModal] = useState(false);
+  const refCode = new URLSearchParams(window.location.search).get("ref") || "";
   const section1 = useRef(null);
   const section2 = useRef(null);
   const section3 = useRef(null);
@@ -41,6 +45,36 @@ const PropertyDescription = () => {
   const { id } = useParams();
 
   const { loading, fetched, error, data } = useGetPropertyDetails(id);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
+    if (!ref) return;
+    fetch(`${api.defaults.baseURL}referral/click/${encodeURIComponent(ref)}`)
+      .then(r => r.json())
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (!refCode || !id) return;
+    try {
+      if (sessionStorage.getItem(`lead_prompt_${id}`)) return;
+    } catch (e) {}
+    const t = setTimeout(() => setShowLeadModal(true), 4000);
+    return () => clearTimeout(t);
+  }, [refCode, id]);
+
+  const closeLeadModal = () => {
+    setShowLeadModal(false);
+    try {
+      sessionStorage.setItem(`lead_prompt_${id}`, "1");
+    } catch (e) {}
+  };
+
+  useEffect(() => {
+    if (id) startAnalytics(id);
+    return () => stopAnalytics();
+  }, [id]);
 
   const {
     amenities,
@@ -216,7 +250,7 @@ const PropertyDescription = () => {
 
             />
           </div>
-          <div className={styles.section3} id="section3 " ref={section3}>
+          <div className={styles.section3} id="section3" ref={section3}>
             <Section3 pricingdetails={pricing_details} />
           </div>
           <div className={styles.section4} id="section4" ref={section4}>
@@ -256,6 +290,9 @@ const PropertyDescription = () => {
           </div>
         </div>
       </div>
+      {showLeadModal && (
+        <LeadModal propertyId={id} refCode={refCode} onClose={closeLeadModal} />
+      )}
     </>
   );
 };

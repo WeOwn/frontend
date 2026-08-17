@@ -207,6 +207,7 @@ const Section2 = ({
               alignItems: "center",
               cursor: "pointer",
             }}
+            data-track="Save Property"
             onClick={handleAddToWishlist}
           >
             <span style={{
@@ -231,6 +232,7 @@ const Section2 = ({
                 <div
                   key={index}
                   className={styles.imgtransformdiv}
+                  data-track="Gallery Thumbnail"
                   onClick={() => setLaunchimgid(index)}
                 >
                   <img
@@ -296,12 +298,13 @@ const Section2 = ({
               : styles.launchexpdivhovernot
           }>
             <div className={styles.launchexpbtndivp}></div>
-            {<div
+            {            <div
               className={
                 allImages?.length > 0 && launchexpbtn
                   ? styles.launchexpbtn
                   : styles.launchexpbtnnot
               }
+              data-track="Launch Experience"
               onClick={() => setLaunchexp(true)}
             >
               {allImages?.length > 0 && launchexpbtn && (
@@ -373,7 +376,7 @@ const Section2 = ({
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </div>
-            <div style={{
+            <div data-track="Share Property" style={{
               backgroundColor: "#7065f0",
               padding: "0.6rem 1rem",
               borderRadius: "5px",
@@ -386,7 +389,7 @@ const Section2 = ({
               </div>
               <span style={{ color: "white", fontSize: "0.9rem" }}>Share</span>
             </div>
-            <div style={{
+            <div data-track="Save Property" style={{
               backgroundColor: "rgba(112, 101, 240, 0.12)",
               padding: "0.6rem 1.5rem",
               borderRadius: "5px",
@@ -405,7 +408,7 @@ const Section2 = ({
                 <img src={heart} alt="img" style={{ width: "100%" }} />
               </div>
             </div>
-            <div style={{
+            <div data-track="Customize" style={{
               backgroundColor: "rgba(112, 101, 240, 0.12)",
               padding: "0.6rem 1.5rem",
               borderRadius: "5px",
