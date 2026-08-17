@@ -1,6 +1,6 @@
 import api from "../service/apiGateway";
 
-const API_BASE = (api.defaults && api.defaults.baseURL) || "http://localhost:8007/";
+const API_BASE = (api.defaults && api.defaults.baseURL) || "https://api.weown.ai/";
 
 let sessionId = "";
 let startTime = 0;
