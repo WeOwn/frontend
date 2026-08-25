@@ -22,27 +22,16 @@ const Sidebar = ({ heading, list, handlesideclose }) => {
   return (
     <div className={styles.sidebarContainer}>
       <Profilebox sidebar={true} />
-      <div
-        style={{
-          display: "flex",
-          position: "relative",
-          //   backgroundColor: "yellow",
-          margin: "1rem 0 0 ",
-          alignItems: "center",
-          width: "92%",
-        }}
-      >
+      <div className={styles.subHeader}>
         <span
-          style={{ position: "absolute", left: "-1.5rem", cursor: "pointer" }}
+          className={styles.backBtn}
           onClick={handlesideclose}
+          role="button"
+          aria-label="Back"
         >
-          <img src={left_arrow} alt="img" />
+          <img src={left_arrow} alt="" />
         </span>
-        <span>
-          <h4 style={{ fontSize: "1.2rem", fontWeight: "650", color: "black" }}>
-            {heading}
-          </h4>
-        </span>
+        <h4 className={styles.subHeaderTitle}>{heading}</h4>
       </div>
       <div className={styles.sections}>
         <div className={styles.section1}>

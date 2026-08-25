@@ -105,19 +105,10 @@ const Navbar1 = () => {
       <div className={styles.navCenter}>
         <ul className={styles.navOptions}>
           <li
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: "0.3rem",
-              cursor: "pointer",
-              // backgroundColor: "red",
-              height: "85px",
-            }}
             className={`${styles.view} ${styles.navoption}`}
             // onMouseOver={handleMouseOver}
           >
-            <span>View & Buy</span>
+            <span>View &amp; Buy</span>
             <div style={{ width: "0.7rem" }}>
               <img
                 src={Vector}
@@ -139,70 +130,43 @@ const Navbar1 = () => {
           {/* </li> */}
 
           <li className={styles.navoption}>
-            <span style={{ cursor: "pointer" }}>Search Builders</span>
+            <span>Search Builders</span>
           </li>
           <Link
             to="/investment_homepage"
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <li className={styles.navoption}>
-              <span style={{ cursor: "pointer" }}>Group Investment</span>
+              <span>Group Investment</span>
             </li>
           </Link>
 
           <li className={styles.navoption}>
-            <span style={{ cursor: "pointer" }}>List Property</span>
+            <span>List Property</span>
           </li>
 
           <li className={styles.navoption}>
-            <span style={{ cursor: "pointer" }}>Compare</span>
+            <span>Compare</span>
           </li>
         </ul>
       </div>
       <div className={styles.navRight}>
-        <div onClick={handlesideopen}>
-          <img
-            src={hamburger}
-            alt="icon"
-            style={{ height: "60%", width: "60%", cursor: "pointer" }}
-          />
-        </div>
+        <button
+          className={styles.hamburgerBtn}
+          onClick={handlesideopen}
+          aria-label="Open menu"
+        >
+          <img src={hamburger} alt="" />
+        </button>
 
-        <Link to={"/activity"}>
-
-          <div
-            style={{
-              backgroundColor: "white",
-              // padding: "0.2rem",
-
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "1.5rem",
-              height: "1.5rem",
-              borderRadius: "50%",
-              marginLeft: "-0.5rem",
-            }}
-          >
-            <img
-              src={userimg}
-              alt="icon"
-              style={{ height: "50%", width: "50%" }}
-            />
+        <Link to={"/activity"} className={styles.avatarLink}>
+          <div className={styles.avatar}>
+            <img src={userimg} alt="Account" />
           </div>
         </Link>
-        
-        {/* AI Assistant Button */}
-        <button className={styles.aiAssistantButton} title="AI Property Assistant" onClick={() => window.dispatchEvent(new Event('open-weown-chat'))}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.89 1 3 1.89 3 3V21C3 22.11 3.89 23 5 23H19C20.11 23 21 22.11 21 21V9ZM19 21H5V3H13V9H19V21Z" fill="currentColor"/>
-            <path d="M8 12H16V14H8V12ZM8 16H13V18H8V16Z" fill="currentColor"/>
-          </svg>
-          <span>AI Assistant</span>
-        </button>
       </div>
-      
-      {/* Chatbot Component */}
+
+      {/* Chatbot Component — floating dock is the only entry point now */}
       <Chatbot />
     </nav>
   );

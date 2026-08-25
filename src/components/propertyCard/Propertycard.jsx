@@ -8,8 +8,6 @@ import Button from "../../Atoms/Button";
 import Chip from "../../Atoms/Chip";
 import wishlist_btn from "./wishlist_btn.png";
 import { Link, useNavigate } from "react-router-dom";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 import { IoFolder } from "react-icons/io5";
 import api from "../../service/apiGateway";
 import { useSelector } from "react-redux";
@@ -17,6 +15,8 @@ import { isLoggedIn } from "./../../auth/index";
 
 import { FaRegHeart } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa6";
+import { IoHomeOutline } from "react-icons/io5";
+import { formatPrice } from "../../utils/formatPrice";
 
 
 export const Propertycard = ({
@@ -123,7 +123,7 @@ export const Propertycard = ({
         {images?.length > 0 ? (
           <img
             src={images[0]}
-            alt={"Property Image"}
+            alt={name || "Property"}
             style={{
               width: "100%",
               height: "100%",
@@ -132,17 +132,12 @@ export const Propertycard = ({
               backgroundColor: "#E1E1E1",
             }}
             className={styles.ogimg}
-            // onLoad={handleImageLoaded}
           />
         ) : (
-          <Skeleton
-            width="100%"
-            height="100%"
-            borderRadius="10px"
-            // baseColor="#202020"
-            // highlightColor="#444"
-            // duration={4}
-          />
+          <div className={styles.noImage}>
+            <IoHomeOutline size={28} />
+            <span>No image yet</span>
+          </div>
         )}
 
         <div
@@ -264,8 +259,8 @@ export const Propertycard = ({
 
       <div className={styles.pricediv}>
         <div className={styles.pricesection}>
-          <div style={{ fontSize: "0.8rem" }}>Price</div>
-          <div style={{ fontWeight: "bold", fontSize: "1.1rem" }}>{price}</div>
+          <div className={styles.priceLabel}>Price</div>
+          <div className={styles.priceValue}>{formatPrice(price)}</div>
         </div>
         <Link to={`/property_description/${_id}`}>
           <div className={styles.propertyButton}>

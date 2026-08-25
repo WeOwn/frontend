@@ -1,7 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import Input from "../../Atoms/input";
+import React from "react";
 import Button from "../../Atoms/Button";
-import classNames from "classnames";
 import styles from "./styles.module.css";
 import down_arrow from "./down_arrow.svg";
 import { Link } from "react-router-dom";
@@ -12,16 +10,8 @@ const Search = () => {
 
   return (
     <div>
-      <div className={classNames(styles.search)}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "0rem",
-            // background: "black",
-          }}
-          className={styles.searchover}
-        >
+      <div className={styles.search}>
+        <div className={styles.searchover}>
           <Searchdropdown
             dropdownname={"Banglore"}
             logo={down_arrow}
@@ -35,51 +25,11 @@ const Search = () => {
             }}
             list={location}
           />
-          {/* <select
-            style={{
-              border: "none",
-              color: "#0F0B3E",
-              fontSize: "1rem",
-              fontWeight: "600",
-              outline: "none",
-              width: "20%",
-              // gap: "2rem",
-            }}
-          >
-            {location.map((obj, index) => {
-              return (
-                <option
-                  value={obj}
-                  style={{
-                    fontSize: "1rem",
-                    fontWeight: "500",
-                    padding: "2rem 0",
-                  }}
-                >
-                  {obj}
-                </option>
-              );
-            })}
-          </select> */}
 
           <div className={styles.inputBox}>
             <input
               placeholder={"Search for locality, landmark or builder"}
-              // onChange={(value) => {
-              //   serachInputHandler(value);
-              // }}
-              style={{
-                fontSize: "1rem",
-                fontWeight: "550",
-                letterSpacing: "normal",
-                width: "100%",
-                height: "100%",
-                background: "transparent",
-                // color: "white",
-
-                outline: "none",
-                border: "none",
-              }}
+              className={styles.searchInput}
             />
           </div>
         </div>

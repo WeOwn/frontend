@@ -25,68 +25,20 @@ const Index = ({sidebar}) => {
 
 
   return (
-    <div
-      style={{
-        backgroundColor: "white",
-        // marginTop: "2rem",
-        padding: "1rem",
-        borderRadius: "14px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        gap: "0.8rem",
-        width: "100%",
-        minWidth: "fit-content",
-      }}
-    >
-
-      <Link to={"/activity"}>
-
-        <div
-          style={{
-            backgroundColor: "white",
-            boxShadow: " 0 0 10px lightgrey",
-
-            borderRadius: "10px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "2.5rem",
-            height: "2.5rem",
-            cursor: "pointer",
-          }}
-        >
-          <img src={user1} alt="userlogo" style={{ height: "60%" }} />
+    <div className={styles.card}>
+      <Link to={"/activity"} className={styles.avatarLink}>
+        <div className={styles.avatar}>
+          <img src={user1} alt="" />
         </div>
       </Link>
       <div>
-        <div
-          style={{
-            whiteSpace: "nowrap",
-            fontWeight: "650",
-
-            fontSize: "0.9rem",
-
-          }}
-         
-        >
-
+        <div className={styles.name}>
           {userDetail?.isLoggedIn
             ? `${userDetail?.firstName} ${userDetail?.lastName}`
             : "Guest user"}
-
         </div>
         {sidebar && !userDetail?.isLoggedIn && (
-          <div
-            style={{
-              fontSize: "0.75rem",
-              color: "grey",
-              marginTop: "0.2rem",
-              fontWeight: "550",
-              cursor: "pointer",
-            }}
-            onClick={handlelogin}
-          >
+          <div className={styles.loginLink} onClick={handlelogin}>
             Login/Register
           </div>
         )}

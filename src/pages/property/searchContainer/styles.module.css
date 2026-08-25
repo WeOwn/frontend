@@ -22,16 +22,14 @@
     margin-inline:auto;
     display:flex;
     align-items: center;
-    gap:0.5rem;
-    /* flex-wrap: wrap; */
-    
-    background-color: #EEEEEE;
-    /* background-color: transparent; */
-    border:1px solid #E1E1E1;
+    gap: var(--space-3);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
     justify-content: space-between;
-    padding: 1rem;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+    padding: var(--space-4);
+    border-top-right-radius: var(--radius-md);
+    border-top-left-radius: var(--radius-md);
     overflow:auto;
 }
 
@@ -75,18 +73,11 @@
     margin-inline:auto;
     display:flex;
     align-items: center;
-    background-color: #F2F2F2;
-    /* border:1px solid #E1E1E1; */
-    border-radius: 10px;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-md);
     justify-content: space-between;
-    gap:0.2rem;
-    /* overflow-x:auto; */
-    
-    /* overflow-inline: auto; */
-    padding: 0.5rem;   
-    /* overflow:auto; */
-    /* flex-wrap: wrap; */
-    /* z-index:10; */
+    gap: var(--space-1);
+    padding: var(--space-3);
 }
 
 
@@ -94,22 +85,44 @@
 
 
 .selectBox{
-    color:#999999;
+    color: var(--color-muted);
     cursor:pointer;
     display:flex;
     align-items: center;
     justify-content: space-between;
     width:19%;
-    gap:2rem;
-    background-color: #EEEEEE;
-    border:1px solid #E1E1E1;
-    padding:1rem;
-    border-radius: 10px;
+    gap: var(--space-6);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
     min-width:fit-content;
     position:relative;
     z-index:0;
-    
 }
+
+.selectBox:hover{
+    border-color: var(--color-primary-border);
+    background-color: var(--color-primary-surface);
+}
+
+.selectBoxLabel{
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.selectBoxText{
+    font-size: var(--fs-sm);
+    white-space: nowrap;
+    color: var(--color-muted);
+    padding-left: var(--space-2);
+    border-left: 1px solid var(--color-border);
+    width: 7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 @media(max-width:1080px) {
     /* .searchContainer{
         bottom:3.3rem;
@@ -127,22 +140,37 @@
 }
 .optionBox{
     position:absolute;
-   width:100%;
-    top:100%;
+    width:100%;
+    top: calc(100% + var(--space-2));
     left:0;
     right:0;
     appearance: none;
     min-width:fit-content;
-   
-    border:none;
     outline:none;
-    background:#EEEEEE;   
-    border: 1px solid #E1E1E1; 
-    border-radius: 10px;
-    padding: 1rem;
-    color:#999999;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-3);
+    color: var(--color-muted);
     z-index:1;
-     
+    animation: dropIn var(--duration-fast) var(--ease-out);
+}
+
+.optionBox li{
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    list-style: none;
+}
+
+.optionBox li:hover{
+    background-color: var(--color-primary-surface);
+    color: var(--color-primary);
+}
+
+@keyframes dropIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* .optionBox{
@@ -203,7 +231,46 @@
 
 .inputBox{
     min-width:70%;
-    /* background-color: yellow;; */
+}
+
+.searchInput{
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    font-size: var(--fs-md);
+    color: var(--color-ink);
+}
+
+.searchInput::placeholder{
+    color: var(--color-faint);
+}
+
+.findButton{
+    background-color: var(--color-primary);
+    padding: 0.8rem 1.1rem;
+    border-radius: var(--radius-md);
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    border: none;
+    box-shadow: var(--shadow-sm);
+}
+
+.findButton:hover{
+    background-color: var(--color-primary-hover);
+    box-shadow: var(--shadow-md);
+}
+
+.findButtonIcon{
+    width: 1rem;
+}
+
+.buttontext{
+    color: white;
+    white-space: nowrap;
+    font-weight: 600;
 }
 
 @media(max-width:660px) {

@@ -238,16 +238,8 @@ const Sidebar1 = () => {
                   <img src={a2} alt="img" />
                 </span>
                 <div>
-                  <span>My Articles & News</span>
-                  <p
-                    style={{
-                      fontSize: "0.75rem",
-                      color: "grey",
-                      marginTop: "0.2rem",
-                    }}
-                  >
-                    posted by you
-                  </p>
+                  <span>My Articles &amp; News</span>
+                  <p className={styles.metaText}>posted by you</p>
                 </div>
               </div>
             </li>
@@ -365,79 +357,34 @@ const Sidebar1 = () => {
       </div>
 
       <div className={styles.lastdiv}>
-        <div
-          style={{
-            backgroundColor: "white",
-            padding: "1rem",
-
-            borderRadius: "10px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: "0.5rem",
-            fontWeight: "650",
-            fontSize: "1rem",
-          }}
-        >
+        <div className={styles.actionCard}>
           <div className={styles.listsection1}>
             <span>
-              <img src={star} alt="img" />
+              <img src={star} alt="" />
             </span>
             <span>Help Center</span>
           </div>
           <span>
-            <img src={right_arrow} alt="down_arrow" />
+            <img src={right_arrow} alt="" />
           </span>
         </div>
-        <div
-          style={{
-            backgroundColor: "white",
-            padding: "1rem",
-
-            borderRadius: "10px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: "0.5rem",
-            fontWeight: "650",
-            fontSize: "1rem",
-          }}
-        >
+        <div className={styles.actionCard}>
           <div className={styles.listsection1}>
             <span>
-              <img src={fraud} alt="img" />
+              <img src={fraud} alt="" />
             </span>
             <span>Report Fraud</span>
           </div>
           <span>
-            <img src={right_arrow} alt="down_arrow" />
+            <img src={right_arrow} alt="" />
           </span>
         </div>
 
-
-
-
-
-
-
-
-        {userDetails?.isLoggedIn&&<div
-          style={{
-            backgroundColor: "#7065f0",
-            padding: "1rem",
-
-            borderRadius: "10px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color:"white",
-            fontWeight: "650",
-            fontSize: "1rem",
-          }}
-          onClick={handlelogout}
-        >
-          Logout
-        </div>}
+        {userDetails?.isLoggedIn && (
+          <div className={styles.actionCardPrimary} onClick={handlelogout}>
+            Logout
+          </div>
+        )}
       </div>
     </div>
   );

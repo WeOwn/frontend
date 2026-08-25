@@ -117,42 +117,13 @@ const Search = () => {
           <input
             type="text"
             placeholder="Search For Property"
-            style={{
-              background: "transparent",
-              // border: "1px solid black",
-              width: "100%",
-              height: "100%",
-              fontSize: "1rem",
-            }}
+            className={styles.searchInput}
           />
         </div>
-        <div
-          style={{
-            backgroundColor: "#7065f0",
-            padding: "0.8rem 1rem",
-            borderRadius: "10px",
-            width: "fit-content",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: "0.5rem",
-          }}
-        >
-          <div style={{ width: "1rem" }}>
-            <img src={search_logo} alt="img" style={{ width: "100%" }} />
-          </div>
-          <button
-            style={{
-              backgroundColor: "transparent",
-              border: "none",
-              color: "white",
-              whiteSpace: "noWrap",
-            }}
-            className={styles.buttontext}
-          >
-            Find Property
-          </button>
-        </div>
+        <button className={styles.findButton}>
+          <img src={search_logo} alt="" className={styles.findButtonIcon} />
+          <span className={styles.buttontext}>Find Property</span>
+        </button>
       </div>
 
       <div className={styles.section2}>
@@ -164,33 +135,20 @@ const Search = () => {
               // ref={dropdownRefs.current[idx]}
               onClick={() => handleIsopen(idx)}
             >
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "0.2rem" }}
-              >
+              <div className={styles.selectBoxLabel}>
                 <div style={{ width: "0.9rem" }}>
-                  <img src={obj.img} alt="logo" style={{ width: "100%" }} />
+                  <img src={obj.img} alt="" style={{ width: "100%" }} />
                 </div>
-                <span
-                  style={{
-                    fontSize: "0.9rem",
-                    whiteSpace: "nowrap",
-                    color: "#999999",
-                    paddingLeft: "0.5rem",
-                    borderLeft: "1px solid #E1E1E1",
-                    // background: "red",
-                    width: "7rem",
-                    overflow: "hidden",
-                  }}
-                >
+                <span className={styles.selectBoxText}>
                   {dropdownname[idx]}
                 </span>
               </div>
               <div className={styles.arrowimgdiv}>
                 <img
                   src={down_arrow}
-                  alt="img"
+                  alt=""
                   style={{ width: "100%", height: "100%" }}
-                  className={isopen === idx && styles.rotate180}
+                  className={isopen === idx ? styles.rotate180 : ""}
                 />
               </div>
               {isopen === idx && (
@@ -199,9 +157,10 @@ const Search = () => {
                     <Rangefilter />
                   ) : (
                     <ul>
-                      {obj?.location?.map((name, index) => {
+                      {obj?.location?.map((name) => {
                         return (
                           <li
+                            key={name}
                             onClick={() => handlevar(name, idx)}
                             style={{ whiteSpace: "nowrap" }}
                           >

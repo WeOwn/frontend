@@ -28,18 +28,9 @@ const index = () => {
         <div className={styles.inputdivp}>
           <input placeholder="Search For a Property" />
         </div>
-        <div className={styles.purplebuttondiv}>
-          <button
-            style={{
-              backgroundColor: "transparent",
-              border: "none",
-              color: "white",
-              whiteSpace: "noWrap",
-            }}
-          >
-            <img src={searchlogo} alt="img" style={{ width: "1rem" }} />
-          </button>
-        </div>
+        <button className={styles.purplebuttondiv}>
+          <img src={searchlogo} alt="Search" style={{ width: "1rem" }} />
+        </button>
       </div>
       <div className={styles.searchdropdivp}>
         <Searchdropdown
@@ -47,6 +38,7 @@ const index = () => {
           logo={whitedroplogo}
           style={style}
           list={togglelist}
+          filterType="listingType"
         />
         <Searchdropdown
           dropdownname={"Banglore"}

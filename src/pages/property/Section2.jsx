@@ -5,6 +5,7 @@ import Toggle from "./toggleContainer";
 import { Propertycard } from "../../components/propertyCard/Propertycard";
 import api from "../../service/apiGateway";
 import PropertycardSkeleton from "../../components/propertyCard/PropertycardSkeleton";
+import IntroContainer from "../../Atoms/introContainer/IntroContainer";
 
 const Section2 = () => {
   const [allproperties, setAllProperties] = useState(null);
@@ -26,36 +27,11 @@ const Section2 = () => {
 
   return (
     <div className={styles.section2Container}>
-      <div style={{ width: "3rem", marginLeft: "-1rem" }}>
-        <img
-          src={stardesign}
-          alt="img"
-          style={{ width: "100%", height: "100%" }}
-        />
-      </div>
-      <h4
-        style={{
-          fontSize: "2rem",
-          fontWeight: "650",
-          marginTop: "0.5rem",
-          whiteSpace: "wrap",
-        }}
-      >
-        Discover a World Property
-      </h4>
-
-      <p
-        style={{
-          color: "#999999",
-          width: "100%",
-          marginTop: "1rem",
-          fontWeight: "500",
-        }}
-      >
-        Our portfolio of properties is as diverse as your dreams. Explore ther
-        following categories to find the perfect property that resonates with
-        your vision of home.
-      </p>
+      <IntroContainer
+        stardesign={stardesign}
+        heading="Discover a World of Properties"
+        desc="Our portfolio spans villas, apartments, and penthouses across every major city. Browse the full listing below and click into any home for the complete picture."
+      />
       {/* <div style={{ marginTop: "4rem" }}>
         <Toggle />
       </div> */}

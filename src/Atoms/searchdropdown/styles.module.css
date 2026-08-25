@@ -1,90 +1,96 @@
 .selectBox{
-    
-
-    color:#999999;
-    cursor:pointer;
-    display:flex;
+    color: var(--color-muted);
+    cursor: pointer;
+    display: flex;
     align-items: center;
-    /* justify-content: space-between; */
-    gap:0.5rem;
-    gap:var(--flexgap);
-    /* width:var(--selectBoxwidth); */
-    background-color: red;
-    /* width:100%; */
+    gap: var(--flexgap, var(--space-2));
     width: 8rem;
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    position: relative;
+    z-index: 0;
+}
 
-    background-color: var(--bgColor);
-  
-    padding:1rem;
-   
-    border-radius: 10px;
-    
-    position:relative;
-    z-index:0;
+.selectBox:hover{
+    box-shadow: var(--shadow-sm);
 }
 
 @media(max-width:768px) {
     .selectBox{
-        width:var(--selectBoxwidth);  
+        width: var(--selectBoxwidth);
         justify-content: space-between;
-        gap:0;            
-
+        gap: 0;
     }
 }
 
-
-
-@media(max-width:390px) {
-    .selectBox{
-        gap:0.2rem;
-        
-    }
+.name{
+    font-size: var(--fs-base);
+    width: 5rem;
+    white-space: nowrap;
+    font-weight: 600;
+    overflow: hidden;
 }
-
-
-
 
 .droplogo{
-    width:1rem;
+    width: 1rem;
 }
 
 @media(min-width:769px) {
     .droplogo{
-        width:0.7rem;
+        width: 0.7rem;
     }
 }
 
-.optionBox{
-    position:absolute;
-   width:100%;
-   min-width: fit-content;
-   top:100%;
-    left:0;
-    right:0;
-    appearance: none;
-    
-   
-    border:none;
-    outline:none;
-    background:#EEEEEE;   
-    border: 1px solid #E1E1E1; 
-    border-radius: 10px;
-    padding: 1rem;
-    color:#999999;
-    font-weight: 600;
-    z-index:1;
-     
+.droplogoBg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: var(--space-1);
+    border-radius: 50%;
 }
 
-/* .rotate180{
-    transform:rotate(180deg);
-} */
+.optionBox{
+    position: absolute;
+    width: 100%;
+    min-width: fit-content;
+    top: calc(100% + var(--space-2));
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-2);
+    color: var(--color-muted);
+    font-weight: 600;
+    z-index: 1;
+    animation: dropIn var(--duration-fast) var(--ease-out);
+}
+
+.optionBox ul{
+    list-style: none;
+}
+
+.optionBox li{
+    white-space: nowrap;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+}
+
+.optionBox li:hover{
+    background-color: var(--color-primary-surface);
+    color: var(--color-primary);
+}
+
 .rotate180{
-    -webkit-transform: rotate(180deg); /* Safari and Chrome */
-    -moz-transform: rotate(180deg);    /* Firefox */
-    -ms-transform: rotate(180deg);     /* Internet Explorer 9 */
-    -o-transform: rotate(180deg);      /* Opera */
     transform: rotate(180deg);
-    /* Optional: add transition for smooth rotation */
-    /* transition: transform 0.5s ease-in-out; */
+    transition: transform var(--duration-base) var(--ease-standard);
+}
+
+@keyframes dropIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
 }

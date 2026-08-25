@@ -24,10 +24,15 @@ const Navbarmob = () => {
         </div>
       </Link>
 
-      <div className={styles.hamburgerdiv} onClick={handlesideopen}>
+      <div
+        className={styles.hamburgerdiv}
+        onClick={handlesideopen}
+        role="button"
+        aria-label="Open menu"
+      >
         <img
           src={hamburgerNav}
-          alt="img"
+          alt=""
           style={{ width: "100%", height: "100%" }}
         />
       </div>

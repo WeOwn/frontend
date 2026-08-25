@@ -5,19 +5,21 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setFilters } from "../../redux/filterslice";
 
-const Index = ({ dropdownname, logo, style, list }) => {
+const Index = ({ dropdownname, logo, style, list, filterType = "city" }) => {
   const dispatch = useDispatch();
   const handleAppliedfilter = (name) => {
 
-    dispatch(setFilters({ type: "city", value: name }));
+    dispatch(setFilters({ type: filterType, value: name }));
 
   };
   const { bgcolor, border, droplogobg, namecolor, flexgap, selectBoxwidth } =
     style;
   const [isopen, setIsopen] = useState(-1);
+  const [selected, setSelected] = useState(dropdownname);
   const dropdownRef1 = useRef(null);
 
   const city = useSelector((store) => store.filters.city);
+  const displayValue = filterType === "city" ? city || selected : selected;
   const handleIsopen = (id) => {
     if (isopen === id) setIsopen(-1);
     else setIsopen(id);
@@ -38,7 +40,7 @@ const Index = ({ dropdownname, logo, style, list }) => {
 
   const handlevar = (name) => {
     handleAppliedfilter(name);
-
+    setSelected(name);
     setIsopen(-1);
   };
   return (
@@ -53,41 +55,20 @@ const Index = ({ dropdownname, logo, style, list }) => {
         "--selectBoxwidth": selectBoxwidth,
       }}
     >
-      <span
-        style={{
-          fontSize: "1rem",
-          width: "5rem",
-          whiteSpace: "nowrap",
-          fontWeight: "600",
-          overflow: "hidden",
-          // backgroundColor: "yellow",
-          color: namecolor,
-        }}
-      >
-        {city || "Banglore"}
+      <span className={styles.name} style={{ color: namecolor }}>
+        {displayValue}
       </span>
-      <div
-        style={{
-          backgroundColor: droplogobg,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "1.5rem",
-          height: "1.5rem",
-          padding: "0.2rem",
-          borderRadius: "50%",
-        }}
-      >
+      <div className={styles.droplogoBg} style={{ backgroundColor: droplogobg }}>
         {logo && (
           <div className={styles.droplogo}>
             <img
               src={logo}
-              alt="img"
+              alt=""
               style={{ width: "100%", height: "100%" }}
-              className={isopen === 0 && styles.rotate180}
+              className={isopen === 0 ? styles.rotate180 : ""}
             />
           </div>
-        )}{" "}
+        )}
       </div>
 
       {isopen !== -1 && (
@@ -95,10 +76,7 @@ const Index = ({ dropdownname, logo, style, list }) => {
           <ul>
             {list?.map((name, index) => {
               return (
-                <li
-                  onClick={() => handlevar(name)}
-                  style={{ whiteSpace: "nowrap" }}
-                >
+                <li key={name} onClick={() => handlevar(name)}>
                   {name}
                 </li>
               );

@@ -35,6 +35,13 @@ function Navbar() {
     return () => window.removeEventListener("resize", handleresize);
   });
 
+  useEffect(() => {
+    document.body.style.overflow = sidebar ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [sidebar]);
+
   return (
     <div>
       <div>

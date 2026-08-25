@@ -12,148 +12,143 @@
     top: 0;
     width: 100%;
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    background-color: #7065f0;
-    padding: 1rem;
-    color:#0F0B3E;
-    font-family: "Urbanist", sans-serif;
+    justify-content: space-between;
+    gap: var(--space-4);
+    background-color: var(--color-primary);
+    padding-inline: clamp(1rem, 4vw, 3rem);
+    color: var(--color-ink);
+    font-family: var(--font-base);
     z-index: 999;
-    animation: fadeIn 1s forwards;
-    height: 76px;
-
+    animation: fadeIn var(--duration-slow) var(--ease-out) forwards;
+    height: var(--nav-height);
 }
 
 .sidebarouterContainer{
-  /* font-family: Urbanist; */
     position: fixed;
-  top: 0;
-  left: 0; /* Initially hidden */
-  /* width: 256px; */
-  height: 100vh;
-  background: transparent;
-  /* background-color: transparent; */
-  width: 75%;
-  z-index:1000;
+    inset: 0;
+    height: 100vh;
+    width: 100%;
+    z-index:1000;
+    background-color: rgba(15, 11, 62, 0.45);
+    animation: backdropIn var(--duration-base) var(--ease-standard) forwards;
 }
-  
+
   .logo{
     width:7rem;
+    flex-shrink: 0;
   }
 
   .center{
     display: flex;
     align-items: center;
-    /* justify-content: space-around; */
-    gap:2rem;
-    width:70%;
-    /* gap:2rem; */
+    gap: var(--space-5);
+    flex: 1;
+    min-width: 0;
   }
 
   .dropdown1{
     display: flex;
     align-items: center;
-    background-color: #7065f0;
+    gap: var(--space-1);
+    flex-shrink: 0;
   }
-  
+
+  .dropdown1 p{
+    color: white;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+
+  .dropdown1 select{
+    outline: none;
+    border: none;
+    color: white;
+    font-weight: 700;
+    background: transparent;
+    cursor: pointer;
+  }
+
   .navCenter {
-    width:70%;
-    /* height:50%; */
+    flex: 1;
+    min-width: 0;
     display: flex;
     justify-content: space-between;
-    background-color: #ffffff;
-    padding:0.2rem 0.5rem;
+    background-color: var(--color-surface);
+    padding: 0.35rem 0.5rem 0.35rem 1rem;
     align-items: center;
-    border-radius: 5px;
-    /* background-color: transparent; */
-    
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-sm);
   }
 
   .searchbar{
-    background-color: #ffffff;
+    background-color: var(--color-surface);
     display:flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%; 
-    gap:1rem;
-   
+    width: 100%;
+    gap: var(--space-4);
   }
 
   .searchtext{
-    padding: 0.2rem 1rem;
-    border-left: 1px solid #3F3D565E;
-    width: 100%; 
-    
+    padding: 0.2rem var(--space-4);
+    border-left: 1px solid var(--color-border-strong);
+    width: 100%;
   }
-  input{
 
+  .searchtext input{
     width:100%;
+    font-size: var(--fs-sm);
   }
-  
+
   .navOptions {
     list-style: none;
     display: flex;
     margin: 0;
     padding: 0;
-   
   }
 
   .navOptions li a {
-    color: black;
-    text-decoration: none; 
+    color: var(--color-ink);
+    text-decoration: none;
     font-weight: 600;
     white-space: nowrap;
   }
-  
-  
+
   .navOptions li {
     margin-right: 25px;
-    
   }
-  
-  /* .navRight {
-    display: flex;
- 
-    gap:0.3rem;
-    align-items: center;
-    background-color:rgb(245, 245, 254, 0.99);;
-    padding:0.5rem 0.8rem;
-    border-radius: 999px;
-
-  } */
-
-
 
   .navRight {
     display: flex;
-    
     align-items: center;
-    gap:0rem;
-    background-color:rgb(245, 245, 254, 0.99);;
-    padding:0.5rem 0.8rem;
-    border-radius: 999px;
-    
+    gap: var(--space-2);
+    background-color: var(--color-bg);
+    padding: 0.5rem 0.8rem;
+    border-radius: var(--radius-pill);
+    flex-shrink: 0;
   }
-  
+
   .navRight a {
     margin-left: 10px;
     text-decoration: none;
+    display: flex;
   }
-  
+
   .registerButton{
-    background-color: rgba(112, 101, 240, 0.1);
-    color: rgba(112, 101, 240, 1);
+    background-color: var(--color-primary-surface);
+    color: var(--color-primary);
     padding: 0.7em;
-    border-radius: 6px;
+    border-radius: var(--radius-sm);
     width: 5em;
     text-align: center;
   }
 
 .loginButton {
-  background-color: rgba(112, 101, 240, 1);
+  background-color: var(--color-primary);
   color: white;
   padding: 0.7em;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   width: 5em;
   text-align: center;
 }
@@ -161,6 +156,4 @@
 .dropdowndiv select{
   cursor:pointer;
 }
-
-
 
