@@ -86,6 +86,9 @@ const LeadModal = ({ propertyId, refCode, onClose }) => {
             <button className={styles.submitBtn} onClick={handleSubmit} disabled={submitting}>
               {submitting ? "Submitting..." : "Submit & Get Details"}
             </button>
+            <p className={styles.consent}>
+              By submitting, you agree to receive a call from the builder's team about this property.
+            </p>
             <button className={styles.skipBtn} onClick={onClose}>
               Skip for now
             </button>
