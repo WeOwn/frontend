@@ -23,7 +23,7 @@ const LOGO = { W: 1091.95, H: 209.0 }
 const LOGO_ZOOM = 2.0          // wordmark scale when it first appears (× resting size)
 const INNER_WIDTH = 1.75       // building inside the letters, × wordmark width
 const INNER_FOCUS_Y = 134      // logo-unit row where the facade's planter line sits
-const BUILDING_W = 1440, BUILDING_H = 514, BUILDING_FOCUS_Y = 275 // building.webp
+const BUILDING_W = 1440, BUILDING_H = 514, BUILDING_FOCUS_Y = 275 // building.png
 const BUILDING_ORIGIN_Y = 0.62 // transform-origin of the full-screen building
 
 const ArrowIcon = () => (
@@ -157,13 +157,13 @@ export default function Hero() {
         </div>
 
         <div className="hero__building" ref={buildingRef}>
-          <img src="/assets/building.webp" alt="" width="1440" height="514" fetchPriority="high" />
+          <img src="/assets/building.png" alt="" width="1440" height="514" fetchPriority="high" />
         </div>
         <div className="hero__fog" ref={fogRef}></div>
 
         <div className="hero__logo" aria-hidden="true" ref={logoRef}>
           <div className="hero__logo-clip">
-            <img className="hero__logo-img" src="/assets/building.webp" alt="" ref={logoImgRef} />
+            <img className="hero__logo-img" src="/assets/building.png" alt="" ref={logoImgRef} />
           </div>
         </div>
       </div>
